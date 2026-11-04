@@ -1,6 +1,6 @@
 # LUMEN · Histology Recall Lab (v2.0)
 
-An offline-first Chinese/English histology terminology study web app. 1,269 deduplicated terminology entries. Multiple-choice exercises, letter-by-letter English spelling, chapter filtering, local SRS practice and exportable progress.
+An offline-first Chinese/English histology terminology study web app. 1,269 deduplicated base entries plus 14 classroom-photo entries at runtime (1,283 cards total). Multiple-choice exercises, letter-by-letter English spelling, chapter filtering, local SRS practice and exportable progress.
 
 ## Open
 - Open `index.html` directly in Chrome/Edge/Safari. The entire app and word data are embedded in this file.
@@ -8,18 +8,33 @@ An offline-first Chinese/English histology terminology study web app. 1,269 dedu
 - No API keys, analytics, external fonts, external images or CDN requests are required for the app.
 - Progress is saved to the browser's **localStorage**; it is not synced across devices.
 
-## Editable source
-`source-project/LUMEN_Histology_Recall_v2/src/` contains source code and course vocabulary mapping. For rebuild steps consult `source-project/LUMEN_Histology_Recall_v2/README.md`.
+## Editable source and QA
+The current repository contains a single-file app (`index.html`) and this README; the standalone source-project folder referenced in earlier drafts is not present here. The embedded `window.LUMEN_DATA` glossary is the vocabulary source in this published bundle.
+
+Terminology audit: `qa/TERMINOLOGY_AUDIT_2026-11-04.md` (verified fixes, source references, and unresolved ambiguities). Run `node qa/validate-terminology.mjs` after vocabulary edits to check vocabulary integrity and targeted regressions. The checker does not constitute independent academic validation of all entries.
+
+## Study progression and term eligibility
+- **01 · 新词学习** takes only never-answered terms from the current scope, so overdue items cannot block moving forward. Completing any round in modes **01/02/03** opens an accessible round-completion dialog with **退出** and **继续学习新单词**. Continuing always preserves the original question type and takes only unseen terms; exiting returns to the home dashboard.
+- **04 · 到期复习** remains an SRS due-only path, **without** the modal; one-card manual practices are also exempt. Each round has 8–30 items, but daily learning has no hard cap. When no unseen words remain, continuation is disabled rather than serving repeats.
+- A curated set of **48 generic/foundational terms** and **6 context-dependent isolated words** is omitted from automatic independent drills by default. The complete glossary remains searchable and individual cards remain manually practiceable. Favorites and the **基础词独立训练** preference can include these in automatic sessions; 172 exam-focus entries are protected from automatic omission.
+- Terms are not deleted or declared academically invalid. See `qa/TERMINOLOGY_CLASSIFICATION_2026-11-04.md` for all 54 entries, rationale, exceptions and reversibility.
+
+### Quality checks
+Run both checks (Node.js ≥18, no extra packages):
+```bash
+node qa/validate-terminology.mjs
+node qa/validate-learning-flow.mjs
+node qa/validate-round-prompt.mjs
+```
+These checks protect card identity, spelling corrections, exam coverage, fresh-word progression, due-review exemption, completion-dialog behavior and safe overrides; they do **not** certify the scientific validity of every glossary entry.
 
 ## Source traceability
 This study app includes terminology derived from the user's R10 histology source material and 14 chapter glossary files. Its study scope is not teacher-certified.
 
-## Important privacy / publishing warning
-The repository is presently **private**. GitHub Pages may make the published site publicly accessible even from a private repository, depending on account/org configuration. Do not enable Pages until you accept that others may be able to access the terminology and bundled application data.
+## Public-repository warning
+This repository was **public** when audited on 2026-11-04, and its GitHub Pages site was accessible. Assume that all bundled terminology and application code can be viewed by anyone. Do not add nonpublic course documents, personal data, API keys or private annotations to the published bundle.
 
-## Deploy via GitHub Pages (after owner approval)
-1. Upload/push these files to the specified repository `caiwu557-ai/-` on `main`.
-2. In repository **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, and save (if supported by the repository).
-3. Check GitHub's reported published URL and whether it is publicly accessible. Do not assume a URL until Pages confirms deployment.
+## Deploy via GitHub Pages
+The site is currently published from this repository. Merge tested changes to the Pages source branch after review, then confirm the live site reflects the new commit. An audit branch alone does **not** update the live site.
 
-No changes to repository visibility or access rules are made automatically by this package.
+The terminology audit makes no changes to repository visibility, access controls, or deployment settings.
