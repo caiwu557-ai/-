@@ -451,6 +451,84 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
  .hero-glass:after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 }
 
+
+/* LUMEN v3.6: quiet spring optics, physical contact and denser directional frosted lens.
+   Layer contract: optics 1 < glass 2 < content 4. */
+.hero{isolation:isolate}
+.hero-optic,:root[data-theme=dark] .hero-optic{
+ z-index:1!important;filter:saturate(1.15) contrast(1.02)!important;
+}
+.hero-left{z-index:4!important}
+.hero-glass{z-index:2!important;pointer-events:none;isolation:isolate}
+.hero-optic .optic-kinetic{transition:none!important;backface-visibility:hidden}
+.hero-optic .optic-ring{
+ filter:drop-shadow(0 9px 15px rgba(78,92,180,.15))!important;
+}
+.hero-optic .optic-ring.is-contact,.hero-optic .optic-orb.is-contact{
+ filter:none!important;box-shadow:none!important;
+}
+.glass-hover-mist,.glass-ripple-layer{display:none!important}
+/* First pass gives a broad, slowly increasing milky diffusion. */
+.hero-glass::before{
+ background:linear-gradient(90deg,
+  rgba(251,253,255,.035) 0%,rgba(250,252,255,.08) 29%,
+  rgba(246,249,255,.33) 54%,rgba(246,250,255,.68) 77%,
+  rgba(247,251,255,.83) 100%)!important;
+ -webkit-backdrop-filter:blur(5px) saturate(110%)!important;
+ backdrop-filter:blur(5px) saturate(110%)!important
+}
+/* Second pass hides the underlying sharp edges on the far right. */
+.hero-glass::after{
+ opacity:1!important;
+ background:linear-gradient(90deg,transparent 24%,
+  rgba(248,250,255,.07) 43%,rgba(247,250,255,.28) 64%,
+  rgba(247,251,255,.48) 81%,rgba(248,251,255,.61) 100%)!important;
+ -webkit-backdrop-filter:blur(38px) saturate(106%)!important;
+ backdrop-filter:blur(38px) saturate(106%)!important;
+ -webkit-mask-image:linear-gradient(90deg,transparent 22%,
+  rgba(0,0,0,.04) 38%,rgba(0,0,0,.48) 60%,
+  rgba(0,0,0,.94) 81%,black 100%)!important;
+ mask-image:linear-gradient(90deg,transparent 22%,
+  rgba(0,0,0,.04) 38%,rgba(0,0,0,.48) 60%,
+  rgba(0,0,0,.94) 81%,black 100%)!important
+}
+:root[data-theme=dark] .hero-glass::before{
+ background:linear-gradient(90deg,rgba(37,43,70,.04) 0%,
+  rgba(37,43,70,.11) 29%,rgba(36,44,75,.32) 54%,
+  rgba(35,44,75,.62) 77%,rgba(34,44,74,.80) 100%)!important
+}
+:root[data-theme=dark] .hero-glass::after{
+ background:linear-gradient(90deg,transparent 24%,
+  rgba(35,43,74,.09) 43%,rgba(33,43,73,.29) 64%,
+  rgba(31,43,74,.49) 81%,rgba(31,42,71,.62) 100%)!important
+}
+@media(max-width:650px){
+ .hero-glass::before{
+  background:linear-gradient(90deg,rgba(251,253,255,.09),
+   rgba(249,252,255,.18) 28%,rgba(247,250,255,.52) 65%,
+   rgba(249,252,255,.86) 100%)!important
+ }
+ :root[data-theme=dark] .hero-glass::before{
+  background:linear-gradient(90deg,rgba(37,43,70,.11),
+   rgba(36,45,75,.25) 28%,rgba(34,44,74,.57) 65%,
+   rgba(32,42,72,.85) 100%)!important
+ }
+}
+@media(prefers-reduced-transparency:reduce){
+ .hero-glass::before{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  background:linear-gradient(90deg,rgba(250,252,255,.66),
+   rgba(250,252,255,.96))!important
+ }
+ .hero-glass::after{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important
+ }
+ :root[data-theme=dark] .hero-glass::before{
+  background:linear-gradient(90deg,rgba(37,43,70,.75),
+   rgba(34,44,74,.97))!important
+ }
+}
+
 </style>
 </head>
 <body>
@@ -677,196 +755,175 @@ function initOptics(){
  const hero=app.querySelector('#hero-masthead');
  const field=hero?.querySelector('.hero-optic');
  const glass=hero?.querySelector('.hero-glass');
- const rippleLayer=glass?.querySelector('.glass-ripple-layer');
- if(!hero||!field||!glass||!rippleLayer)return;
+ if(!hero||!field||!glass)return;
  const reduced=()=>!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches;
- const GAP=2.3; // guaranteed visible spacing between finite-width shell boundaries
+ // Slow spring settling and low-restitution edge constraints replace the previous
+ // permanently driven, high-restitution collision loop (which visibly stuttered).
  const specs=[
-  {id:'shell-outer',factor:1,thickness:31,mass:6.2,freq:.88,phase:.22,spin:11},
-  {id:'shell-middle',factor:.60,thickness:25,mass:4.2,freq:1.22,phase:1.72,spin:-15},
-  {id:'orb-core',factor:.215,thickness:0,mass:1.55,freq:1.7,phase:3.12,spin:0}
+  {id:'shell-outer',factor:1,thickness:31,mass:6.4,phase:.4,spring:7.2,damping:5.0,drift:2.5},
+  {id:'shell-middle',factor:.59,thickness:25,mass:3.8,phase:1.8,spring:8.4,damping:4.9,drift:4.2},
+  {id:'orb-core',factor:.205,thickness:0,mass:1.55,phase:3.1,spring:10.2,damping:5.5,drift:6.0}
  ];
- const bodies=specs.map((b,i)=>({...b,el:field.querySelector(`[data-body="${b.id}"]`),
-  x:0,y:0,vx:[21,-39,44][i],vy:[22,37,-29][i],r:0,t:0,
-  squeeze:0,phaseVelocity:0,angle:0}));
+ const bodies=specs.map((spec)=>({...spec,el:field.querySelector('[data-body="'+spec.id+'"]'),
+  x:0,y:0,vx:0,vy:0,r:0,t:0}));
  if(bodies.some(b=>!b.el))return;
- let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0,collisions=0,wallCollisions=0,disposed=false;
- let fx=50,fy=50,tx=50,ty=50,glow=0,glowTarget=0,hasPointer=false,pointerX=0,pointerY=0;
- let lastPointerX=NaN,lastPointerY=NaN,lastPointerT=0,pointerVx=0,pointerVy=0,rippleCount=0;
+ let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0;
+ let collisions=0,wallCollisions=0,disposed=false;
+ let pointerX=0,pointerY=0,previousX=NaN,previousY=NaN,hasPointer=false;
  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  const canMove=()=>!reduced()&&!document.hidden&&!disposed;
- const norm=(dx,dy)=>{const d=Math.hypot(dx,dy);return d>.00001?[dx/d,dy/d,d]:[1,0,0]};
- // The outer annulus stays within the rounded card. Circle inside the inset rectangle
- // is conservative at curved corners; its visible outside edge can touch the border.
- function restrictOuter(pulse){
-  const b=bodies[0],pad=1.1;
-  for(const [axis,maxBound] of [['x',width],['y',height]]){
-   const v=axis==='x'?'vx':'vy',min=b.r+pad,max=maxBound-b.r-pad;
-   if(min>max){b[axis]=maxBound/2;b[v]=0;continue;}
-   const side=b[axis]<min?-1:b[axis]>max?1:0;
-   if(side===0)continue;
-   b[axis]=side<0?min:max;
-   if(b[v]*side>0){b[v]=-b[v]*.91; b.squeeze=Math.max(b.squeeze,.95);
-    if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}
-  }
- }
- function resolveNested(pulse){
-  // Outer contains middle; middle contains core. All contacts are between visible EDGES.
-  for(let i=0;i<bodies.length-1;i++){
-   const a=bodies[i],b=bodies[i+1];
-   const maxDistance=Math.max(GAP,a.r-a.t-b.r-GAP);
-   const [nx,ny,dist]=norm(b.x-a.x,b.y-a.y);
-   if(dist<=maxDistance)continue;
-   const penetration=dist-maxDistance;
-   const invA=1/a.mass,invB=1/b.mass,denom=invA+invB;
-   // Full position projection first: visual rings never interpenetrate.
-   a.x+=nx*penetration*invA/denom;a.y+=ny*penetration*invA/denom;
-   b.x-=nx*penetration*invB/denom;b.y-=ny*penetration*invB/denom;
-   const separating=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
-   if(separating>0){
-    // Elastic but damped bounce gives a soft keycap/gel response rather than rigid billiards.
-    const impulse=(1+.87)*separating/denom;
-    a.vx+=nx*impulse*invA;a.vy+=ny*impulse*invA;
-    b.vx-=nx*impulse*invB;b.vy-=ny*impulse*invB;
-    a.squeeze=Math.max(a.squeeze,.72);b.squeeze=Math.max(b.squeeze,.68);
-    if(pulse){collisions++;a.el.classList.add('is-contact');b.el.classList.add('is-contact')}
+ const unit=(dx,dy)=>{const d=Math.hypot(dx,dy);return d>.0001?[dx/d,dy/d,d]:[1,0,0]};
+ function confine(count){
+  // Project overlapping annular EDGES, not the full discs; transfer nearly all
+  // correction to the lighter inner body. A small restitution prevents bouncing loops.
+  for(let pass=0;pass<7;pass++){
+   const outer=bodies[0],pad=1.5;
+   for(const axis of ['x','y']){
+    const velocity=axis==='x'?'vx':'vy';
+    const maxSize=axis==='x'?width:height;
+    const low=outer.r+pad,high=maxSize-outer.r-pad;
+    const previous=outer[axis];
+    outer[axis]=low<=high?clamp(previous,low,high):maxSize/2;
+    if(previous!==outer[axis]){
+     const movingOut=(previous<low&&outer[velocity]<0)||(previous>high&&outer[velocity]>0);
+     if(movingOut){outer[velocity]*=-.12;if(count&&pass===0)wallCollisions++;}
+    }
+   }
+   for(let i=0;i<bodies.length-1;i++){
+    const a=bodies[i],b=bodies[i+1];
+    const gap=2.8;
+    const limit=Math.max(0,a.r-a.t-b.r-gap);
+    const [nx,ny,distance]=unit(b.x-a.x,b.y-a.y);
+    if(distance<=limit)continue;
+    const overlap=distance-limit;
+    const invA=1/a.mass,invB=1/b.mass,sum=invA+invB;
+    a.x+=nx*overlap*invA/sum;a.y+=ny*overlap*invA/sum;
+    b.x-=nx*overlap*invB/sum;b.y-=ny*overlap*invB/sum;
+    const outward=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+    if(outward>0){
+     const impulse=outward*1.12/sum;
+     a.vx+=nx*impulse*invA;a.vy+=ny*impulse*invA;
+     b.vx-=nx*impulse*invB;b.vy-=ny*impulse*invB;
+     if(count&&pass===0)collisions++;
+    }
    }
   }
+ }
+ function paint(time){
+  bodies.forEach((b,i)=>{
+   // No idle scale/heartbeat, no contact flash. Tiny angular drift only.
+   const rotation=i===2?0:Math.sin(time*.16+b.phase)*(i===0?1.05:1.4);
+   b.el.style.transform='translate3d('+(b.x-b.r).toFixed(2)+'px,'+
+     (b.y-b.r).toFixed(2)+'px,0) rotate('+rotation.toFixed(2)+'deg)';
+  });
  }
  function layout(reset){
   const w=hero.clientWidth,h=hero.clientHeight;
   if(w<=0||h<=0)return;
+  if(!reset&&Math.abs(w-width)<.5&&Math.abs(h-height)<.5)return;
   width=w;height=h;
-  const R=Math.min(h*.438,w*.385,190);
-  originX=clamp(width-R-Math.max(16,width*.026),R+2,width-R-2);
+  const radius=Math.min(h*.438,w*.385,190);
+  originX=clamp(width-radius-Math.max(18,width*.032),radius+2,width-radius-2);
   originY=height*.52;
   bodies.forEach((b,i)=>{
-   b.r=R*b.factor;
-   // Scale physical thickness with the illustration, but keep the material broad.
-   b.t=i===2?0:Math.min(b.r*.44,b.thickness*R/145);
-   b.el.style.width=(2*b.r).toFixed(2)+'px';b.el.style.height=(2*b.r).toFixed(2)+'px';
+   b.r=radius*b.factor;
+   b.t=i===2?0:Math.min(b.r*.44,b.thickness*radius/145);
+   b.el.style.width=(2*b.r).toFixed(2)+'px';
+   b.el.style.height=(2*b.r).toFixed(2)+'px';
    if(i<2)b.el.style.setProperty('--shell-thickness',b.t.toFixed(2)+'px');
-   if(reset){b.x=originX+[0,1.3,-1.5][i];b.y=originY+[0,-.6,1.1][i];
-    b.vx=[20,-34,40][i];b.vy=[25,34,-28][i];b.squeeze=0;b.angle=0;}
+   if(reset){b.x=originX;b.y=originY;b.vx=0;b.vy=0;}
   });
-  for(let k=0;k<8;k++){restrictOuter(false);resolveNested(false)}
-  paint(0);
- }
- function paint(t){
-  for(let i=0;i<bodies.length;i++){
-   const b=bodies[i];
-   const turn=i===2?0:Math.sin(t*b.freq+b.phase)*5.8+t*b.spin;
-   b.angle+=(turn-b.angle)*.075;
-   // Scale *only* a few percent and never enlarge the collision geometry.
-   // Smaller-on-impact makes the soft material visible without penetration.
-   const squish=1-.022*b.squeeze;
-   b.el.style.transform=`translate3d(${(b.x-b.r).toFixed(2)}px,${(b.y-b.r).toFixed(2)}px,0) rotate(${b.angle.toFixed(2)}deg) scale(${squish.toFixed(4)})`;
-  }
+  confine(false);paint(0);
  }
  function diagnostics(){
-  const shells=bodies.map(b=>({id:b.id,x:b.x,y:b.y,r:b.r,thickness:b.t,innerRadius:b.r-b.t,squeeze:b.squeeze}));
-  const edgeGaps=bodies.slice(0,-1).map((a,i)=>a.r-a.t-bodies[i+1].r-Math.hypot(a.x-bodies[i+1].x,a.y-bodies[i+1].y));
-  const a=bodies[0],wallGap=Math.min(a.x-a.r,width-a.x-a.r,a.y-a.r,height-a.y-a.r);
-  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,minGap:Math.min(...edgeGaps),edgeGaps,wallGap,
-   width,height,center:{x:originX,y:originY},shells,ripples:rippleCount};
+  const shells=bodies.map(b=>({id:b.id,x:b.x,y:b.y,r:b.r,thickness:b.t,
+   innerRadius:b.r-b.t,squeeze:0}));
+  const edgeGaps=bodies.slice(0,-1).map((a,i)=>
+   a.r-a.t-bodies[i+1].r-Math.hypot(a.x-bodies[i+1].x,a.y-bodies[i+1].y));
+  const outer=bodies[0];
+  const wallGap=Math.min(outer.x-outer.r,width-outer.x-outer.r,
+   outer.y-outer.r,height-outer.y-outer.r);
+  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,
+   minGap:Math.min(...edgeGaps),edgeGaps,wallGap,width,height,
+   center:{x:originX,y:originY},shells,ripples:0};
  }
  function onMove(e){
-  if(e.pointerType==='touch'||e.pointerType==='pen'||reduced())return;
-  const rect=hero.getBoundingClientRect(),now=performance.now();
-  pointerX=e.clientX-rect.left;pointerY=e.clientY-rect.top;
-  tx=clamp(pointerX/rect.width*100,0,100);ty=clamp(pointerY/rect.height*100,0,100);
-  glowTarget=.80;hasPointer=true;
-  if(Number.isFinite(lastPointerX)){
-   const dT=clamp((now-lastPointerT)/1000,.012,.13);
-   pointerVx=clamp((pointerX-lastPointerX)/dT,-900,900);
-   pointerVy=clamp((pointerY-lastPointerY)/dT,-900,900);
-   // Drive each shell at its actual visible annulus, not its mathematical centerline.
+  if(e.pointerType==='touch'||reduced())return;
+  const rect=hero.getBoundingClientRect();
+  const x=e.clientX-rect.left,y=e.clientY-rect.top;
+  if(Number.isFinite(previousX)){
+   const dx=clamp(x-previousX,-35,35),dy=clamp(y-previousY,-35,35);
    for(const b of bodies){
-    const r=b.r-b.t*.5;
-    const distance=Math.hypot(pointerX-b.x,pointerY-b.y);
-    const edgeDistance=b.id==='orb-core'?Math.max(0,distance-b.r):Math.abs(distance-r);
-    const influence=Math.max(0,1-edgeDistance/110);
-    const power=influence*influence*(b.id==='orb-core'?.23:.19);
-    b.vx+=pointerVx*power*.13;b.vy+=pointerVy*power*.13;
-    b.squeeze=Math.max(b.squeeze,influence*.28);
+    const distance=Math.hypot(x-b.x,y-b.y);
+    const edge=b.id==='orb-core'?Math.max(0,distance-b.r):
+     Math.abs(distance-(b.r-b.t*.5));
+    const proximity=Math.pow(Math.max(0,1-edge/95),2);
+    const weight=1/Math.sqrt(b.mass/1.55);
+    // A gentle physical drag of the shell, never a brightness response.
+    b.vx+=dx*1.9*proximity*weight;
+    b.vy+=dy*1.9*proximity*weight;
    }
   }
-  lastPointerX=pointerX;lastPointerY=pointerY;lastPointerT=now;
+  pointerX=x;pointerY=y;previousX=x;previousY=y;hasPointer=true;
  }
- function onLeave(){glowTarget=0;hasPointer=false;lastPointerX=NaN;lastPointerY=NaN;pointerVx=0;pointerVy=0;}
+ function onLeave(){previousX=NaN;previousY=NaN;hasPointer=false;}
  function onClick(e){
-  if(reduced()||!e.isTrusted&&e.detail===0)return;
-  // Avoid adding opaque overlays or intercepting any button actions.
-  const rect=hero.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;
-  if(x<0||y<0||x>rect.width||y>rect.height)return;
-  const el=document.createElement('span');el.className='glass-ripple';
-  el.style.left=x+'px';el.style.top=y+'px';
-  const diameter=Math.max(210,Math.min(440,Math.hypot(rect.width,rect.height)*.43));
-  el.style.width=diameter+'px';el.style.height=diameter+'px';
-  rippleLayer.appendChild(el);rippleCount++;
-  const animation=el.animate([
-   {opacity:.53,transform:'translate(-50%,-50%) scale(.07)'},
-   {opacity:.34,offset:.29,transform:'translate(-50%,-50%) scale(.55)'},
-   {opacity:0,transform:'translate(-50%,-50%) scale(1.5)'}
-  ],{duration:870,easing:'cubic-bezier(.17,.74,.24,1)',fill:'forwards'});
-  animation.onfinish=()=>el.remove();animation.oncancel=()=>el.remove();
-  // A small physical impulse makes the click feel attached to the onion, too.
-  for(const b of bodies){const [nx,ny,d]=norm(b.x-x,b.y-y),reach=b.r+100;
-   const strength=Math.max(0,1-d/reach);
-   b.vx+=nx*strength*26;b.vy+=ny*strength*26;b.squeeze=Math.max(b.squeeze,strength*.44);}
+  if(reduced())return;
+  const rect=hero.getBoundingClientRect();
+  const x=e.clientX-rect.left,y=e.clientY-rect.top;
+  if(x<0||x>rect.width||y<0||y>rect.height)return;
+  // Tactile, short-range displacement; no flash, halo, or expanding highlight.
+  for(const b of bodies){
+   const [nx,ny,distance]=unit(b.x-x,b.y-y);
+   const edge=b.id==='orb-core'?Math.max(0,distance-b.r):
+    Math.abs(distance-(b.r-b.t*.5));
+   const pressure=Math.pow(Math.max(0,1-edge/105),2);
+   const nudge=19*pressure/Math.sqrt(b.mass/1.55);
+   b.vx+=nx*nudge;b.vy+=ny*nudge;
+  }
  }
  hero.addEventListener('pointermove',onMove,{passive:true});
  hero.addEventListener('pointerleave',onLeave);
  hero.addEventListener('pointercancel',onLeave);
  hero.addEventListener('click',onClick);
- const onResize=()=>layout(true);
+ const onResize=()=>layout(false);
  const ro=typeof ResizeObserver!=='undefined'?new ResizeObserver(onResize):null;
  if(ro)ro.observe(hero);else window.addEventListener('resize',onResize);
  layout(true);
  function tick(now){
   if(disposed)return;
   raf=requestAnimationFrame(tick);
-  if(!canMove()){
-   last=now;glow=0;glass.style.setProperty('--glow-opacity','0');opticsFrameStats=diagnostics();return;
-  }
-  const dt=Math.min(.032,Math.max(.002,last?(now-last)/1000:.016));last=now;
-  const t=now/1000;frame++;
-  const steps=Math.max(2,Math.ceil(dt/.007)),h=dt/steps;
+  if(!canMove()){last=now;opticsFrameStats=diagnostics();return;}
+  const dt=Math.min(.035,Math.max(.002,last?(now-last)/1000:.016));last=now;
+  const time=now/1000;frame++;
+  const steps=Math.max(2,Math.ceil(dt/.012)),h=dt/steps;
   for(let sub=0;sub<steps;sub++){
-   for(const b of bodies){
-    const driveX=74*Math.sin(t*b.freq+b.phase)+39*Math.sin(t*b.freq*.41+b.phase*2.5);
-    const driveY=68*Math.cos(t*b.freq*.82+b.phase*.81)+31*Math.cos(t*b.freq*.46+b.phase*3.4);
-    b.vx+=(driveX+(originX-b.x)*2.2)*h;
-    b.vy+=(driveY+(originY-b.y)*2.45)*h;
-    // Damping near 1/s lets displacement linger without becoming chaotic.
-    const damping=Math.exp(-.80*h);b.vx*=damping;b.vy*=damping;
-    const cap=b.id==='orb-core'?155:130,spd=Math.hypot(b.vx,b.vy);
-    if(spd>cap){b.vx*=cap/spd;b.vy*=cap/spd;}
+   bodies.forEach((b,i)=>{
+    const swayX=Math.sin(time*.38+b.phase)*b.drift;
+    const swayY=Math.cos(time*.31+b.phase*.85)*b.drift*.82;
+    const targetX=originX+swayX;
+    const targetY=originY+swayY;
+    b.vx+=(targetX-b.x)*b.spring*h;
+    b.vy+=(targetY-b.y)*b.spring*h;
+    const friction=Math.exp(-b.damping*h);
+    b.vx*=friction;b.vy*=friction;
+    const speed=Math.hypot(b.vx,b.vy),cap=i===2?105:85;
+    if(speed>cap){b.vx*=cap/speed;b.vy*=cap/speed;}
     b.x+=b.vx*h;b.y+=b.vy*h;
-   }
-   // Full projection repeated to handle outer-wall + inner-shell simultaneous contacts.
-   for(let k=0;k<10;k++){restrictOuter(k===0);resolveNested(k===0)}
-   restrictOuter(false);
+   });
+   confine(sub===0);
   }
-  if(frame%10===0)bodies.forEach(b=>b.el.classList.remove('is-contact'));
-  for(const b of bodies)b.squeeze*=Math.exp(-3.9*dt);
-  paint(t);
-  const ease=1-Math.exp(-dt*13);fx+=(tx-fx)*ease;fy+=(ty-fy)*ease;
-  glow+=(glowTarget-glow)*(1-Math.exp(-dt*6.4));
-  glass.style.setProperty('--glow-x',fx.toFixed(2)+'%');
-  glass.style.setProperty('--glow-y',fy.toFixed(2)+'%');
-  glass.style.setProperty('--glow-opacity',glow.toFixed(3));
+  paint(time);
   opticsFrameStats=diagnostics();
  }
+ opticsFrameStats=diagnostics();
  if(!reduced())raf=requestAnimationFrame(tick);
- else opticsFrameStats=diagnostics();
  opticsCleanup=()=>{
   disposed=true;cancelAnimationFrame(raf);
   hero.removeEventListener('pointermove',onMove);
   hero.removeEventListener('pointerleave',onLeave);
   hero.removeEventListener('pointercancel',onLeave);
   hero.removeEventListener('click',onClick);
-  rippleLayer.replaceChildren();
   if(ro)ro.disconnect();else window.removeEventListener('resize',onResize);
   opticsFrameStats.active=false;
  };
