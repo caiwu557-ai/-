@@ -685,6 +685,25 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
  .home-primary-action,.home-secondary-action,.home-today-track>span,.home-dashboard .home-mode-card{transition:none!important}
 }
 
+
+/* LUMEN v3.9: home toolbar theme isolation.
+   Older dark-mode .scope-chooser surfaces must not draw a square bar
+   behind the inline course selector. Other pages retain their panels. */
+:root[data-theme=dark] .home-dashboard .home-scope .scope-chooser{
+ background:transparent;
+ border:0;
+ border-radius:0;
+ box-shadow:none;
+ padding:0;
+}
+:root[data-theme=dark] .home-dashboard .home-scope .scope-count{
+ color:#edf3ff;
+ font-weight:720;
+}
+:root[data-theme=dark] .home-dashboard .home-scope .scope-caption strong{
+ color:#f2f5ff;
+}
+
 </style>
 </head>
 <body>
