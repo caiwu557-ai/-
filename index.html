@@ -338,7 +338,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 @media(prefers-reduced-transparency:reduce){.hero-glass:before{backdrop-filter:none;-webkit-backdrop-filter:none;background:linear-gradient(90deg,rgba(250,252,255,.72),rgba(250,252,255,.96))}.hero-glass:after{backdrop-filter:none;-webkit-backdrop-filter:none}}
 
 
-/* LUMEN v3.4 — concentric shell optics: edge-based nested-body collision geometry.
+/* LUMEN v3.5 — concentric shell optics: edge-based nested-body collision geometry.
    Visible ring thickness (--shell-thickness) is used directly by the collision solver.
    Pointer lighting brightens the frosted glass (it does not darken the copy). */
 .hero-optic,:root[data-theme=dark] .hero-optic{
@@ -384,6 +384,72 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 @media(max-width:650px){.hero-optic,:root[data-theme=dark] .hero-optic{inset:0!important;top:0!important;right:0!important;width:100%!important;height:100%!important;opacity:.77!important}}
 @media(prefers-reduced-motion:reduce){.glass-hover-mist{display:none!important}.hero-optic .optic-kinetic{will-change:auto!important}}
 :root[data-motion=off] .glass-hover-mist{display:none!important}
+
+
+/* LUMEN v3.5 | Optical onion: two wide shells, one pearl, genuine directional lens. */
+.hero{isolation:isolate;position:relative;overflow:hidden}
+.hero-optic,:root[data-theme=dark] .hero-optic{z-index:1!important;filter:saturate(1.38) contrast(1.08)!important}
+.hero-optic .optic-ring{
+ --shell-thickness:30px;
+ background:
+  radial-gradient(circle at 29% 21%,rgba(255,255,255,.82),transparent 47%),
+  radial-gradient(circle at 75% 83%,rgba(55,78,182,.50),transparent 55%),
+  conic-gradient(from 24deg,rgba(251,254,255,.98),rgba(126,139,242,.90) 53deg,
+    rgba(253,255,255,1) 105deg,rgba(116,203,252,.88) 175deg,
+    rgba(164,139,242,.97) 258deg,rgba(250,254,255,.96) 331deg,
+    rgba(251,254,255,.98));
+ -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - var(--shell-thickness) - 1px),#000 calc(100% - var(--shell-thickness)),#000 calc(100% - 1px),transparent 100%);
+ mask:radial-gradient(farthest-side,transparent calc(100% - var(--shell-thickness) - 1px),#000 calc(100% - var(--shell-thickness)),#000 calc(100% - 1px),transparent 100%);
+ filter:drop-shadow(0 12px 19px rgba(69,92,189,.32)) drop-shadow(0 0 13px rgba(255,255,255,.75));
+}
+.hero-optic .optic-ring-two{
+ background:
+  radial-gradient(circle at 30% 24%,rgba(255,255,255,.84),transparent 45%),
+  radial-gradient(circle at 72% 78%,rgba(67,84,172,.45),transparent 56%),
+  conic-gradient(from 100deg,rgba(246,254,255,.99),rgba(112,142,237,.90) 72deg,
+    rgba(246,243,255,1) 150deg,rgba(128,212,243,.96) 207deg,
+    rgba(183,152,246,.99) 270deg,rgba(246,254,255,.99));
+}
+.hero-optic .optic-orb{filter:drop-shadow(0 7px 16px rgba(102,105,195,.27))}
+/* z-index: optics=1, lens=2, text=4. Blur is weak on the left; denser on the right. */
+.hero-glass{z-index:2!important;isolation:isolate;overflow:hidden!important;border-radius:inherit;pointer-events:none}
+.hero-glass:before{
+ z-index:0;background:linear-gradient(90deg,
+  rgba(250,253,255,.055) 0%,rgba(249,251,255,.10) 27%,
+  rgba(244,247,255,.24) 55%,rgba(241,246,255,.50) 82%,rgba(246,250,255,.69) 100%);
+ -webkit-backdrop-filter:blur(2px) saturate(120%);backdrop-filter:blur(2px) saturate(120%)
+}
+.hero-glass:after{
+ z-index:1;opacity:1!important;
+ background:linear-gradient(90deg,transparent 0%,rgba(246,250,255,.055) 42%,rgba(242,248,255,.24) 77%,rgba(247,251,255,.44) 100%);
+ -webkit-backdrop-filter:blur(21px) saturate(130%);backdrop-filter:blur(21px) saturate(130%);
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.025) 32%,rgba(0,0,0,.34) 64%,black 100%);
+ mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.025) 32%,rgba(0,0,0,.34) 64%,black 100%)
+}
+.glass-hover-mist{z-index:2;filter:blur(10px);mix-blend-mode:screen!important;
+ background:radial-gradient(ellipse 205px 160px at var(--glow-x) var(--glow-y),
+ rgba(255,255,255,.46),rgba(240,249,255,.26) 37%,rgba(198,224,255,.085) 65%,transparent 82%)!important}
+.glass-ripple-layer{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;border-radius:inherit}
+.glass-ripple{position:absolute;left:0;top:0;display:block;width:18px;height:18px;pointer-events:none;
+ border-radius:50%;transform:translate(-50%,-50%) scale(.12);opacity:0;
+ border:2px solid rgba(255,255,255,.65);
+ background:radial-gradient(circle,rgba(255,255,255,.33) 0 16%,rgba(215,232,255,.11) 41%,rgba(255,255,255,.045) 56%,transparent 70%);
+ box-shadow:0 0 0 1px rgba(97,136,222,.15),0 0 22px rgba(255,255,255,.18);
+ mix-blend-mode:screen;will-change:transform,opacity}
+.hero-left{position:relative;z-index:4!important}
+:root[data-theme=dark] .hero-glass:before{background:linear-gradient(90deg,rgba(42,49,80,.08),rgba(50,57,96,.14) 34%,rgba(38,50,80,.29) 70%,rgba(33,47,76,.56))}
+:root[data-theme=dark] .hero-glass:after{background:linear-gradient(90deg,transparent,rgba(31,43,78,.07) 43%,rgba(30,42,71,.21) 82%,rgba(34,45,76,.38))}
+:root[data-theme=dark] .glass-hover-mist{background:radial-gradient(ellipse 205px 160px at var(--glow-x) var(--glow-y),rgba(245,249,255,.31),rgba(171,202,255,.14) 45%,transparent 80%)!important}
+@media(max-width:650px){
+ .hero-glass:before{background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(253,254,255,.28) 44%,rgba(251,253,255,.64) 100%)}
+ .hero-glass:after{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 44%,black 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 44%,black 100%)}
+}
+@media(prefers-reduced-motion:reduce){.glass-ripple{display:none!important}}
+:root[data-motion=off] .glass-ripple{display:none!important}
+@media(prefers-reduced-transparency:reduce){
+ .hero-glass:before{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:linear-gradient(90deg,rgba(250,252,255,.68),rgba(250,252,255,.96))!important}
+ .hero-glass:after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
 
 </style>
 </head>
@@ -462,7 +528,7 @@ function toggleFavorite(id){const set=new Set(store.favorites);set.has(id)?set.d
 function tierLabel(w){return w.tier==='core'?'R10 核心候选':w.tier==='supplement'?'R10 补充候选':w.tier==='chapter'?'课程词表':'扩展词库';}
 const routeLabels={home:'学习概览',review:'复习队列',library:'术语词库',stats:'学习记录',settings:'偏好设置',study:'专注训练'};
 function navBtn(key,label,icon,count){return `<button class="nav-btn ${route===key?'active':''}" data-action="nav" data-view="${key}" ${key==='settings'?'data-tour="backup"':''} aria-label="${label}">${ic(icon,18)}<span>${label}</span>${count?`<span class="tiny-count">${count}</span>`:''}</button>`;}
-function sidebar(){const s=stats();return `<aside class="sidebar"><div class="brand"><div class="brand-mark"></div><div class="brand-text"><strong>LUMEN</strong><small>HISTOLOGY RECALL</small></div></div><p class="nav-group-label">LEARNING SPACE</p><div class="nav-list">${navBtn('home','概览','home')}${navBtn('review','今日复习','repeat',dueWords().length||'')}${navBtn('library','术语词库','book')}${navBtn('stats','学习记录','chart')}</div><p class="nav-group-label">PREFERENCES</p><div class="nav-list">${navBtn('settings','设置与备份','settings')}</div><div class="side-bottom"><div class="local-chip"><span class="light"></span>私人离线空间 · 自动保存</div><div class="side-progress"><div class="side-progress-label"><span>全部术语掌握</span><span>${Math.round(s.mastered/WORDS.length*100)}%</span></div><strong>${s.mastered} <span style="font-size:13px;color:#8f9fb1;font-weight:500">/ ${WORDS.length}</span></strong><div class="track"><span style="width:${s.mastered/WORDS.length*100}%"></span></div></div><div class="side-foot">© LUMEN LAB · v3.4</div></div></aside>`;}
+function sidebar(){const s=stats();return `<aside class="sidebar"><div class="brand"><div class="brand-mark"></div><div class="brand-text"><strong>LUMEN</strong><small>HISTOLOGY RECALL</small></div></div><p class="nav-group-label">LEARNING SPACE</p><div class="nav-list">${navBtn('home','概览','home')}${navBtn('review','今日复习','repeat',dueWords().length||'')}${navBtn('library','术语词库','book')}${navBtn('stats','学习记录','chart')}</div><p class="nav-group-label">PREFERENCES</p><div class="nav-list">${navBtn('settings','设置与备份','settings')}</div><div class="side-bottom"><div class="local-chip"><span class="light"></span>私人离线空间 · 自动保存</div><div class="side-progress"><div class="side-progress-label"><span>全部术语掌握</span><span>${Math.round(s.mastered/WORDS.length*100)}%</span></div><strong>${s.mastered} <span style="font-size:13px;color:#8f9fb1;font-weight:500">/ ${WORDS.length}</span></strong><div class="track"><span style="width:${s.mastered/WORDS.length*100}%"></span></div></div><div class="side-foot">© LUMEN LAB · v3.5</div></div></aside>`;}
 function bottomNav(){let entries=[['home','概览','home'],['review','复习','repeat'],['library','词库','book'],['stats','记录','chart'],['settings','设置','settings']];return `<nav class="mobile-nav" aria-label="底部导航">${entries.map(([view,label,icon])=>`<button class="${route===view?'active':''}" data-action="nav" data-view="${view}" ${view==='settings'?'data-tour="backup-mobile"':''} aria-label="${label}">${ic(icon,19)}${label}</button>`).join('')}</nav>`;}
 function topbar(){const day=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(new Date());return `<header class="topbar"><div class="breadcrumb"><span>LUMEN</span><span class="slash">/</span><strong>${routeLabels[route]}</strong></div><div class="top-actions"><div class="top-pill"><i></i>仅本机存储</div><span class="subtle" style="font-size:11px" aria-label="日期">${safe(day)}</span><button class="icon-button" data-action="tutorial" title="查看使用教程" aria-label="查看使用教程">${ic('info',18)}</button><button class="icon-button" data-action="toggle-theme" title="切换明暗外观" aria-label="切换明暗外观">${ic(store.prefs.theme==='dark'?'sun':'moon',18)}</button></div></header>`;}
 function render(){if(opticsCleanup){opticsCleanup();opticsCleanup=null;}applyPrefs();const content=route==='home'?homePage():route==='review'?reviewPage():route==='library'?libraryPage():route==='stats'?statsPage():route==='settings'?settingsPage():studyPage();app.innerHTML=`<div class="shell" ${guideStep>=0?'inert':''}>${sidebar()}<div class="workspace">${topbar()}<main class="main-content screen-enter">${content}</main></div>${bottomNav()}</div>${drawerId?drawerHtml(BY_ID.get(drawerId)):''}${guideStep>=0?guideHtml():''}`;if(route==='study')syncPracticeDom();bindBarChart();initOptics();if(guideStep>=0)requestAnimationFrame(positionGuide);}
@@ -481,7 +547,7 @@ function modesBlock(){return `<div class="section-title training-heading"><h3 ta
 <button class="mode-card" data-action="start" data-mode="mixed"><span class="mode-icon">${ic('sparkle',20)}</span><strong>智能混合</strong><p>选择与拼写交替出现，让记忆真正发生。</p><span class="arrow">${ic('arrow',18)}</span></button>
 <button class="mode-card" data-action="start" data-mode="spell"><span class="mode-icon">${ic('keyboard',20)}</span><strong>英文拼写</strong><p>看中文，用逐字母槽位完整写出英文术语。</p><span class="arrow">${ic('arrow',18)}</span></button>
 <button class="mode-card" data-action="start" data-mode="choice"><span class="mode-icon">${ic('grid',20)}</span><strong>四选一辨认</strong><p>相近术语作干扰项，练习精确区分。</p><span class="arrow">${ic('arrow',18)}</span></button></div>`;}
-function homePage(){let s=stats(),due=dueWords().length,unseen=availableWords().filter(isNew).length;let duePlan=Math.min(store.prefs.goal,due+unseen);let ta=todayActions();let done=ta.filter(x=>x.result==='correct'||x.result==='wrong').length;return `${courseChooser()}<section class="hero" id="hero-masthead"><div class="hero-left"><span class="tag">A BETTER WAY TO RECALL</span><h2>看见结构。<br><span>记住名称。</span></h2><p>从切片识别到英文输出，把每一次回忆变成更牢固的医学记忆。</p><span class="hero-hint">先选择课程，再选择训练方式 ${ic('arrow',15)}</span></div><div class="hero-optic" aria-hidden="true"><span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span><span class="optic-kinetic optic-ring optic-ring-two" data-body="shell-middle"></span><span class="optic-kinetic optic-ring optic-ring-three" data-body="shell-inner"></span><span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span></div><div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span></div></section>
+function homePage(){let s=stats(),due=dueWords().length,unseen=availableWords().filter(isNew).length;let duePlan=Math.min(store.prefs.goal,due+unseen);let ta=todayActions();let done=ta.filter(x=>x.result==='correct'||x.result==='wrong').length;return `${courseChooser()}<section class="hero" id="hero-masthead"><div class="hero-left"><span class="tag">A BETTER WAY TO RECALL</span><h2>看见结构。<br><span>记住名称。</span></h2><p>从切片识别到英文输出，把每一次回忆变成更牢固的医学记忆。</p><span class="hero-hint">先选择课程，再选择训练方式 ${ic('arrow',15)}</span></div><div class="hero-optic" aria-hidden="true"><span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span><span class="optic-kinetic optic-ring optic-ring-two" data-body="shell-middle"></span><span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span></div><div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span><span class="glass-ripple-layer" aria-hidden="true"></span></div></section>
 <div class="metrics">${metric('今日待学',duePlan,'含到期复习与新术语','clock')}${metric('已经接触',s.learnt,'共 '+WORDS.length+' 个唯一术语','book')}${metric('持续掌握',s.mastered,'多次正确回忆后形成','target')}</div>${modesBlock()}
 <div class="mini-bottom"><section class="panel"><div class="section-title"><h3>今天的学习节奏</h3><small>${done} 次已作答</small></div><div class="overview-rows"><div class="overview-row"><span>今日目标</span><div class="mini-track"><span style="width:${Math.min(100,done/store.prefs.goal*100)}%"></span></div><strong>${done}/${store.prefs.goal}</strong></div><div class="overview-row"><span>到期复习</span><strong>${due} 词</strong></div><div class="overview-row"><span>尚未接触</span><strong>${unseen} 词</strong></div><div class="overview-row"><span>当前训练范围</span><strong>${safe(scopeName())}</strong></div></div></section><section class="panel" data-tour="chart"><div class="section-title"><h3>最近七天</h3><small>作答次数</small></div>${barChart()}</section></div>`;}
 function barChart(){let days=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);days.push({key:dayKey(d.getTime()),label:'日一二三四五六'[d.getDay()]})}let map={};for(const e of store.events){if(e.result==='correct'||e.result==='wrong')map[dayKey(e.time)]=(map[dayKey(e.time)]||0)+1}let max=Math.max(4,...days.map(d=>map[d.key]||0));return `<div class="spark-chart" role="group" aria-label="最近七天实际作答次数">${days.map(d=>{let count=map[d.key]||0;let date=d.key.slice(5).replace('-','月')+'日';return `<button type="button" class="spark-col" data-action="chart-day" data-date="${d.key}" data-count="${count}" aria-label="${date}，${count} 次作答" aria-pressed="false"><span class="spark-tooltip" aria-hidden="true">${count} 次 · ${date}</span><span class="spark-bar" style="height:${Math.max(8,count/max*76)}px"></span><span class="spark-label">${d.label}</span></button>`}).join('')}</div>`;}
@@ -611,143 +677,182 @@ function initOptics(){
  const hero=app.querySelector('#hero-masthead');
  const field=hero?.querySelector('.hero-optic');
  const glass=hero?.querySelector('.hero-glass');
- if(!hero||!field||!glass)return;
+ const rippleLayer=glass?.querySelector('.glass-ripple-layer');
+ if(!hero||!field||!glass||!rippleLayer)return;
  const reduced=()=>!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches;
- const CONTACT_GAP=1.7; // small positive gap compensates for one-pixel antialiasing at the shell edge
- const bodySpecs=[
-  {id:'shell-outer',factor:1,thickness:17,mass:6.1,freq:.91,phase:.24,spin:12},
-  {id:'shell-middle',factor:.72,thickness:14,mass:4.5,freq:1.47,phase:1.79,spin:-18},
-  {id:'shell-inner',factor:.47,thickness:11,mass:3.1,freq:2.14,phase:3.1,spin:21},
-  {id:'orb-core',factor:.21,thickness:0,mass:1.5,freq:2.72,phase:4.39,spin:-9}
+ const GAP=2.3; // guaranteed visible spacing between finite-width shell boundaries
+ const specs=[
+  {id:'shell-outer',factor:1,thickness:31,mass:6.2,freq:.88,phase:.22,spin:11},
+  {id:'shell-middle',factor:.60,thickness:25,mass:4.2,freq:1.22,phase:1.72,spin:-15},
+  {id:'orb-core',factor:.215,thickness:0,mass:1.55,freq:1.7,phase:3.12,spin:0}
  ];
- const bodies=bodySpecs.map((spec,i)=>({
-   ...spec,el:field.querySelector(`[data-body="${spec.id}"]`),x:0,y:0,vx:[24,-57,65,-88][i],vy:[32,55,-60,49][i],r:0,t:0
- }));
+ const bodies=specs.map((b,i)=>({...b,el:field.querySelector(`[data-body="${b.id}"]`),
+  x:0,y:0,vx:[21,-39,44][i],vy:[22,37,-29][i],r:0,t:0,
+  squeeze:0,phaseVelocity:0,angle:0}));
  if(bodies.some(b=>!b.el))return;
  let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0,collisions=0,wallCollisions=0,disposed=false;
  let fx=50,fy=50,tx=50,ty=50,glow=0,glowTarget=0,hasPointer=false,pointerX=0,pointerY=0;
+ let lastPointerX=NaN,lastPointerY=NaN,lastPointerT=0,pointerVx=0,pointerVy=0,rippleCount=0;
  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  const canMove=()=>!reduced()&&!document.hidden&&!disposed;
- // Physical contact with a rounded rectangle of corner radius C. When r>=C,
- // a shell centered within [r,W-r]×[r,H-r] is completely inside the rounded boundary.
+ const norm=(dx,dy)=>{const d=Math.hypot(dx,dy);return d>.00001?[dx/d,dy/d,d]:[1,0,0]};
+ // The outer annulus stays within the rounded card. Circle inside the inset rectangle
+ // is conservative at curved corners; its visible outside edge can touch the border.
  function restrictOuter(pulse){
-  const b=bodies[0],eps=.9,minX=b.r+eps,maxX=width-b.r-eps,minY=b.r+eps,maxY=height-b.r-eps;
-  const apply=(axis,min,max)=>{
-   const vel=axis==='x'?'vx':'vy';
-   if(b[axis]<min){b[axis]=min;if(b[vel]<0){b[vel]=Math.abs(b[vel])*.78;if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}}
-   else if(b[axis]>max){b[axis]=max;if(b[vel]>0){b[vel]=-Math.abs(b[vel])*.78;if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}}
-  };
-  apply('x',minX,maxX);apply('y',minY,maxY);
+  const b=bodies[0],pad=1.1;
+  for(const [axis,maxBound] of [['x',width],['y',height]]){
+   const v=axis==='x'?'vx':'vy',min=b.r+pad,max=maxBound-b.r-pad;
+   if(min>max){b[axis]=maxBound/2;b[v]=0;continue;}
+   const side=b[axis]<min?-1:b[axis]>max?1:0;
+   if(side===0)continue;
+   b[axis]=side<0?min:max;
+   if(b[v]*side>0){b[v]=-b[v]*.91; b.squeeze=Math.max(b.squeeze,.95);
+    if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}
+  }
  }
- function layout(reset){
-  const w=hero.clientWidth,h=hero.clientHeight;
-  if(!w||!h)return;
-  width=w;height=h;
-  const R=Math.min(h*.427,w*.39,184);
-  // Leave room for a visibly measurable free-flight gap between neighboring shells.
-  originX=clamp(width-R-Math.max(14,width*.025),R+2,width-R-2);
-  originY=height*.52;
-  bodies.forEach((b,i)=>{
-   b.r=R*b.factor;
-   b.t=Math.min(b.r*.24,b.thickness*R/142);
-   b.el.style.width=(2*b.r).toFixed(2)+'px';b.el.style.height=(2*b.r).toFixed(2)+'px';
-   if(i<3)b.el.style.setProperty('--shell-thickness',b.t.toFixed(2)+'px');
-   if(reset){
-    b.x=originX+[0,1.2,-1.5,.8][i];b.y=originY+[0,-.9,.6,1.2][i];
-    b.vx=[25,-61,70,-82][i];b.vy=[28,53,-65,47][i];
-   }
-  });
-  restrictOuter(false);
-  paint(0);
- }
- function paint(t){
-  bodies.forEach((b,i)=>{
-   const angle=i===3?0:Math.sin(t*b.freq+b.phase)*6+t*b.spin;
-   b.el.style.transform=`translate3d(${(b.x-b.r).toFixed(3)}px,${(b.y-b.r).toFixed(3)}px,0) rotate(${angle.toFixed(2)}deg)`;
-  });
- }
- // Nested, finite-thickness shell contacts. Adjacent pairs only are sufficient:
- // outer contains middle, middle contains inner, inner contains core sphere.
  function resolveNested(pulse){
+  // Outer contains middle; middle contains core. All contacts are between visible EDGES.
   for(let i=0;i<bodies.length-1;i++){
    const a=bodies[i],b=bodies[i+1];
-   const maxDistance=a.r-a.t-b.r-CONTACT_GAP;
-   const dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy);
+   const maxDistance=Math.max(GAP,a.r-a.t-b.r-GAP);
+   const [nx,ny,dist]=norm(b.x-a.x,b.y-a.y);
    if(dist<=maxDistance)continue;
-   const nx=dist>1e-9?dx/dist:1,ny=dist>1e-9?dy/dist:0;
-   const invA=1/a.mass,invB=1/b.mass,sum=invA+invB;
    const penetration=dist-maxDistance;
-   // Fully project both centers to the permissible separation; no partial correction.
-   a.x+=nx*penetration*(invA/sum);a.y+=ny*penetration*(invA/sum);
-   b.x-=nx*penetration*(invB/sum);b.y-=ny*penetration*(invB/sum);
-   const sep=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
-   if(sep>0){
-    const impulse=(1+.70)*sep/sum;
+   const invA=1/a.mass,invB=1/b.mass,denom=invA+invB;
+   // Full position projection first: visual rings never interpenetrate.
+   a.x+=nx*penetration*invA/denom;a.y+=ny*penetration*invA/denom;
+   b.x-=nx*penetration*invB/denom;b.y-=ny*penetration*invB/denom;
+   const separating=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+   if(separating>0){
+    // Elastic but damped bounce gives a soft keycap/gel response rather than rigid billiards.
+    const impulse=(1+.87)*separating/denom;
     a.vx+=nx*impulse*invA;a.vy+=ny*impulse*invA;
     b.vx-=nx*impulse*invB;b.vy-=ny*impulse*invB;
+    a.squeeze=Math.max(a.squeeze,.72);b.squeeze=Math.max(b.squeeze,.68);
     if(pulse){collisions++;a.el.classList.add('is-contact');b.el.classList.add('is-contact')}
    }
   }
  }
- function diagnostics(){
-  const shells=bodies.map(b=>({id:b.id,x:b.x,y:b.y,r:b.r,thickness:b.t,innerRadius:b.r-b.t}));
-  const edgeGaps=bodies.slice(0,-1).map((a,i)=>a.r-a.t-bodies[i+1].r-Math.hypot(a.x-bodies[i+1].x,a.y-bodies[i+1].y));
-  const a=bodies[0];const wallGap=Math.min(a.x-a.r,width-a.x-a.r,a.y-a.r,height-a.y-a.r);
-  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,
-   minGap:Math.min(...edgeGaps),edgeGaps,wallGap,width,height,center:{x:originX,y:originY},shells};
+ function layout(reset){
+  const w=hero.clientWidth,h=hero.clientHeight;
+  if(w<=0||h<=0)return;
+  width=w;height=h;
+  const R=Math.min(h*.438,w*.385,190);
+  originX=clamp(width-R-Math.max(16,width*.026),R+2,width-R-2);
+  originY=height*.52;
+  bodies.forEach((b,i)=>{
+   b.r=R*b.factor;
+   // Scale physical thickness with the illustration, but keep the material broad.
+   b.t=i===2?0:Math.min(b.r*.44,b.thickness*R/145);
+   b.el.style.width=(2*b.r).toFixed(2)+'px';b.el.style.height=(2*b.r).toFixed(2)+'px';
+   if(i<2)b.el.style.setProperty('--shell-thickness',b.t.toFixed(2)+'px');
+   if(reset){b.x=originX+[0,1.3,-1.5][i];b.y=originY+[0,-.6,1.1][i];
+    b.vx=[20,-34,40][i];b.vy=[25,34,-28][i];b.squeeze=0;b.angle=0;}
+  });
+  for(let k=0;k<8;k++){restrictOuter(false);resolveNested(false)}
+  paint(0);
  }
- const onMove=e=>{
+ function paint(t){
+  for(let i=0;i<bodies.length;i++){
+   const b=bodies[i];
+   const turn=i===2?0:Math.sin(t*b.freq+b.phase)*5.8+t*b.spin;
+   b.angle+=(turn-b.angle)*.075;
+   // Scale *only* a few percent and never enlarge the collision geometry.
+   // Smaller-on-impact makes the soft material visible without penetration.
+   const squish=1-.022*b.squeeze;
+   b.el.style.transform=`translate3d(${(b.x-b.r).toFixed(2)}px,${(b.y-b.r).toFixed(2)}px,0) rotate(${b.angle.toFixed(2)}deg) scale(${squish.toFixed(4)})`;
+  }
+ }
+ function diagnostics(){
+  const shells=bodies.map(b=>({id:b.id,x:b.x,y:b.y,r:b.r,thickness:b.t,innerRadius:b.r-b.t,squeeze:b.squeeze}));
+  const edgeGaps=bodies.slice(0,-1).map((a,i)=>a.r-a.t-bodies[i+1].r-Math.hypot(a.x-bodies[i+1].x,a.y-bodies[i+1].y));
+  const a=bodies[0],wallGap=Math.min(a.x-a.r,width-a.x-a.r,a.y-a.r,height-a.y-a.r);
+  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,minGap:Math.min(...edgeGaps),edgeGaps,wallGap,
+   width,height,center:{x:originX,y:originY},shells,ripples:rippleCount};
+ }
+ function onMove(e){
   if(e.pointerType==='touch'||e.pointerType==='pen'||reduced())return;
-  const rect=hero.getBoundingClientRect();
-  tx=clamp((e.clientX-rect.left)/rect.width*100,0,100);
-  ty=clamp((e.clientY-rect.top)/rect.height*100,0,100);
-  glowTarget=.9;hasPointer=true;
+  const rect=hero.getBoundingClientRect(),now=performance.now();
   pointerX=e.clientX-rect.left;pointerY=e.clientY-rect.top;
- };
- const onLeave=()=>{glowTarget=0;hasPointer=false};
+  tx=clamp(pointerX/rect.width*100,0,100);ty=clamp(pointerY/rect.height*100,0,100);
+  glowTarget=.80;hasPointer=true;
+  if(Number.isFinite(lastPointerX)){
+   const dT=clamp((now-lastPointerT)/1000,.012,.13);
+   pointerVx=clamp((pointerX-lastPointerX)/dT,-900,900);
+   pointerVy=clamp((pointerY-lastPointerY)/dT,-900,900);
+   // Drive each shell at its actual visible annulus, not its mathematical centerline.
+   for(const b of bodies){
+    const r=b.r-b.t*.5;
+    const distance=Math.hypot(pointerX-b.x,pointerY-b.y);
+    const edgeDistance=b.id==='orb-core'?Math.max(0,distance-b.r):Math.abs(distance-r);
+    const influence=Math.max(0,1-edgeDistance/110);
+    const power=influence*influence*(b.id==='orb-core'?.23:.19);
+    b.vx+=pointerVx*power*.13;b.vy+=pointerVy*power*.13;
+    b.squeeze=Math.max(b.squeeze,influence*.28);
+   }
+  }
+  lastPointerX=pointerX;lastPointerY=pointerY;lastPointerT=now;
+ }
+ function onLeave(){glowTarget=0;hasPointer=false;lastPointerX=NaN;lastPointerY=NaN;pointerVx=0;pointerVy=0;}
+ function onClick(e){
+  if(reduced()||!e.isTrusted&&e.detail===0)return;
+  // Avoid adding opaque overlays or intercepting any button actions.
+  const rect=hero.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;
+  if(x<0||y<0||x>rect.width||y>rect.height)return;
+  const el=document.createElement('span');el.className='glass-ripple';
+  el.style.left=x+'px';el.style.top=y+'px';
+  const diameter=Math.max(210,Math.min(440,Math.hypot(rect.width,rect.height)*.43));
+  el.style.width=diameter+'px';el.style.height=diameter+'px';
+  rippleLayer.appendChild(el);rippleCount++;
+  const animation=el.animate([
+   {opacity:.53,transform:'translate(-50%,-50%) scale(.07)'},
+   {opacity:.34,offset:.29,transform:'translate(-50%,-50%) scale(.55)'},
+   {opacity:0,transform:'translate(-50%,-50%) scale(1.5)'}
+  ],{duration:870,easing:'cubic-bezier(.17,.74,.24,1)',fill:'forwards'});
+  animation.onfinish=()=>el.remove();animation.oncancel=()=>el.remove();
+  // A small physical impulse makes the click feel attached to the onion, too.
+  for(const b of bodies){const [nx,ny,d]=norm(b.x-x,b.y-y),reach=b.r+100;
+   const strength=Math.max(0,1-d/reach);
+   b.vx+=nx*strength*26;b.vy+=ny*strength*26;b.squeeze=Math.max(b.squeeze,strength*.44);}
+ }
  hero.addEventListener('pointermove',onMove,{passive:true});
  hero.addEventListener('pointerleave',onLeave);
  hero.addEventListener('pointercancel',onLeave);
+ hero.addEventListener('click',onClick);
  const onResize=()=>layout(true);
  const ro=typeof ResizeObserver!=='undefined'?new ResizeObserver(onResize):null;
- if(ro)ro.observe(hero); else window.addEventListener('resize',onResize);
+ if(ro)ro.observe(hero);else window.addEventListener('resize',onResize);
  layout(true);
  function tick(now){
   if(disposed)return;
   raf=requestAnimationFrame(tick);
-  if(!canMove()){last=now;glow=0;glass.style.setProperty('--glow-opacity','0');opticsFrameStats=diagnostics();return;}
-  const dt=Math.min(.033,Math.max(.002,last?(now-last)/1000:.016));last=now;
+  if(!canMove()){
+   last=now;glow=0;glass.style.setProperty('--glow-opacity','0');opticsFrameStats=diagnostics();return;
+  }
+  const dt=Math.min(.032,Math.max(.002,last?(now-last)/1000:.016));last=now;
   const t=now/1000;frame++;
-  // Substep solver prevents tunnelling when a tab resumes or a mobile device drops frames.
-  const steps=Math.max(2,Math.ceil(dt/.009)),h=dt/steps;
+  const steps=Math.max(2,Math.ceil(dt/.007)),h=dt/steps;
   for(let sub=0;sub<steps;sub++){
    for(const b of bodies){
-    const driveX=75*Math.sin(t*b.freq+b.phase)+36*Math.sin(t*b.freq*.39+b.phase*2.8);
-    const driveY=82*Math.cos(t*b.freq*.84+b.phase*.73)+29*Math.cos(t*b.freq*.43+b.phase*3.2);
-    b.vx+=(driveX+(originX-b.x)*2.7)*h;
-    b.vy+=(driveY+(originY-b.y)*2.9)*h;
-    if(hasPointer){
-     const dx=b.x-pointerX,dy=b.y-pointerY,d=Math.hypot(dx,dy)||1;
-     if(d<Math.min(125,b.r+45)){
-      const force=(1-d/(b.r+70))*23*h;b.vx+=(dx/d)*force;b.vy+=(dy/d)*force;
-     }
-    }
-    const damping=Math.exp(-1.05*h);
-    b.vx*=damping;b.vy*=damping;
-    const v=Math.hypot(b.vx,b.vy),cap=b.id==='orb-core'?139:115;
-    if(v>cap){b.vx*=cap/v;b.vy*=cap/v;}
+    const driveX=74*Math.sin(t*b.freq+b.phase)+39*Math.sin(t*b.freq*.41+b.phase*2.5);
+    const driveY=68*Math.cos(t*b.freq*.82+b.phase*.81)+31*Math.cos(t*b.freq*.46+b.phase*3.4);
+    b.vx+=(driveX+(originX-b.x)*2.2)*h;
+    b.vy+=(driveY+(originY-b.y)*2.45)*h;
+    // Damping near 1/s lets displacement linger without becoming chaotic.
+    const damping=Math.exp(-.80*h);b.vx*=damping;b.vy*=damping;
+    const cap=b.id==='orb-core'?155:130,spd=Math.hypot(b.vx,b.vy);
+    if(spd>cap){b.vx*=cap/spd;b.vy*=cap/spd;}
     b.x+=b.vx*h;b.y+=b.vy*h;
    }
-   // Six full projections make the finite shell contact safe even with simultaneous hits.
-   for(let k=0;k<6;k++){restrictOuter(k===0);resolveNested(k===0)}
+   // Full projection repeated to handle outer-wall + inner-shell simultaneous contacts.
+   for(let k=0;k<10;k++){restrictOuter(k===0);resolveNested(k===0)}
    restrictOuter(false);
   }
-  // Optional visual collision flash disappears quickly, never obscures the shell edge.
   if(frame%10===0)bodies.forEach(b=>b.el.classList.remove('is-contact'));
+  for(const b of bodies)b.squeeze*=Math.exp(-3.9*dt);
   paint(t);
-  const ease=1-Math.exp(-dt*11);
-  fx+=(tx-fx)*ease;fy+=(ty-fy)*ease;
-  glow+=(glowTarget-glow)*(1-Math.exp(-dt*5.7));
+  const ease=1-Math.exp(-dt*13);fx+=(tx-fx)*ease;fy+=(ty-fy)*ease;
+  glow+=(glowTarget-glow)*(1-Math.exp(-dt*6.4));
   glass.style.setProperty('--glow-x',fx.toFixed(2)+'%');
   glass.style.setProperty('--glow-y',fy.toFixed(2)+'%');
   glass.style.setProperty('--glow-opacity',glow.toFixed(3));
@@ -760,6 +865,8 @@ function initOptics(){
   hero.removeEventListener('pointermove',onMove);
   hero.removeEventListener('pointerleave',onLeave);
   hero.removeEventListener('pointercancel',onLeave);
+  hero.removeEventListener('click',onClick);
+  rippleLayer.replaceChildren();
   if(ro)ro.disconnect();else window.removeEventListener('resize',onResize);
   opticsFrameStats.active=false;
  };
