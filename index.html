@@ -281,41 +281,109 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 :root[data-theme=dark] .icon-button,:root[data-theme=dark] .btn-outline{border-color:#627390;color:#edf2ff}
 @media(prefers-contrast:more){.vocab-item,.feedback,.drawer .detail-primary{border-width:2px}}
 
-
-
-/* v3.3 typography and iOS text-entry consistency */
+/* v3.2 mobile spelling: visual slots stay lowercase; real input keeps a normal text size
+   for iOS input/IME caret geometry while remaining transparent and off the hit target. */
 .letter-slot{text-transform:lowercase}
 .typing-capture{width:100%;height:46px;top:0;left:0;opacity:0;pointer-events:none;font-size:16px;line-height:1.35;box-shadow:none;border:0;background:transparent;color:transparent;caret-color:transparent;direction:ltr;text-align:left}
-/* Layering: moving rings below directional frosted glass, copy at top */
-.hero{min-height:333px;background:radial-gradient(ellipse at 77% 32%,rgba(159,172,255,.39),transparent 61%),linear-gradient(108deg,#e3eaff,#e8ecff 41%,#dae5ff);border-color:#d8e0fb;isolation:isolate}
+
+
+/* === LUMEN v3.4 · colliding optical field / directional frosted glass === */
+.hero{min-height:333px;background:radial-gradient(ellipse at 77% 32%,rgba(159,172,255,.39),transparent 61%),linear-gradient(108deg,#e3eaff 0%,#e8ecff 41%,#dae5ff 100%);border-color:#d8e0fb;isolation:isolate}
 .hero:before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 86% 81%,rgba(119,196,250,.19),transparent 49%),linear-gradient(170deg,rgba(255,255,255,.45),transparent 56%)}
 .hero-left{position:relative;z-index:4;width:75%;padding:48px 46px 42px}
-.hero h2{text-shadow:0 1px 0 rgba(255,255,255,.28)}
-.hero-optic,:root[data-theme=dark] .hero-optic{position:absolute;z-index:1;top:-12%;right:-7%;width:65%;height:126%;border-radius:0;background:none!important;filter:none!important;opacity:1!important;mix-blend-mode:normal;transform:none!important;transition:none!important;pointer-events:none;overflow:hidden}
-.hero-optic:before,.hero-optic:after{content:none!important}
+.hero h2{position:relative;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.hero-optic,:root[data-theme=dark] .hero-optic{
+ position:absolute;z-index:1;top:-12%;right:-7%;width:65%;height:126%;border-radius:0;
+ background:none!important;filter:none!important;opacity:1!important;mix-blend-mode:normal;
+ transform:none!important;transition:none!important;pointer-events:none;overflow:hidden
+}
+.hero-optic::before,.hero-optic::after{content:none!important}
 .optic-kinetic,.optic-ring,.optic-orb{position:absolute;left:0;top:0;display:block;inset:auto;border-radius:50%;transform-origin:center;pointer-events:none;box-sizing:border-box;will-change:transform}
-.optic-ring{border:0;box-shadow:inset 11px 14px 24px rgba(255,255,255,.98),inset -15px -18px 31px rgba(88,88,179,.37),0 11px 22px rgba(81,92,185,.20),0 0 28px rgba(255,255,255,.73);background:conic-gradient(from 18deg,rgba(255,255,255,.9),rgba(125,133,241,.69) 51deg,rgba(255,255,255,.94) 108deg,rgba(112,200,245,.67) 169deg,rgba(156,149,242,.82) 251deg,rgba(255,255,255,.83) 314deg);-webkit-mask:radial-gradient(circle,transparent 0 55%,#000 57% 75%,transparent 78%);mask:radial-gradient(circle,transparent 0 55%,#000 57% 75%,transparent 78%);filter:drop-shadow(0 10px 13px rgba(71,85,169,.26));transition:filter 100ms ease-out}
+.optic-ring{
+ border:0;box-shadow:inset 11px 14px 24px rgba(255,255,255,.98),inset -15px -18px 31px rgba(88,88,179,.37),
+ 0 11px 22px rgba(81,92,185,.20),0 0 28px rgba(255,255,255,.73);
+ background:conic-gradient(from 18deg,rgba(255,255,255,.90),rgba(125,133,241,.69) 51deg,rgba(255,255,255,.94) 108deg,
+ rgba(112,200,245,.67) 169deg,rgba(156,149,242,.82) 251deg,rgba(255,255,255,.83) 314deg,rgba(255,255,255,.90));
+ -webkit-mask:radial-gradient(circle,transparent 0 55%,#000 57% 75%,transparent 78%);
+ mask:radial-gradient(circle,transparent 0 55%,#000 57% 75%,transparent 78%);
+ filter:drop-shadow(0 10px 13px rgba(71,85,169,.26));transition:filter 100ms ease-out
+}
 .optic-ring-two{background:conic-gradient(from 75deg,#e9f9ffeb,#7a8fe6d9 65deg,#e5e1ffef 137deg,#f7fffffa 183deg,#b9aafaeb 246deg,#92d9f4d0 309deg,#e9f9ffeb)}
 .optic-ring-three{background:conic-gradient(from 160deg,#f8ffffef,#8abcf4d0,#a49aefeb,#f9f8fffa,#a4b6fcdd,#f8ffffef)}
-.optic-orb{border:1px solid rgba(255,255,255,.88);background:radial-gradient(circle at 31% 24%,#fff 0 9%,#f5faff 19%,#d1e3ff 38%,#a7aceb 72%,#837fca);box-shadow:inset 5px 7px 12px rgba(255,255,255,.93),inset -10px -15px 20px rgba(88,92,177,.49),0 16px 25px rgba(82,92,183,.30),0 0 25px rgba(255,255,255,.91)}
-.optic-orb-two{background:radial-gradient(circle at 25% 20%,#fff 0 9%,#ebffff 26%,#9ad8e8 55%,#7c9dcf)}
+.optic-orb{border:1px solid rgba(255,255,255,.88);background:radial-gradient(circle at 31% 24%,#fff 0 9%,#f5faff 19%,#d1e3ff 38%,#a7aceb 72%,#837fca 100%);box-shadow:inset 5px 7px 12px rgba(255,255,255,.93),inset -10px -15px 20px rgba(88,92,177,.49),0 16px 25px rgba(82,92,183,.30),0 0 25px rgba(255,255,255,.91)}
+.optic-orb-two{background:radial-gradient(circle at 25% 20%,#fff 0 9%,#ebffff 26%,#9ad8e8 55%,#7c9dcf 100%)}
 .optic-kinetic.is-contact{filter:drop-shadow(0 0 17px rgba(255,255,255,.97)) drop-shadow(0 0 8px rgba(121,141,253,.41))}
 .hero-glass{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;--fog-x:50%;--fog-y:50%;--fog-opacity:0}
-.hero-glass:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(252,253,255,.12) 35%,rgba(250,251,255,.47) 72%,rgba(249,251,255,.64));-webkit-backdrop-filter:blur(2.5px) saturate(125%);backdrop-filter:blur(2.5px) saturate(125%)}
-.hero-glass:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 12%,rgba(255,255,255,.02) 60%,rgba(255,255,255,.17));-webkit-backdrop-filter:blur(17px) saturate(145%);backdrop-filter:blur(17px) saturate(145%);-webkit-mask-image:linear-gradient(90deg,transparent 9%,rgba(0,0,0,.06) 32%,rgba(0,0,0,.75) 83%,black);mask-image:linear-gradient(90deg,transparent 9%,rgba(0,0,0,.06) 32%,rgba(0,0,0,.75) 83%,black)}
-.glass-hover-mist{position:absolute;inset:-1px;z-index:2;opacity:var(--fog-opacity);background:radial-gradient(ellipse 230px 180px at var(--fog-x) var(--fog-y),rgba(46,52,77,.19),rgba(83,96,117,.11) 36%,rgba(116,121,133,.035) 58%,transparent 77%);filter:blur(22px);mix-blend-mode:multiply;pointer-events:none;transform:translateZ(0)}
-:root[data-theme=dark] .hero{background:radial-gradient(ellipse at 77% 32%,rgba(104,104,186,.33),transparent 61%),linear-gradient(112deg,#292d49,#292e51 45%,#333f61);border-color:#4a4c6e}
+.hero-glass:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.05) 0%,rgba(252,253,255,.12) 35%,rgba(250,251,255,.47) 72%,rgba(249,251,255,.64) 100%);-webkit-backdrop-filter:blur(2.5px) saturate(125%);backdrop-filter:blur(2.5px) saturate(125%)}
+.hero-glass:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 12%,rgba(255,255,255,.02) 60%,rgba(255,255,255,.17) 100%);-webkit-backdrop-filter:blur(17px) saturate(145%);backdrop-filter:blur(17px) saturate(145%);-webkit-mask-image:linear-gradient(90deg,transparent 9%,rgba(0,0,0,.06) 32%,rgba(0,0,0,.75) 83%,black 100%);mask-image:linear-gradient(90deg,transparent 9%,rgba(0,0,0,.06) 32%,rgba(0,0,0,.75) 83%,black 100%)}
+.glass-hover-mist{position:absolute;inset:-1px;z-index:2;opacity:var(--fog-opacity);background:radial-gradient(ellipse 230px 180px at var(--fog-x) var(--fog-y),rgba(46,52,77,.19) 0%,rgba(83,96,117,.11) 36%,rgba(116,121,133,.035) 58%,transparent 77%);filter:blur(22px);mix-blend-mode:multiply;pointer-events:none;transform:translateZ(0)}
+:root[data-theme=dark] .hero{background:radial-gradient(ellipse at 77% 32%,rgba(104,104,186,.33),transparent 61%),linear-gradient(112deg,#292d49 0%,#292e51 45%,#333f61 100%);border-color:#4a4c6e}
 :root[data-theme=dark] .hero:before{background:radial-gradient(ellipse at 85% 80%,rgba(95,155,201,.18),transparent 51%)}
 :root[data-theme=dark] .hero-glass:before{background:linear-gradient(90deg,rgba(34,38,63,.08),rgba(37,43,73,.16) 45%,rgba(39,43,70,.36) 82%,rgba(36,45,73,.58))}
-:root[data-theme=dark] .hero-glass:after{background:linear-gradient(90deg,transparent,rgba(38,40,66,.19))}
+:root[data-theme=dark] .hero-glass:after{background:linear-gradient(90deg,transparent,rgba(38,40,66,.19) 100%)}
 :root[data-theme=dark] .glass-hover-mist{background:radial-gradient(ellipse 230px 180px at var(--fog-x) var(--fog-y),rgba(196,202,229,.20),rgba(134,145,178,.12) 40%,transparent 76%);mix-blend-mode:screen}
-:root[data-theme=dark] .optic-kinetic{opacity:.8}
+:root[data-theme=dark] .optic-kinetic{opacity:.80}
 @media(max-width:880px){.hero-optic,:root[data-theme=dark] .hero-optic{width:77%;right:-15%}.hero-left{width:87%}}
-@media(max-width:650px){.hero{min-height:310px;border-radius:22px}.hero-left{width:100%;padding:30px 25px 27px;z-index:4}.hero-optic,:root[data-theme=dark] .hero-optic{width:91%;height:122%;top:-10%;right:-34%;opacity:.9!important}.hero-glass:before{background:linear-gradient(90deg,rgba(255,255,255,.37),rgba(255,255,255,.38) 40%,rgba(255,255,255,.66))}.hero-glass:after{-webkit-mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.15) 40%,black);mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.15) 40%,black)}.glass-hover-mist{display:none}}
+@media(max-width:650px){
+ .hero{min-height:310px;border-radius:22px}
+ .hero-left{width:100%;padding:30px 25px 27px;z-index:4}
+ .hero-optic,:root[data-theme=dark] .hero-optic{width:91%;height:122%;top:-10%;right:-34%;opacity:.9!important}
+ .hero-glass:before{background:linear-gradient(90deg,rgba(255,255,255,.37),rgba(255,255,255,.38) 40%,rgba(255,255,255,.66) 100%)}
+ .hero-glass:after{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 40%,black 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 40%,black 100%)}
+ .glass-hover-mist{display:none}
+}
 @media(prefers-reduced-motion:reduce){.optic-kinetic{will-change:auto}.glass-hover-mist{display:none}}
 :root[data-motion=off] .optic-kinetic{will-change:auto}
 :root[data-motion=off] .glass-hover-mist{display:none}
 @media(prefers-reduced-transparency:reduce){.hero-glass:before{backdrop-filter:none;-webkit-backdrop-filter:none;background:linear-gradient(90deg,rgba(250,252,255,.72),rgba(250,252,255,.96))}.hero-glass:after{backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+
+/* LUMEN v3.4 — concentric shell optics: edge-based nested-body collision geometry.
+   Visible ring thickness (--shell-thickness) is used directly by the collision solver.
+   Pointer lighting brightens the frosted glass (it does not darken the copy). */
+.hero-optic,:root[data-theme=dark] .hero-optic{
+ position:absolute!important;inset:0!important;top:0!important;right:0!important;
+ width:100%!important;height:100%!important;overflow:hidden!important;
+ border-radius:inherit!important;z-index:1;opacity:1!important;mix-blend-mode:normal!important;
+ transform:none!important;background:none!important;filter:saturate(1.34) contrast(1.08)!important;pointer-events:none
+}
+.hero-optic .optic-kinetic{
+ position:absolute!important;inset:auto!important;left:0!important;top:0!important;
+ transform-origin:50% 50%;box-sizing:border-box;will-change:transform;
+ transition:filter 100ms ease-out;pointer-events:none
+}
+.hero-optic .optic-ring{
+ --shell-thickness:14px;
+ background:conic-gradient(from 21deg,rgba(255,255,255,.95),rgba(134,140,247,.81) 64deg,
+ rgba(246,253,255,.99) 112deg,rgba(103,194,245,.80) 178deg,
+ rgba(165,148,245,.92) 262deg,rgba(255,255,255,.94) 335deg,rgba(255,255,255,.95));
+ -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - var(--shell-thickness) - 1px),#000 calc(100% - var(--shell-thickness)),#000 calc(100% - 1px),transparent 100%);
+ mask:radial-gradient(farthest-side,transparent calc(100% - var(--shell-thickness) - 1px),#000 calc(100% - var(--shell-thickness)),#000 calc(100% - 1px),transparent 100%);
+ filter:drop-shadow(0 9px 12px rgba(84,97,190,.25)) drop-shadow(0 0 11px rgba(255,255,255,.72));
+ box-shadow:none
+}
+.hero-optic .optic-ring-two{background:conic-gradient(from 80deg,#f2f9fff7,#8197ede5 68deg,#e9dcfffc 141deg,#f7fffffa 197deg,#b4a1f0ee 253deg,#9dddf3e3 319deg,#f2f9fff7)}
+.hero-optic .optic-ring-three{background:conic-gradient(from 157deg,#f8ffffff,#8caeeef3 80deg,#b3a3f4fc 161deg,#f9ffffff 231deg,#a4c9fbf3 310deg,#f8ffffff)}
+.hero-optic .optic-orb{background:radial-gradient(circle at 30% 22%,#fff 0 10%,#f5fbff 20%,#c9dcff 41%,#aea5ee 75%,#757aca 100%);
+ border:1px solid rgba(255,255,255,.93);
+ box-shadow:inset 5px 7px 12px rgba(255,255,255,.93),inset -12px -15px 22px rgba(86,91,183,.52),0 13px 24px rgba(82,92,183,.36),0 0 23px rgba(255,255,255,.94)}
+.hero-optic .optic-kinetic.is-contact{filter:drop-shadow(0 0 13px rgba(255,255,255,.95)) drop-shadow(0 0 7px rgba(122,143,245,.55))}
+/* The lens remains between the shell field and text. Directional blur: light left, dense right. */
+.hero-glass:after{opacity:.82}
+.hero-glass{--glow-opacity:0;--glow-x:50%;--glow-y:50%}
+.glass-hover-mist{
+ display:block;opacity:var(--glow-opacity);mix-blend-mode:screen;filter:blur(13px);
+ background:radial-gradient(ellipse 220px 165px at var(--glow-x) var(--glow-y),
+ rgba(255,255,255,.32) 0%,rgba(244,250,255,.20) 31%,rgba(186,209,255,.11) 56%,transparent 78%);
+ transition:none
+}
+:root[data-theme=dark] .glass-hover-mist{
+ mix-blend-mode:screen;background:radial-gradient(ellipse 215px 160px at var(--glow-x) var(--glow-y),
+ rgba(238,247,255,.17),rgba(190,209,253,.09) 43%,transparent 77%)
+}
+@media(max-width:650px){.hero-optic,:root[data-theme=dark] .hero-optic{inset:0!important;top:0!important;right:0!important;width:100%!important;height:100%!important;opacity:.77!important}}
+@media(prefers-reduced-motion:reduce){.glass-hover-mist{display:none!important}.hero-optic .optic-kinetic{will-change:auto!important}}
+:root[data-motion=off] .glass-hover-mist{display:none!important}
 
 </style>
 </head>
@@ -394,7 +462,7 @@ function toggleFavorite(id){const set=new Set(store.favorites);set.has(id)?set.d
 function tierLabel(w){return w.tier==='core'?'R10 核心候选':w.tier==='supplement'?'R10 补充候选':w.tier==='chapter'?'课程词表':'扩展词库';}
 const routeLabels={home:'学习概览',review:'复习队列',library:'术语词库',stats:'学习记录',settings:'偏好设置',study:'专注训练'};
 function navBtn(key,label,icon,count){return `<button class="nav-btn ${route===key?'active':''}" data-action="nav" data-view="${key}" ${key==='settings'?'data-tour="backup"':''} aria-label="${label}">${ic(icon,18)}<span>${label}</span>${count?`<span class="tiny-count">${count}</span>`:''}</button>`;}
-function sidebar(){const s=stats();return `<aside class="sidebar"><div class="brand"><div class="brand-mark"></div><div class="brand-text"><strong>LUMEN</strong><small>HISTOLOGY RECALL</small></div></div><p class="nav-group-label">LEARNING SPACE</p><div class="nav-list">${navBtn('home','概览','home')}${navBtn('review','今日复习','repeat',dueWords().length||'')}${navBtn('library','术语词库','book')}${navBtn('stats','学习记录','chart')}</div><p class="nav-group-label">PREFERENCES</p><div class="nav-list">${navBtn('settings','设置与备份','settings')}</div><div class="side-bottom"><div class="local-chip"><span class="light"></span>私人离线空间 · 自动保存</div><div class="side-progress"><div class="side-progress-label"><span>全部术语掌握</span><span>${Math.round(s.mastered/WORDS.length*100)}%</span></div><strong>${s.mastered} <span style="font-size:13px;color:#8f9fb1;font-weight:500">/ ${WORDS.length}</span></strong><div class="track"><span style="width:${s.mastered/WORDS.length*100}%"></span></div></div><div class="side-foot">© LUMEN LAB · v3.3</div></div></aside>`;}
+function sidebar(){const s=stats();return `<aside class="sidebar"><div class="brand"><div class="brand-mark"></div><div class="brand-text"><strong>LUMEN</strong><small>HISTOLOGY RECALL</small></div></div><p class="nav-group-label">LEARNING SPACE</p><div class="nav-list">${navBtn('home','概览','home')}${navBtn('review','今日复习','repeat',dueWords().length||'')}${navBtn('library','术语词库','book')}${navBtn('stats','学习记录','chart')}</div><p class="nav-group-label">PREFERENCES</p><div class="nav-list">${navBtn('settings','设置与备份','settings')}</div><div class="side-bottom"><div class="local-chip"><span class="light"></span>私人离线空间 · 自动保存</div><div class="side-progress"><div class="side-progress-label"><span>全部术语掌握</span><span>${Math.round(s.mastered/WORDS.length*100)}%</span></div><strong>${s.mastered} <span style="font-size:13px;color:#8f9fb1;font-weight:500">/ ${WORDS.length}</span></strong><div class="track"><span style="width:${s.mastered/WORDS.length*100}%"></span></div></div><div class="side-foot">© LUMEN LAB · v3.4</div></div></aside>`;}
 function bottomNav(){let entries=[['home','概览','home'],['review','复习','repeat'],['library','词库','book'],['stats','记录','chart'],['settings','设置','settings']];return `<nav class="mobile-nav" aria-label="底部导航">${entries.map(([view,label,icon])=>`<button class="${route===view?'active':''}" data-action="nav" data-view="${view}" ${view==='settings'?'data-tour="backup-mobile"':''} aria-label="${label}">${ic(icon,19)}${label}</button>`).join('')}</nav>`;}
 function topbar(){const day=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(new Date());return `<header class="topbar"><div class="breadcrumb"><span>LUMEN</span><span class="slash">/</span><strong>${routeLabels[route]}</strong></div><div class="top-actions"><div class="top-pill"><i></i>仅本机存储</div><span class="subtle" style="font-size:11px" aria-label="日期">${safe(day)}</span><button class="icon-button" data-action="tutorial" title="查看使用教程" aria-label="查看使用教程">${ic('info',18)}</button><button class="icon-button" data-action="toggle-theme" title="切换明暗外观" aria-label="切换明暗外观">${ic(store.prefs.theme==='dark'?'sun':'moon',18)}</button></div></header>`;}
 function render(){if(opticsCleanup){opticsCleanup();opticsCleanup=null;}applyPrefs();const content=route==='home'?homePage():route==='review'?reviewPage():route==='library'?libraryPage():route==='stats'?statsPage():route==='settings'?settingsPage():studyPage();app.innerHTML=`<div class="shell" ${guideStep>=0?'inert':''}>${sidebar()}<div class="workspace">${topbar()}<main class="main-content screen-enter">${content}</main></div>${bottomNav()}</div>${drawerId?drawerHtml(BY_ID.get(drawerId)):''}${guideStep>=0?guideHtml():''}`;if(route==='study')syncPracticeDom();bindBarChart();initOptics();if(guideStep>=0)requestAnimationFrame(positionGuide);}
@@ -413,7 +481,7 @@ function modesBlock(){return `<div class="section-title training-heading"><h3 ta
 <button class="mode-card" data-action="start" data-mode="mixed"><span class="mode-icon">${ic('sparkle',20)}</span><strong>智能混合</strong><p>选择与拼写交替出现，让记忆真正发生。</p><span class="arrow">${ic('arrow',18)}</span></button>
 <button class="mode-card" data-action="start" data-mode="spell"><span class="mode-icon">${ic('keyboard',20)}</span><strong>英文拼写</strong><p>看中文，用逐字母槽位完整写出英文术语。</p><span class="arrow">${ic('arrow',18)}</span></button>
 <button class="mode-card" data-action="start" data-mode="choice"><span class="mode-icon">${ic('grid',20)}</span><strong>四选一辨认</strong><p>相近术语作干扰项，练习精确区分。</p><span class="arrow">${ic('arrow',18)}</span></button></div>`;}
-function homePage(){let s=stats(),due=dueWords().length,unseen=availableWords().filter(isNew).length;let duePlan=Math.min(store.prefs.goal,due+unseen);let ta=todayActions();let done=ta.filter(x=>x.result==='correct'||x.result==='wrong').length;return `${courseChooser()}<section class="hero" id="hero-masthead"><div class="hero-left"><span class="tag">A BETTER WAY TO RECALL</span><h2>看见结构。<br><span>记住名称。</span></h2><p>从切片识别到英文输出，把每一次回忆变成更牢固的医学记忆。</p><span class="hero-hint">先选择课程，再选择训练方式 ${ic('arrow',15)}</span></div><div class="hero-optic" aria-hidden="true"><span class="optic-kinetic optic-ring optic-ring-one" data-body="ring-large"></span><span class="optic-kinetic optic-ring optic-ring-two" data-body="ring-medium"></span><span class="optic-kinetic optic-ring optic-ring-three" data-body="ring-small"></span><span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-large"></span><span class="optic-kinetic optic-orb optic-orb-two" data-body="orb-small"></span></div><div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span></div></section>
+function homePage(){let s=stats(),due=dueWords().length,unseen=availableWords().filter(isNew).length;let duePlan=Math.min(store.prefs.goal,due+unseen);let ta=todayActions();let done=ta.filter(x=>x.result==='correct'||x.result==='wrong').length;return `${courseChooser()}<section class="hero" id="hero-masthead"><div class="hero-left"><span class="tag">A BETTER WAY TO RECALL</span><h2>看见结构。<br><span>记住名称。</span></h2><p>从切片识别到英文输出，把每一次回忆变成更牢固的医学记忆。</p><span class="hero-hint">先选择课程，再选择训练方式 ${ic('arrow',15)}</span></div><div class="hero-optic" aria-hidden="true"><span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span><span class="optic-kinetic optic-ring optic-ring-two" data-body="shell-middle"></span><span class="optic-kinetic optic-ring optic-ring-three" data-body="shell-inner"></span><span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span></div><div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span></div></section>
 <div class="metrics">${metric('今日待学',duePlan,'含到期复习与新术语','clock')}${metric('已经接触',s.learnt,'共 '+WORDS.length+' 个唯一术语','book')}${metric('持续掌握',s.mastered,'多次正确回忆后形成','target')}</div>${modesBlock()}
 <div class="mini-bottom"><section class="panel"><div class="section-title"><h3>今天的学习节奏</h3><small>${done} 次已作答</small></div><div class="overview-rows"><div class="overview-row"><span>今日目标</span><div class="mini-track"><span style="width:${Math.min(100,done/store.prefs.goal*100)}%"></span></div><strong>${done}/${store.prefs.goal}</strong></div><div class="overview-row"><span>到期复习</span><strong>${due} 词</strong></div><div class="overview-row"><span>尚未接触</span><strong>${unseen} 词</strong></div><div class="overview-row"><span>当前训练范围</span><strong>${safe(scopeName())}</strong></div></div></section><section class="panel" data-tour="chart"><div class="section-title"><h3>最近七天</h3><small>作答次数</small></div>${barChart()}</section></div>`;}
 function barChart(){let days=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);days.push({key:dayKey(d.getTime()),label:'日一二三四五六'[d.getDay()]})}let map={};for(const e of store.events){if(e.result==='correct'||e.result==='wrong')map[dayKey(e.time)]=(map[dayKey(e.time)]||0)+1}let max=Math.max(4,...days.map(d=>map[d.key]||0));return `<div class="spark-chart" role="group" aria-label="最近七天实际作答次数">${days.map(d=>{let count=map[d.key]||0;let date=d.key.slice(5).replace('-','月')+'日';return `<button type="button" class="spark-col" data-action="chart-day" data-date="${d.key}" data-count="${count}" aria-label="${date}，${count} 次作答" aria-pressed="false"><span class="spark-tooltip" aria-hidden="true">${count} 次 · ${date}</span><span class="spark-bar" style="height:${Math.max(8,count/max*76)}px"></span><span class="spark-label">${d.label}</span></button>`}).join('')}</div>`;}
@@ -459,19 +527,59 @@ function optionsHtml(w){return `<div class="options-grid">${study.options.map((x
 function feedbackHtml(w,mode){let result=study.result,ok=result==='correct',skipped=result==='skip'||result==='timeout';return `<div class="feedback show ${ok?'':'err'}" role="status"><div class="feedback-heading"><span class="feedback-symbol">${ic(ok?'check':skipped?'clock':'close',21)}</span>${ok?'回答正确 · 很漂亮':skipped?'已显示标准答案':'再巩固一次'}</div><div class="reveal-en">${safe(w.en)}</div><div class="tip-stack"><div class="tip-row"><strong>看片线索</strong><p class="watch">${safe(w.clue||'从所属组织与邻近结构确认。')}</p></div>${w.compare?`<div class="tip-row"><strong>鉴别对照</strong><p>${safe(w.compare)}</p></div>`:''}${w.trap?`<div class="tip-row"><strong>易错提醒</strong><p>${safe(w.trap)}</p></div>`:''}</div></div>`;}
 function finishedPage(){let total=study.cards.length,attempted=study.correct+study.wrong;let acc=attempted?Math.round(study.correct/attempted*100):0;return `<div class="practice-layout"><section class="review-end"><div class="finish-icon">${ic('trophy',37)}</div><div class="eyebrow">SESSION COMPLETE</div><h2>又完成一次主动回忆。</h2><p class="muted">真正掌握一个词，往往始于愿意把它写错的那一次。</p><div class="summary-row"><div><strong class="mono">${study.correct}</strong><span>正确</span></div><div><strong class="mono">${study.wrong}</strong><span>待加强</span></div><div><strong class="mono">${acc}%</strong><span>本轮准确率</span></div></div><div class="btn-row" style="justify-content:center"><button class="btn btn-accent" data-action="start" data-mode="${study.mode}">再练一轮 ${ic('refresh',16)}</button><button class="btn btn-outline" data-action="nav" data-view="stats">查看学习记录</button><button class="btn btn-outline" data-action="nav" data-view="home">返回概览</button></div></section></div>`;}
 function syncPracticeDom(){if(!study||study.finished)return;if(currentMode()==='spell'){updateSlots();requestAnimationFrame(()=>{let input=document.getElementById('typing-input');if(input&&!study.graded){input.focus({preventScroll:true});lockTypingCaret(input);}});}if(study.timer)startClock();}
+// The spelling exercise is intentionally append-only. Mobile WebKit may reset the caret
+// of an almost invisible <input> to index 0 on every keystroke; never trust that offset.
 let typingComposition=false,typingCompositionBase='';
-function lockTypingCaret(input){if(!input||typingComposition)return;try{const n=input.value.length;input.setSelectionRange(n,n);}catch(_e){}}
-function setTyped(next,animated=true){if(!study||study.graded||currentMode()!=='spell')return;const previous=study.typed;study.typed=String(next).slice(0,160).toLowerCase();const input=document.getElementById('typing-input');if(input){input.value=study.typed;lockTypingCaret(input);}updateSlots();if(animated)animateTypedSlot(previous,study.typed);}
-function handleTypingBeforeInput(e){if(e.target.id!=='typing-input'||!study||study.graded||typingComposition||e.isComposing||!e.cancelable)return;
- if(e.inputType==='insertText'&&typeof e.data==='string'){e.preventDefault();setTyped(study.typed+e.data);return;}
- if(e.inputType==='deleteContentBackward'||e.inputType==='deleteWordBackward'){e.preventDefault();setTyped(e.inputType==='deleteWordBackward'?study.typed.replace(/\S+\s*$/,''):study.typed.slice(0,-1));return;}
- if(e.inputType==='deleteContentForward'){e.preventDefault();setTyped(study.typed.slice(0,-1));return;}
- if(e.inputType==='insertFromPaste'&&typeof e.data==='string'){e.preventDefault();setTyped(study.typed+e.data);}
+function lockTypingCaret(input){
+ if(!input||typingComposition)return;
+ try{const n=input.value.length;input.setSelectionRange(n,n);}catch(_e){}
 }
-function handleTypingPaste(e){if(e.target.id!=='typing-input'||!study||study.graded)return;const value=e.clipboardData?.getData('text/plain');if(typeof value==='string'&&value){e.preventDefault();setTyped(study.typed+value);}}
-function handleTypingCompositionStart(e){if(e.target.id!=='typing-input'||!study||study.graded)return;typingComposition=true;typingCompositionBase=study.typed;}
-function handleTypingCompositionEnd(e){if(e.target.id!=='typing-input'||!study||study.graded)return;typingComposition=false;const candidate=typeof e.data==='string'&&e.data?e.data:e.target.value.slice(typingCompositionBase.length);setTyped(typingCompositionBase+candidate);}
-function handleTypingFocus(e){if(e.target.id==='typing-input')lockTypingCaret(e.target);}
+function setTyped(next,animated=true){
+ if(!study||study.graded||currentMode()!=='spell')return;
+ const previous=study.typed;
+ study.typed=String(next).slice(0,160).toLowerCase();
+ const input=document.getElementById('typing-input');
+ if(input){input.value=study.typed;lockTypingCaret(input);}
+ updateSlots();
+ if(animated)animateTypedSlot(previous,study.typed);
+}
+function handleTypingBeforeInput(e){
+ if(e.target.id!=='typing-input'||!study||study.graded||typingComposition||e.isComposing||!e.cancelable)return;
+ // Prevent browser insertion at selectionStart (often 0 on iOS): append ourselves.
+ if(e.inputType==='insertText'&&typeof e.data==='string'){
+   e.preventDefault();setTyped(study.typed+e.data);return;
+ }
+ if(e.inputType==='deleteContentBackward'||e.inputType==='deleteWordBackward'){
+   e.preventDefault();
+   const next=e.inputType==='deleteWordBackward'?study.typed.replace(/\S+\s*$/,''):study.typed.slice(0,-1);
+   setTyped(next);return;
+ }
+ if(e.inputType==='deleteContentForward'){
+   e.preventDefault();setTyped(study.typed.slice(0,-1));return;
+ }
+ // Clipboard is handled by paste, but some soft keyboards emit text here directly.
+ if(e.inputType==='insertFromPaste'&&typeof e.data==='string'){
+   e.preventDefault();setTyped(study.typed+e.data);
+ }
+}
+function handleTypingPaste(e){
+ if(e.target.id!=='typing-input'||!study||study.graded)return;
+ const value=e.clipboardData?.getData('text/plain');
+ if(typeof value==='string'&&value){e.preventDefault();setTyped(study.typed+value);}
+}
+function handleTypingCompositionStart(e){
+ if(e.target.id!=='typing-input'||!study||study.graded)return;
+ typingComposition=true;typingCompositionBase=study.typed;
+}
+function handleTypingCompositionEnd(e){
+ if(e.target.id!=='typing-input'||!study||study.graded)return;
+ typingComposition=false;
+ const candidate=typeof e.data==='string'&&e.data?e.data:e.target.value.slice(typingCompositionBase.length);
+ setTyped(typingCompositionBase+candidate);
+}
+function handleTypingFocus(e){
+ if(e.target.id==='typing-input')lockTypingCaret(e.target);
+}
 
 function animateTypedSlot(previous, next){
   if(!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
@@ -492,72 +600,167 @@ function animateTypedSlot(previous, next){
     {transform:'translateY(0) scale(1,1)',offset:1}
   ],{duration:pressed?290:175,easing:'cubic-bezier(.2,.7,.2,1)'});
 }
-
+// v3.4: Onion-like nested shells, not five independent discs.
+// Visible material is the annulus [r - thickness, r]. The adjacent center distance
+// is bounded by outer.innerRadius - inner.outerRadius - CONTACT_GAP.
+// This is edge-to-edge contact and prevents a finite-width shell from tunnelling
+// through its neighbor, including while an outer shell touches the hero border.
 let opticsCleanup=null;
-let opticsFrameStats={frames:0,collisions:0,active:false,bodies:0};
+let opticsFrameStats={frames:0,collisions:0,wallCollisions:0,active:false,bodies:0,minGap:null,wallGap:null,shells:[]};
 function initOptics(){
- const hero=app.querySelector('#hero-masthead'),field=hero?.querySelector('.hero-optic'),glass=hero?.querySelector('.hero-glass');
+ const hero=app.querySelector('#hero-masthead');
+ const field=hero?.querySelector('.hero-optic');
+ const glass=hero?.querySelector('.hero-glass');
  if(!hero||!field||!glass)return;
- const reduced=()=>!store.prefs.motion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const specs=[['ring-large',.17,.34,104,1.5,.28],['ring-medium',.61,.28,85,1.13,1.38],['ring-small',.41,.79,74,1.01,2.16],['orb-large',.84,.62,37,.70,2.82],['orb-small',.82,.11,27,.62,4.15]];
- const box=field.getBoundingClientRect(),width=Math.max(240,box.width),height=Math.max(200,box.height);
- const scale=Math.max(.63,Math.min(1.08,width/650,height/390));
- const bodies=specs.map(([id,cx,cy,rad,freq,phase],i)=>{
-  const el=field.querySelector('[data-body="'+id+'"]'),r=rad*scale;
-  el.style.width=2*r+'px';el.style.height=2*r+'px';
-  return {el,id,r,mass:id.startsWith('orb')?.7+r/70:2+r/78,x:Math.min(width-r,Math.max(r,width*cx)),y:Math.min(height-r,Math.max(r,height*cy)),vx:(i%2?-1:1)*(44+i*9),vy:(i%3?1:-1)*(44+i*6),freq,phase};
- });
- let raf=0,last=0,frame=0,disposed=false,collisions=0,fx=50,fy=50,tx=50,ty=50,fog=0,fogTarget=0,hasPointer=false,pointerX=0,pointerY=0;
- const canMove=()=>!reduced()&&!disposed&&!document.hidden;
- const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
- const onMove=e=>{if(e.pointerType==='touch'||e.pointerType==='pen'||reduced())return;
-  const rect=hero.getBoundingClientRect();
-  tx=clamp((e.clientX-rect.left)/rect.width*100,0,100);ty=clamp((e.clientY-rect.top)/rect.height*100,0,100);
-  fogTarget=1;hasPointer=true;pointerX=e.clientX-field.getBoundingClientRect().left;pointerY=e.clientY-field.getBoundingClientRect().top;
- };
- const onLeave=()=>{fogTarget=0;hasPointer=false;};
- hero.addEventListener('pointermove',onMove,{passive:true});
- hero.addEventListener('pointerleave',onLeave);hero.addEventListener('pointercancel',onLeave);
- for(const b of bodies)b.el.style.transform='translate3d('+(b.x-b.r).toFixed(2)+'px,'+(b.y-b.r).toFixed(2)+'px,0)';
- function tick(now){
-  if(disposed)return;raf=requestAnimationFrame(tick);
-  if(!canMove()){last=now;glass.style.setProperty('--fog-opacity','0');return;}
-  const dt=Math.min(.034,Math.max(.008,last?(now-last)/1000:.016));last=now;
-  const t=now/1000;frame++;
-  for(const b of bodies){
-   const driftX=Math.sin(t*b.freq+b.phase)*29+Math.sin(t*b.freq*.44+b.phase*3.3)*22;
-   const driftY=Math.cos(t*b.freq*.81+b.phase*1.27)*26+Math.sin(t*b.freq*.34+b.phase*2.1)*18;
-   const centerX=width*.51+Math.sin(t*.17+b.phase)*width*.13,centerY=height*.52+Math.cos(t*.19+b.phase)*height*.12;
-   b.vx+=(driftX+(centerX-b.x)*.22)*dt;b.vy+=(driftY+(centerY-b.y)*.22)*dt;
-   if(hasPointer){const dx=b.x-pointerX,dy=b.y-pointerY,dist=Math.hypot(dx,dy)||1,reach=b.r+92;
-    if(dist<reach){const repel=(1-dist/reach)*460*dt/b.mass;b.vx+=dx/dist*repel;b.vy+=dy/dist*repel;}}
-   const damping=Math.pow(.994,dt*60);b.vx*=damping;b.vy*=damping;
-   const speed=Math.hypot(b.vx,b.vy),cap=b.id.startsWith('orb')?164:136;
-   if(speed>cap){b.vx*=cap/speed;b.vy*=cap/speed;}
-   b.x+=b.vx*dt;b.y+=b.vy*dt;
-   if(b.x<b.r){b.x=b.r;b.vx=Math.abs(b.vx)*.87;}else if(b.x>width-b.r){b.x=width-b.r;b.vx=-Math.abs(b.vx)*.87;}
-   if(b.y<b.r){b.y=b.r;b.vy=Math.abs(b.vy)*.87;}else if(b.y>height-b.r){b.y=height-b.r;b.vy=-Math.abs(b.vy)*.87;}
-  }
-  for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){
-   const a=bodies[i],b=bodies[j],dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy)||.001,contact=(a.r+b.r)*.93;
-   if(dist>=contact)continue;const nx=dx/dist,ny=dy/dist,penetration=contact-dist,invA=1/a.mass,invB=1/b.mass,weight=invA+invB,correction=Math.min(18,penetration*.72)/weight;
-   a.x-=nx*correction*invA;a.y-=ny*correction*invA;b.x+=nx*correction*invB;b.y+=ny*correction*invB;
-   const relative=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
-   if(relative<0){const impulse=-1.38*relative/weight;
-    a.vx-=impulse*nx*invA;a.vy-=impulse*ny*invA;b.vx+=impulse*nx*invB;b.vy+=impulse*ny*invB;
-    collisions++;a.el.classList.add('is-contact');b.el.classList.add('is-contact');
+ const reduced=()=>!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const CONTACT_GAP=1.7; // small positive gap compensates for one-pixel antialiasing at the shell edge
+ const bodySpecs=[
+  {id:'shell-outer',factor:1,thickness:17,mass:6.1,freq:.91,phase:.24,spin:12},
+  {id:'shell-middle',factor:.72,thickness:14,mass:4.5,freq:1.47,phase:1.79,spin:-18},
+  {id:'shell-inner',factor:.47,thickness:11,mass:3.1,freq:2.14,phase:3.1,spin:21},
+  {id:'orb-core',factor:.21,thickness:0,mass:1.5,freq:2.72,phase:4.39,spin:-9}
+ ];
+ const bodies=bodySpecs.map((spec,i)=>({
+   ...spec,el:field.querySelector(`[data-body="${spec.id}"]`),x:0,y:0,vx:[24,-57,65,-88][i],vy:[32,55,-60,49][i],r:0,t:0
+ }));
+ if(bodies.some(b=>!b.el))return;
+ let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0,collisions=0,wallCollisions=0,disposed=false;
+ let fx=50,fy=50,tx=50,ty=50,glow=0,glowTarget=0,hasPointer=false,pointerX=0,pointerY=0;
+ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+ const canMove=()=>!reduced()&&!document.hidden&&!disposed;
+ // Physical contact with a rounded rectangle of corner radius C. When r>=C,
+ // a shell centered within [r,W-r]×[r,H-r] is completely inside the rounded boundary.
+ function restrictOuter(pulse){
+  const b=bodies[0],eps=.9,minX=b.r+eps,maxX=width-b.r-eps,minY=b.r+eps,maxY=height-b.r-eps;
+  const apply=(axis,min,max)=>{
+   const vel=axis==='x'?'vx':'vy';
+   if(b[axis]<min){b[axis]=min;if(b[vel]<0){b[vel]=Math.abs(b[vel])*.78;if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}}
+   else if(b[axis]>max){b[axis]=max;if(b[vel]>0){b[vel]=-Math.abs(b[vel])*.78;if(pulse){wallCollisions++;b.el.classList.add('is-contact')}}}
+  };
+  apply('x',minX,maxX);apply('y',minY,maxY);
+ }
+ function layout(reset){
+  const w=hero.clientWidth,h=hero.clientHeight;
+  if(!w||!h)return;
+  width=w;height=h;
+  const R=Math.min(h*.427,w*.39,184);
+  // Leave room for a visibly measurable free-flight gap between neighboring shells.
+  originX=clamp(width-R-Math.max(14,width*.025),R+2,width-R-2);
+  originY=height*.52;
+  bodies.forEach((b,i)=>{
+   b.r=R*b.factor;
+   b.t=Math.min(b.r*.24,b.thickness*R/142);
+   b.el.style.width=(2*b.r).toFixed(2)+'px';b.el.style.height=(2*b.r).toFixed(2)+'px';
+   if(i<3)b.el.style.setProperty('--shell-thickness',b.t.toFixed(2)+'px');
+   if(reset){
+    b.x=originX+[0,1.2,-1.5,.8][i];b.y=originY+[0,-.9,.6,1.2][i];
+    b.vx=[25,-61,70,-82][i];b.vy=[28,53,-65,47][i];
+   }
+  });
+  restrictOuter(false);
+  paint(0);
+ }
+ function paint(t){
+  bodies.forEach((b,i)=>{
+   const angle=i===3?0:Math.sin(t*b.freq+b.phase)*6+t*b.spin;
+   b.el.style.transform=`translate3d(${(b.x-b.r).toFixed(3)}px,${(b.y-b.r).toFixed(3)}px,0) rotate(${angle.toFixed(2)}deg)`;
+  });
+ }
+ // Nested, finite-thickness shell contacts. Adjacent pairs only are sufficient:
+ // outer contains middle, middle contains inner, inner contains core sphere.
+ function resolveNested(pulse){
+  for(let i=0;i<bodies.length-1;i++){
+   const a=bodies[i],b=bodies[i+1];
+   const maxDistance=a.r-a.t-b.r-CONTACT_GAP;
+   const dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy);
+   if(dist<=maxDistance)continue;
+   const nx=dist>1e-9?dx/dist:1,ny=dist>1e-9?dy/dist:0;
+   const invA=1/a.mass,invB=1/b.mass,sum=invA+invB;
+   const penetration=dist-maxDistance;
+   // Fully project both centers to the permissible separation; no partial correction.
+   a.x+=nx*penetration*(invA/sum);a.y+=ny*penetration*(invA/sum);
+   b.x-=nx*penetration*(invB/sum);b.y-=ny*penetration*(invB/sum);
+   const sep=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+   if(sep>0){
+    const impulse=(1+.70)*sep/sum;
+    a.vx+=nx*impulse*invA;a.vy+=ny*impulse*invA;
+    b.vx-=nx*impulse*invB;b.vy-=ny*impulse*invB;
+    if(pulse){collisions++;a.el.classList.add('is-contact');b.el.classList.add('is-contact')}
    }
   }
-  if(frame%12===0)bodies.forEach(b=>b.el.classList.remove('is-contact'));
-  for(const b of bodies)b.el.style.transform='translate3d('+(b.x-b.r).toFixed(2)+'px,'+(b.y-b.r).toFixed(2)+'px,0)';
-  const ease=1-Math.exp(-dt*12);fx+=(tx-fx)*ease;fy+=(ty-fy)*ease;fog+=(fogTarget-fog)*(1-Math.exp(-dt*6));
-  glass.style.setProperty('--fog-x',fx.toFixed(2)+'%');glass.style.setProperty('--fog-y',fy.toFixed(2)+'%');glass.style.setProperty('--fog-opacity',fog.toFixed(3));
-  opticsFrameStats={frames:frame,collisions,active:true,bodies:bodies.length};
+ }
+ function diagnostics(){
+  const shells=bodies.map(b=>({id:b.id,x:b.x,y:b.y,r:b.r,thickness:b.t,innerRadius:b.r-b.t}));
+  const edgeGaps=bodies.slice(0,-1).map((a,i)=>a.r-a.t-bodies[i+1].r-Math.hypot(a.x-bodies[i+1].x,a.y-bodies[i+1].y));
+  const a=bodies[0];const wallGap=Math.min(a.x-a.r,width-a.x-a.r,a.y-a.r,height-a.y-a.r);
+  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,
+   minGap:Math.min(...edgeGaps),edgeGaps,wallGap,width,height,center:{x:originX,y:originY},shells};
+ }
+ const onMove=e=>{
+  if(e.pointerType==='touch'||e.pointerType==='pen'||reduced())return;
+  const rect=hero.getBoundingClientRect();
+  tx=clamp((e.clientX-rect.left)/rect.width*100,0,100);
+  ty=clamp((e.clientY-rect.top)/rect.height*100,0,100);
+  glowTarget=.9;hasPointer=true;
+  pointerX=e.clientX-rect.left;pointerY=e.clientY-rect.top;
+ };
+ const onLeave=()=>{glowTarget=0;hasPointer=false};
+ hero.addEventListener('pointermove',onMove,{passive:true});
+ hero.addEventListener('pointerleave',onLeave);
+ hero.addEventListener('pointercancel',onLeave);
+ const onResize=()=>layout(true);
+ const ro=typeof ResizeObserver!=='undefined'?new ResizeObserver(onResize):null;
+ if(ro)ro.observe(hero); else window.addEventListener('resize',onResize);
+ layout(true);
+ function tick(now){
+  if(disposed)return;
+  raf=requestAnimationFrame(tick);
+  if(!canMove()){last=now;glow=0;glass.style.setProperty('--glow-opacity','0');opticsFrameStats=diagnostics();return;}
+  const dt=Math.min(.033,Math.max(.002,last?(now-last)/1000:.016));last=now;
+  const t=now/1000;frame++;
+  // Substep solver prevents tunnelling when a tab resumes or a mobile device drops frames.
+  const steps=Math.max(2,Math.ceil(dt/.009)),h=dt/steps;
+  for(let sub=0;sub<steps;sub++){
+   for(const b of bodies){
+    const driveX=75*Math.sin(t*b.freq+b.phase)+36*Math.sin(t*b.freq*.39+b.phase*2.8);
+    const driveY=82*Math.cos(t*b.freq*.84+b.phase*.73)+29*Math.cos(t*b.freq*.43+b.phase*3.2);
+    b.vx+=(driveX+(originX-b.x)*2.7)*h;
+    b.vy+=(driveY+(originY-b.y)*2.9)*h;
+    if(hasPointer){
+     const dx=b.x-pointerX,dy=b.y-pointerY,d=Math.hypot(dx,dy)||1;
+     if(d<Math.min(125,b.r+45)){
+      const force=(1-d/(b.r+70))*23*h;b.vx+=(dx/d)*force;b.vy+=(dy/d)*force;
+     }
+    }
+    const damping=Math.exp(-1.05*h);
+    b.vx*=damping;b.vy*=damping;
+    const v=Math.hypot(b.vx,b.vy),cap=b.id==='orb-core'?139:115;
+    if(v>cap){b.vx*=cap/v;b.vy*=cap/v;}
+    b.x+=b.vx*h;b.y+=b.vy*h;
+   }
+   // Six full projections make the finite shell contact safe even with simultaneous hits.
+   for(let k=0;k<6;k++){restrictOuter(k===0);resolveNested(k===0)}
+   restrictOuter(false);
+  }
+  // Optional visual collision flash disappears quickly, never obscures the shell edge.
+  if(frame%10===0)bodies.forEach(b=>b.el.classList.remove('is-contact'));
+  paint(t);
+  const ease=1-Math.exp(-dt*11);
+  fx+=(tx-fx)*ease;fy+=(ty-fy)*ease;
+  glow+=(glowTarget-glow)*(1-Math.exp(-dt*5.7));
+  glass.style.setProperty('--glow-x',fx.toFixed(2)+'%');
+  glass.style.setProperty('--glow-y',fy.toFixed(2)+'%');
+  glass.style.setProperty('--glow-opacity',glow.toFixed(3));
+  opticsFrameStats=diagnostics();
  }
  if(!reduced())raf=requestAnimationFrame(tick);
- else opticsFrameStats={frames:0,collisions:0,active:false,bodies:bodies.length};
- opticsCleanup=()=>{disposed=true;cancelAnimationFrame(raf);
-  hero.removeEventListener('pointermove',onMove);hero.removeEventListener('pointerleave',onLeave);hero.removeEventListener('pointercancel',onLeave);
+ else opticsFrameStats=diagnostics();
+ opticsCleanup=()=>{
+  disposed=true;cancelAnimationFrame(raf);
+  hero.removeEventListener('pointermove',onMove);
+  hero.removeEventListener('pointerleave',onLeave);
+  hero.removeEventListener('pointercancel',onLeave);
+  if(ro)ro.disconnect();else window.removeEventListener('resize',onResize);
   opticsFrameStats.active=false;
  };
 }
@@ -587,10 +790,18 @@ function handleClick(e){const el=e.target.closest('[data-action]');if(!el)return
 }
 function handleInput(e){if(e.target.id==='typing-input'&&study&&!study.graded){
  if(typingComposition||e.isComposing)return;
- const previous=study.typed,native=e.target.value;
- if(e.inputType==='insertText'&&typeof e.data==='string'&&!native.startsWith(previous)){setTyped(previous+e.data);}
- else if(e.inputType==='deleteContentBackward'&&native.length>=previous.length){setTyped(previous.slice(0,-1));}
- else if(native!==previous){setTyped(native);}else{lockTypingCaret(e.target);}
+ const previous=study.typed;
+ const native=e.target.value;
+ if(e.inputType==='insertText'&&typeof e.data==='string'&&!native.startsWith(previous)){
+   // Fallback for non-cancelable native input events; preserve append order.
+   setTyped(previous+e.data);
+ }else if(e.inputType==='deleteContentBackward'&&native.length>=previous.length){
+   setTyped(previous.slice(0,-1));
+ }else if(native!==previous){
+   setTyped(native);
+ }else{
+   lockTypingCaret(e.target);
+ }
  }else if(e.target.id==='library-search'){let input=e.target;libraryQuery=input.value;libraryCount=30;let pos=input.selectionStart;render();let newly=document.getElementById('library-search');if(newly){newly.focus({preventScroll:true});newly.setSelectionRange(pos,pos);}}else if(e.target.id==='goal-range'){store.prefs.goal=Math.max(8,Math.min(30,Number(e.target.value)||14));let label=document.getElementById('goal-label');if(label)label.textContent=store.prefs.goal;persist();}}
 function handleChange(e){if(e.target.id==='course-scope'){store.prefs.scope=e.target.value;persist();render();}else if(e.target.id==='library-topic'){libraryTopic=e.target.value;libraryCount=30;render();}else if(e.target.id==='library-sort'){librarySort=e.target.value;render();}}
 function handleKey(e){if(guideStep>=0){if(e.key==='Escape'){e.preventDefault();endGuide();}return;}if(e.key==='Escape'&&drawerId){closeDetail();return;}if(drawerId||route!=='study'||!study||study.finished||typingComposition||e.isComposing||e.keyCode===229)return;let mode=currentMode();if(e.key==='Enter'){e.preventDefault();study.graded?nextCard():submitAnswer();return;}if(mode==='choice'&&!study.graded&&/^[1-4]$/.test(e.key)){e.preventDefault();chooseOption(Number(e.key)-1);return;}if(mode==='spell'&&!study.graded&&e.key.length===1&&/^[a-zA-Z]$/.test(e.key)&&document.activeElement?.id!=='typing-input'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){const inp=document.getElementById('typing-input');if(inp){inp.focus({preventScroll:true});setTyped(study.typed+e.key);e.preventDefault();}}}
