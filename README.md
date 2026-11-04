@@ -14,8 +14,8 @@ The current repository contains a single-file app (`index.html`) and this README
 Terminology audit: `qa/TERMINOLOGY_AUDIT_2026-11-04.md` (verified fixes, source references, and unresolved ambiguities). Run `node qa/validate-terminology.mjs` after vocabulary edits to check vocabulary integrity and targeted regressions. The checker does not constitute independent academic validation of all entries.
 
 ## Study progression and term eligibility
-- **01 · 新词学习** takes only never-answered terms from the current scope, so overdue items cannot block moving forward. Completing a round offers **继续学新词** (another unseen batch) and **巩固已学** (previously attempted cards) separately.
-- **04 · 到期复习** remains an SRS due-only path. Each round has 8–30 items, but daily learning has no hard cap.
+- **01 · 新词学习** takes only never-answered terms from the current scope, so overdue items cannot block moving forward. Completing any round in modes **01/02/03** opens an accessible round-completion dialog with **退出** and **继续学习新单词**. Continuing always preserves the original question type and takes only unseen terms; exiting returns to the home dashboard.
+- **04 · 到期复习** remains an SRS due-only path, **without** the modal; one-card manual practices are also exempt. Each round has 8–30 items, but daily learning has no hard cap. When no unseen words remain, continuation is disabled rather than serving repeats.
 - A curated set of **48 generic/foundational terms** and **6 context-dependent isolated words** is omitted from automatic independent drills by default. The complete glossary remains searchable and individual cards remain manually practiceable. Favorites and the **基础词独立训练** preference can include these in automatic sessions; 172 exam-focus entries are protected from automatic omission.
 - Terms are not deleted or declared academically invalid. See `qa/TERMINOLOGY_CLASSIFICATION_2026-11-04.md` for all 54 entries, rationale, exceptions and reversibility.
 
@@ -24,8 +24,9 @@ Run both checks (Node.js ≥18, no extra packages):
 ```bash
 node qa/validate-terminology.mjs
 node qa/validate-learning-flow.mjs
+node qa/validate-round-prompt.mjs
 ```
-These checks protect card identity, spelling corrections, exam coverage, fresh-word progression and safe overrides; they do **not** certify the scientific validity of every glossary entry.
+These checks protect card identity, spelling corrections, exam coverage, fresh-word progression, due-review exemption, completion-dialog behavior and safe overrides; they do **not** certify the scientific validity of every glossary entry.
 
 ## Source traceability
 This study app includes terminology derived from the user's R10 histology source material and 14 chapter glossary files. Its study scope is not teacher-certified.
