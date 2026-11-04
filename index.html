@@ -452,7 +452,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 }
 
 
-/* LUMEN v3.6: quiet spring optics, physical contact and denser directional frosted lens.
+/* LUMEN v3.7: soft-ring width, lighter glass and restored tactile click ripples.
    Layer contract: optics 1 < glass 2 < content 4. */
 .hero{isolation:isolate}
 .hero-optic,:root[data-theme=dark] .hero-optic{
@@ -467,24 +467,36 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 .hero-optic .optic-ring.is-contact,.hero-optic .optic-orb.is-contact{
  filter:none!important;box-shadow:none!important;
 }
-.glass-hover-mist,.glass-ripple-layer{display:none!important}
+.glass-hover-mist{display:none!important}
+.glass-ripple-layer{display:block!important;z-index:3}
+.glass-ripple{
+ background:radial-gradient(circle,rgba(230,240,255,.17) 0 10%,
+  rgba(224,235,250,.085) 32%,rgba(220,233,252,.045) 57%,transparent 72%)!important;
+ border:1.5px solid rgba(90,125,190,.27)!important;
+ box-shadow:0 0 0 1px rgba(255,255,255,.12),inset 0 0 12px rgba(255,255,255,.09)!important;
+ mix-blend-mode:normal!important;
+}
+:root[data-theme=dark] .glass-ripple{
+ border-color:rgba(189,209,246,.32)!important;
+ box-shadow:inset 0 0 12px rgba(200,215,245,.11)!important;
+}
 /* First pass gives a broad, slowly increasing milky diffusion. */
 .hero-glass::before{
  background:linear-gradient(90deg,
-  rgba(251,253,255,.035) 0%,rgba(250,252,255,.08) 29%,
-  rgba(246,249,255,.33) 54%,rgba(246,250,255,.68) 77%,
-  rgba(247,251,255,.83) 100%)!important;
- -webkit-backdrop-filter:blur(5px) saturate(110%)!important;
- backdrop-filter:blur(5px) saturate(110%)!important
+  rgba(251,253,255,.025) 0%,rgba(250,252,255,.055) 29%,
+  rgba(246,249,255,.20) 54%,rgba(246,250,255,.43) 77%,
+  rgba(247,251,255,.66) 100%)!important;
+ -webkit-backdrop-filter:blur(3px) saturate(112%)!important;
+ backdrop-filter:blur(3px) saturate(112%)!important
 }
 /* Second pass hides the underlying sharp edges on the far right. */
 .hero-glass::after{
  opacity:1!important;
  background:linear-gradient(90deg,transparent 24%,
-  rgba(248,250,255,.07) 43%,rgba(247,250,255,.28) 64%,
-  rgba(247,251,255,.48) 81%,rgba(248,251,255,.61) 100%)!important;
- -webkit-backdrop-filter:blur(38px) saturate(106%)!important;
- backdrop-filter:blur(38px) saturate(106%)!important;
+  rgba(248,250,255,.035) 43%,rgba(247,250,255,.13) 64%,
+  rgba(247,251,255,.23) 81%,rgba(248,251,255,.29) 100%)!important;
+ -webkit-backdrop-filter:blur(23px) saturate(112%)!important;
+ backdrop-filter:blur(23px) saturate(112%)!important;
  -webkit-mask-image:linear-gradient(90deg,transparent 22%,
   rgba(0,0,0,.04) 38%,rgba(0,0,0,.48) 60%,
   rgba(0,0,0,.94) 81%,black 100%)!important;
@@ -493,25 +505,25 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
   rgba(0,0,0,.94) 81%,black 100%)!important
 }
 :root[data-theme=dark] .hero-glass::before{
- background:linear-gradient(90deg,rgba(37,43,70,.04) 0%,
-  rgba(37,43,70,.11) 29%,rgba(36,44,75,.32) 54%,
-  rgba(35,44,75,.62) 77%,rgba(34,44,74,.80) 100%)!important
+ background:linear-gradient(90deg,rgba(37,43,70,.035) 0%,
+  rgba(37,43,70,.075) 29%,rgba(36,44,75,.20) 54%,
+  rgba(35,44,75,.43) 77%,rgba(34,44,74,.64) 100%)!important
 }
 :root[data-theme=dark] .hero-glass::after{
  background:linear-gradient(90deg,transparent 24%,
-  rgba(35,43,74,.09) 43%,rgba(33,43,73,.29) 64%,
-  rgba(31,43,74,.49) 81%,rgba(31,42,71,.62) 100%)!important
+  rgba(35,43,74,.04) 43%,rgba(33,43,73,.13) 64%,
+  rgba(31,43,74,.24) 81%,rgba(31,42,71,.29) 100%)!important
 }
 @media(max-width:650px){
  .hero-glass::before{
-  background:linear-gradient(90deg,rgba(251,253,255,.09),
-   rgba(249,252,255,.18) 28%,rgba(247,250,255,.52) 65%,
-   rgba(249,252,255,.86) 100%)!important
+  background:linear-gradient(90deg,rgba(251,253,255,.06),
+   rgba(249,252,255,.13) 28%,rgba(247,250,255,.36) 65%,
+   rgba(249,252,255,.68) 100%)!important
  }
  :root[data-theme=dark] .hero-glass::before{
-  background:linear-gradient(90deg,rgba(37,43,70,.11),
-   rgba(36,45,75,.25) 28%,rgba(34,44,74,.57) 65%,
-   rgba(32,42,72,.85) 100%)!important
+  background:linear-gradient(90deg,rgba(37,43,70,.08),
+   rgba(36,45,75,.17) 28%,rgba(34,44,74,.39) 65%,
+   rgba(32,42,72,.68) 100%)!important
  }
 }
 @media(prefers-reduced-transparency:reduce){
@@ -755,20 +767,21 @@ function initOptics(){
  const hero=app.querySelector('#hero-masthead');
  const field=hero?.querySelector('.hero-optic');
  const glass=hero?.querySelector('.hero-glass');
- if(!hero||!field||!glass)return;
+ const rippleLayer=glass?.querySelector('.glass-ripple-layer');
+ if(!hero||!field||!glass||!rippleLayer)return;
  const reduced=()=>!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches;
  // Slow spring settling and low-restitution edge constraints replace the previous
  // permanently driven, high-restitution collision loop (which visibly stuttered).
  const specs=[
-  {id:'shell-outer',factor:1,thickness:31,mass:6.4,phase:.4,spring:7.2,damping:5.0,drift:2.5},
-  {id:'shell-middle',factor:.59,thickness:25,mass:3.8,phase:1.8,spring:8.4,damping:4.9,drift:4.2},
+  {id:'shell-outer',factor:1,thickness:42,mass:6.4,phase:.4,spring:7.2,damping:5.0,drift:2.5},
+  {id:'shell-middle',factor:.59,thickness:34,mass:3.8,phase:1.8,spring:8.4,damping:4.9,drift:4.2},
   {id:'orb-core',factor:.205,thickness:0,mass:1.55,phase:3.1,spring:10.2,damping:5.5,drift:6.0}
  ];
  const bodies=specs.map((spec)=>({...spec,el:field.querySelector('[data-body="'+spec.id+'"]'),
   x:0,y:0,vx:0,vy:0,r:0,t:0}));
  if(bodies.some(b=>!b.el))return;
  let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0;
- let collisions=0,wallCollisions=0,disposed=false;
+ let collisions=0,wallCollisions=0,rippleCount=0,disposed=false;
  let pointerX=0,pointerY=0,previousX=NaN,previousY=NaN,hasPointer=false;
  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  const canMove=()=>!reduced()&&!document.hidden&&!disposed;
@@ -845,7 +858,7 @@ function initOptics(){
    outer.y-outer.r,height-outer.y-outer.r);
   return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,
    minGap:Math.min(...edgeGaps),edgeGaps,wallGap,width,height,
-   center:{x:originX,y:originY},shells,ripples:0};
+   center:{x:originX,y:originY},shells,ripples:rippleCount};
  }
  function onMove(e){
   if(e.pointerType==='touch'||reduced())return;
@@ -872,7 +885,25 @@ function initOptics(){
   const rect=hero.getBoundingClientRect();
   const x=e.clientX-rect.left,y=e.clientY-rect.top;
   if(x<0||x>rect.width||y<0||y>rect.height)return;
-  // Tactile, short-range displacement; no flash, halo, or expanding highlight.
+  // The ripple lives in the glass layer, below copy and above the onion.
+  // Restrained, transparent lens ring; contact with the onion does not flash.
+  const ripple=document.createElement('span');
+  ripple.className='glass-ripple';
+  const diameter=Math.max(190,Math.min(390,Math.hypot(rect.width,rect.height)*.39));
+  ripple.style.left=x+'px';ripple.style.top=y+'px';
+  ripple.style.width=diameter+'px';ripple.style.height=diameter+'px';
+  // Limit overlapping transient nodes when clicking repeatedly.
+  while(rippleLayer.childElementCount>=5)rippleLayer.firstElementChild.remove();
+  rippleLayer.appendChild(ripple);rippleCount++;
+  const animation=ripple.animate([
+   {opacity:.48,transform:'translate(-50%,-50%) scale(.06)',offset:0},
+   {opacity:.35,transform:'translate(-50%,-50%) scale(.46)',offset:.26},
+   {opacity:.15,transform:'translate(-50%,-50%) scale(.91)',offset:.68},
+   {opacity:0,transform:'translate(-50%,-50%) scale(1.32)',offset:1}
+  ],{duration:930,easing:'cubic-bezier(.16,.70,.22,1)',fill:'forwards'});
+  animation.onfinish=()=>ripple.remove();
+  animation.oncancel=()=>ripple.remove();
+  // Tactile, short-range displacement; no contact flash.
   for(const b of bodies){
    const [nx,ny,distance]=unit(b.x-x,b.y-y);
    const edge=b.id==='orb-core'?Math.max(0,distance-b.r):
@@ -925,6 +956,7 @@ function initOptics(){
   hero.removeEventListener('pointercancel',onLeave);
   hero.removeEventListener('click',onClick);
   if(ro)ro.disconnect();else window.removeEventListener('resize',onResize);
+  rippleLayer.replaceChildren();
   opticsFrameStats.active=false;
  };
 }
