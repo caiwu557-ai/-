@@ -771,7 +771,7 @@ let guideStep=guideSeen()?-1:0;
 const GUIDE=[
 {title:'欢迎来到 LUMEN',eyebrow:'WELCOME / 01',body:'用两种方式训练组织学英文术语：看中文选英文、或逐字母拼出英文。第一次使用，花半分钟认识操作。',target:null},
 {title:'切换训练范围',eyebrow:'COURSE / 02',body:'可以使用 R10 核心、综合范围或单独章节。切换后，训练题目和当前范围的统计都会更新。',target:'[data-tour=course]'},
-{title:'决定怎么练',eyebrow:'PRACTICE / 03',body:'首页主按钮启动混合训练，自动安排到期词和薄弱词；下方两张卡片分别进入英文拼写和四选一辨认。',target:'[data-tour=modes]'},
+{title:'决定怎么练',eyebrow:'PRACTICE / 03',body:'01 新词学习只抽未接触词，04 到期复习只抽应复习词；英文拼写和四选一辨认可单独训练。完成一轮后还可以继续向前学。',target:'[data-tour=modes]'},
 {title:'读懂七日练习节奏',eyebrow:'PROGRESS / 04',body:'每根柱子代表某一天的真实作答次数。鼠标移动会有柔和高光，点按可固定当天数据；没有作答的数据不会被虚构。',target:'[data-tour=chart]'},
 {title:'把记忆保存在自己手上',eyebrow:'BACKUP / 05',body:'答案和复习日程只保存在本浏览器。进入「设置与备份」可导出 JSON，再在另一台设备导入；也可以随时重看本教程。',target:'[data-tour=backup]'}
 ];
@@ -922,13 +922,13 @@ function homePage(){
     <p class="home-method-note">01 只学新词，04 只练到期词。完成一轮后可继续学下一批；基础构词词默认不单独出题，词库仍可检索。</p>
    </section>
    <section class="home-today-panel" aria-labelledby="home-progress-title">
-    <div class="home-today-header"><div><span class="home-overline">YOUR PROGRESS</span><h3 id="home-progress-title">今日进度</h3></div>
-     <strong class="home-today-count mono">${todayDone}<span> / ${goal}</span></strong>
+    <div class="home-today-header"><div><span class="home-overline">YOUR PROGRESS</span><h3 id="home-progress-title">今日累计作答</h3></div>
+     <strong class="home-today-count mono">${todayDone}<span> 题</span></strong>
     </div>
-    <div class="home-today-track" role="progressbar" aria-label="今日作答目标" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${Math.min(todayDone,goal)}">
+    <div class="home-today-track" role="progressbar" aria-label="以当前单轮题数为参考的作答进度" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${Math.min(todayDone,goal)}">
      <span style="width:${percent}%"></span>
     </div>
-    <p class="home-today-meta">当前范围：已接触 <strong>${known}</strong> · 已掌握 <strong>${mastered}</strong></p>
+    <p class="home-today-meta">当前单轮 ${goal} 题只是参考刻度，今日学习不设上限。 · 当前范围：已接触 <strong>${known}</strong> · 已掌握 <strong>${mastered}</strong></p>
     <div class="home-weekly" data-tour="chart">
      <div class="home-weekly-title"><strong>最近七天</strong><small>每日作答次数</small></div>
      ${barChart()}
