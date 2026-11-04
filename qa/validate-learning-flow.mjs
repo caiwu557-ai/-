@@ -81,5 +81,5 @@ assert.equal(api.countNew(),0);
 assert.equal(api.pickWords({mode:'mixed',onlyNew:true}).length,0);
 store.prefs.scope='04';
 assert(api.practiceWords().every(w=>w.courseIds.includes('04')));
-assert(html.includes('data-new="1"')&&html.includes('data-learned="1"'),'Completion options missing');
-console.log('PASS — 54 standalone entries de-prioritized, exam list protected, new batches advance, review separate, manual/setting/favorite overrides intact.');
+assert(html.includes('data-new="1"')&&html.includes('data-action="round-continue"')&&html.includes('data-action="round-exit"'),'Round-complete continuation controls missing');
+console.log('PASS — 54 standalone entries de-prioritized, exam list protected, new batches advance, review separate, round-dialog controls, manual/setting/favorite overrides intact.');
