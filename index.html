@@ -541,6 +541,141 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
  }
 }
 
+
+/* LUMEN v3.8 / HOME INFORMATION ARCHITECTURE
+   Order: scoped context -> primary training -> actionable status -> specialty -> history.
+   The hero is an action surface; optical rings and frost remain purely decorative. */
+.home-dashboard{display:flex;flex-direction:column;gap:22px;padding:1px 0 34px}
+.home-toolbar{display:flex;align-items:center;justify-content:space-between;gap:22px;min-height:58px}
+.home-toolbar-title{display:flex;flex-direction:column;gap:4px;min-width:185px}
+.home-overline{display:block;color:#645c9e;font-size:10px;letter-spacing:.13em;font-weight:850;line-height:1.35}
+.home-toolbar-title h2{margin:0;color:var(--ink);font-size:clamp(20px,2.1vw,25px);letter-spacing:-.045em;line-height:1.18;font-weight:800}
+.home-scope{min-width:0;flex:1;max-width:600px}
+.home-scope .scope-chooser{display:flex;justify-content:flex-end;flex-wrap:nowrap;align-items:center;gap:10px;margin:0;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
+.home-scope .scope-caption{min-width:0;flex:none;gap:0}
+.home-scope .scope-caption strong{font-size:12px;white-space:nowrap}
+.home-scope .scope-caption small,.home-scope .scope-icon{display:none}
+.home-scope .scope-select{min-width:180px;max-width:270px;flex:1 1 230px;padding:11px 34px 11px 13px;border-radius:11px;box-shadow:0 2px 9px #1723410d}
+.home-scope .scope-count{flex:none;margin:0;font-size:11px;white-space:nowrap}
+.home-dashboard .home-hero{min-height:342px;border-radius:28px;margin:0;display:flex;align-items:center;box-shadow:0 18px 48px rgba(60,75,130,.105)}
+.home-dashboard .home-hero .hero-left{position:relative;z-index:4!important;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;width:72%;max-width:760px;padding:40px 46px 38px}
+.home-dashboard .home-hero-title{font-size:clamp(29px,3.3vw,43px);line-height:1.2;letter-spacing:-.052em;color:#202945;margin:18px 0 12px;font-weight:850;max-width:520px;text-wrap:balance}
+.home-dashboard .home-hero-description{font-size:13px;line-height:1.8;color:#4f5e7d;max-width:490px;margin:0 0 22px;font-weight:520;text-wrap:pretty}
+.home-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;position:relative;z-index:5}
+.home-primary-action,.home-secondary-action{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;min-height:47px;padding:0 18px;font-size:13px;font-weight:800;letter-spacing:-.015em;cursor:pointer;transition:transform .18s ease,background-color .18s ease,box-shadow .18s ease,border-color .18s ease}
+.home-primary-action{background:#554cdb;color:#fff;border:1px solid #554cdb;box-shadow:0 7px 16px rgba(83,74,196,.21)}
+.home-primary-action:hover{background:#453bc4;box-shadow:0 9px 21px rgba(83,74,196,.24);transform:translateY(-1px)}
+.home-secondary-action{background:rgba(255,255,255,.63);color:#333b6d;border:1px solid rgba(111,112,181,.25)}
+.home-secondary-action:hover{background:rgba(255,255,255,.88);border-color:#8d8ad0;transform:translateY(-1px)}
+.home-primary-action:focus-visible,.home-secondary-action:focus-visible,.home-record-link:focus-visible{outline:3px solid #aba6f1;outline-offset:3px}
+.home-session-limit{font-size:11px;color:#64718c;margin-top:17px;font-weight:600;letter-spacing:.005em}
+.home-dashboard .hero-glass::before{background:linear-gradient(90deg,rgba(252,254,255,.02) 0%,rgba(251,252,255,.055) 35%,rgba(248,251,255,.19) 69%,rgba(247,250,255,.48) 100%)!important;backdrop-filter:blur(2.5px) saturate(111%)!important;-webkit-backdrop-filter:blur(2.5px) saturate(111%)!important}
+.home-dashboard .hero-glass::after{background:linear-gradient(90deg,transparent 35%,rgba(248,250,255,.04) 53%,rgba(248,250,255,.12) 77%,rgba(249,251,255,.21) 100%)!important;backdrop-filter:blur(19px) saturate(110%)!important;-webkit-backdrop-filter:blur(19px) saturate(110%)!important}
+.home-dashboard .glass-ripple-layer{display:block!important}
+.home-dashboard .glass-ripple{border:2px solid rgba(80,115,195,.45)!important;background:radial-gradient(circle,rgba(255,255,255,.12),rgba(210,226,253,.06) 42%,transparent 76%)!important;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 14px rgba(136,158,207,.12)!important}
+.home-dashboard .hero-optic .optic-ring{filter:drop-shadow(0 7px 13px rgba(73,90,180,.18))!important}
+.home-status-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.home-status-item{min-width:0;background:var(--surface);border:1px solid var(--stroke);border-radius:17px;padding:18px 21px 17px;display:grid;grid-template-columns:1fr auto;gap:5px 12px;box-shadow:0 4px 14px rgba(40,58,100,.035)}
+.home-status-name{display:inline-flex;align-items:center;gap:9px;font-size:12px;color:var(--muted);font-weight:720}
+.home-status-name svg{color:#7771c9}
+.home-status-item strong{font-size:30px;line-height:1;font-weight:850;color:var(--ink);grid-column:2;grid-row:1/3;align-self:center;letter-spacing:-.05em}
+.home-status-item small{font-size:11px;color:var(--faint);line-height:1.4}
+.home-work-grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:18px;align-items:stretch;margin-top:7px}
+.home-specialty,.home-today-panel{min-width:0}
+.home-dashboard .training-heading{align-items:end;margin:0 0 15px}
+.home-dashboard .training-heading .home-overline{margin-bottom:8px}
+.home-dashboard .training-heading h3{font-size:19px;letter-spacing:-.03em}
+.home-dashboard .training-heading small{font-size:11px;white-space:nowrap}
+.home-dashboard .home-mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.home-dashboard .home-mode-card{min-height:179px;border-radius:17px;padding:21px 19px 19px;box-shadow:0 5px 18px rgba(48,60,110,.05)}
+.home-dashboard .home-mode-card .mode-icon{width:42px;height:42px;border-radius:12px;margin-bottom:14px}
+.home-dashboard .home-mode-card strong{font-size:16px;line-height:1.35;margin-bottom:8px;letter-spacing:-.025em}
+.home-dashboard .home-mode-card p{font-size:12px;line-height:1.65;margin:0;max-width:200px}
+.home-dashboard .home-mode-card .arrow{top:24px;right:17px}
+.home-method-note{margin:13px 2px 0;font-size:11px;line-height:1.65;color:var(--faint)}
+.home-today-panel{border:1px solid var(--stroke);border-radius:19px;background:var(--surface);padding:22px 24px 20px;box-shadow:0 5px 20px rgba(40,58,100,.05);display:flex;flex-direction:column}
+.home-today-header{display:flex;align-items:end;justify-content:space-between;gap:14px}
+.home-today-header h3{margin:7px 0 0;font-size:19px;line-height:1.2;letter-spacing:-.03em;color:var(--ink)}
+.home-today-count{color:var(--ink);font-size:27px;line-height:1;font-weight:850;letter-spacing:-.045em;white-space:nowrap}
+.home-today-count span{font-size:13px;color:var(--faint);font-weight:600}
+.home-today-track{height:8px;margin-top:18px;border-radius:10px;overflow:hidden;background:#e9edf6}
+.home-today-track>span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7770ef,#5b5fdc);transition:width .3s ease}
+.home-today-meta{font-size:11px;line-height:1.6;color:var(--faint);margin:10px 0 16px}
+.home-today-meta strong{color:var(--ink);font-weight:800}
+.home-weekly{border-top:1px solid var(--stroke);padding-top:14px}
+.home-weekly-title{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 3px}
+.home-weekly-title strong{font-size:12px;color:var(--ink)}
+.home-weekly-title small{font-size:11px;color:var(--faint)}
+.home-dashboard .home-weekly .spark-chart{height:125px}
+.home-dashboard .home-weekly .spark-col{min-height:105px}
+.home-record-link{background:transparent;border:0;padding:9px 0 0;display:inline-flex;align-items:center;gap:7px;align-self:flex-start;color:#5b53c6;font-size:12px;font-weight:770;cursor:pointer;margin-top:auto}
+.home-record-link:hover{text-decoration:underline}
+:root[data-theme=dark] .home-toolbar-title h2,:root[data-theme=dark] .home-dashboard .home-hero-title{color:#f3f4ff}
+:root[data-theme=dark] .home-overline{color:#bdb7ff}
+:root[data-theme=dark] .home-dashboard .home-hero-description{color:#dae1f2}
+:root[data-theme=dark] .home-session-limit{color:#b3c5df}
+:root[data-theme=dark] .home-secondary-action{color:#f0edff;background:rgba(57,62,107,.62);border-color:rgba(163,156,226,.38)}
+:root[data-theme=dark] .home-secondary-action:hover{background:rgba(75,78,129,.83)}
+:root[data-theme=dark] .home-dashboard .hero-glass::before{background:linear-gradient(90deg,rgba(40,44,75,.02) 0%,rgba(40,44,75,.05) 35%,rgba(38,46,78,.18) 69%,rgba(34,43,74,.48) 100%)!important}
+:root[data-theme=dark] .home-dashboard .hero-glass::after{background:linear-gradient(90deg,transparent 35%,rgba(34,42,75,.04) 53%,rgba(34,43,75,.13) 77%,rgba(31,42,72,.21) 100%)!important}
+:root[data-theme=dark] .home-status-item strong,:root[data-theme=dark] .home-today-header h3,:root[data-theme=dark] .home-today-count,:root[data-theme=dark] .home-weekly-title strong{color:#f1f5ff}
+:root[data-theme=dark] .home-status-name svg{color:#bcb3ff}
+:root[data-theme=dark] .home-today-track{background:#344258}
+:root[data-theme=dark] .home-today-meta strong{color:#e5ebff}
+:root[data-theme=dark] .home-record-link{color:#c6c2ff}
+@media(max-width:1100px){
+ .home-toolbar{align-items:flex-start}
+ .home-scope .scope-count{display:none}
+ .home-work-grid{grid-template-columns:1fr}
+ .home-dashboard .home-hero .hero-left{width:77%;padding:35px}
+}
+@media(max-width:740px){
+ .home-toolbar{flex-direction:column;align-items:stretch;gap:14px}
+ .home-scope{max-width:none;width:100%}
+ .home-scope .scope-chooser{display:grid;grid-template-columns:auto minmax(0,1fr) auto;justify-content:stretch}
+ .home-scope .scope-select{width:100%;min-width:0;max-width:none;flex-basis:auto}
+ .home-scope .scope-count{display:block}
+ .home-dashboard .home-hero{min-height:365px}
+ .home-dashboard .home-hero .hero-left{width:100%;padding:32px;max-width:none}
+ .home-dashboard .home-hero-title{font-size:33px;max-width:370px}
+ .home-dashboard .home-hero-description{max-width:370px;font-size:12px}
+ .home-status-item{padding:14px 15px}
+ .home-status-item strong{font-size:27px}
+}
+@media(max-width:520px){
+ .home-dashboard{gap:17px;padding-bottom:18px}
+ .home-toolbar-title h2{font-size:23px}
+ .home-scope .scope-chooser{grid-template-columns:1fr auto;gap:9px}
+ .home-scope .scope-caption{grid-column:1/3}
+ .home-scope .scope-select{grid-column:1;grid-row:2}
+ .home-scope .scope-count{grid-column:2;grid-row:2;font-size:10px}
+ .home-dashboard .home-hero{min-height:394px;border-radius:21px}
+ .home-dashboard .home-hero .hero-left{padding:29px 24px 27px;justify-content:center}
+ .home-dashboard .home-hero-title{font-size:31px;max-width:295px;line-height:1.24;margin-top:15px}
+ .home-dashboard .home-hero-description{max-width:285px;font-size:12px;line-height:1.65;margin-bottom:18px}
+ .home-hero-actions{gap:9px}
+ .home-primary-action,.home-secondary-action{min-height:44px;padding:0 13px;font-size:12px}
+ .home-session-limit{font-size:10px;max-width:255px;line-height:1.5}
+ .home-dashboard .hero-optic,:root[data-theme=dark] .home-dashboard .hero-optic{opacity:.74!important}
+ .home-status-row{gap:8px}
+ .home-status-item{display:flex;flex-direction:column;gap:7px;min-height:103px;padding:13px 11px;border-radius:13px}
+ .home-status-name{font-size:10px;gap:5px}
+ .home-status-name svg{width:14px;height:14px}
+ .home-status-item strong{font-size:28px}
+ .home-status-item small{font-size:9px;line-height:1.3}
+ .home-dashboard .home-mode-grid{grid-template-columns:1fr;gap:9px}
+ .home-dashboard .home-mode-card{min-height:109px;padding:17px 45px 17px 17px;display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:13px;align-items:center}
+ .home-dashboard .home-mode-card .mode-icon{grid-column:1;grid-row:1/3;margin:0}
+ .home-dashboard .home-mode-card strong{grid-column:2;grid-row:1;font-size:14px;margin:0 0 4px}
+ .home-dashboard .home-mode-card p{grid-column:2;grid-row:2;font-size:11px}
+ .home-dashboard .home-mode-card .arrow{top:21px;right:14px}
+ .home-today-panel{padding:19px 17px;border-radius:17px}
+ .home-dashboard .home-weekly .spark-chart{height:130px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-primary-action,.home-secondary-action,.home-today-track>span,.home-dashboard .home-mode-card{transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -566,8 +701,8 @@ function guideSeen(){try{return localStorage.getItem(GUIDE_KEY)==='done';}catch{
 let guideStep=guideSeen()?-1:0;
 const GUIDE=[
 {title:'欢迎来到 LUMEN',eyebrow:'WELCOME / 01',body:'用两种方式训练组织学英文术语：看中文选英文、或逐字母拼出英文。第一次使用，花半分钟认识操作。',target:null},
-{title:'先选择学习范围',eyebrow:'COURSE / 02',body:'这里可以选 R10 核心、全部课程或单独章节。课程范围会同时影响题目与中文释义，切换后立即生效。',target:'[data-tour=course]'},
-{title:'决定怎么练',eyebrow:'PRACTICE / 03',body:'点击这三张训练卡中的任意一张才会开始答题。智能混合、英文拼写和四选一都有自己的入口，不会自动替你选模式。',target:'[data-tour=modes]'},
+{title:'切换训练范围',eyebrow:'COURSE / 02',body:'可以使用 R10 核心、综合范围或单独章节。切换后，训练题目和当前范围的统计都会更新。',target:'[data-tour=course]'},
+{title:'决定怎么练',eyebrow:'PRACTICE / 03',body:'首页主按钮启动混合训练，自动安排到期词和薄弱词；下方两张卡片分别进入英文拼写和四选一辨认。',target:'[data-tour=modes]'},
 {title:'读懂七日练习节奏',eyebrow:'PROGRESS / 04',body:'每根柱子代表某一天的真实作答次数。鼠标移动会有柔和高光，点按可固定当天数据；没有作答的数据不会被虚构。',target:'[data-tour=chart]'},
 {title:'把记忆保存在自己手上',eyebrow:'BACKUP / 05',body:'答案和复习日程只保存在本浏览器。进入「设置与备份」可导出 JSON，再在另一台设备导入；也可以随时重看本教程。',target:'[data-tour=backup]'}
 ];
@@ -633,13 +768,89 @@ function positionGuide(){if(guideStep<0)return;const focus=document.querySelecto
  focus.style.display='block';focus.style.left=Math.max(8,rect.left-pad)+'px';focus.style.top=Math.max(8,rect.top-pad)+'px';focus.style.width=Math.min(w-16,rect.width+pad*2)+'px';focus.style.height=Math.min(h-16,rect.height+pad*2)+'px';
  panel.style.transform='none';const pw=Math.min(390,w-30),ph=panel.offsetHeight||360;let left=w<=650?15:Math.min(w-pw-18,Math.max(18,rect.left+rect.width/2-pw/2));let top=rect.bottom+22;if(top+ph>h-12)top=rect.top-ph-22;if(top<12)top=Math.max(12,(h-ph)/2);panel.style.left=left+'px';panel.style.top=top+'px';}
 function metric(label,value,note,icon){return `<div class="metric"><div class="m-title">${label}</div><span class="m-val mono">${value}</span><span class="m-note">${note}</span><div class="m-icon">${ic(icon,17)}</div></div>`;}
-function modesBlock(){return `<div class="section-title training-heading"><h3 tabindex="-1">开始今日训练 <span aria-hidden="true" class="training-heading-arrow">${ic('arrow',21)}</span></h3><small>选择一种方式，进入后才正式开始</small></div><div class="modes" data-tour="modes">
-<button class="mode-card" data-action="start" data-mode="mixed"><span class="mode-icon">${ic('sparkle',20)}</span><strong>智能混合</strong><p>选择与拼写交替出现，让记忆真正发生。</p><span class="arrow">${ic('arrow',18)}</span></button>
-<button class="mode-card" data-action="start" data-mode="spell"><span class="mode-icon">${ic('keyboard',20)}</span><strong>英文拼写</strong><p>看中文，用逐字母槽位完整写出英文术语。</p><span class="arrow">${ic('arrow',18)}</span></button>
-<button class="mode-card" data-action="start" data-mode="choice"><span class="mode-icon">${ic('grid',20)}</span><strong>四选一辨认</strong><p>相近术语作干扰项，练习精确区分。</p><span class="arrow">${ic('arrow',18)}</span></button></div>`;}
-function homePage(){let s=stats(),due=dueWords().length,unseen=availableWords().filter(isNew).length;let duePlan=Math.min(store.prefs.goal,due+unseen);let ta=todayActions();let done=ta.filter(x=>x.result==='correct'||x.result==='wrong').length;return `${courseChooser()}<section class="hero" id="hero-masthead"><div class="hero-left"><span class="tag">A BETTER WAY TO RECALL</span><h2>看见结构。<br><span>记住名称。</span></h2><p>从切片识别到英文输出，把每一次回忆变成更牢固的医学记忆。</p><span class="hero-hint">先选择课程，再选择训练方式 ${ic('arrow',15)}</span></div><div class="hero-optic" aria-hidden="true"><span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span><span class="optic-kinetic optic-ring optic-ring-two" data-body="shell-middle"></span><span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span></div><div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span><span class="glass-ripple-layer" aria-hidden="true"></span></div></section>
-<div class="metrics">${metric('今日待学',duePlan,'含到期复习与新术语','clock')}${metric('已经接触',s.learnt,'共 '+WORDS.length+' 个唯一术语','book')}${metric('持续掌握',s.mastered,'多次正确回忆后形成','target')}</div>${modesBlock()}
-<div class="mini-bottom"><section class="panel"><div class="section-title"><h3>今天的学习节奏</h3><small>${done} 次已作答</small></div><div class="overview-rows"><div class="overview-row"><span>今日目标</span><div class="mini-track"><span style="width:${Math.min(100,done/store.prefs.goal*100)}%"></span></div><strong>${done}/${store.prefs.goal}</strong></div><div class="overview-row"><span>到期复习</span><strong>${due} 词</strong></div><div class="overview-row"><span>尚未接触</span><strong>${unseen} 词</strong></div><div class="overview-row"><span>当前训练范围</span><strong>${safe(scopeName())}</strong></div></div></section><section class="panel" data-tour="chart"><div class="section-title"><h3>最近七天</h3><small>作答次数</small></div>${barChart()}</section></div>`;}
+function modesBlock(){
+ return `<div class="modes home-mode-grid" data-tour="modes">
+  <button class="mode-card home-mode-card" data-action="start" data-mode="spell">
+   <span class="mode-icon">${ic('keyboard',20)}</span>
+   <strong>英文拼写</strong>
+   <p>看中文，完整拼出英文术语。</p>
+   <span class="arrow">${ic('arrow',18)}</span>
+  </button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="choice">
+   <span class="mode-icon">${ic('grid',20)}</span>
+   <strong>四选一辨认</strong>
+   <p>用易混淆选项检验术语辨认。</p>
+   <span class="arrow">${ic('arrow',18)}</span>
+  </button>
+ </div>`;
+}
+function homePage(){
+ const words=availableWords();
+ const due=words.filter(isDue).length;
+ const unseen=words.filter(isNew).length;
+ const weak=words.filter(isWeak).length;
+ const known=words.filter(w=>!!getHistory(w.id)).length;
+ const mastered=words.filter(w=>mastery(w.id)).length;
+ const todayDone=todayActions().filter(x=>x.result==='correct'||x.result==='wrong').length;
+ const goal=Math.max(1,Number(store.prefs.goal)||14);
+ const percent=Math.min(100,Math.round(todayDone/goal*100));
+ const headline=due>0?'到期的术语，先复习。':unseen>0?'从新术语开始练。':'巩固已经学过的术语。';
+ const description=due>0?`当前范围有 ${due} 个术语到期。混合训练会优先安排这些词，再加入薄弱词与新词。`:unseen>0?`当前范围还有 ${unseen} 个术语尚未学习。混合训练会安排新词，也会穿插需要巩固的内容。`:'当前范围暂无到期或未学术语。再做一轮练习，检验自己的记忆。';
+ const secondary=due>0?`<button class="home-secondary-action" type="button" data-action="start" data-mode="mixed" data-due="1">只练到期 ${ic('arrow',16)}</button>`:`<button class="home-secondary-action" type="button" data-action="nav" data-view="library">浏览当前词库 ${ic('arrow',16)}</button>`;
+ return `<div class="home-dashboard">
+  <div class="home-toolbar">
+   <div class="home-toolbar-title"><span class="home-overline">LUMEN / PRACTICE</span><h2>学习工作台</h2></div>
+   <div class="home-scope">${courseChooser()}</div>
+  </div>
+  <section class="hero home-hero" id="hero-masthead" aria-labelledby="home-hero-heading">
+   <div class="hero-left">
+    <span class="tag">TODAY'S SESSION</span>
+    <h1 id="home-hero-heading" class="home-hero-title">${safe(headline)}</h1>
+    <p class="home-hero-description">${safe(description)}</p>
+    <div class="home-hero-actions">
+     <button class="home-primary-action" type="button" data-action="start" data-mode="mixed">${ic('play',19)} 开始混合训练 ${ic('arrow',17)}</button>
+     ${secondary}
+    </div>
+    <span class="home-session-limit">每轮最多 ${goal} 题 · 当前范围 ${words.length} 个术语</span>
+   </div>
+   <div class="hero-optic" aria-hidden="true">
+    <span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span>
+    <span class="optic-kinetic optic-ring optic-ring-two" data-body="shell-middle"></span>
+    <span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span>
+   </div>
+   <div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span><span class="glass-ripple-layer"></span></div>
+  </section>
+  <div class="home-status-row" aria-label="当前课程学习状态">
+   <div class="home-status-item"><span class="home-status-name">${ic('clock',17)} 到期复习</span><strong class="mono">${due}</strong><small>${due?'优先安排':'目前没有到期项'}</small></div>
+   <div class="home-status-item"><span class="home-status-name">${ic('target',17)} 薄弱术语</span><strong class="mono">${weak}</strong><small>${weak?'需要更多练习':'暂无薄弱项'}</small></div>
+   <div class="home-status-item"><span class="home-status-name">${ic('book',17)} 未学术语</span><strong class="mono">${unseen}</strong><small>${unseen?'等待首次作答':'已全部接触'}</small></div>
+  </div>
+  <div class="home-work-grid">
+   <section class="home-specialty">
+    <div class="section-title training-heading">
+     <div><span class="home-overline">TRAIN BY SKILL</span><h3 tabindex="-1">专项训练</h3></div>
+     <small>单独练一项能力</small>
+    </div>
+    ${modesBlock()}
+    <p class="home-method-note">混合训练会自动在辨认与拼写之间切换；专项训练只练选定模式。</p>
+   </section>
+   <section class="home-today-panel" aria-labelledby="home-progress-title">
+    <div class="home-today-header"><div><span class="home-overline">YOUR PROGRESS</span><h3 id="home-progress-title">今日进度</h3></div>
+     <strong class="home-today-count mono">${todayDone}<span> / ${goal}</span></strong>
+    </div>
+    <div class="home-today-track" role="progressbar" aria-label="今日作答目标" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${Math.min(todayDone,goal)}">
+     <span style="width:${percent}%"></span>
+    </div>
+    <p class="home-today-meta">当前范围：已接触 <strong>${known}</strong> · 已掌握 <strong>${mastered}</strong></p>
+    <div class="home-weekly" data-tour="chart">
+     <div class="home-weekly-title"><strong>最近七天</strong><small>每日作答次数</small></div>
+     ${barChart()}
+    </div>
+    <button class="home-record-link" type="button" data-action="nav" data-view="stats">查看学习记录 ${ic('arrow',16)}</button>
+   </section>
+  </div>
+ </div>`;
+}
 function barChart(){let days=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);days.push({key:dayKey(d.getTime()),label:'日一二三四五六'[d.getDay()]})}let map={};for(const e of store.events){if(e.result==='correct'||e.result==='wrong')map[dayKey(e.time)]=(map[dayKey(e.time)]||0)+1}let max=Math.max(4,...days.map(d=>map[d.key]||0));return `<div class="spark-chart" role="group" aria-label="最近七天实际作答次数">${days.map(d=>{let count=map[d.key]||0;let date=d.key.slice(5).replace('-','月')+'日';return `<button type="button" class="spark-col" data-action="chart-day" data-date="${d.key}" data-count="${count}" aria-label="${date}，${count} 次作答" aria-pressed="false"><span class="spark-tooltip" aria-hidden="true">${count} 次 · ${date}</span><span class="spark-bar" style="height:${Math.max(8,count/max*76)}px"></span><span class="spark-label">${d.label}</span></button>`}).join('')}</div>`;}
 function bindBarChart(){const charts=app.querySelectorAll('.spark-chart');for(const chart of charts){const columns=[...chart.querySelectorAll('.spark-col')];const reset=()=>columns.forEach(c=>c.style.setProperty('--near','0'));chart.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;columns.forEach(col=>{const b=col.getBoundingClientRect();const dx=Math.abs(e.clientX-(b.left+b.width/2));col.style.setProperty('--near',String(Math.max(0,1-dx/155).toFixed(3)));});});chart.addEventListener('pointerleave',reset);chart.addEventListener('focusout',()=>{if(!chart.contains(document.activeElement))reset();});}}
 function toggleChartDay(el){const siblings=[...el.closest('.spark-chart').querySelectorAll('.spark-col')];const already=el.classList.contains('is-selected');siblings.forEach(c=>{c.classList.remove('is-selected');c.setAttribute('aria-pressed','false')});if(!already){el.classList.add('is-selected');el.setAttribute('aria-pressed','true');}}
