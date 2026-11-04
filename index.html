@@ -715,6 +715,26 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
  .home-dashboard .exam-mode-grid .home-mode-card{display:flex;min-height:90px;padding:18px 20px}
 }
 
+/* Unified home training configuration: one word list, four equivalent routes. */
+.home-training-scope{margin:0 0 18px;padding:15px 17px;background:var(--surface);border:1px solid var(--stroke);border-radius:16px;box-shadow:0 4px 15px rgba(40,58,100,.035)}
+.home-training-scope .home-scope{width:100%;max-width:none}
+.home-training-scope .home-scope .scope-chooser{display:flex;align-items:center;justify-content:stretch;gap:15px;width:100%}
+.home-training-scope .home-scope .scope-caption{display:flex;flex:0 0 165px;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+.home-training-scope .home-scope .scope-caption strong{font-size:13px;white-space:nowrap}
+.home-training-scope .home-scope .scope-caption small{display:block;color:var(--muted);font-size:10px;line-height:1.45;white-space:normal}
+.home-training-scope .home-scope .scope-select{min-width:0;max-width:none;flex:1 1 auto}
+.home-training-scope .home-scope .scope-count{flex:none;margin:0 2px 0 0;color:var(--muted);font-size:11px;white-space:nowrap}
+.home-dashboard .home-mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.home-dashboard .home-mode-card:disabled{opacity:.46;cursor:not-allowed;transform:none;box-shadow:none}
+.home-dashboard .home-mode-card:disabled:hover{transform:none;border-color:var(--stroke);box-shadow:none}
+.home-dashboard .home-mode-card .mode-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;margin-left:5px;padding:0 5px;border-radius:20px;background:rgba(119,112,239,.13);color:#7770ef;font-size:10px;vertical-align:2px}
+.home-dashboard .home-hero{min-height:268px}
+.home-dashboard .home-hero-description{margin-bottom:13px}
+.home-session-limit{margin-top:10px}
+@media(max-width:1100px){.home-training-scope .home-scope .scope-chooser{gap:10px}.home-training-scope .home-scope .scope-caption{flex-basis:145px}.home-training-scope .home-scope .scope-count{display:block}}
+@media(max-width:740px){.home-dashboard .home-hero{min-height:286px}.home-training-scope .home-scope .scope-chooser{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}.home-training-scope .home-scope .scope-caption{grid-column:1/-1;grid-row:1}.home-training-scope .home-scope .scope-select{grid-column:1;grid-row:2;width:100%}.home-training-scope .home-scope .scope-count{grid-column:2;grid-row:2;display:block;align-self:center}}
+@media(max-width:680px){.home-dashboard .home-mode-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.home-dashboard .home-hero{min-height:310px}.home-training-scope{padding:13px 12px}.home-dashboard .home-mode-grid{grid-template-columns:1fr}.home-dashboard .home-mode-card:disabled{opacity:.43}}
 </style>
 </head>
 <body>
@@ -779,7 +799,7 @@ function coreWords(){return WORDS.filter(w=>w.tier==='core');}
 function availableWords(){const id=store.prefs.scope||'r10-core';if(id===EXAM_SCOPE_ID)return EXAM_FOCUS_ENTRIES.map(e=>BY_ID.get(e.id)).filter(Boolean);let a=id==='r10-core'?coreWords():id==='r10-all'?WORDS.filter(w=>w.origin==='r10'):id==='all'?WORDS:WORDS.filter(w=>(w.courseIds||[]).includes(id));return a;}
 const CHAPTERS=Object.entries(DATA.meta.courseNames||{}).sort((a,b)=>a[0].localeCompare(b[0]));
 function scopeName(id=store.prefs.scope){if(id===EXAM_SCOPE_ID)return '切片考试 · 课堂重点';if(id==='all')return '全课程 · 综合训练';if(id==='r10-all')return 'R10 · 全部考试候选';if(id==='r10-core')return 'R10 · 核心候选';return (DATA.meta.courseNames||{})[id]||'R10 · 核心候选';}
-function courseChooser(){const choices=[[EXAM_SCOPE_ID,'切片考试 · 课堂重点'],['r10-core','R10 核心候选'],['r10-all','R10 所有候选'],['all','全部课程 · 综合'],...CHAPTERS.map(([id,name])=>[id,id+' · '+name])];return `<div class="scope-chooser" data-tour="course"><div class="scope-caption"><span class="scope-icon">${ic('layers',18)}</span><div><strong>当前学习课程</strong><small>按课程独立选题 · 可随时切换</small></div></div><select class="scope-select" id="course-scope" aria-label="选择学习课程">${choices.map(([key,label])=>`<option value="${safe(key)}" ${store.prefs.scope===key?'selected':''}>${safe(label)}</option>`).join('')}</select><span class="scope-count">${availableWords().length} 个术语</span></div>`;}
+function courseChooser(label='当前学习课程',hint='按课程独立选题 · 可随时切换'){const choices=[[EXAM_SCOPE_ID,'切片考试 · 课堂重点'],['r10-core','R10 核心候选'],['r10-all','R10 所有候选'],['all','全部课程 · 综合'],...CHAPTERS.map(([id,name])=>[id,id+' · '+name])];return `<div class="scope-chooser" data-tour="course"><div class="scope-caption"><span class="scope-icon">${ic('layers',18)}</span><div><strong>${safe(label)}</strong><small>${safe(hint)}</small></div></div><select class="scope-select" id="course-scope" aria-label="选择练习词单">${choices.map(([key,label])=>`<option value="${safe(key)}" ${store.prefs.scope===key?'selected':''}>${safe(label)}</option>`).join('')}</select><span class="scope-count">${availableWords().length} 个术语</span></div>`;}
 function displayCn(w){let id=store.prefs.scope;return (w.cnByCourse&&w.cnByCourse[id])||w.cn;}
 function displayTopic(w){const id=store.prefs.scope;return CHAPTERS.some(x=>x[0]===id)?(DATA.meta.courseNames[id]||w.topic):w.topic;}
 function isContextAmbiguous(w){let names=new Set([w.cn,...Object.values(w.cnByCourse||{})]);return names.size>1;}
@@ -818,27 +838,24 @@ function positionGuide(){if(guideStep<0)return;const focus=document.querySelecto
  panel.style.transform='none';const pw=Math.min(390,w-30),ph=panel.offsetHeight||360;let left=w<=650?15:Math.min(w-pw-18,Math.max(18,rect.left+rect.width/2-pw/2));let top=rect.bottom+22;if(top+ph>h-12)top=rect.top-ph-22;if(top<12)top=Math.max(12,(h-ph)/2);panel.style.left=left+'px';panel.style.top=top+'px';}
 function metric(label,value,note,icon){return `<div class="metric"><div class="m-title">${label}</div><span class="m-val mono">${value}</span><span class="m-note">${note}</span><div class="m-icon">${ic(icon,17)}</div></div>`;}
 function examModes(){
- return '<div class="modes home-mode-grid exam-mode-grid" data-tour="modes">'+
- '<button class="mode-card home-mode-card" data-action="start" data-mode="mixed"><strong>01 · 重点速练</strong><p>混合训练课堂重点词条。</p></button>'+
- '<button class="mode-card home-mode-card" data-action="start" data-mode="spell"><strong>02 · 英文拼写</strong><p>由中文回忆英文全称。</p></button>'+
- '<button class="mode-card home-mode-card" data-action="start" data-mode="choice"><strong>03 · 四选一辨认</strong><p>考试范围内的易混选项。</p></button>'+
- '<button class="mode-card home-mode-card" data-action="nav" data-view="review"><strong>04 · 间隔复习</strong><p>针对已学术语复习巩固。</p></button>'+
- '</div>';
+ const due=availableWords().filter(isDue).length;
+ const disabled=due===0?'disabled aria-disabled="true"':'';
+ return `<div class="modes home-mode-grid exam-mode-grid" data-tour="modes">
+  <button class="mode-card home-mode-card" data-action="start" data-mode="mixed"><span class="mode-icon">${ic('sparkles',20)}</span><strong>01 · 重点混合训练</strong><p>在当前考试词单内混合辨认与拼写。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="spell"><span class="mode-icon">${ic('keyboard',20)}</span><strong>02 · 英文拼写</strong><p>根据中文提示，回忆完整英文术语。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="choice"><span class="mode-icon">${ic('grid',20)}</span><strong>03 · 四选一辨认</strong><p>从当前考试词单中生成干扰选项。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="mixed" data-due="1" ${disabled}><span class="mode-icon">${ic('clock',20)}</span><strong>04 · 到期复习 <small class="mode-count">${due}</small></strong><p>${due?'只练当前词单中已到期的 '+due+' 个术语。':'当前词单暂无到期术语。'}</p><span class="arrow">${ic('arrow',18)}</span></button>
+ </div>`;
 }
-function modesBlock(){if(store.prefs.scope===EXAM_SCOPE_ID)return examModes();
+function modesBlock(){
+ if(store.prefs.scope===EXAM_SCOPE_ID)return examModes();
+ const due=availableWords().filter(isDue).length;
+ const disabled=due===0?'disabled aria-disabled="true"':'';
  return `<div class="modes home-mode-grid" data-tour="modes">
-  <button class="mode-card home-mode-card" data-action="start" data-mode="spell">
-   <span class="mode-icon">${ic('keyboard',20)}</span>
-   <strong>英文拼写</strong>
-   <p>看中文，完整拼出英文术语。</p>
-   <span class="arrow">${ic('arrow',18)}</span>
-  </button>
-  <button class="mode-card home-mode-card" data-action="start" data-mode="choice">
-   <span class="mode-icon">${ic('grid',20)}</span>
-   <strong>四选一辨认</strong>
-   <p>用易混淆选项检验术语辨认。</p>
-   <span class="arrow">${ic('arrow',18)}</span>
-  </button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="mixed"><span class="mode-icon">${ic('sparkles',20)}</span><strong>01 · 混合训练</strong><p>在当前词单内混合辨认与拼写。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="spell"><span class="mode-icon">${ic('keyboard',20)}</span><strong>02 · 英文拼写</strong><p>看中文，完整拼出英文术语。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="choice"><span class="mode-icon">${ic('grid',20)}</span><strong>03 · 四选一辨认</strong><p>只从当前词单选择易混淆选项。</p><span class="arrow">${ic('arrow',18)}</span></button>
+  <button class="mode-card home-mode-card" data-action="start" data-mode="mixed" data-due="1" ${disabled}><span class="mode-icon">${ic('clock',20)}</span><strong>04 · 到期复习 <small class="mode-count">${due}</small></strong><p>${due?'只练当前词单中已到期的 '+due+' 个术语。':'当前词单暂无到期术语。'}</p><span class="arrow">${ic('arrow',18)}</span></button>
  </div>`;
 }
 function homePage(){
@@ -852,23 +869,17 @@ function homePage(){
  const goal=Math.max(1,Number(store.prefs.goal)||14);
  const percent=Math.min(100,Math.round(todayDone/goal*100));
  const headline=store.prefs.scope===EXAM_SCOPE_ID?'切片考试，优先练课堂重点。':due>0?'到期的术语，先复习。':unseen>0?'从新术语开始练。':'巩固已经学过的术语。';
- const description=store.prefs.scope===EXAM_SCOPE_ID?`课堂投影正文整理 ${words.length} 个重点术语，已排除 Classwork 专属内容。直接练英文拼写、辨认与复习。`:due>0?`当前范围有 ${due} 个术语到期。混合训练会优先安排这些词，再加入薄弱词与新词。`:unseen>0?`当前范围还有 ${unseen} 个术语尚未学习。混合训练会安排新词，也会穿插需要巩固的内容。`:'当前范围暂无到期或未学术语。再做一轮练习，检验自己的记忆。';
- const secondary=due>0?`<button class="home-secondary-action" type="button" data-action="start" data-mode="mixed" data-due="1">只练到期 ${ic('arrow',16)}</button>`:`<button class="home-secondary-action" type="button" data-action="nav" data-view="library">浏览当前词库 ${ic('arrow',16)}</button>`;
+ const description=store.prefs.scope===EXAM_SCOPE_ID?`当前考试词单整理自课堂投影正文，包含 ${words.length} 个重点术语；已排除 Classwork 专属内容。`:`当前词单包含 ${words.length} 个术语：到期 ${due} 个、薄弱 ${weak} 个、未学 ${unseen} 个。`;
  return `<div class="home-dashboard">
   <div class="home-toolbar">
    <div class="home-toolbar-title"><span class="home-overline">LUMEN / PRACTICE</span><h2>学习工作台</h2></div>
-   <div class="home-scope">${courseChooser()}</div>
   </div>
   <section class="hero home-hero" id="hero-masthead" aria-labelledby="home-hero-heading">
    <div class="hero-left">
     <span class="tag">TODAY'S SESSION</span>
     <h1 id="home-hero-heading" class="home-hero-title">${safe(headline)}</h1>
     <p class="home-hero-description">${safe(description)}</p>
-    <div class="home-hero-actions">
-     <button class="home-primary-action" type="button" data-action="start" data-mode="mixed">${ic('play',19)} 开始混合训练 ${ic('arrow',17)}</button>
-     ${secondary}
-    </div>
-    <span class="home-session-limit">每轮最多 ${goal} 题 · 当前范围 ${words.length} 个术语</span>
+    <span class="home-session-limit">每轮最多 ${goal} 题 · 当前练习词单 ${words.length} 个术语</span>
    </div>
    <div class="hero-optic" aria-hidden="true">
     <span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span>
@@ -884,12 +895,13 @@ function homePage(){
   </div>
   <div class="home-work-grid">
    <section class="home-specialty">
+    <div class="home-training-scope"><div class="home-scope">${courseChooser('练习词单','下方四种训练方式共用此词单')}</div></div>
     <div class="section-title training-heading">
-     <div><span class="home-overline">TRAIN BY SKILL</span><h3 tabindex="-1">${store.prefs.scope===EXAM_SCOPE_ID?'考试训练 · 四条路线':'专项训练'}</h3></div>
-     <small>${store.prefs.scope===EXAM_SCOPE_ID?'课堂投影高频术语':'单独练一项能力'}</small>
+     <div><span class="home-overline">TRAIN BY SKILL</span><h3 tabindex="-1">选择训练方式</h3></div>
+     <small>四种方式 · 同一词单</small>
     </div>
     ${modesBlock()}
-    <p class="home-method-note">${store.prefs.scope===EXAM_SCOPE_ID?`依据课堂投影正文整理，排除仅出现在 Classwork／作业中的术语；已按 ${Object.keys(EXAM_FOCUS_TOPICS).length} 个主题归类。`:"混合训练会自动在辨认与拼写之间切换；专项训练只练选定模式。"}</p>
+    <p class="home-method-note">四种训练方式都只从上方选定的词单取题；切换词单后，题目范围和复习状态同步更新。</p>
    </section>
    <section class="home-today-panel" aria-labelledby="home-progress-title">
     <div class="home-today-header"><div><span class="home-overline">YOUR PROGRESS</span><h3 id="home-progress-title">今日进度</h3></div>
@@ -919,8 +931,8 @@ function libraryPage(){let all=WORDS.filter(w=>{if(store.prefs.scope===EXAM_SCOP
  if(librarySort==='strength')all.sort((a,b)=>(getHistory(b.id)?.reps||0)-(getHistory(a.id)?.reps||0));else all.sort((a,b)=>a.en.localeCompare(b.en,'en'));const options=[['all','全部'],['core','R10 核心'],['supplement','R10 补充'],['chapter','课程新增'],['extension','拓展'],['weak','薄弱'],['star','收藏']];return `<div class="page-heading"><div><div class="eyebrow">VOCABULARY ATLAS</div><h1>术语，按课程归位。</h1><p>14 份章节词表与 R10 切片题库合并；去重后 ${WORDS.length} 个术语。每个词保留所有章节归属。</p></div></div>${courseChooser()}<div class="controls-row"><div class="search-box">${ic('search',17)}<input id="library-search" type="search" placeholder="搜索中文、英文、章节或看片特征" value="${safe(libraryQuery)}" autocomplete="off" aria-label="搜索术语" /></div><select class="select-box" id="library-topic" aria-label="按课程筛选词库"><option value="all">全部章节</option>${CHAPTERS.map(([id,name])=>`<option value="${id}" ${id===libraryTopic?'selected':''}>${safe(id+' · '+name)}</option>`).join('')}</select><select class="select-box" id="library-sort" aria-label="排序方式"><option value="alpha" ${librarySort==='alpha'?'selected':''}>英文 A–Z</option><option value="strength" ${librarySort==='strength'?'selected':''}>熟悉程度</option></select></div><div class="controls-row"><div class="segment">${options.map(([value,label])=>`<button class="${libraryTier===value?'active':''}" data-action="library-tier" data-tier="${value}">${label}</button>`).join('')}</div></div><div class="library-summary">找到 ${all.length} 个术语 · 当前课程 ${safe(scopeName())} · 课程词表会保留同词跨章节映射</div>${all.length?`<div class="vocab-list">${all.slice(0,libraryCount).map(w=>vocabRow(w)).join('')}</div>${all.length>libraryCount?`<div style="text-align:center;margin:19px"><button class="btn btn-outline" data-action="more">加载更多（还有 ${all.length-libraryCount} 条）</button></div>`:''}`:`<div class="empty"><strong>没有匹配的词条</strong>尝试其他课程、中文名或英文词根。</div>`}`;}
 function statsPage(){let s=stats(),counts={new:0,learning:0,mastered:0};for(let w of WORDS){let h=getHistory(w.id);if(!h)counts.new++;else if(mastery(w.id))counts.mastered++;else counts.learning++}let total=WORDS.length;let per={new:counts.new/total*100,learning:counts.learning/total*100,mastered:counts.mastered/total*100};let recent=[...store.events].reverse().slice(0,12);return `<div class="page-heading"><div><div class="eyebrow">THE LEARNING LOG</div><h1>让每一次回忆都有记录。</h1><p>所有数字来自本机实际作答；没有输入的记录不会凭空计算成绩。</p></div></div><div class="stats-grid"><div class="panel"><div class="m-title muted">累计作答</div><div class="stat-figure mono">${s.attempts}</div><div class="stats-caption">选择题与拼写合计</div></div><div class="panel"><div class="m-title muted">作答准确率</div><div class="stat-figure mono">${s.accuracy}%</div><div class="stats-caption">${s.correct} 次正确 / ${s.attempts} 次有效作答</div></div><div class="panel stat-wide"><div class="section-title"><h3>词汇掌握分布</h3><small>共 ${total} 个词条</small></div><div class="distribution"><span class="new" style="width:${per.new}%"></span><span class="learning" style="width:${per.learning}%"></span><span class="mastered" style="width:${per.mastered}%"></span></div><div class="overview-rows"><div class="overview-row"><span>未接触</span><strong>${counts.new}</strong></div><div class="overview-row"><span>正在巩固</span><strong>${counts.learning}</strong></div><div class="overview-row"><span>多次正确回忆</span><strong>${counts.mastered}</strong></div></div></div><div class="panel stat-wide"><div class="section-title"><h3>最近七天的作答节奏</h3><small>仅统计实际输入或选择</small></div>${barChart()}</div><div class="panel stat-wide"><div class="section-title"><h3>最近的练习</h3><small>最新 12 条</small></div>${recent.length?`<div class="overview-rows">${recent.map(e=>{let w=BY_ID.get(e.id);if(!w)return '';return `<div class="overview-row"><span>${safe(w.en)} <span class="muted">· ${e.mode==='spell'?'拼写':'选择'}</span></span><strong style="color:${e.result==='correct'?'var(--green)':'var(--red)'}">${e.result==='correct'?'正确':'需加强'}</strong></div>`}).join('')}</div>`:`<div class="empty"><strong>现在还是一张白纸</strong>完成一次练习，记录就会出现在这里。</div>`}</div></div>`;}
 function settingsPage(){return `<div class="page-heading"><div><div class="eyebrow">PREFERENCES & OWNERSHIP</div><h1>你的学习，属于你。</h1><p>无需账户，没有网络请求。可以备份、还原或清空全部本地进度。</p></div></div><div class="setting-list"><div class="setting"><div><strong>每日学习目标</strong><p>用于安排一轮学习的题目数量，支持 8–30 个不同术语。</p></div><div class="setting-controls"><input aria-label="每日目标" type="range" id="goal-range" min="8" max="30" step="1" value="${store.prefs.goal}"/><strong class="mono" id="goal-label">${store.prefs.goal}</strong></div></div><div class="setting"><div><strong>课程与考试范围</strong><p>切换 14 门章节单词表、R10 核心题或全部课程。组织学总论的技术类词默认只进入选择题。</p></div>${courseChooser()}</div><div class="setting"><div><strong>精细动画</strong><p>保留答题正确／错误的物理反馈；关闭后响应更平静。仍遵循系统减少动态效果的偏好。</p></div><button class="toggle ${store.prefs.motion?'on':''}" data-action="toggle-pref" data-key="motion" role="switch" aria-checked="${store.prefs.motion}" aria-label="精细动画"></button></div><div class="setting"><div><strong>使用导览</strong><p>重新查看首次打开时的课程选择、训练入口、统计互动与备份操作。</p></div><button class="btn btn-outline" data-action="tutorial">${ic('info',16)} 重新查看教程</button></div><div class="setting"><div><strong>提示音</strong><p>使用浏览器本地合成音效，无外部音频文件。默认静音。</p></div><button class="toggle ${store.prefs.sound?'on':''}" data-action="toggle-pref" data-key="sound" role="switch" aria-checked="${store.prefs.sound}" aria-label="提示音"></button></div><div class="setting"><div><strong>外观</strong><p>明亮纸面与暗色专注模式；使用设备本地系统字体。</p></div><div class="setting-controls"><button class="btn btn-small ${store.prefs.theme==='light'?'btn-accent':'btn-outline'}" data-action="set-theme" data-theme="light">${ic('sun',14)} 浅色</button><button class="btn btn-small ${store.prefs.theme==='dark'?'btn-accent':'btn-outline'}" data-action="set-theme" data-theme="dark">${ic('moon',14)} 深色</button></div></div><div class="setting"><div><strong>导出进度</strong><p>下载一个 JSON 文件，包含答题记录、复习时间、收藏和设置，可转移到另一台电脑。</p></div><button class="btn btn-outline" data-action="export">${ic('download',15)} 导出备份</button></div><div class="setting"><div><strong>导入进度</strong><p>恢复以前的 JSON 备份。导入前请先导出当前记录，以免覆盖。</p></div><button class="btn btn-outline" data-action="import">${ic('upload',15)} 选择文件</button></div><div class="setting"><div><strong>清空所有学习记录</strong><p>仅清除当前浏览器的学习进度，不删除词库文件。此操作无法自动撤销。</p></div><button class="btn btn-outline danger" data-action="reset">重置进度</button></div><p class="notice">隐私与保存：数据存入本机浏览器 localStorage（${safe(STORE_KEY)}）。不同浏览器、不同文件路径或无痕窗口可能有不同的存储空间，请定期使用“导出备份”。间隔复习使用透明的渐进间隔规则，不声称实现完整 FSRS 算法。</p></div>`;}
-function chooseDistractors(correct){const family=headFamily(correct),scope=store.prefs.scope;const currentCn=displayCn(correct);const refTokens=discriminativeTokens(correct);
- let pool=WORDS.filter(w=>w.id!==correct.id&&(scope!==EXAM_SCOPE_ID||EXAM_FOCUS_SET.has(w.id))&&normalize(w.en)!==normalize(correct.en)&&displayCn(w)!==currentCn&&w.cn!==currentCn&&normalize(w.en)!==normalize(correct.en));
+function chooseDistractors(correct){const family=headFamily(correct),scope=store.prefs.scope;const currentCn=displayCn(correct);const refTokens=discriminativeTokens(correct);const activeIds=new Set(availableWords().map(w=>w.id));
+ let pool=WORDS.filter(w=>activeIds.has(w.id)&&w.id!==correct.id&&normalize(w.en)!==normalize(correct.en)&&displayCn(w)!==currentCn&&w.cn!==currentCn);
  // Restrict duplicates/equivalents: same Chinese in either source/course must never be an incorrect option.
  pool=pool.filter(w=>!Object.values(w.cnByCourse||{}).includes(currentCn)&&!Object.values(correct.cnByCourse||{}).includes(displayCn(w)));
  const sameHead=pool.filter(w=>headFamily(w)===family&&(correct.en.toLowerCase()===family||w.en.toLowerCase()!==family));
@@ -930,11 +942,11 @@ function chooseDistractors(correct){const family=headFamily(correct),scope=store
  let ordered=(sameHead.length>=3?sameHead:pool).sort((a,b)=>rank(b)-rank(a));let out=[],used=new Set([normalize(correct.en)]),usedCn=new Set([currentCn]);for(const w of ordered){let en=normalize(w.en),cn=displayCn(w);if(used.has(en)||usedCn.has(cn))continue;out.push(w);used.add(en);usedCn.add(cn);if(out.length===3)break;}
  // Never show 1~2 trivial distractors; return the original data-set minimum only if pool itself is too small.
  return out;}
-function pickWords(options={}){let pool=options.specificId?[BY_ID.get(options.specificId)].filter(Boolean):availableWords();if(options.mode==='spell')pool=pool.filter(isSpellEligible);if(options.onlyDue){let due=pool.filter(isDue);if(due.length)pool=due;}
+function pickWords(options={}){let pool=options.specificId?[BY_ID.get(options.specificId)].filter(Boolean):availableWords();if(options.mode==='spell')pool=pool.filter(isSpellEligible);if(options.onlyDue)pool=pool.filter(isDue);
  let chosen=[],usedSourceIds=new Set(),usedCn=new Set();function insert(w){if(chosen.includes(w)||usedCn.has(displayCn(w)))return;let sources=w.sourceIds||[];if(sources.some(s=>usedSourceIds.has(s)))return;chosen.push(w);usedCn.add(displayCn(w));sources.forEach(s=>usedSourceIds.add(s));}
  let due=shuffled(pool.filter(isDue)).sort((a,b)=>(getHistory(a.id)?.due||0)-(getHistory(b.id)?.due||0));let weak=shuffled(pool.filter(w=>isWeak(w)&&!isDue(w)));let fresh=shuffled(pool.filter(isNew));let other=shuffled(pool.filter(w=>!isDue(w)&&!isNew(w)&&!isWeak(w)));
  for(let arr of [due,weak,fresh,other])for(let w of arr){if(chosen.length>= (options.specificId?1:store.prefs.goal))break;insert(w);}return chosen;}
-function startStudy(mode='mixed',options={}){stopClock();const cards=pickWords({...options,mode});if(!cards.length){toast('当前没有可用术语，请在设置中开启扩展范围');return;}study={mode,cards,index:0,correct:0,wrong:0,skipped:0,selected:null,typed:'',hint:false,graded:false,result:'',options:[],finished:false,timer:options.timer||false,onlyDue:!!options.onlyDue,started:Date.now()};route='study';drawerId=null;prepareStudyCard();render();window.scrollTo({top:0,behavior:'instant'});}
+function startStudy(mode='mixed',options={}){stopClock();const cards=pickWords({...options,mode});if(!cards.length){toast(options.onlyDue?'当前练习词单暂无到期术语':'当前练习词单暂无可用术语');return;}study={mode,cards,index:0,correct:0,wrong:0,skipped:0,selected:null,typed:'',hint:false,graded:false,result:'',options:[],finished:false,timer:options.timer||false,onlyDue:!!options.onlyDue,started:Date.now()};route='study';drawerId=null;prepareStudyCard();render();window.scrollTo({top:0,behavior:'instant'});}
 function currentCard(){return study?study.cards[study.index]:null;}
 function currentMode(){if(!study)return 'choice';const intended=study.mode==='mixed'?(study.index%3===1?'spell':'choice'):study.mode;return intended==='spell'&&!isSpellEligible(currentCard())?'choice':intended;}
 function prepareStudyCard(){if(!study||study.index>=study.cards.length){study.finished=true;return;}study.selected=null;study.typed='';typingComposition=false;typingCompositionBase='';study.hint=false;study.graded=false;study.result='';study.options=shuffled([currentCard(),...chooseDistractors(currentCard())]);sessionTimeRemaining=60;}
