@@ -642,6 +642,15 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
  .home-status-item{padding:14px 15px}
  .home-status-item strong{font-size:27px}
 }
+@media(max-width:680px){
+ /* The legacy global mobile mode-card grid must not squeeze two cards side by side. */
+ .home-dashboard .home-mode-grid{grid-template-columns:1fr}
+ .home-dashboard .home-mode-card{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:13px;min-height:112px;align-items:center;padding:17px 45px 17px 17px}
+ .home-dashboard .home-mode-card .mode-icon{grid-column:1;grid-row:1/3;margin:0}
+ .home-dashboard .home-mode-card strong{grid-column:2;grid-row:1;margin:0 0 4px;font-size:14px}
+ .home-dashboard .home-mode-card p{grid-column:2;grid-row:2;font-size:11px;max-width:none}
+ .home-dashboard .home-mode-card .arrow{top:21px;right:14px}
+}
 @media(max-width:520px){
  .home-dashboard{gap:17px;padding-bottom:18px}
  .home-toolbar-title h2{font-size:23px}
