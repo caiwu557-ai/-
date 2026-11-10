@@ -26,13 +26,13 @@ function setModalCredit(id, category='media'){
 function mediaHtml(mediaId, label, context=''){
  const m=ATLAS_V7.media[mediaId];
  if(!m)return `<figure class="evidence-card missing"><div class="evidence-media">暂无对应图像</div><figcaption class="evidence-body"><div class="evidence-name">${esc(label)}</div></figcaption></figure>`;
- return `<figure class="evidence-card"><img class="evidence-media" loading="lazy" src="${esc(m.src)}" alt="${esc(label)}" onclick="openEvidenceImage('${encodeURIComponent(mediaId)}')"><div class="evidence-body"><div class="evidence-name">${esc(label)}</div>${mediaCreditHtml(mediaId)}<a class="evidence-link" href="${esc(m.src)}" target="_blank" rel="noopener noreferrer">查看图片</a></div></figure>`;
+ return `<figure class="evidence-card"><button class="media-zoom" type="button" data-evidence="${encodeURIComponent(mediaId)}" aria-label="放大查看 ${esc(label)}"><img class="evidence-media" loading="lazy" src="${esc(m.src)}" alt="${esc(label)}"></button><div class="evidence-body"><div class="evidence-name">${esc(label)}</div>${mediaCreditHtml(mediaId)}<a class="evidence-link" href="${esc(m.src)}" target="_blank" rel="noopener noreferrer">查看图片</a></div></figure>`;
 }
 function sectionEvidence(id){const arr=ATLAS_V7.section[id]||[];if(!arr.length)return '';
  return `<div class="evidence-heading"><h2>对应切片图像</h2><p>${arr.length} 张</p></div><div class="evidence-grid">${arr.map(x=>mediaHtml(x.media,x.target)).join('')}</div>`;
 }
 function comparisonEvidence(id){const arr=ATLAS_V7.comparison[id]||[];return `<div class="row-comparison-grid">${arr.map(x=>mediaHtml(x.media,x.display,'')).join('')}</div>`}
-function openEvidenceImage(encoded){const id=decodeURIComponent(encoded);const x=ATLAS_V7.media[id];if(!x)return;$('#modalImage').src=x.src;$('#modalImage').alt=x.source;$('#modalTitle').textContent=x.source;$('#modalUrl').href=x.src;$('#modalUrl').textContent='图片文件直达';$('#modalOriginal').href=x.src;setModalCredit(id);$('#imageModal').classList.add('open');document.body.style.overflow='hidden'}
+function openEvidenceImage(encoded){const id=decodeURIComponent(encoded);const x=ATLAS_V7.media[id];if(!x)return;$('#modalImage').src=x.src;$('#modalImage').alt=x.source;$('#modalTitle').textContent=x.source;$('#modalUrl').href=x.src;$('#modalUrl').textContent='图片文件直达';$('#modalOriginal').href=x.src;setModalCredit(id);presentImageModal()}
 
 
 /* v8 images are organized ONLY by terms explicitly present in the supplied handout. */
@@ -45,16 +45,28 @@ function v8MediaCard(item){
  const status=item.match==='technique-visual-example'?'染色／技术示例':
    item.match.includes('context')||item.match.includes('illustration')||item.match==='same-organ-labeled-structure'||item.match==='reused-same-section-target'?'器官／组织定位图':
    item.match==='web-explicit-labelled'?'结构标注图':'结构参考图';
- return `<figure class="term-evidence-item" data-match="${esc(item.match)}"><img class="term-image" loading="lazy" src="${esc(m.src)}" alt="${esc(item.name)}" onclick="openV8TermImage('${encodeURIComponent(item.media)}','${encodeURIComponent(item.name)}')"><div class="term-caption"><strong>${esc(item.name)}</strong><small>${status}</small>${mediaCreditHtml(item.media)}<div class="term-links"><a href="${esc(m.src)}" target="_blank" rel="noopener noreferrer">查看图片</a></div></div></figure>`;
+ return `<figure class="term-evidence-item" data-match="${esc(item.match)}"><button class="media-zoom" type="button" data-termimage="${encodeURIComponent(item.media)}" data-termname="${encodeURIComponent(item.name)}" aria-label="放大查看 ${esc(item.name)}"><img class="term-image" loading="lazy" src="${esc(m.src)}" alt="${esc(item.name)}"></button><div class="term-caption"><strong>${esc(item.name)}</strong><small>${status}</small>${mediaCreditHtml(item.media)}<div class="term-links"><a href="${esc(m.src)}" target="_blank" rel="noopener noreferrer">查看图片</a></div></div></figure>`;
 }
-function openV8TermImage(mid,name){const id=decodeURIComponent(mid),m=TERM_MEDIA_V8[id];if(!m)return;const modal=document.getElementById('imageModal');document.getElementById('modalImage').src=m.src;document.getElementById('modalTitle').textContent=decodeURIComponent(name);document.getElementById('modalUrl').href=m.src;document.getElementById('modalUrl').textContent='图片直链';document.getElementById('modalOriginal').href=m.src;setModalCredit(id);modal.classList.add('open');document.body.style.overflow='hidden'}
+function openV8TermImage(mid,name){const id=decodeURIComponent(mid),m=TERM_MEDIA_V8[id];if(!m)return;const modal=document.getElementById('imageModal');document.getElementById('modalImage').src=m.src;document.getElementById('modalTitle').textContent=decodeURIComponent(name);document.getElementById('modalImage').alt=decodeURIComponent(name);document.getElementById('modalUrl').href=m.src;document.getElementById('modalUrl').textContent='图片直链';document.getElementById('modalOriginal').href=m.src;setModalCredit(id);presentImageModal()}
 sectionEvidence=function(id){
  const terms=TERMS_V8[id];if(!terms||!terms.length)return _sectionEvidenceV7(id);
  const first=terms.slice(0,6),rest=terms.slice(6);
  return `<section class="term-evidence" aria-label="本节逐术语图片"><div class="term-evidence-header"><h2>本节逐术语图像</h2><small>${terms.length} 个 · 图文对照</small></div><div class="term-evidence-list">${first.map(v8MediaCard).join('')}</div>${rest.length?`<details class="term-evidence-more"><summary>展开其余 ${rest.length} 个术语图位</summary><div class="term-evidence-list">${rest.map(v8MediaCard).join('')}</div></details>`:''}<div class="term-evidence-meta">定位图与技术示例用于整体结构辨认。</div></section>`;
 };
 
-const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const $=s=>document.querySelector(s), $=s=>Array.from(document.querySelectorAll(s));
+let modalReturnFocus=null, bodyOverflowBeforeModal='';
+function presentImageModal(){
+ modalReturnFocus=document.activeElement;bodyOverflowBeforeModal=document.body.style.overflow;
+ $('#imageModal').classList.add('open');document.body.style.overflow='hidden';
+ requestAnimationFrame(()=>$('#closeModal').focus({preventScroll:true}));
+}
+function setSideOpen(open){
+ const show=Boolean(open);$('#side').classList.toggle('open',show);$('#scrim').classList.toggle('open',show);
+ $('#menuBtn').setAttribute('aria-expanded',String(show));
+ if(!show && innerWidth<=850 && $('#side').contains(document.activeElement))$('#menuBtn').focus({preventScroll:true});
+}
+
 const icon={menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',theme:'<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z"/>'};
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const groups=DATA.systems;
@@ -76,23 +88,107 @@ return `<div class="kicker">LUMEN / HISTOLOGY ATLAS</div><h1 class="page-title">
 function renderGroup(k){const g=groupMap[k];if(!g)return '<div class="empty">分区不存在</div>';if(k==='comparisons')return renderComparisons();const ss=secs.filter(s=>s.group===k);return `<div class="kicker">${esc(g.area)} / ${esc(g.en)}</div><h1 class="page-title">${esc(g.label)}</h1><p class="page-desc">按组织、器官及结构展开切片形态和识别技巧。</p><div class="section-index">${ss.map((s,i)=>`<button class="section-tile" type="button" data-target="${s.id}"><span>${s.section_num||'SOURCE'} · ${esc(s.source.replace(/第\d+章[｜|]/,'').slice(0,22))}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`}
 function renderSection(id){const s=secMap[id];if(!s)return '<div class="empty">小节不存在</div>';const g=groupMap[s.group];const all=secs.filter(x=>x.group===s.group);const at=all.findIndex(x=>x.id===id);const previous=at>0?all[at-1]:null,next=at+1<all.length?all[at+1]:null;const headings=[...s.html.matchAll(/<h[234]>(.*?)<\/h[234]>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').slice(0,60));return `<div class="kicker">${esc(g.area)} / ${esc(g.label)}</div><h1 class="page-title">${esc(s.title)}</h1><article class="article" id="articleBody">${s.id==='intro'?s.html.replace('<p>按14章课程顺序编写</p>',''):s.html}</article>${sectionEvidence(id)}<div class="bottom-nav"><button type="button" data-target="${previous?previous.id:'group:'+s.group}">← ${esc(previous?previous.title:'返回本系统')}</button><button type="button" data-target="${next?next.id:'group:'+s.group}">${esc(next?next.title:'返回本系统')} →</button></div>`}
 function renderComparisons(){const c=DATA.comparisons;const names=['全部',...new Set(c.map(x=>x.group))];return `<div class="kicker">ATLAS / DIFFERENTIALS</div><h1 class="page-title">全局易混辨析 · G01–G45</h1><p class="page-desc">对照组织形态、关键识别点与常见误判。</p><div class="stats"><span class="stat"><strong>45</strong> 组对照</span><span class="stat">器官级 · 细胞级 · 管腔级</span></div><div class="comp-toolbar">${names.map(x=>`<button type="button" class="comp-filter ${selectedGroup===x?'selected':''}" data-compgroup="${esc(x)}">${esc(x)}</button>`).join('')}</div><div>${c.filter(x=>selectedGroup==='全部'||selectedGroup==='all'||x.group===selectedGroup).map(x=>`<details class="comp-card" id="${x.id}"><summary><span class="comp-tag">${esc(x.id)}</span><span><span class="comp-heading">${esc(x.title)}</span><br><span class="comp-sub">${esc(x.sub)}</span></span></summary><div class="comp-inside">${comparisonEvidence(x.id)}<table><tbody>${x.rows.map(z=>`<tr><td>${esc(z[0])}</td><td>${esc(z[1])}</td></tr>`).join('')}</tbody></table><p><b>考场判断：</b>${esc(x.key)}</p><p><b>易错陷阱：</b>${esc(x.trap)}</p></div></details>`).join('')}</div>`}
-function navTo(target,opts={}){if(!target)return;current=target;if(!opts.keepFilter)selectedGroup='all';$('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);$('#crumbTitle').textContent=titleFor();navMark();if(!opts.silent){history.replaceState({},'',`#${encodeURIComponent(target)}`);window.scrollTo({top:0,behavior:'instant'})}const side=$('#side');side.classList.remove('open');$('#scrim').classList.remove('open');bindImages();document.title=`${titleFor()} · LUMEN`}
-function bindImages(){for(const im of $$('#reader img[data-image-id]')){
- const f=im.closest('.chat-image');const id=im.dataset.imageId;
- if(f&&!f.querySelector('.image-credit'))f.insertAdjacentHTML('beforeend',mediaCreditHtml(id,'chat'));
- im.addEventListener('error',()=>{const el=f?.querySelector('.image-failed');if(el)el.firstElementChild.textContent='图片暂不可加载'},{once:true});
- im.addEventListener('load',()=>f?.querySelector('.image-failed')?.setAttribute('hidden',''),{once:true});
-}}
-function openImage(id){let rec=imgMap[id];if(!rec)return;$('#modalImage').src=rec.url;$('#modalImage').alt=rec.label;$('#modalTitle').textContent=`${rec.id} · ${rec.label.slice(0,110)}`;$('#modalUrl').textContent=rec.url;$('#modalUrl').href=rec.url;$('#modalOriginal').href=rec.url;setModalCredit(id,'chat');$('#imageModal').classList.add('open');document.body.style.overflow='hidden'}
-function closeImage(){$('#imageModal').classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('click',e=>{const a=e.target.closest('[data-target]');if(a){navTo(a.dataset.target);return}const i=e.target.closest('[data-viewimage]');if(i){openImage(i.dataset.viewimage);return}const f=e.target.closest('[data-compgroup]');if(f){selectedGroup=f.dataset.compgroup;navTo('group:comparisons',{keepFilter:true});return}if(e.target.matches('#imageModal'))closeImage()});
+function navTo(target,opts={}){if(!target)return;current=target;if(!opts.keepFilter)selectedGroup='all';$('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);$('#crumbTitle').textContent=titleFor();navMark();if(!opts.silent){history.pushState({atlas:target},'',`#${encodeURIComponent(target)}`);window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}})}if(!opts.preserveSearch)$('#search').value='';setSideOpen(false);bindImages();document.title=`${titleFor()} · LUMEN`}
+function bindImages(){
+ for(const im of $$('#reader img')){
+  const chat=im.closest('.chat-image');
+  if(chat){
+   const id=im.dataset.imageId;
+   if(id&&!chat.querySelector('.image-credit'))chat.insertAdjacentHTML('beforeend',mediaCreditHtml(id,'chat'));
+   im.addEventListener('error',()=>{const el=chat.querySelector('.image-failed');if(el)el.firstElementChild.textContent='图片暂不可加载'},{once:true});
+   im.addEventListener('load',()=>chat.querySelector('.image-failed')?.setAttribute('hidden',''),{once:true});
+   continue;
+  }
+  const card=im.closest('.evidence-card,.term-evidence-item');
+  if(!card)continue;
+  const fail=()=>{
+   if(card.querySelector('.image-unavailable'))return;
+   const holder=im.closest('.media-zoom');if(holder)holder.hidden=true;
+   const note=document.createElement('div');note.className='image-unavailable';note.textContent='图片暂时无法加载，可通过下方来源链接查看';
+   card.insertBefore(note,card.querySelector('.evidence-body,.term-caption')||null);
+  };
+  im.addEventListener('error',fail,{once:true});
+  // Rely on the load error event: lazy images may be incomplete until scrolled into view.
+ }
+}
+function openImage(id){let rec=imgMap[id];if(!rec)return;$('#modalImage').src=rec.url;$('#modalImage').alt=rec.label;$('#modalTitle').textContent=`${rec.id} · ${rec.label.slice(0,110)}`;$('#modalUrl').textContent=rec.url;$('#modalUrl').href=rec.url;$('#modalOriginal').href=rec.url;setModalCredit(id,'chat');presentImageModal()}
+function closeImage(){
+ if(!$('#imageModal').classList.contains('open'))return;
+ $('#imageModal').classList.remove('open');document.body.style.overflow=bodyOverflowBeforeModal;
+ if(modalReturnFocus?.isConnected)modalReturnFocus.focus({preventScroll:true});
+ modalReturnFocus=null;
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-target]');if(a){navTo(a.dataset.target);return}const i=e.target.closest('[data-viewimage]');if(i){openImage(i.dataset.viewimage);return}
+ const evidence=e.target.closest('[data-evidence]');if(evidence){openEvidenceImage(evidence.dataset.evidence);return}
+ const term=e.target.closest('[data-termimage]');if(term){openV8TermImage(term.dataset.termimage,term.dataset.termname);return}
+ const found=e.target.closest('[data-opencomp]');if(found){selectedGroup='all';navTo('group:comparisons',{keepFilter:true});const panel=document.getElementById(found.dataset.opencomp);if(panel){panel.open=true;panel.scrollIntoView({block:'start',behavior:'smooth'})}return}
+ const f=e.target.closest('[data-compgroup]');if(f){selectedGroup=f.dataset.compgroup;navTo('group:comparisons',{keepFilter:true});return}if(e.target.matches('#imageModal'))closeImage()});
 $('#closeModal').addEventListener('click',closeImage);
 $('#themeBtn').addEventListener('click',()=>{const v=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=v;save('lumen_atlas_theme_v1',v);try{const k='lumen_histology_recall_v1';const s=JSON.parse(localStorage.getItem(k)||'null');if(s&&s.schema===1&&s.prefs){s.prefs.theme=v;localStorage.setItem(k,JSON.stringify(s))}}catch(e){}});
-$('#menuBtn').addEventListener('click',()=>{$('#side').classList.toggle('open');$('#scrim').classList.toggle('open')});$('#scrim').addEventListener('click',()=>{$('#side').classList.remove('open');$('#scrim').classList.remove('open')});
-$('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();for(const b of $$('#sideNav .nav-btn')){const g=groupMap[b.dataset.target.slice(6)];if(!g){b.hidden=!!q;continue}const matched=!q||g.label.toLowerCase().includes(q)||g.en.toLowerCase().includes(q)||secs.some(s=>s.group===g.key&&(s.title+s.html.replace(/<[^>]+>/g,'')).toLowerCase().includes(q));b.hidden=!matched}if(q&&current==='overview'){const matching=secs.filter(s=>(s.title+s.html.replace(/<[^>]+>/g,'')).toLowerCase().includes(q)).slice(0,60);$('#reader').innerHTML=`<div class="kicker">SEARCH RESULTS</div><h1 class="page-title">搜索：${esc(q)}</h1><div class="section-index">${matching.map(s=>`<button type="button" class="section-tile" data-target="${s.id}"><span>${esc(groupMap[s.group].label)}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#side').classList.remove('open');$('#scrim').classList.remove('open');closeImage()}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#search').focus()}});
+$('#menuBtn').setAttribute('aria-expanded','false');
+$('#menuBtn').addEventListener('click',()=>setSideOpen(!$('#side').classList.contains('open')));
+$('#scrim').addEventListener('click',()=>setSideOpen(false));
+const normalizedSearch=(s)=>String(s||'').normalize('NFKC').toLocaleLowerCase();
+const sectionIndex=secs.map(s=>({section:s,key:normalizedSearch(s.title+' '+s.html.replace(/<[^>]+>/g,' '))}));
+const comparisonIndex=DATA.comparisons.map(c=>({item:c,key:normalizedSearch(c.title+' '+c.sub+' '+c.group+' '+c.rows.map(r=>r.join(' ')).join(' '))}));
+function sectionSearchRank(s,q){
+ const title=normalizedSearch(s.title), group=normalizedSearch(groupMap[s.group]?.label||'');
+ if(title===q)return 120;
+ if(title.startsWith(q))return 100;
+ if(title.includes(q))return 90;
+ if(group.includes(q))return 70;
+ return 10;
+}
+function renderSearchResults(q){
+ const needle=normalizedSearch(q);
+ const foundSections=sectionIndex.filter(x=>x.key.includes(needle)).map(x=>x.section)
+  .sort((a,b)=>sectionSearchRank(b,needle)-sectionSearchRank(a,needle)).slice(0,80);
+ const foundComparisons=comparisonIndex.filter(x=>x.key.includes(needle)).map(x=>x.item).slice(0,45);
+ const total=foundSections.length+foundComparisons.length;
+ $('#crumbTitle').textContent='搜索结果';document.title='搜索结果 · LUMEN';
+ $('#reader').innerHTML=`<div class="kicker">LUMEN / SEARCH</div><h1 class="page-title">搜索结果</h1><p class="page-desc">“${esc(q)}” · ${total} 条结果，点击进入对应结构或辨析。</p>
+ ${foundSections.length?`<h2 class="search-subheading">组织与器官 · ${foundSections.length}</h2><div class="section-index">${foundSections.map(s=>`<button type="button" class="section-tile" data-target="${esc(s.id)}"><span>${esc(groupMap[s.group]?.label||'组织学')}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`:''}
+ ${foundComparisons.length?`<h2 class="search-subheading">易混辨析 · ${foundComparisons.length}</h2><div class="section-index">${foundComparisons.map(c=>`<button type="button" class="section-tile" data-opencomp="${esc(c.id)}"><span>${esc(c.id)} · ${esc(c.group)}</span><strong>${esc(c.title)}</strong></button>`).join('')}</div>`:''}
+ ${!total?'<div class="empty" role="status">没有匹配项。尝试完整结构名称、器官名称或英文术语。</div>':''}`;
+}
+$('#search').addEventListener('input',e=>{
+ const q=e.target.value.trim();if(!q){navTo(current,{silent:true,keepFilter:true});return;}
+ renderSearchResults(q);
+});
+$('#search').addEventListener('keydown',e=>{
+ if(e.key==='Enter' && e.target.value.trim()){
+  e.preventDefault();setSideOpen(false);
+  requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}});
+ }
+});
+document.addEventListener('keydown',e=>{
+ const modal=$('#imageModal');
+ if(modal.classList.contains('open')){
+  if(e.key==='Escape'){e.preventDefault();closeImage();return}
+  if(e.key==='Tab'){
+   const items=Array.from(modal.querySelectorAll('a[href],button:not([disabled])')).filter(x=>x.getClientRects().length);
+   if(items.length){const first=items[0],last=items.at(-1);
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+   }
+  }
+  return;
+ }
+ if(e.key==='Escape'){
+  if($('#side').classList.contains('open'))setSideOpen(false);
+  if($('#search').value){$('#search').value='';navTo(current,{silent:true,keepFilter:true})}
+ }
+ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){
+  e.preventDefault();if(innerWidth<=850)setSideOpen(true);$('#search').focus();
+ }
+});
 window.addEventListener('scroll',()=>{const doc=document.documentElement;const max=doc.scrollHeight-innerHeight;$('#progress').style.width=(max>0?100*scrollY/max:0)+'%'},{passive:true});
-window.addEventListener('hashchange',()=>{const next=decodeURIComponent(location.hash.slice(1));if(next!==current)navTo(next,{silent:true})});
+function handleHistoryNavigation(){
+ const next=decodeURIComponent(location.hash.slice(1))||'overview';
+ if(next!==current)navTo(next,{silent:true});
+}
+window.addEventListener('popstate',handleHistoryNavigation);
+window.addEventListener('hashchange',handleHistoryNavigation);
 window.openEvidenceImage=openEvidenceImage;
 navTo(decodeURIComponent(location.hash.slice(1))||'overview',{silent:true});
 
