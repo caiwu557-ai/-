@@ -351,3 +351,31 @@
   #app .sidebar, .atlas-page .side, .atlas-page .workspace-tabs { display: none!important; }
   .atlas-page .reader-wrap { padding: 0; max-width: none; }
 }
+
+/* Editorial data treatment: remove ornamental stat pills and let the microscopy lead. */
+.atlas-page .stats {
+  gap: 5px 22px;
+  padding: 0 0 18px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--lw-rule);
+}
+.atlas-page .stat {
+  border: 0;
+  padding: 4px 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  font-size: 12.5px;
+  white-space: normal;
+}
+.atlas-page .stat strong {
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+  font-size: 14px;
+}
+.atlas-page .section-index .section-tile:focus-visible,
+.atlas-page .comp-card>summary:focus-visible {
+  outline: 3px solid var(--lw-focus);
+  outline-offset: 2px;
+}
+.atlas-page .top-tools .tool[title] { touch-action: manipulation; }
