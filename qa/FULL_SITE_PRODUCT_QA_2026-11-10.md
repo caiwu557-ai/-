@@ -33,3 +33,17 @@
 - 回归：node --check atlas/atlas.js、node qa/validate-atlas.mjs、node qa/validate-atlas-interactions.mjs。
 - 主站已有的 validate-terminology、validate-learning-flow、validate-round-prompt 须在合并前重新执行。主站所有训练业务逻辑没有在本轮中被改写。
 - Awwwards、Webby、FWA 是审美和产品品质目标，而非通过认证。需完成实机测试、真实用户任务测试、性能量测、无障碍审查和细节设计后再作总体判断。
+
+## 第二轮修复与验证（2026-11-10）
+
+**已实施（Draft PR #2）：**
+
+- P1 · 图谱搜索结果现在拥有 URL 查询词与独立浏览历史；进入阅读小节后，后退可回到搜索列表；直接带 `?q=` 进入图谱时保留关键词。
+- P1 · 未完成轮次切换页面前提示，取消离开不打断训练；训练途中打开图谱使用新标签页，原轮次不被覆盖。
+- P1 · 跨模块主题只使用 `lumen_atlas_theme_v1` 同步；图谱不再回写包含学习记录的完整 `lumen_histology_recall_v1` 对象。
+- P2 · 术语详情抽屉的页面背景不可交互，Esc/Tab 受控，关闭时尝试恢复原焦点。
+- P2 · 未答、跳过、错误被区分；没有有效作答时不显示误导性的 `0%` 准确率，跳过项不会被计入已学。
+
+**回归资产：** `qa/validate-study-journey.mjs`、`qa/validate-study-outcomes.mjs`。提交后源代码语法解析、导航行为模拟与数据关联完整性检查通过：1269个基础词、182个阅读小节、45组易混辨析、118条聊天图片 URL；本地图像文件与来源索引无缺项。
+
+**仍待现场验收：** 对当前 PR 最新代码进行真实浏览器全流程测试（含390/820/1366/1920px，桌面键盘与移动端触控）；验证外链真实加载率、低端设备性能和 Web Vitals、屏幕阅读器操作；对第三方图片逐张确认医学内容匹配与使用条件。尚不能据静态检查宣称已达到 Awwwards/Webby/FWA 获奖水准。
