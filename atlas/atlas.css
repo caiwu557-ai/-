@@ -126,3 +126,19 @@
 @media(max-width:650px){.home-return-mobile{display:inline-flex}.topbar .site-return{margin-right:4px}.crumb{min-width:0}.reader-wrap{padding:32px 18px 110px}.chat-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.chat-gallery-1{grid-template-columns:1fr}.page-title{font-size:30px}}
 @media(max-width:380px){.chat-gallery{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Source credit — repeated alongside every atlas image. */
+.image-credit{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5;font-weight:450;min-width:0}
+.image-credit>span{flex:none;color:var(--muted);font-size:10px;letter-spacing:.02em}
+.image-credit a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-color:color-mix(in srgb,var(--accent) 38%,transparent);min-width:0;overflow-wrap:anywhere}
+.image-credit a:hover{text-decoration-color:currentColor}
+.chat-image>.image-credit{margin:0;padding:7px 10px 9px;border-top:1px solid var(--line);background:var(--surface)}
+.evidence-card .image-credit{margin:7px 0 0}
+.term-evidence-item .term-caption{padding:12px}
+.term-evidence-item .term-caption strong{display:block;font-size:13px;line-height:1.4;color:var(--heading);overflow-wrap:anywhere}
+.term-evidence-item .term-caption small{display:block;font-size:11px;color:var(--muted);line-height:1.45;margin-top:4px}
+.term-evidence-item .term-caption .term-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.term-evidence-item .term-caption .term-links a{color:var(--accent);font-size:11px;text-decoration:underline;text-underline-offset:2px}
+.modal-source{padding:9px 14px 12px;border-top:1px solid var(--line);font-size:12px;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.modal-source a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+@media(max-width:760px){.term-evidence-item .term-caption{padding:8px}}

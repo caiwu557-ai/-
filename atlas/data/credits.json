@@ -1,0 +1,2170 @@
+{
+  "schema": "1.0",
+  "default_source_url": "https://secondlook.med.umich.edu/histology",
+  "media": {
+    "R12:MI-342:a08f4a560907c28f7bb1bc38.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify the type of epithelium that is indicated by the red ar (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-343:6744b59eae6e3a6bcd09be33.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify the type of epithelium that is marked by the black bar (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-341:29470870aa4cc0411ee63f3c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify this type of epithelium. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-348:b94a794d5a708e6b09b44c0c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify this type of epithelium. (4) (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-347:3f270969bd616b8f2851ed59.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify this type of epithelium. (3) (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-346:9abb32afb048c037c3f3a1cd.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify this type of epithelium. (2) (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-352-02:4950ab5b4e4b5498031429d7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Slide_ 14 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-231-06:577a3629c7497bdc8a31562c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-234:9bdcb74a63d0af8a551d0521.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the tissue type in the micrograph above. (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-014:30f2610d96f10a4d4020cb32.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the cell whose nucleus is marked by the green arrow. (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-251-062:a90cd774e20dd351757f899b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Slide_ 24 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-235:741a568ebc460c16874e120d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the cell whose nucleus is marked by the green arrow. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-239:f8a3a8abf38879677b7982f2.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the cells indicated by the red arrows. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-242:f361e8154ddbc0b01fa562b2.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the marked cells in this H&E-stained section of a lymp (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-155:e8bfbf3e7575c85c64e537e7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-14 Cartilage-Identify the type of cartilage that is shown in this image. (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-149-18:db6641a25c61606f68673586.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-14 Cartilage-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-148-17:3755afad4f60b073eddc4010.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-14 Cartilage-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-154-20:b8a01990dff85262d8773cc5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-14 Cartilage-What is the developmental relationship between the cells within (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-467-21:70daa863d390184680dcc9aa.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-468-22:0686a6a7bef73b3a668010e7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-477-23:0b0ecc8cbe3a3cf8a3f3c733.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-First, identify a few osteons_Haversian systems. (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-475-28:41bfb12c711d80f917ffd45d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-472-26:581652aa0f11d79c5b8b93d5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-473-27:d6fb43f822e838211353bff9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 10 (1).webp",
+      "type": "collection"
+    },
+    "R12:REC20-026:60f59f46387fe8f281bcc86a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V13-030:b9d2bc5d327772dbad4be99b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-15 Bone and Bone Formation-Slide_ 21 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-111-11:c464ec817424b723bb346416.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-117-35:4c63560580412c2565a76ce9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Briefly outline the physiological processes these leukocytes ar (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-117-34:476ba9e3c3ad2c2b98c8e9ee.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Briefly outline the physiological processes these leukocytes ar (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-112-12:57e0f3f13e93d1fcad335593.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Slide_ 6 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-113-13:b2f41e2aa76345557af30f6e.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Slide_ 7 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-110-10:e69f39bf9a42a1188386dd03.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-453:1767ba349e57c0bda49c6c36.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Can you count or estimate the number of individual muscle cells (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-455-041:c3c5737f68c49f5956ec9fef.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Slide_ 14 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-459-042:30d1e3d8f4a366ee2273dc84.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Slide_ 18 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-454-040:f8e3c0a6bf33ec4e6b2f9d5d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-463-22:913c0d08d55226c552a3e423.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Identify the connective tissue layers that are indicated by the (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-029:e90c5b2e837300dbbbf658c4.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-13 Muscle-Slide_ 10 (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-009:7ebe060bc7ea62fcbb53b8f3.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-06 Central Nervous System-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-064:4b7c2d2da5a7d0997d32e31d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-This micrograph depicts what type of tissue_ (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-058-05:5178c81ffc6c137ea462e4a9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-The blue arrows point to what kind of structure_ (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-187:c6038f955643037ca524103e.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-06 Central Nervous System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-008:fa83c2e1aee282e694367d7b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Name the connective tissue layer that is marked by the green ba (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-010:fa83c2e1aee282e694367d7b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Name the connective tissue layer that is marked by the green ba (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-009:caa0885f6195adb51439e657.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Name the connective tissue layer that is marked by the green ba (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-070:a5a4234d362cf18f855bedd1.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Identify this ganglion. (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-076-42:54dcdd54847401785ac32d20.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Identify the different structures that are encircled by the das (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-069:686a19531bafb0e071331850.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Autonomic ganglion (parasympathetic in the wall of a vagina) (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-004:e521f2976953539bd1236d23.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Longitudinal section of an unmyelinated nerve. This is a diffic (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-007:776911553c5dbf31b81bd6bc.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-06 Central Nervous System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-284:9b2567fd1905dc7021526241.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-287:dc69c6446f8d07083471760c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 6 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-286:6d09b2096c417ece718d8a2f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-289:99ff738c3b85b0bfa61101d5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-292-15:b8f5d75bed0507f9931f6865.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-292-16:b8f5d75bed0507f9931f6865.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-293:d81472f1feec10af70139b9d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-010:e937d91ab0865fcf1bbefe42.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-011:e937d91ab0865fcf1bbefe42.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-012:e937d91ab0865fcf1bbefe42.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-302:ea161ee5a26347c768dcd1dd.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-10 Cardiovascular System-Slide_ 21 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-381:58c2f8157726f12af73f6131.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 6 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-024:12f78cc4810046dc6cd03229.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Outline areas of the splenic white pulp. (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-378:9d913fb9a5bfb451e9ae103b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-405:1b7c71117c82bb31827cec7b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 30 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-379:035639ec739cf65941d44ef3.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-025:6ce3002fef501e5e4696811d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 26 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-384:ea2181ba1bcafe1fa06a5a1c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Identify this lymphatic organ. (1).webp",
+      "type": "collection"
+    },
+    "R12:V11-383-01:a1f14464f5a0432e12b9e01b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-This image was obtained from the fundic region of the stomach. (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-323-034:29f0a24cb50819bf03a7135d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 22 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-324-035:afb6c47799b058adfe064c8b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 23 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-304-014:4b3a30487dfaf71db5f0c80f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-309-021:cbdc22d7be396e829c6f3f88.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-309-020:cbdc22d7be396e829c6f3f88.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-309-019:cbdc22d7be396e829c6f3f88.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-313-023:66a95a040f821c33d56d2865.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-314-024:1879a109c2d1817072d6d4fe.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-316-027:97987a8d85a2c8ea6225a01f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 15 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-317-028:37020a219481b818b65754fa.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-319-030:27b9b86e364f370bcd047a92.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 18 (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-017:13cdbb58355714ffdc5357a5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 19 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-096:0aa708a1cacce9b105d0331a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Identify the organ. (1).webp",
+      "type": "collection"
+    },
+    "R12:V18-031:906217abdc74c2f049b09831.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V18-032:112ed5b47e84d217d3161c8c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:REC20-002:8608245fa98f78be33f17c48.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V7-077:7b58ba2e6154a7ce216f4db2.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-105:55c5f754eb60fe88cd36e5d4.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 31 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-108:e1d6501a883db6c7c0ef11e8.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 34 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-107:431c5bfceeb9a3c187835ea5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 33 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-106:3cc4766ac03dc9869723c22d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 32 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-078:44b269b9bd99142183dd729f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-003:a125091be6cc805849cf7354.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V13-001:a125091be6cc805849cf7354.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:REC20-001:b87243c997fe62edeeb8d8fe.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V11-092-01:049e37a5496d8e667ad107e5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 18 (1).webp",
+      "type": "collection"
+    },
+    "R12:V7-276:d35c91abe127c7542038e64a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-19 Digestive System - Pharynx to Stomach-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-045:d022ed75c5b7cdf9ed70881d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V18-007:d1c0fe5f8ffe456a340cb2fc.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V18-008:c4481138ad5031ce5f0cf8de.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V10-283-005:918dbce70f195b7335967b3f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-19 Digestive System - Pharynx to Stomach-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-283-006:918dbce70f195b7335967b3f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-19 Digestive System - Pharynx to Stomach-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V18-006:a4000e59573d8ba77878c9fe.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:MI-031:5b36631758448704f01a59fa.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Name the structure outlined by the blue box. (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-037:d8fb24820def22d06212c8ed.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-038:7376f0feab5458e04f52c992.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 10 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-040-2:ecca12b486e249d52bb49c18.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-011:e1a55e1ee1a47c1be458804a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-012:0db780029488b1970f1e550b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-002:093a39cd697d7fc6ed4f75f1.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 7 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-051:f1640d15133d18da16c9e12e.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 23 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-041:3f1d6a8f7837e63a661be6f9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Identify the round darkly-stained structures indicated by.webp",
+      "type": "collection"
+    },
+    "R12:V8-044:63d2342e998c3b250cf86e09.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-370:03906d46610fd5d28afb122b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-22 Pancreas-Name the multicellular structure outlined by the blue line. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-372:eaea0b4c85fab29035e97c60.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-22 Pancreas-The oval-shaped, lighter-stained structure is a(n) …_ (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-368:f0b1ebf6620110611f0eb8f5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-22 Pancreas-Identify the lightly-staining cells, which are marked by the re (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-369:634d58eed0bc797200a1af08.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-22 Pancreas-Identify the multi-cellular structure that is indicated by the (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-329:70ed5a38715e132c8bb25c8b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-Which major salivary gland is depicted_ (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-330:ba6f85b0b777d47ebc7a3a4a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-Which major salivary gland is depicted_ (2) (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-331:aef8a1a4a8bc27d5a3c279ab.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-Which major salivary gland is depicted_ (3) (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-326-46:1a6ac8e3c53d34d5f6c3262e.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-What are the two general types of secretion mixtures that are p (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-439-41:192d584581f2a6622e0a903f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-03 Histology of Glands-Identify the two general secretion products, which are produced (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-326-45:0765d3b7e6157ef586d71e86.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-What are the two general types of secretion mixtures that are p (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-439-40:50be48d80baedc2152c25b3c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-03 Histology of Glands-Identify the two general secretion products, which are produced (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-336-013:1049cfd3c6e5adb98e887015.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-Slide_ 14 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-337:8920c11ddc6d4c9069bccf69.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-Identify the cellular structure, which is surrounded by the gre (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-340:c603b5dba6a5d097a4f16d4f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-18 Salivary Glands-The green asterisk is in the lumen of what structure_ (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-440-05:1049cfd3c6e5adb98e887015.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-03 Histology of Glands-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-441:66877eab4c5b5efcd6960284.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-03 Histology of Glands-Identify the cellular structure, which is surrounded by the gre (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-033:2867c8b951484f287539fad1.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-03 Histology of Glands-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-252:1751e959d65ceead6b177aa0.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-The white lines indicate what kind of liver subdivision_ (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-257:45c2ecf07e8404a54b92b787.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-Name the structure indicated by the arrow. (1).webp",
+      "type": "collection"
+    },
+    "R12:V17-002:3a19dc980b07a89e4b1c8475.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-How many portal triads do you see in this image_ (1).webp",
+      "type": "collection"
+    },
+    "R12:V17-007:6612918346b1e871c6c80df4.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:V17-006:fc3bdb3ceed37643a3abad06.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-Find some Kupffer cells in the image on the left. (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-027:40c1408ba3776819526cc5f0.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-22 Pancreas-Analyse this islet of Langerhans. The section was stained with (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-413:c2f9162dba356a85d1106d92.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-415:a672af049e8d96895a1d30c5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-416:c6c355206c3ecd0b49c7601f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-417:0cf73eb15009991b633880ff.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-419-004:749817c9fb7025125a75cb90.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 15 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-007:3f030144da068e944a26888f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "WEB:alveolar duct": {
+      "name": "Yale histology: terminal/respiratory bronchioles, alveolar duct and sac",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/respiratory_airways.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB:alveolar sac": {
+      "name": "Yale histology: terminal/respiratory bronchioles, alveolar duct and sac",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/respiratory_airways.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "R12:V8-420:0e81c8bf1e8e5eb0daa6c5bc.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-423:74df51ed642a40de15250388.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 19 (1).webp",
+      "type": "collection"
+    },
+    "WEB:type i pneumocyte": {
+      "name": "Yale histology: labelled Type I pneumocyte TEM",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/air_blood_barrier.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "R12:V11-001-01:0bf62171e8f7b9d164fb5ee5.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-009:b7c852f4957d622bd838a36f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Identify the structure outlined by the dashed blue line. (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-005:1eb5d12ea136bea7e3175117.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Identify the structure outlined by the dashed blue line. (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-013-31:3314aa7ebf8c07e2a0fea2db.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Correlate the structures indicated by the red arrows with the f (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-013-33:3314aa7ebf8c07e2a0fea2db.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Correlate the structures indicated by the red arrows with the f (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-013-30:3314aa7ebf8c07e2a0fea2db.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Correlate the structures indicated by the red arrows with the f (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-013-32:3314aa7ebf8c07e2a0fea2db.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Correlate the structures indicated by the red arrows with the f (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-006:d1091d64771c3105db038948.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-How many and which cross sections marked by a letter represent (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-022-03:5ded801d5951935c50cb5315.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-How many and which cross sections marked by a letter represent (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-023:0ecd1f29b31cef9a9ff227da.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-The green asterisk is in the lumen of which type of structure_ (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-025:5057260e9d8cc167410247d7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Identify the structure indicated by the red arrow. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-029:9a7aa14e190cefa5c301b7b1.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Identify the structure in this image. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-030:e24e219b3139bafb70f92ccd.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Identify this epithelium. Be as specific as possible. (1).webp",
+      "type": "collection"
+    },
+    "WEB:urinary bladder": {
+      "name": "Medcell urinary bladder labelled histology",
+      "url": "https://medcell.org/systems_cell_biology/urinary_system_lab/images/bladder_labels.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "R12:V18-004:1016cd9dd46310b4a285524d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V14-015:475cee885f91433202a79c41.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V18-013:412ddaea69e42ce29a7bdbe8.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V18-014:38781dbefbb6a3fdc8188361.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V18-015:4cb5d0e992ec0851f1a3e608.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V11-499-01:b39b678787ea939e47834b75.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-011:207d82fc8c9192d3aaff9a3b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-012:8fd215c36e2bb2dea8e74fe3.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "R12:V18-003:8114082db31d9f68ffff9eb8.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V18-005:218de5078d6e7863b0a2696f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "R6 image from original Michigan card",
+      "type": "collection"
+    },
+    "R12:V14-010:b237195c7a11989ebb52b9a7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V11-503-01:972f8ac67ebc5b41b0b45a34.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 16 (1).webp",
+      "type": "collection"
+    },
+    "R12:V11-504-01:d711074f0cd0f451aa000b2c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-018:649a9e28c57bd0c746a2a234.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 18 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-019:649a9e28c57bd0c746a2a234.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-25 Male Reproductive System-Slide_ 18 (1).webp",
+      "type": "collection"
+    },
+    "WEB:uterus wall": {
+      "name": "Yale/Medcell: uterus wall endometrium and myometrium",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/uterus.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB:endometrium": {
+      "name": "Yale/Medcell: secretory endometrium with uterine glands",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/secretory.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB:uterine gland": {
+      "name": "UNSW embryology: uterine gland and endometrial stroma",
+      "url": "https://embryology.med.unsw.edu.au/embryology/images/0/0a/Uterine_gland_secretory_phase.jpg",
+      "reference": "embryology.med.unsw.edu.au",
+      "type": "direct"
+    },
+    "WEB:spiral artery": {
+      "name": "Annotated endometrium diagram: coiled/spiral arteries",
+      "url": "https://o.quizlet.com/tv6pTNj6uc-bbeiVzqrkyw.png",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "R12:V11-532-01:9b03900255b2c928cc8f24d0.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-022:df56ef183305b509b481e2a3.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V11-533-01:491a92420b0c6036fb790e3c.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 4 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-020:6162bb15c1ec60c848b0a89b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 6 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-021:f6696291bfda30b0c8d93744.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 7 (1).webp",
+      "type": "collection"
+    },
+    "WEB:primary ovarian follicle": {
+      "name": "Medcell: late primary ovarian follicle",
+      "url": "https://medcell.org/histology/female_reproductive_system_lab/images/late_primary_follicle.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "R12:V11-538-01:7bd123d50a7ba0789dd9a283.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "WEB:atretic follicle": {
+      "name": "Medcurriculum: ovarian atretic follicle",
+      "url": "https://www.medcurriculum.org/systems_cell_biology/female_reproductive_system_lab/images/atretic_follicle_labels.jpg",
+      "reference": "www.medcurriculum.org",
+      "type": "direct"
+    },
+    "WEB:lutein cells": {
+      "name": "Medcell: labelled granulosa and theca luteal cells",
+      "url": "https://medcell.org/systems_cell_biology/female_reproductive_system_lab/images/lutein_cells_labels.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "R12:V14-023:dd15a2597b44cc1cb5448532.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:V14-024:b64b2ad49999938df9042b5f.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Slide_ 23 (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-553-27:959f5a208a7c497f977b235b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Identify the organ from which this image was taken and determin (1).webp",
+      "type": "collection"
+    },
+    "WEB:uterine tube": {
+      "name": "PathologyLive: uterine tube histology",
+      "url": "https://www.pathologylive.com/practicas-histologia/bandejas/files/t_u_he_04x002.jpg",
+      "reference": "www.pathologylive.com",
+      "type": "direct"
+    },
+    "R12:V10-003-001:69c95db9ce63a7d1e61f54e3.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-Does this image show cortical or medullary tissue or both_ (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-002-01:7bc6224f3d6ce47ab9b2dc78.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-23 Urinary Tract-In the image to the left, which half of the image represents me (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-380:ea64be335278ca304bc95fc4.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "WEB:diffuse lymphoid tissue": {
+      "name": "Histology teaching slide: diffuse lymphatic tissue and nodules",
+      "url": "https://image1.slideserve.com/1699762/slide15-l.jpg",
+      "reference": "image1.slideserve.com",
+      "type": "direct"
+    },
+    "R12:V7-079:90fe199f23c43f15a491eda7.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-24 Endocrine System-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "WEB:seminal vesicle": {
+      "name": "Abdominal Key: seminal vesicle histology",
+      "url": "https://abdominalkey.com/wp-content/uploads/2016/05/B9781455743278000103_f010-004-9781455743278.jpg",
+      "reference": "abdominalkey.com",
+      "type": "direct"
+    },
+    "R12:MI-345:9b249e92afd8a12ea53ee4ea.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-02 Epithelia-Identify the type of epithelium marked by the black bar. (1).webp",
+      "type": "collection"
+    },
+    "WEB:dense regular connective tissue": {
+      "name": "University of Michigan histology collection: tendon",
+      "url": "https://image.slidesharecdn.com/09-10-08-m-velkey-connectivetissue-110613095349-phpapp01/75/09-10-08-Connective-Tissue-50-2048.jpg",
+      "reference": "image.slidesharecdn.com",
+      "type": "direct"
+    },
+    "WEB:osteocyte": {
+      "name": "Medical University of Vienna: osteocyte in compact bone",
+      "url": "https://m3e.meduniwien.ac.at/vm/histo/bildquiz/block2/roehrenknochen/pics/Bild4d.jpg",
+      "reference": "m3e.meduniwien.ac.at",
+      "type": "direct"
+    },
+    "R12:MI-063:9ecf341410fbcca6bb6d4130.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-05 Peripheral Nervous System-Name the connective tissue layer that is marked by the green ba (1).webp",
+      "type": "collection"
+    },
+    "WEB:spinal gray white": {
+      "name": "Spinal cord cross-section annotated gray and white matter",
+      "url": "https://1.bp.blogspot.com/-FYIaGHN4Xi0/YGLLE2xZNpI/AAAAAAAAAd4/8pPQEcB30CUlz7cVZEKZps_HAepe3PsdQCLcBGAsYHQ/s1080/IMG_20210329_143504.jpg",
+      "reference": "1.bp.blogspot.com",
+      "type": "direct"
+    },
+    "R12:V11-196-01:150826d5251195c36798dba6.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-06 Central Nervous System-Slide_ 17 (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-011:f75761bdc48eb7c314110f97.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-06 Central Nervous System-Slide_ 24 (1).webp",
+      "type": "collection"
+    },
+    "R12:DEEP-551-26:8e8165d5b05658717307ec92.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-26 Female Reproductive System-Identify the organ shown in this micrograph. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-243:3615cfa396161c4d0026f95d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the cells indicated by the green arrows. (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-244:3391f27aaaa4d78a2cd4b29b.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-04 Connective Tissue-Identify the cells indicated by the green arrows. (2) (1).webp",
+      "type": "collection"
+    },
+    "R12:MI-418:c051d76b15ffb78673f4bc3a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Identify the cells in this terminal bronchiole epithelium that (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-001:ef3b67dfb12f7f266f830fd9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-002:f931cc334b6b793810002a4a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-003:0276279c69aabd7ec70a5c00.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-004:cbb3b98c073e02962965f594.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 9 (1).webp",
+      "type": "collection"
+    },
+    "R12:R12-013:3eacf8a93a1e0e78923d5400.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-20 Digestive System - Small & Large Intestine-Slide_ 8 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-254-046:484df6576b6d24df7f8119a9.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-21 Liver-Slide_ 5 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-308-017:fd2f455f5887b7e239bec9da.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 7 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-308-018:fd2f455f5887b7e239bec9da.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 7 (1).webp",
+      "type": "collection"
+    },
+    "R12:V10-315-025:9d0645fe019af2902c244c4a.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-16 Integumentary System-Slide_ 14 (1).webp",
+      "type": "collection"
+    },
+    "R12:V12-031:b2f7ddab2477b39bc2abcf77.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-12 Respiratory Tract-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-386:550a571b28b566c888f44781.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 11 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-387:fd4c955e218a70fef6ee82c4.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 12 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-388:21f1875f5d293ada70cbc032.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 13 (1).webp",
+      "type": "collection"
+    },
+    "R12:V8-389:85363c40076ac8a4172f765d.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-11 Lymphatic System-Slide_ 14 (1).webp",
+      "type": "collection"
+    },
+    "R12:V9-109-09:4b99440e1b9a62ae345586af.webp": {
+      "name": "University of Michigan · SecondLook Histology",
+      "url": "https://secondlook.med.umich.edu/histology",
+      "reference": "SecondLook-09 Blood and Bone Marrow-Slide_ 3 (1).webp",
+      "type": "collection"
+    },
+    "WEB8:alveolar duct": {
+      "name": "Yale histology: terminal/respiratory bronchioles, alveolar duct and sac",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/respiratory_airways.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:alveolar sac": {
+      "name": "Yale histology: terminal/respiratory bronchioles, alveolar duct and sac",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/respiratory_airways.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:atretic follicle": {
+      "name": "Medcurriculum: ovarian atretic follicle",
+      "url": "https://www.medcurriculum.org/systems_cell_biology/female_reproductive_system_lab/images/atretic_follicle_labels.jpg",
+      "reference": "www.medcurriculum.org",
+      "type": "direct"
+    },
+    "WEB8:cell culture": {
+      "name": "Human fibroblast culture phase contrast image",
+      "url": "https://cytion.b-cdn.net/media/32/c3/71/1674043567/HFL1%20P1%20305065-M%2010x01%20301122.jpg",
+      "reference": "cytion.b-cdn.net",
+      "type": "direct"
+    },
+    "WEB8:chromophobe": {
+      "name": "Pituitary H&E chromophobe labeled",
+      "url": "https://slideplayer.com/slide/10700427/37/images/20/Figure%2B17.3d%2BThe%2Bpituitary%2Bgland%2B%28hypophysis%29..jpg",
+      "reference": "slideplayer.com",
+      "type": "direct"
+    },
+    "WEB8:endometrium": {
+      "name": "Yale/Medcell: secretory endometrium with uterine glands",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/secretory.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:frozen section": {
+      "name": "Pathology Innovations: frozen section with ice artifact",
+      "url": "https://images.squarespace-cdn.com/content/v1/55959060e4b01787e518c3d0/1436211604164-4UKXAQ41OVWZV8YY59OO/image-asset.jpeg",
+      "reference": "images.squarespace-cdn.com",
+      "type": "direct"
+    },
+    "WEB8:giemsa stain": {
+      "name": "Wikimedia Commons: Giemsa-stained blood smear",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Normal_Adult_Blood_Smear.JPG/1200px-Normal_Adult_Blood_Smear.JPG",
+      "reference": "upload.wikimedia.org",
+      "type": "direct"
+    },
+    "WEB8:granulosa lutein cell": {
+      "name": "Medcell ovarian corpus luteum: granulosa luteal cells labeled",
+      "url": "https://medcell.org/systems_cell_biology/female_reproductive_system_lab/images/lutein_cells_labels.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "WEB8:immunohistochemistry": {
+      "name": "IHC example with DAB chromogen",
+      "url": "https://www.dakewemedical.com/uploads/upload/images/20250610/42ad3337f39574a64e18951f1b1cc7c5.jpg",
+      "reference": "www.dakewemedical.com",
+      "type": "direct"
+    },
+    "WEB8:metachromasia": {
+      "name": "Toluidine-blue metachromasia mast-cell example",
+      "url": "https://ijdvl.com/content/126/2010/76/5/Images/ijdvl_2010_76_5_538_69083_f3.jpg",
+      "reference": "ijdvl.com",
+      "type": "direct"
+    },
+    "WEB8:myometrium": {
+      "name": "Yale/Medcell: uterus wall endometrium and myometrium",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/uterus.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:osteocyte": {
+      "name": "Medical University of Vienna: osteocyte in compact bone",
+      "url": "https://m3e.meduniwien.ac.at/vm/histo/bildquiz/block2/roehrenknochen/pics/Bild4d.jpg",
+      "reference": "m3e.meduniwien.ac.at",
+      "type": "direct"
+    },
+    "WEB8:osteoprogenitor cell": {
+      "name": "Periosteum research micrograph: osteoprogenitors labeled",
+      "url": "https://www.researchgate.net/publication/283855295/figure/fig5/AS%3A296120455581701%401447612026828/Periosteum-A-Schematic-illustration-of-the-periosteum-during-growth-B-C.png",
+      "reference": "www.researchgate.net",
+      "type": "direct"
+    },
+    "WEB8:override:sec-5-1:tunica adventitia": {
+      "name": "Artery intima/media/adventitia labelled",
+      "url": "https://files.mickeymed.com/articles/513657277add98-c449-406c-8329-4e8df0007c35.png",
+      "reference": "files.mickeymed.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-5-1:tunica intima": {
+      "name": "Artery intima/media/adventitia labelled",
+      "url": "https://files.mickeymed.com/articles/513657277add98-c449-406c-8329-4e8df0007c35.png",
+      "reference": "files.mickeymed.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-5-1:tunica media": {
+      "name": "Artery intima/media/adventitia labelled",
+      "url": "https://files.mickeymed.com/articles/513657277add98-c449-406c-8329-4e8df0007c35.png",
+      "reference": "files.mickeymed.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-7-1:stratum basale": {
+      "name": "Thick skin stratum basale labelled",
+      "url": "https://image.slideserve.com/1039252/slide17-l.jpg",
+      "reference": "image.slideserve.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-7-1:stratum lucidum": {
+      "name": "Thick skin stratum lucidum labelled",
+      "url": "https://image.slideserve.com/1039252/slide17-l.jpg",
+      "reference": "image.slideserve.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-9-1:mucosa": {
+      "name": "GI mucosa labelled in wall",
+      "url": "https://o.quizlet.com/UdLVpWNqsKbXOIeW-qkabQ.jpg",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-9-1:muscularis externa": {
+      "name": "GI muscularis externa labelled in wall",
+      "url": "https://o.quizlet.com/UdLVpWNqsKbXOIeW-qkabQ.jpg",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-9-1:serosa": {
+      "name": "GI serosa labelled in wall",
+      "url": "https://o.quizlet.com/UdLVpWNqsKbXOIeW-qkabQ.jpg",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "WEB8:override:sec-9-1:submucosa": {
+      "name": "GI submucosa labelled in wall",
+      "url": "https://o.quizlet.com/UdLVpWNqsKbXOIeW-qkabQ.jpg",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "WEB8:pas reaction": {
+      "name": "Wikimedia Commons: PAS-stained renal corpuscle",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Renal_corpuscle.jpg/1280px-Renal_corpuscle.jpg",
+      "reference": "upload.wikimedia.org",
+      "type": "direct"
+    },
+    "WEB8:perimysium": {
+      "name": "University of Vigo histology: perimysium labeled",
+      "url": "https://mmegias.webs2.uvigo.es/02-english/a-iconos/muscular-estriado-vista-general.jpg",
+      "reference": "mmegias.webs2.uvigo.es",
+      "type": "direct"
+    },
+    "WEB8:primary follicle": {
+      "name": "Medcell: late primary ovarian follicle",
+      "url": "https://medcell.org/histology/female_reproductive_system_lab/images/late_primary_follicle.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "WEB8:scanning electron microscope": {
+      "name": "Nature: SEM rat bronchial epithelium",
+      "url": "https://media.nature.com/lw800/magazine-assets/d42473-019-00127-2/d42473-019-00127-2_16704910.jpg",
+      "reference": "media.nature.com",
+      "type": "direct"
+    },
+    "WEB8:smear": {
+      "name": "Wikimedia Commons: blood smear",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Normal_Adult_Blood_Smear.JPG/1200px-Normal_Adult_Blood_Smear.JPG",
+      "reference": "upload.wikimedia.org",
+      "type": "direct"
+    },
+    "WEB8:spiral artery": {
+      "name": "Annotated endometrium diagram: coiled/spiral arteries",
+      "url": "https://o.quizlet.com/tv6pTNj6uc-bbeiVzqrkyw.png",
+      "reference": "o.quizlet.com",
+      "type": "direct"
+    },
+    "WEB8:theca lutein cell": {
+      "name": "Medcell ovarian corpus luteum: theca luteal cells labeled",
+      "url": "https://medcell.org/systems_cell_biology/female_reproductive_system_lab/images/lutein_cells_labels.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "WEB8:toluidine blue": {
+      "name": "Toluidine-blue stained mast cells, microscopy",
+      "url": "https://ijdvl.com/content/126/2010/76/5/Images/ijdvl_2010_76_5_538_69083_f3.jpg",
+      "reference": "ijdvl.com",
+      "type": "direct"
+    },
+    "WEB8:transmission electron microscope": {
+      "name": "Yale TEM mitochondria example",
+      "url": "https://ysm-res.cloudinary.com/image/upload/c_limit%2Cf_auto%2Ch_630%2Cq_auto%2Cw_1200/v1/yms/prod/7b7a46df-aaf9-44d4-b163-cd7f303f4232",
+      "reference": "ysm-res.cloudinary.com",
+      "type": "direct"
+    },
+    "WEB8:type i pneumocyte": {
+      "name": "Yale histology: labelled Type I pneumocyte TEM",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/respiratory_system/air_blood_barrier.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:urinary bladder": {
+      "name": "Medcell urinary bladder labelled histology",
+      "url": "https://medcell.org/systems_cell_biology/urinary_system_lab/images/bladder_labels.jpg",
+      "reference": "medcell.org",
+      "type": "direct"
+    },
+    "WEB8:uterine gland": {
+      "name": "UNSW embryology: uterine gland and endometrial stroma",
+      "url": "https://embryology.med.unsw.edu.au/embryology/images/0/0a/Uterine_gland_secretory_phase.jpg",
+      "reference": "embryology.med.unsw.edu.au",
+      "type": "direct"
+    },
+    "WEB8:uterine tube": {
+      "name": "PathologyLive: uterine tube histology",
+      "url": "https://www.pathologylive.com/practicas-histologia/bandejas/files/t_u_he_04x002.jpg",
+      "reference": "www.pathologylive.com",
+      "type": "direct"
+    },
+    "WEB8:uterus": {
+      "name": "Yale/Medcell: uterus wall endometrium and myometrium",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/uterus.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    },
+    "WEB8:uterus wall": {
+      "name": "Yale/Medcell: uterus wall endometrium and myometrium",
+      "url": "https://s3.us-east-2.amazonaws.com/yalehistology/female_reproductive_system/uterus.jpg",
+      "reference": "s3.us-east-2.amazonaws.com",
+      "type": "direct"
+    }
+  },
+  "chat": {
+    "IMG-001": {
+      "name": "Tecnicas de tincion  | Histoweb",
+      "url": "https://images.openai.com/static-rsc-4/gWPN8xs6gNhm8PlC74m7XExVrnQXJqjqoVKj741PQ8RrahBjSoyQJ8suKV2TwVeQEC5KDeTRxFbGkyoYQCdflHdqVe_VbtlfaTFVweqnGxb8ajP1QW0I1Zk96V8LXzQNk8QUyzlTvCjxOx-izop1T8ZIiKekKQLlsgDL53qHx8I?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-002": {
+      "name": "Bioconectados - Sobre o autor",
+      "url": "https://images.openai.com/static-rsc-4/yYxbv5OgQ8Oh5pFRN5uJ-VqbIpdbbjWrCzJJGcr9v-HmwWEj9ogbZdUAtXRwPVAqipa80GXtgGhRUCX3luTAiZtjGHdYB8udBED8Wlvxf28BOWh-UG-U8QjXrRm-0RKK43OSZZenCJJNI6LgfiQKnY4I4J3GGLcrQLaGXl7a-KQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-003": {
+      "name": "Histology of Connective Tissue Proper-I - MEDizzy",
+      "url": "https://images.openai.com/static-rsc-4/znWwuCGeZkLOlNz91v5ttFazGJR1Ehv-YvtXomtUg2uvrPs_K53FO3LjXixxbqC2VC8CfzGwFKbCYB07VeEDo1mgWH5yqj5xF0pewspYTdavdZVxFqoZpdQ2GHOl7U6qvNpGpG_DhiEcKAFCKCnWXA6y8c8zxYTjWjwBnh1FdH4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-004": {
+      "name": "Epitelio plano simple",
+      "url": "https://images.openai.com/static-rsc-4/x9q_x8lU_SJFFScIRqLoBSQkeYQYyj214gZSeYEHUrOeV75bvBbrmp3nxNHfBzrXDuBDYY0ELRB5rHxZP_Ypl7l8x9RXQk1x0k4LjYIOvQATMLyBCHgZX7M3UeIXn2MEqsQSijlY56f_UHQTO8bFjFy00xzGQt4NSfigJp7CzBI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-005": {
+      "name": "Symulacja interaktywna II  -  Wirtualny mikroskop. Tkanka nabłonkowa - zpe.gov.pl",
+      "url": "https://images.openai.com/static-rsc-4/gl2JZktsG2sYf2V8Zq9n_QRJK6inI3Ohvo38JrUZcSgTmpWgCakMiXl5J6G4Camh-NmcChD_8srWq5ROjJ52305kT_oXDlcGebL7tE2_BAhfFpSZJOnKA8y4YBw1tGJRvJ9_mJgUtP5TPWPI-MFbdqKwBqtS6290v1748n7-M4k?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-006": {
+      "name": "Aparato Digestivo: Hígado, páncreas",
+      "url": "https://images.openai.com/static-rsc-4/2oxRAZSkH0MiWQmY7Wku8ue9OiPnY4TEUSmnlZX3WedDhFdl6DkI01C81F8t8--FqjjKY3izNKSI0he0j8K1suzHyg0q8Hlk5Q6P29guiWlmLFPKE7qQqxg-YPfdwGoDm3qRJn4fVgO9F9k6OSxjJ3hryYM8F3ZGBXhhwWKWijw?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-007": {
+      "name": "Alveolar wall, alveoli & respiratory membrane. Normal human lung tissue, 250X at 35mm. Shows the thin alveolar wall (simple squamous epithelium) and the extremely thin Respiratory Membrane beautifully adapted for gas exchange. Also, shows red blood",
+      "url": "https://images.openai.com/static-rsc-4/9zTe8NqYa_XZNtIAW-sBFiwgky2TBbNSazZOKf2XC0X1DVdu2nfS1mRH3LzCgW0K-SuxAIUo70RuijFr6xjwNdy5522ykNpnafVwBa-k337tZTP-1c7IzPTSdmJJWugmg9C7s8Q1okt6JBERlrEAkdbpWFLaaususra0R9fOj43IgN5prpsbTJ1TZpEOPXP5?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-008": {
+      "name": "SIMPLE CUBOIDAL EPITHELIUM UNDER MICROSCOPE",
+      "url": "https://images.openai.com/static-rsc-4/dkDvlW3VDiW5YK0mqNzrzfDiDUn65PTgIaPdbYazgKMJ5Stvarj9YxCN65JYnwwA416zwGAX9YjP7N5rnk2msRKjU4wGWgGZYHTClESPBEDOZa-I_-Ac42pHyZ7DSC17JsjcAOZGcOI9B8OKl27E97k0ZVlxdWUhXNC_lT0mdvQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-009": {
+      "name": "SIMPLE COLUMNAR EPITHELIUM. SMALL INTESTINE (ILEUM, HUMAN) 250X. SHOWS: TALL COLUMNAR ABSORPTIVE CELLS, GOBLET CELLS (MUCUS-SECRETING, CLEAR), STRIATED BORDER (MADE UP OF MICROVILLI SEEN WITH THE ELECTRON MICROSCOPE) & SUPPORTING CONNECTIVE TISSUE",
+      "url": "https://images.openai.com/static-rsc-4/R0psIjlFlk2vY2qdhxdIY-GKvA3HMrllZB599KQTTOLQEsUyN_hv_LDjv7EVyhulwZAXQ7hPuyulHrnE4iRbKqPXsADKyF6ZeeADR8kqwrVd4mwnpfFYGDQldi5yGagIDeB8Y8wOL_Y0rX7gtT5Qv1hzOnidQWHvsm_d_M1exO1MeE6K4zVgyFoNoOmK1tYK?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-010": {
+      "name": "Ciliated Epithelium--Pseudostratified Ciliated Columnar Epithelium with Gobiet Cells, Trachea, 250X",
+      "url": "https://images.openai.com/static-rsc-4/9_pZ5UJrG9ldBB7npTGPpUsDFiSmLiHVEesHUJlQBM_d246OLubIrluKRpvG5Ext_c2Qz4-3EwAv4PLp1-In6moWYP6eivHuloEd8HUFApvKoDrXePEOcHV0qjv0QTc1CgzICP9S2V5raMs6q1NVxDBYFLQxhyF8yOtGKnsJ6G1zs6eR-sAgWkfbiuhe3rU7?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-011": {
+      "name": "THE EFFECT OF A DAMAGED SKIN BARRIER AND HOW TO FIX IT – Codex Labs of Europe",
+      "url": "https://images.openai.com/static-rsc-4/zPDZVgvKRmMOyasPaF7HKfwnudaLP584w1shI-98k9JvoeaXhoe-f1J8WgDfQQVXvd0OVVSjALsDK1Q8fCRoW8bWriY25yccFFav__UhDb_gz9-FF_FMZtEx_zbT3yh9u78Bdi12oWuIw3cpErZAK6_4ZrQyoiYX54NJ9h0Nigs?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-012": {
+      "name": "File:Thuc quan.jpg - Wikimedia Commons",
+      "url": "https://images.openai.com/static-rsc-4/yX7FxmRJcYpvbOQhlN4bO6cSkKqClWZFQEkVh0_ovt5CQPlDYGQDFZCkAOkxO7qixrhzF4XbkLz_bOTsfUCuNHtxjEXLq58IV5sORom-WG9PIDlZBTad56MKa_ke5rJ-_4WYiXPjjfhDFvuidryEapQo-0gtylqD4NKyZFKhH9s?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-013": {
+      "name": "Plant Extracts as Skin Care and Therapeutic Agents",
+      "url": "https://images.openai.com/static-rsc-4/QYYoJCNwpoSvC7rpfUS4vbKJLnanhoYrDVjk983mOWAHWIR8vqANXuBY_yLx_5GQQjK3OK7i39pkuAB9wYko9Cr-1p-C9HNv-mLORVlu0tbIrMsb8_khzIVvolmKvR7gb-OVUmbxUqRFw85oQEhJ1kqgdQ9udeRkydnBBq2jqzE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-014": {
+      "name": "Lesson 43 - Lower Urinary Tract Structure and Function Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/6v1LCqJqZc1aY5Gbk4uHS6vSFCMBRYdAPSW_n5lW7u4v1NbsePagtf3-jc8AmIiQGVVhzH0vB-jokeSwZP8CbW1udqTwMwdiMsDhIS6NS72r1mYmhgRewC09Uj2exKLZIpMXmaC1_SxP_tWiUXvsMVddGD6mYQ27scKyHDg3yWg?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-015": {
+      "name": "PPT - Lab Exercise 5 PowerPoint Presentation, free download - ID:1833390",
+      "url": "https://images.openai.com/static-rsc-4/U4oYbOTCOi68URJFgmAUUdmkMSDJ28-2mangbN3bV8fbTk3oZmC9XaV1rybZIg2hEEVRhBohmn7FbNN_OlquCHDlHtXsQU9xBvZ__kRL1INnO2tpG_BWssrzhK5di1iAbiuD9mZRmxlmcojnO007FmWtL4SGO6nXLNDHV6ZCQC4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-016": {
+      "name": "Dense irregular connective tissue",
+      "url": "https://images.openai.com/static-rsc-4/6VHC0y74iXa9Jb4YDuj6HvicPwpvL_rrGInvdI7gZvrnRRvs4LPe7XAefQlprkr_cAvQJLXxjf0XMJv2OQUTnkZLIvAmu70gV-vle5z_37L92UrQHRq8Zr-DOAp8YBRCTceqvl5DpL_5wQgQQmS0Z2ll9xbzmQ17AjIhndKBQE8?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-017": {
+      "name": "Dense Irregular Connective Tissue – Kit Ng, Ph.D.",
+      "url": "https://images.openai.com/static-rsc-4/O-59cwCECv_Uo77-vGH0EjnB71kPdy0QxOGySO2RXk3e9Q1HgHYVL8w7tX5VbeCYfY4I3Wl34APgoZ67erwmRif6Gcd0iJbtzNSD9LndSI2Djd4ut4jIC-WxJsnbR179qrkIMYQeAs0uoNYeMOEogGJIs9gpOH77o27nh7OZOwc?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-018": {
+      "name": "Connective tissue presentation2 | PPT",
+      "url": "https://images.openai.com/static-rsc-4/9ApAGYY8h8zYnm6Qpk5srnV1e6LSCjIyx6NhBfZ-P3pJ7CjxyKMT_HVV5_SNfjhfE_l8kyniy6rg2hzq2X1y5n5TZUR5dLKwAYihDvmpORuKralIIF-yqbe_UuS5NVijTNAmlJMPPcv3T5_EUqExySTcCNWCQ6I92AcR4qD5fkc?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-019": {
+      "name": "Macrófago e linfocitos | Imagem original de UCLA disponível … | Flickr",
+      "url": "https://images.openai.com/static-rsc-4/DPSdxDo8-0t5Z0P8y30RgSDsgpWk5YyLVqw8Akhj9SABXwrjFvlCfRKyNwHngA5AfAg6nLrG1WVJMs8KiQkTaM-3H3iWvsor6mqWIbagBrvTJWEznAGiggsOhWXAS1nYpGW1JqVCNJJgN-HMKXlaTWQkdXw8Dy2k2y7Hj50Us7o?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-020": {
+      "name": "HISTOLOGIE: Nochmal Mastzellen, weil sie so schön sind",
+      "url": "https://images.openai.com/static-rsc-4/iXfdSWEKoi73kVUaqBVls_Ncymas6tL-TUh6id7of00vdB0QbR-ntCgHY555RYc0ZwtSX0rwWQ6RxbaZZpsWKa6apUklyp_f7tiemczcOyy7LsWVzpi99N6CTgyAJmKiU0uMXLiTTfBHBV7F_h5QncBE-wuNUePuKBhNCcXqDaw?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-021": {
+      "name": "CARTILAGE AND BONE Similarities Living cells embedded in",
+      "url": "https://images.openai.com/static-rsc-4/KUUUHJVssZwaFh5c0SgK-3NXSGVS-GEWLo_iO-GrP6A5LpCSpMfcvbRREn4iFxhqQNYSTRKSn5mOOCixdWQz8BnEhG8E3KbfTBG0I8qvXRnLeaO60_OVqEUFIrZr6-2CpuQYCGuKPtLD_ms_Bo9EuK1jhO_u2SCT5_0H_hkst_Y?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-022": {
+      "name": "Connective Tissue Lab",
+      "url": "https://images.openai.com/static-rsc-4/O74bEAHO0TXvK5LZVbh5vF13VbMoOqT1UZnYaotXcFy4FvbanFvmJ7wQBa2mwXBPi8MTFy3YtHMAXDf3lWkrXdu8FNryD4IYoAwkW5Pxf8Cc-FMdFOoOVVp_F9FrwWGeINtql18To8mNZNTV2uhz7uMdwN4nBzPt4Lkdphmbmrs?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-023": {
+      "name": "Histology Of Connective Tissues Lab",
+      "url": "https://images.openai.com/static-rsc-4/DZb2c0iMGMi1x1h2QE0V6Idzy18iCSmEJqxw5Y1UgLR-3Mtemqyo-Vf_o6y-xKacLlsv5ECUJZYZggrIOdKcbi6cG1BA1qyA0-P4hJorOYfouS3nwJdFer3ZA4V_yC6yiryP0e0BjzENJatJe_1GpBON2-MVKkJzbEojQgrWKPI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-024": {
+      "name": "BONE (COMPACT), OSTEONS OR HAVERSIANS SYSTEMS, 50X at 35mm. Shows: osteonic (Haversian) canals, lamellae, canaliculi, & lacunae (dark spaces, contains osteocytes in living bone). Bone is a supporting connetive tissue aka osseous tissue.",
+      "url": "https://images.openai.com/static-rsc-4/DJ5nBukA9_y65hWZ9zoVL5tVqFRp-4XVbU6JPPKGIiQGlMVnZOlXXHtP4FBc72D9k8fZ22cU6P6OW-dypHqHro3gtWXbQjrMTRLqcE-YGAU_p0_-d4mHX5xqKs5UjAghLqCOLXYHZbDPOmGQ62JcA7mxrOy_2OuzfD9Q7QC8AbzMcvki0gqmwKMzgtYrot6z?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-025": {
+      "name": "Bone – Tutorial – Histology Atlas for Anatomy and Physiology",
+      "url": "https://images.openai.com/static-rsc-4/z8-kiLnmYsR1rtfZyvQmEPNm0_xIq5HikE6MaHepVaMGVzROso9ZHBOUaYs7O5dG8n3wWqC1sy6sL_0Fun8cKT6RjUcWFREfE-xyx97nTrJ8CWySVZfH--wKkFfQDFEAqIclEsXJ0IoLK0rIxMK0zvrvQ9peIUdxG_16NmJB0lg?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-026": {
+      "name": "CHIP Clinic — The Zhang Lab | Stanford",
+      "url": "https://images.openai.com/static-rsc-4/-i6L_QWUFxxLZI39jWM0ZwbwXftATQpquzE5LOp6HGE-bqfCiSkscVo7mI005n_vdagJ6nrL-Y9la-qCQf1Ygo7FKNuLxgJUP54rEXyR_qeb7xBEwDudEW2sUHY9wsBdR4psjhVwlSsbq4ZEDnTdoN5yqiJh8Wz2wFuPFaN1j9I?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-027": {
+      "name": "PPT - Skeletal System PowerPoint Presentation, free download - ID:4803528",
+      "url": "https://images.openai.com/static-rsc-4/RNM4xzjvgU9KAZLlwU1bQq4yvl0zVn4HB_S4d-x51kYsPjAAv7pKEJgSpn26CwniFllU6GRdFMSJTWNoY2Oz_OK5pcb9DH2S0TWGaY4_HOYDQhThcgRPHYFWfWfNysygmhB2k13TbvGMSuy8ZLBEZR-i6v21_WJxjoxaq_UraLY?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-028": {
+      "name": "Bone structure and clinical importance | PPT",
+      "url": "https://images.openai.com/static-rsc-4/9HmHPuF-gHK5Xw8gTAbAgQaD5xDu0-MdFZ4hczUcNM3JLd30XGZKT1dxq0OLngVcR-eoJj3aqGil-xna4eUbvA1R-8LqwSXLXujnf0gbhqppOQwra644igw0rAnwHUX19dCSzmlHJGkqe1sWGmzypxj-MYKnLlzdwbu6OXIh9K8?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-029": {
+      "name": "PPT - Introduction to Haematology PowerPoint Presentation, free download - ID:211369",
+      "url": "https://images.openai.com/static-rsc-4/W52AO3jNh1uSKlqpqX_pu2qxuFrlFgCwboWk5-ykLut3WZW4419kbr6a6aa_Jl-EGxN-wsg523HOZEW3EHuAQhP004m6f3vOuo187qmtR7csi5NkSyWPIhx3QrH3PZHhBclm0ArpWHYyiws2zLVnLnwaMEAhjjOYce16HUqKPcQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-030": {
+      "name": "File:Platelet 01.jpg - Embryology",
+      "url": "https://images.openai.com/static-rsc-4/8psSqJKP9G7nzX0zJKp1at8_pgNTdnTqjZIHkvWl_XUIFJc5wBYZGzozY9wyGnChx3uo3PMxCBuvVOCY-kWZQpjUgwjFe9KUuisPPL9wDqzyhmakw4D0ZWo7RSk44kBJMVcZhJXU-e5hgFeShk7IXLPyWRWbswBWC2BD71XK4VA?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-031": {
+      "name": "PPT - Histology: Connective Tissue PowerPoint Presentation, free download - ID:2182008",
+      "url": "https://images.openai.com/static-rsc-4/K2c0XQkN0M4UfuhL0KVvNPGMPNFUMezyqSnRsiR0iiRYyKSPQ0dWuifcOjZASVneSDOocOfRpd07fKQR7sAs5FiBLUt94CHM_YQ7wvhaDpaPtdB7IFSik2296iOw9i1eOtiHv9U7hIzHAIYIQlcz3PmhbLJ4OQhA5BSQGjAeu74?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-032": {
+      "name": "The various types of White Blood Cells - MEDizzy",
+      "url": "https://images.openai.com/static-rsc-4/ZOFIsu8TByqP70_RRCum2GfLs4BVAKQJJjPTh8qH3nm7BLyNq2eDkk5PdINT1s8Q7KbrJ1XSiFKKnw9JLkyyLp9nkQGy2iAxC099DotEqhc-n3AuKOK-wQf1x0v1HAbAVcDDsUBS8HtLpiCxyXY0gKPlZVKb-lkoYmJoQ5b_3u4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-033": {
+      "name": "Skeletal Muscle – Normal Histology – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/Qof7t7I6Bw-1-xvUY4SDcTkiyDZrxP673ST6BNXr6KeqNA-Xo0uEO3fahXpU_qkpjQ5w9KKIwJCSxwiirIhtS6oFTp7ubZJav2hYKHbV341iqZGFQMDhEaSOo46n5OcFDmYL9cDbhSKjPg41SCHYYLAg1ux9uz3DE3EkHWQV80A?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-034": {
+      "name": "Histology (Muscle) Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/G-274cOejBczxnJvzKovXRiKkwcnZhWKaEtXlUE8xE27NDcaDU3y8GgKxoSatqLOIdESFHLe8E0kY0Ihc_h-_JUNQuPq8tqZCEVjjB2nwVlTSWYOL4ISpFWO-80QDF72P5Ol4d84p42YD_ifxKoiv8gZ8LVfZYsyA_UjA2HWL6E?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-035": {
+      "name": "Smooth muscle fibers",
+      "url": "https://images.openai.com/static-rsc-4/Sfoz07bFfnKCXvPao_k49T5JQqSJDDttGQr-OeoIW606OdWHq_Fe9KNJphtoibKUPqN1ZYC9UqOggW0WMMvko28pLag_5NManN_72CJLZ5Q6qdNcGgl0Jbvm50UMBlSvstTELrFeleRy-LVrm1rNWqhO3jNVNaVTLtVikZmlADQsTknaNgcajxX3e333X9-y?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-036": {
+      "name": "Heart – Normal Histology – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/vZyyUJOdxs2s5uhqObCx8NvVVivmUp6UOPbuwiO-v1bOwpTxqnOys1Hs2hNIvSXNxjHW2G6UR3pBhscmxpmvgK5uWeUYUjT02qZ9IVi6IPOmlI_2DvAvcvW1SiwNWays3yyupEhxo-e4Dg1ltKmkr0rS3EKD7aSAJ3K8ycMIj9o?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-037": {
+      "name": "smooth muscle tissue Diagram | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/cMIvveddHYtW_OY1uBODNQQU1By000ipQy3bTHLLXTpy_eFDTxy6VHSXsCBQ_FRB2ZS_x98i88JKPEZ5L1rikpUO4stlaPePDqvYEtqrcX3hp2yXyjdA8SExlWZATWCwHmTAs_HG9tPzac6EODLa7N5GParlIG22EcOsXp8R5VM?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-038": {
+      "name": "PPT - MUSCLE PowerPoint Presentation, free download - ID:4311569",
+      "url": "https://images.openai.com/static-rsc-4/OPwwY-iSQC9hryyhBnfdhrJNdwxUMbOolHbbc8m1lpIsvZsb1M1bK4cWvgj0eCIY3swlIbYIRucnzrHbjirMnqoGklzLYjB04-nHZ01-YJPOY-y1oXH9nLzGqiROsLj9gdHNQS0w4yiiRQGtzs5g427hqn3rUzMvHNoyH3e-Brk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-039": {
+      "name": "Nervous Tissue",
+      "url": "https://images.openai.com/static-rsc-4/_1A3jSv8f4Tcs0zZ8cGAxVNg0QG4h44ANC7PksT_IMGg8Zde30hgoAqy7m2Xxoi56KTFFxmdT-74XQ1YMA9Qbnl37a00Easja5Aq-Jkxrk7jKs4393sFwwFrUWrJka3ThHDiFMPgDvWlu3lUK-LVxkF23gyyXleV-XrNOhbpHyk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-040": {
+      "name": "Nervous Tissue III: PNS Histology Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/-kDWI-Tp96dr39kPuFKgr-LS19KFkrEnsWgA33mmWjIKozptEoAf1UIUZyjPeWRkvUNlk4YH5q_y2zUhdzIHTI2tf11DiNqirjM4ePymjp35BoHfWyoDY98fPHQ-GdnaD_LSgWXK7F6n3ym61OzAT8i2gy47TotsbdFOcucM18U?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-041": {
+      "name": "PPT - Histology of Nervous Tissue PowerPoint Presentation, free download - ID:9553381",
+      "url": "https://images.openai.com/static-rsc-4/RNZLIdTBeky-kVlf1BrCGyiKNuikOV6VWiec9ADfATN70rGUP1dK_4DnNKB4kxvEojFBO8Gc2WMKePVSdlHP91k_NRGazjYtSjqKSfRZdGECCynqDrgEtxGyK_Md50KbFRF7SFfbxP0DRWI5guELKX0PoF-UChYxnaNqmVKUbBg?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-042": {
+      "name": "Microscopical structure of the spinal cord Rexed zones",
+      "url": "https://images.openai.com/static-rsc-4/Xd6ITKoJCcZmMvZlrF5ldJvo_YOfsAYtHtXBOLXFH5Vr5JMhz_0FIRq6hbuuMu04g5canwnfD5hnloFnd8K0ci62iNat94laRVVdoYoIvrA09BOZ403NGb4KtKTxItgHO3iEMjYNBLx0yBrjQQufaMg1j1utjNBq4MFhDeA-IuY?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-043": {
+      "name": "DRG with Pseudounipolar Cells & Satellite Cells | Dorsal root ganglion, Neurons, Cell",
+      "url": "https://images.openai.com/static-rsc-4/dIPbS6ImjxetXO1zECbEBzSyZ6Gr0eX8g6kwV58twmx7JORi1b4L6SDhIRbj_DhNXh13ohSRTChNriA7f-CnWidW39A2cFp4SHGtJJPuPaJ2JpNb9dvzTEcSUeEZE3j2PdDXYtzXJk4Ggd8v_qj1-MY0DJICXkXfNoX6obuEF28?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-044": {
+      "name": "LAB 17 BLOOD VESSELS (BIOL 250) Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/xPfxz43OqwJJeUxutG_dBBxbLUH12ua0jZcCJ9x8giy-RIv8sv2iQC1MTQpUc-w7NgnSB-b1ruTNj1xGP8YlmKK6uodaNd5brWouknznGeQ9u7lOcNrqpiJ1Un6Dq1lLpKzIH0o64z1ZSzot02PECZo8SNttTOfrcGZ_dzDUUWI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-045": {
+      "name": "Dolaşım Sistemi Histolojisi - Diğer - Sesan Forum",
+      "url": "https://images.openai.com/static-rsc-4/q5LF7DpaWE-ocnCTT6Bz0aKJKkys-YXrgfD9Tpe2qXZYA6JlDDiraAwi2988ycOp32vi1UCIzkhb8Q77KmudyuZU32uW2XOlDyo29_zPAsKicgUmvgNo2dOfxMoDi6iEqydNRcvz4DJHK16Ze2UUGgT4T1xiUuoyF-XCfKkPKEc?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-046": {
+      "name": "Venule - Arteriole - Capillary | Tissue types, Colour images, Scientific poster",
+      "url": "https://images.openai.com/static-rsc-4/O4kVY1rmaHzGpbAS57sYTIZ3soR8cupklZaSEn2M3cVmovPV2OFM8qT13i8SjUo-Wd1a5n78IJfCP2bNELPxEkxlL2I_6I9uYEBgAkktxG_8C1_dcQgRtshBAXn8X8KmtSLC4ZOwhvAait7fAaHlAIec3blY3bhiB8lwqZJ9y6c?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-047": {
+      "name": "Histology at SIU",
+      "url": "https://images.openai.com/static-rsc-4/WiH97tJFuxAXpaHOod26Nkl7U9eOjndlOQgob0S60GTru3oUXLndX5kFRasjGicxKf7TX-eiOXb-sqmJt0u4g_QuMrv_aH1V8bpiP1NrYOgPsk5KSTYAayTodD1h75sz2JxwAvt6HORtqHORfmF1Cvberhp8guTKr3CeG79tnhQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-048": {
+      "name": "Histology of blood vessels | PPTX",
+      "url": "https://images.openai.com/static-rsc-4/HSiYn4mz5ptQdq5t8I53cYzsjhneqT6eLtbhVC_cnsrVjBBQGTR4wIGwrlWaxRAO7UcGW8XbKirkbCFGSX5CecAGjZ9V8bDBwbzEsY861T4ynoCPqtCY4ibY5bvizhzdG2sElC-pCpnuSrW8hqZIRoSuJi-BZVPdPWUGky5MSAU?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-049": {
+      "name": "L7 Cardiovascular Histology Diagram | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/nGeU5uKT8bBERVo2W6ZwLvIUh-PK4xkRxD2KQRd30H6ak0TnR63-6vCzipKwf48LD70UXwsNL5kUVFl_DBuw-4kIC_erUMimvW2GgZfsTp5qWYtIIcG8lCEUGViDtq-8P9kIrmMbtsCA6foPWgif7FYwRUbah4JOQrKRae14F40?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-050": {
+      "name": "Purkinje Fibres in the Cardiac Conduction System",
+      "url": "https://images.openai.com/static-rsc-4/TmAqybF3d04XlU44eb_RCq2x5PzhE7HGhKmTwDR_MlRa8_IUN0f22nTqZPzocTfhIubvOu0UeEVqOOqqQH2LNY99owLcLOESo87_wE82zrN_GCZiK7QvWx7JL5_a5R9DjkiFWnoKqBcWktKBPIPOen5sdd6bgsPRjF6-u-LGUnI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-051": {
+      "name": "Histology of Lymphoid Organs Immune system The immune",
+      "url": "https://images.openai.com/static-rsc-4/KQnNkcyHm9aHm-VOJ5yzV6gJR_vj4_jgD5Q7bPgcfPPYyCVcrtcudQVo1t2kdy2i_hXgDwk0roe0Y31iaWSsuP3g383cscdpsOMikfUir3RSyaMwA5WWYWNVVdoOcm55oDCH68S0gNyCizyTRBPkOctEu9dP1rz6Mkf927kfPSs?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-052": {
+      "name": "Spleen Histology - Explore the Anatomy of the Spleen",
+      "url": "https://images.openai.com/static-rsc-4/q4apilK_gkYYAUs1ROzsOB8HACRXDiaGUDlv-rdYTD5YXvAAy3PW2H3FTZ_t0aY5ea8SZIakM6IAlv5Gf4M_fjljCFJ2c3UZErgMNJ8OY_xPKTLUXCNUrBCDqvqOal2JdgH0zONRs2s6H_h1jWaA6IsaOUMSSUM4UlAXBE0AlQ4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-053": {
+      "name": "Comparative anatomy integumentary system | PPTX",
+      "url": "https://images.openai.com/static-rsc-4/TxXKCLPoeBZBqgINXifw4h9xBpEJoRiH1tqQZt7NnV_9YYyQ_pkQbTxBzrg2SM-F8zyYVLd6euPzC533hR5yD71JiMg10gu_rKaxuyU_24vTgCfgrBvxRfELtKzj__zrYeX6eBnk-p8UpS8xTw2o9cFOHXq4T2-fmInXTrrk1aM?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-054": {
+      "name": "Piel",
+      "url": "https://images.openai.com/static-rsc-4/pQq7A79aOuo42j2ZKHlNegVRU65-uxELNY7xy-GfA3ISz_gZ4QEDCAm72Jvl3-qr-de3M_UcBffzMOyqRxbTxunOI3bZRUv85ZKS-dsjkgjHSrWFAMsLNcTSZe0G2KAx6PB5-5Jvt0Mzwy3mJSmmmtpwh7omYIMfFx7PWhK8ddE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-055": {
+      "name": "Sistema Tegumentar – Histologia de Órgãos e Sistemas",
+      "url": "https://images.openai.com/static-rsc-4/3MVtE_EkPKrwmGWr93m-s3JhXQQOut9vln91uFziDWefDFlzbcr9x-z8T8Y1SKzGfG2J7nZtcP_Sxzd5p0qqutcsUa_v45ZtAn2lBXWhlIvT7t3i-Ud1C1eh3M968vSjL-qjlPPP3P2AAm591gc1yP6YMtJyVVWAMGOPMy1Ogb8?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-056": {
+      "name": "Thick Skin – Tutorial – Histology Atlas for Anatomy and Physiology",
+      "url": "https://images.openai.com/static-rsc-4/8JBkhP205rngjHAB5NfEdGL-XQC63nFPpFxLpnSMVV5VsKIRXP1OycvNq1UmPmm5quUUPFOXiuaO6iQNR92vwtudnlt55W3scLUeY_CNr6FG60lJpj1ybGquPW_hW5spQNggLkuPrhCn4eEEgCQTR6HXDmoXPB8aAoJPijC2ZpI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-057": {
+      "name": "Frontiers | Eccrine Sweat Gland and Its Regeneration: Current Status and Future Directions",
+      "url": "https://images.openai.com/static-rsc-4/plx_QXY7ZbfzKZElvLqVgJfKUDH_aYtCQz_8JE7I5TRaDi5pIFVW52TIv6UP1qUfvDOtlkfjwfPsXqfZEaSjNXCW381WVws7LL3D4EucaNHIB-BPt74IlbOfWLue4APH9U2HUv41Fc-9ab73-0dz8eE8XetZ4orChw6c3Mhzc5Q?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-058": {
+      "name": "Sebaceous gland",
+      "url": "https://images.openai.com/static-rsc-4/RhsJ5GuSja4n29nG_pa5Pc2Bl8MHKGpWTf-oRmLMV710DBy1XKPkif7xaHDaZ2Jf6xKxbGYXT_F3vFoDTMFK1gHHtuX0K9zXBb33T142Uat-pESrvCuxdHCf1kx26aOU6Gp3Tw8aVdNhWHHyzHazI8BtharFtI0JT0VQ_riNvlZ4ee1wwfYu0Hov0-JD4G8L?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-059": {
+      "name": "Histology of the Skin | Plastic Surgery Key",
+      "url": "https://images.openai.com/static-rsc-4/SyHbHJ4TYzSK-2sic0zSCcm0IZ3nbcy_R2VhQgvFjMX2lk5XpNdOMZ4B_sp-IgbuBDjEeH3cKfg7Xd-GCFBBw--nmHPEjovbw7tjtK4rqkeZiOVhYnbTQSXpzh-J02SCkRxEI51yGruKJHtowXYRdT26YTbJcDu2oCysibV5JGU?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-060": {
+      "name": "Integument Histology Notes – Medical Histology – Jacobs School of Medicine",
+      "url": "https://images.openai.com/static-rsc-4/F7Vr_wzmvXerdZk68Uu9wFVLQbFfOg1T3yIHCXHcApOFj1jvOsxw6F3W0H0f8o_PCT_TrFd8k87ldhnN183bhKhnPjtVn-qJXep1X2oCtpOcyXiB1V-DvcM98fdy3uzxeJyCnghZTBwWMMVVraJ9ZztNhlRqMWXRECX97_4zrH4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-061": {
+      "name": "File:Histology of a Pacinian corpuscle.jpg - Wikimedia Commons",
+      "url": "https://images.openai.com/static-rsc-4/bj0yoAohM7HYrsv9DuwLtKrFm5t49qpWo6NKFm9AkvURyhxVpmyzqZxei5n_pKhVGSuCifksbazhPLJ-UfYaz9qvXNJ1PtRIFNQiLKQgQ8LhLHbH91BPiCxwnSk1ZzyZdKlUez4elMi7rqRk1R3VZYtPub17SRSGDFW8mbLfIsk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-062": {
+      "name": "SIU SOM Histology INTRO",
+      "url": "https://images.openai.com/static-rsc-4/CeHbAnY7AoEceVo7Px8USWnA6qtbt1GmmmMtTuUQ0fZ6FG0A0LCMF164tlh7kfIQ8Ub50LTb72kv1D74OyZYpiEubDaT78TIRUPZGEUqTCY24Z7ze7-EfI3cFu-pk2PIWP_eesbGPEEa5IRS0xVF2c3chmtq5vyUaj6DY04GQAg?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-063": {
+      "name": "Thyroid Physiology And Diagnostic Testing  - Endocrinology | UWorld Medical Library",
+      "url": "https://images.openai.com/static-rsc-4/clr0lQcI1WSzPd1LRt1xxrmfW1jlLngiWIHRrDZsWvtnUn67W5s7_B6xJeTGt5mgFap5xgfIPIJuPskp4-_Sp-QElU1Kl4FyfPBX2Z8QAx_b8UWvXNZmucndrvvyg6TF_wFfDj1NpJqdSfosWeNnYu2SW2cO9nWBx_JdrKewMS0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-064": {
+      "name": "Anatomy Atlases: Atlas of Microscopic Anatomy: Section 1 - Cells",
+      "url": "https://images.openai.com/static-rsc-4/l6gRoVBxQROB3XllFF-McWBUlPgdmWWMliBu49VmoZyNc6goIinfFuejGBi08nS3OcbNs4a0-vffjH6JU-F6HVI3h50485vquFYzv8-sKJ3TUKh4IbQq2AjBPBjzGCMZclkf7A79xpNBWM5VP_H82HR4LRY695XX-BRq-GeScJg?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-065": {
+      "name": "24 Endocrine Histology Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/JDgaEC9rTU7cGijKJHmE01TgbpMtnVUK_Sm_0VhbALffWhl1jSZPxjzOCABVd70uV22Gz1fQ2b8RhiEj9PI1tcvk2U6mSVrNjvlvKy_Lt025zDl4Im9VhhHzwafzjj-gN3JuHqFCotgfgIu21_WUL_4NSCOg6qKZW4YbfiCIKDw?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-066": {
+      "name": "Brain – Pituitary – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/RVaQNMLyyjEKXHJr5h3PMBc6jf0tNDUVOejO9KocDD2SwTqZWKjMk3tJQDqr6fGXNeGHfCt_Bb_P0dHjaCRvkazER_PUD8bCo0Adab5vk8Ec2Gdqo-jC5QcBUE5zO2a6AmReDjZcccv4BeYPmYt93ceEZuhlX-dn255XoSM1-S0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-067": {
+      "name": "Lesson 15 The Digestive System 1 Chapter 24",
+      "url": "https://images.openai.com/static-rsc-4/pc3pHgEeIgAS9syGPaMovHiUPYT4w0J7BdOuLzRDL02vR04XGilgkWXuOnm4HKuRRLbVkYto_NSRBsuiMslv9ylneYcuvc4PX_m_gQN8Wl3hmOMlBZIQ4YD4CN-zxj9XYSVowzPnqhvqr0GoRSn3qYhmcUND6EFz3EJVC8efis4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-068": {
+      "name": "Esophagus – Tutorial – Histology Atlas for Anatomy and Physiology",
+      "url": "https://images.openai.com/static-rsc-4/khkSPgi_s5KOTxi2IvTvGprw_ThonUlE5Zg9fjECUPoZeNCJ-eJx4QaDFQySTaxEPpdozaloH3zQ0imyGkJtuhoo7sJ3Zj4B0nXsivSZHRNwSbLlUqdBoHrHT3GM0HKipMWPqvQeL7Cix1uMqCkzYvM2GMtPd3XaOK8NOGifVqc?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-069": {
+      "name": "Gastrointestinal Histology: Gastric Glands, Muscularis, and Epithelium Diagram | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/_lg4lxheFFTC700UenRwCCey2ItqkHy7zXJjJ5pXObTEgDOCdO2owJVQ_P97d1ZdO3yCydjOth-iuanZasKELFdPshhJojkx2xjw93XW62yqZf4YdCGm3nVnVjetAYZq-MxYU8r1GWjH-HYdhUqbn8Olq68Vv8YQkTWsGt7MEos?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-070": {
+      "name": "Histologi Sistem Pencernaan Lambung dan Esofagus | BlogK Putih",
+      "url": "https://images.openai.com/static-rsc-4/rbjTCVSAEjfvz8_V2blItnBwqXOITGP6znJ4sysb2zdVAxLB6wsLf0PYkptwkcwqAbF4308PSM3kIfX-OjvRm-FTGj8D6D8Ct48JJOKEIt4PtaB0tqVj-bRti5tHvG6MDXgShcpQDxpqeqiMDYXVmTpAy0J-ZzSXabTx6KDVDoI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-071": {
+      "name": "Stomach & Intestines Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/dxFjBsr2pId3BL9ml6dRFSBmihT_pzwTVwetjKOyFiu95q7ZamqBGE99FSSy5wNsESEEcKKf0C_kpswBZFLaiiwYeZeK1iCXB6JtLRHuawUgco5l227_L0WW9zR_WGYDhx8SrplT2H5WkDKcVI3J5Vjsqd-r1a_0cL6tcs_ISX0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-072": {
+      "name": "Stomach – Normal Histology – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/VMgHNLemBABBgyVR8e5x7BueeBNQjhfBC6krP3ADpNc2lzxvkcqUYt768FDamb0O6nO90qbVL9X98po2ZmruGM680IVJLYfEdHearu3ywk89gU9s-BSXC5BQY1zXpX9MUrzge5Q8O0w1aYIlIZvQ-lF3b8CbIe90DIDcBiLCOcM?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-073": {
+      "name": "Ileum, Human 2",
+      "url": "https://images.openai.com/static-rsc-4/aro3FUF4YAFZZjZw0yzzJdcFIEBUO3ICb9hXtLElhuhHPiYkvXQ5J1Cylb7qmMz0Gam9L0K0dXoewa-v4tU0UVmqnJQFMkucJpw9FGXu16fOj7QhspMm8M-a5K6DcfuLqM3Kp3iyO0Oa66ZfTOB08YKYs_r7Z0HnSxc5yqDUB_w?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-074": {
+      "name": "HEMATOXILINA DE HARRIS SOLUCION X 1000 ML - BIOPACK",
+      "url": "https://images.openai.com/static-rsc-4/mzb2XoZ39_cduJTVlN8plvG7xrJreRli3iHnDrpbz_l9Dy-hWhpMt2rE4OZKgaQYe1mniYa6i7BqXHTRxqdJqoxuY4HYaEIYzbxstVsKOA8dQKw05xRODmDBZZdP2AYZDDTcTd1C3qRPyM1hv2mkPfCH6XylesnvQtjKAepNRxo?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-075": {
+      "name": "Digestive 2 Histology Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/by_gSybPuilHG91ZtLRUsp7VqlZOp7AkxLaS7id95loWopB48z40T1tE69VazhJeRz9CgFNumHgWwmjTYqDy_aDquj0LX-CjZg7s8ptvoB2HR4U3nH-8KkX-JdAdve1FYOvl5ixom58kJwrZDYobNXUpFvSzxMu27g31jjN8GcI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-076": {
+      "name": "Plicae and villi in the jejunum (human). - POJA Collection Microscopic Anatomy",
+      "url": "https://images.openai.com/static-rsc-4/rNx313NGpJqxIQ5ALKwtUZrx1qmABDW0pZQ8CiRvm6Vr324I2_moJf17C0tG8XpZGDzUIzr9OyzplDJSpCRHqLkCKQGPWJAX_xGqJg1TJDiXVKZ52ZRuqMo9IqpqhD2-70UGvUWLy332m_kKOZxFmdA2cI_3g_25Bsx_Pb7EdrQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-077": {
+      "name": "21.6: Small and Large Intestines - Medicine LibreTexts",
+      "url": "https://images.openai.com/static-rsc-4/pDQ2Ir3z1t46feFeuKhUFiLmgVzyWGYoWAsTKze0djaxImICRoWz3PVQOGnjvhbpPZ6QPtcIPeF2TbHhXT4LPrKU5fYheT5JWneof4HYi54XN-RkHSqwGk9HC9jgb-0CJYXac3au63OLZ9WB517CjFsk8MijJ0ykTYgmdQqIxj0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-078": {
+      "name": "Colon – Normal Histology – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/seK6NDCDH1GoYod5JGJuLCiIpuur6pFNuUxnXuEpeFd3hm0xNRqp_cBMFi2jNvOqUIiG02l69Er0fMCHIm5zXZE5Ww8K4_VeKMf8Y5iXV4exf-K7YamBGW2XHxfVXjsnntpdNujaaOuXsyImyAERtAIfNHMGActZ4kxikEy3I5o?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-079": {
+      "name": "Appendix Histology by Microscape / Science Photo Library",
+      "url": "https://images.openai.com/static-rsc-4/BzGMA7f1yz94955c3ZyKu1ks-sVoOm4VkJ5H3e8L2ClUL_vRyiRomMZ5y2EeunaMqPOEGZFxwsxmZ_ZVdwpwdXNKPVHnpTiwofBLzrE-Bt_yaSqDxlyzLpySQszxmSIa7fLABZO5x8cCkTXie6pOStIKg-Q9-nljKtM2Ksz5Zgo?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-080": {
+      "name": "Histology Of Digestive Organs Lab",
+      "url": "https://images.openai.com/static-rsc-4/GXHCe_xIJFwuf5IzlsNGwngxVIs2VBX63f93zDdvV7BynKdHUPZx5qqNWyn0cH0NqIPeKFXxxk4trMjiKPrkdNVvnYUWCXkF5orLfNDqRnRugxDKEKfuOucMLMgd5k0ytbKBP6y95EvZjxOATRbNG8UEsHlkBXkvsWQ4xfDDeT4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-081": {
+      "name": "Normal Histology",
+      "url": "https://images.openai.com/static-rsc-4/T_DoyVgoxvAbwinRVsNXr9J1rG5L8JvivYYj1yzM89jzlpxfIACY_6-S65GEiv4Lr6m94uOx6hb7jrn4WWnMtwr4XxWlnKC1qVSmiq7FDU1q-La7Aih1AytcuuDrMBlKFbxee16SkmpYBxwWcPLSjHzCv2Gy3aYhnUu_452eO6M?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-082": {
+      "name": "Histología De Las Glándulas Submandibulares 1080x1920",
+      "url": "https://images.openai.com/static-rsc-4/Ex1iI0vpRlVLM4GJYmxaQFooD9uccUpjjYNUJmSBAzOmOSW4bkbLaz18wq6LWyGHQnyJt97ZZfYs6kShX_Mak_UtzAMQx3dfDEj775nc98Swj2KmbXjvyyMf6T5eDdKQ1rXJwcNZliOloc5265TfvhaL-5adUvCZsklh_qPFpzQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-083": {
+      "name": "Human sublingual gland",
+      "url": "https://images.openai.com/static-rsc-4/Nfql2qKXJn-kZBi_Fvf7SQ0l_TbZGjchjPoOz8y8GITmaTUNDKe-ar_x5-NuadLfza4jzFtM96MNf_mQrB9EB3cd7_-yMrTGZ7TU_-_hm3_k45jSEuRPUv7M8puoS1YzW_UibaeEAvk5pmYk4zHvrndiJAEP8nBpBCmWu_pDG3NN2CgZ9w4ygy-DYAkucoDz?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-084": {
+      "name": "Salivary gland – Normal Histology – NUS Pathweb                  ::                   NUS Pathweb",
+      "url": "https://images.openai.com/static-rsc-4/8IXDGST70PCJfrtb_k6wFVi-UuyD9TIKeETpxavWBO1w5vXH7w8YRjQpvCT-33vw8hBkvEtq9inIwhb1BdzbNTry7-Kaia96E8iOBW8R87x7LnSc3_FDCSg6nin-8nE0iMlF70Dfwq56iyHo79ULRH31WdX9HUcVEJfeVZBJTQw?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-085": {
+      "name": "PPT - Digestive and Urinary Tract Histology: Faculty Practice 4th - Colon, Liver, Pancreas, Nephron PowerPoint Presentation - ID:9709473",
+      "url": "https://images.openai.com/static-rsc-4/EAVsHWlbdWW3GLHdfX0JL2OqS0kgdJMiv3Cy00BmK8eHMOX___hu1hhXsulmgvJgktt-Grkfz6LV26_zvcthVCyvhidkZsLuwSoYubAim6Lqb2jBIXLQ5eks6Qw6LnkWnG2teCvF9H09bGN4XD7cDYd8Zx65WM6rPxoXHtu5FUM?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-086": {
+      "name": "Hepatic blood supply – Veterinary Histology",
+      "url": "https://images.openai.com/static-rsc-4/n7OPKRVMyY1o9_sDLut_0d4lQGE5GpzJzZOO87T66VQaFI9Iwb_wD0ZqHN91KBYnpZ584ROWnGVKtBCgGXDSWw_U1gh2l6fMDFHtB1S9ArdcFFSDA3orFFhMZHmSHJhx35ob4sy4l8iuWMPEVURdhUcNr5bH3gGOJ4JR8C1WoV0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-087": {
+      "name": "Human Structure Virtual Microscopy",
+      "url": "https://images.openai.com/static-rsc-4/X5htEX02uOM5z3EnioYclZT2PAAwv7NaOM8Da8Wn3KWyBRazibO3zXOulpPM5e8JM1O3wtpwz3f1Ayjqs2zy5hpIv0oPRp0PlrX7CbKzXt0zUNImF83sx-CSWLO7JtlU8rU0j0_5UVYXBMdB4-Ybd3dMw5j5bDE6V-llvKzaH5M?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-088": {
+      "name": "File:2308 The Trachea-b.jpg - Wikimedia Commons",
+      "url": "https://images.openai.com/static-rsc-4/ICOYH2kaSu4D47P9va2jsb8EtciS4GJpOiRbLIz7udbDy6I968RSoQu7XCMAll8b1QzQ_Y0Ezl58vioySHhPpQpU-aiIStZXRaROP2ge0bgv9_Qm7Vg9UI9xEwlt3uRGYDUWaio84d_vubEkvybAGPmfJ1ORwNAftvoGJP3o-EE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-089": {
+      "name": "Histologi Sistem Respirasi | BlogK Putih",
+      "url": "https://images.openai.com/static-rsc-4/BXQ3BEOQ85NnNrnRCEk8ncFemBGRC16yB7X30TVgtVe9xE-gkXZZ_Jj7HJDS4ey0TGAqVYI8uKqnyRtcEtlWgwjVAaopRHocIDfbWGiuLycjFbAGviZ7D8ufEkp4B5RF10d75OJTCO0b5r7g4VdBShnWda-HSZ8Rn5KsqsaANCk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-090": {
+      "name": "Bronchiole in lung (magnification x 100) Hematoxylin and eosin stain. Cross section showing ciliated epithelium lining, lumen, smooth muscle in wall, and surrounding alveoli. Smooth muscle causes bronchoconstriction in asthma.",
+      "url": "https://images.openai.com/static-rsc-4/G1xUSlLu2RIbJpZTFAx2fKfR9RuHEyzIXnHCSD7k6_cdDBFSrZ6vm0SYRQKItO7HC-m-LXfYSfMOzcsvScZ0LnGPB1ru1eKpHBQeeJtPyEfcAHYH65tl-jKGphXSIAu-jg7P8lUz_6VYa3e7apgRk0MUmt7PQDslfZLFzJx9qCRgSOk5harJEPoGRL_iOopY?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-091": {
+      "name": "Histology Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/nIkErcsicRy7jKMyEoeEDvjH_2Cz1c9o4_bVWxCjuXw9__TvdL5SROiYO396ZlWC0aGkdICQIc0FHBtESLgqwle69E096C-fkhiWOCf22Vcjjo46ljgFvthy0-b0YviD2LtMsyRjtP5xhDGujzZSH4mKEgVD7ofo6XWo7YGaIR0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-092": {
+      "name": "17.3: Microscope Slides - Respiratory System - Medicine LibreTexts",
+      "url": "https://images.openai.com/static-rsc-4/lCUfJzga4n7oxB8oAJRtjrW9mU3vD4iMdQGB1tM-GGpnnECliD9d73Csb4_fkCFJX-5tT952AsjdVCDI1DV9_02-ivs5y_sMwp9QxBDJmZROW_7i2Owa5mHVnqwgShovPcWee5HigCOd0pBHgj5vpxzXlNuWJVavgV0RFFX8tf8?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-093": {
+      "name": "Respiratory Histology (AP233) Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/krIu4MurpwCpEN4o6PYpGbltEu6aPAxpbZcWz4BGDuO7UhgV6L8eOnqkfxDQo6iDxioTRLyVxBwex5BRn62C9acNOFSGTNfPcrDFvtTzlDXer-54VXpWyWX6D2jfixynhSaP0vwhArTzZeUDAnXhaCKBRiZGeDpeyV2vtJCLP3Q?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-094": {
+      "name": "PPT - Histology Laboratories Molecules to Systems 2003 Compiled by James D. Jamieson, MD/PhD PowerPoint Presentation - ID:3379638",
+      "url": "https://images.openai.com/static-rsc-4/bacf28P5IM55ALBZS-8ZPWAJFNP1dIVairfLReuNmdij6m6C3LUfsG_pic3_8Qe6bnzzLIVFw2zu6xwPKxbd6e89pQ5Vt90WtmxE4FCe8eqx3F1ZTLTsvfzSFOPKr7emUBKSgGHYftjZu7ZiBZ7O_s6LJbeGi3jJF6FDKTBrbF0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-095": {
+      "name": "Brush Border Definition Anatomy at Brandi Hayes blog",
+      "url": "https://images.openai.com/static-rsc-4/6j0r5ZNfWF5-HN5JyjO6c4M6_xQSCgZgMr0Pj6RCMh7bfiudqfyZT1Anegmam5rxrF7PK_wGQIonsGKZbDYl_fYWthocTmidf2k3uDfzcUfYxjRSW0yayHwic4FKm-4jOuQQMB5gLPmNt_8YZwAMHwz704YsytFzQ7k4CP2Jf6k?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-096": {
+      "name": "PPT - Medical School Histology Basics Urinary System PowerPoint Presentation - ID:9074359",
+      "url": "https://images.openai.com/static-rsc-4/_3G8GlPlpmsl6BSS_pmRaeZNyCROzvyUtw8PB_FkyXJOpl46-IBrc1yaM97Di55Vb3vWNCU1KWj6VlkOySp2MCt5peJk_tTblr-k0w4-w5wPZi-_KUBVWOYkKe6587JOt5s3KHyR3AoRtk0FPX_pnr4QbLGE0ZoXBQ5Oc-EloWQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-097": {
+      "name": "Histology at SIU",
+      "url": "https://images.openai.com/static-rsc-4/9CE08OSOIyL-7Wg42sguJlH0veWdw3s-3VDdGyRQ_rvAEoiUBxkainOXGKj0yImqr4nXkJeVx5W1Nf_GVj3u7lvrMMo5nqeZTJBNcrDjOnxFTfU5a_7l0lKo-ULxSUgeyrS4o0eDzK2VxDFeiYphPB1cK9zJNyucVtbXgOaicSk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-098": {
+      "name": "Histology Of The Urinary System Lab",
+      "url": "https://images.openai.com/static-rsc-4/rP3Vi6HEs-X0t5vh9xRiVzCAekPpua3OADER7XOWmQXuaJbtZrOaopOyyYARWOJhW0c3xszJoOo_Yvv3i39-Yxp4XOZTZbiber3VnAzZtvJVflbmmt-x60n3ccmbcoaRt8ZhJJAYhH2s6rtA2DTDdpZC9UlAdOaq8AbJzI6ETHY?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-099": {
+      "name": "HISTOLOGY OF URINARY ORGANS -Prof.Dr.N.Mugunthan.pdf",
+      "url": "https://images.openai.com/static-rsc-4/Vj7RDWRMKJzZm0eBxeijWUjh0Tg0dIXLVoVuEXOotPcRAdLlW4qkyQp9rV3VwS6mSDLB3g9-HKlQdF8EYWXlqfE6d8iKa-V4m0W-lwdI4sVA91bXcZwkYAcKs6HEx7MpI2fXDj-xQPYwEXb3OgoXbwhFHGZ8gdDqZz9sCjGmyxA?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-100": {
+      "name": "\\[Figure, Benign Urothelial Cells, Histology Nephron, Public Domain, via Wikimedia Commons\\] - StatPearls - NCBI Bookshelf",
+      "url": "https://images.openai.com/static-rsc-4/WdTWT9duIANKx5SA6foSxiLVYa_D1Vps2bzid9F9Oth97cKMBiPCR0KtI0Ov8o3WvLfFoILwLBfPlHUtN8ytIdQCNbgeCKLZ7hzkwJOZPBOPFgtNgs52h-RGp4uqPIrbqhLdzplFiqS_Ifn1IRtACKPsOktejqASDhAVkRJGu-s?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-101": {
+      "name": "PPT - The Urinary System PowerPoint Presentation, free download - ID:438930",
+      "url": "https://images.openai.com/static-rsc-4/Xpj5BxipasR4juCOQav-PRC6owU1-QQnLPipX7LsOeaek7jdlpSuJUCDQRBiO8lxdaFxtPH-nCZTYuvutHXze55vt8iBGlee-bWb9pZbkYdqLCfANug7HbNYT0qYipAZhfBvfo0zxNe65Tobsltp5oq_4mVm_5HTIeWs03ijTqE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-102": {
+      "name": "File:Testis histology 004.jpg - Embryology",
+      "url": "https://images.openai.com/static-rsc-4/7Pi54I8RXbBfRUnAAuGeZ_vL7xQ8NXICzyeefxlQVIC8q0kDtTgKg8e7pOT7ZsDBrkudN2VU2gnAXvluiaA5rJsR_eol-cDt3zGlIeGIuswj57rWxVLdWjtwsuIIqoZLkj4ZoG5dkYd_8zRPTPotbKE_LYBj-kD0HoUHmPt94Yk?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-103": {
+      "name": "Embriomed: Testículo",
+      "url": "https://images.openai.com/static-rsc-4/7DRjKrWO2gaEavZX4_DttKiYpOCsNs1D4mXKD5h26S0jMOgdlXCgW2lIH3kW0xaDNLP6SFJOP3It-dEXBApkyU0MX3cuQDTA9QhBey5JjZlk2SAkZWzmjk58mbnADmZtokliQ_n_5UOkoVTPSFcYfcrns99i4iGIYG6kK23QAuE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-104": {
+      "name": "PPT - Reproduction PowerPoint Presentation, free download - ID:355492",
+      "url": "https://images.openai.com/static-rsc-4/vc3ZxfeeJLyB9Vkz424bmGX4fX_mdYEcUTBkZzFAkEKHpAa3Vldz95_1Bzjb_-SD0oZvUC_C5fmjx663pkKkKurUoGbMzeX6D2VUIkqiTJ7nCbBJDXT-IJEWbVEcPWM-R00uHkJNhLZwOlH9g-2r93zi1oa4ruw72Q7e6fz4cZI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-105": {
+      "name": "solunetti: LISÄKIVESTIEHYET (ductus epididymidis)",
+      "url": "https://images.openai.com/static-rsc-4/U0AMQcbLBShQJUyDBbhf2a1OZbP-9h9WJIPWSAWt-agBKxmqgVR4RbKF2udsk3Q3SbGBhAC0sm13yiPgwJW2DkpEkrkLTWroLUIb949f4xT3cAYRBfKpVAdFzoL-S388Fzs7JjVYT85KfdV4LUm_ZpaYG30aMSsvQMXcoH2q_MA?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-106": {
+      "name": "Ductuli Efferentes",
+      "url": "https://images.openai.com/static-rsc-4/Cmoi4Yn5ljvwd2rfp9Ynbk0oP5JwIt691J0KtyTgzPCBcfBQKLsUYbunpglz6E5aFYoyU25oGbZv09zcn4X4QNjyP6yFOgN57Bx081jyJdqfvpF1Ycuj7ZMu8Z2Y6tCMo4CVXVl_kXhY26rm77bNNvz61h-ISdeDnUBfw-2_D1M?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-107": {
+      "name": "Anatomie - Histologie",
+      "url": "https://images.openai.com/static-rsc-4/ykBrNPZXVj98ovE6SO9sKmBdDKdw8h9cgLTXuAZlf2JeJZ4Zzu8c_kKc0v8SklfbOnBM8tI6a8uszjaLB1BoHyCrOI73Q61QUs-5G7GDozCcJOH63XN3AzlgpSFJe_JNEtKT-4Dy7vjCDqxEKUZ9vEnAufmfMmxofnzyIeFob9U?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-108": {
+      "name": "Normal Histology",
+      "url": "https://images.openai.com/static-rsc-4/5HuHf-Cr0meZWUEp5k_ShAgNJ0_bl2TVaT6DlGuXgkUeE2WkUgnlRxw8yMp1pPHjndq0kAhY6XNl5xkJn-By5Tqo2Dw23rlG9vICxGdaQnzZr-_fS_3L-o5ucTdoTKSQraILAemHxPiBHGYDHBeFwREm8IcOPreKF7Pqr6y5jmI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-109": {
+      "name": "Histology of the Penis: Key Terms and Definitions Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/o9BlbpAG0pQdv4nE1GB3uLCqo-Mn-OMZJmdkAPqKX-kiyRELV1-I40TW-bJsGKM6UeC_JeMG-m9_Aus1QlW1GjemFTmBRlVLdHHb8idAMsEZWDuR9wiuAq4l1gp005pe-C8yOpSKLBjofXric70M-rzRocQBmz2yTpqLwyVmg5c?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-110": {
+      "name": "PPT - Histology of the Female Reproductive System PowerPoint Presentation - ID:9507236",
+      "url": "https://images.openai.com/static-rsc-4/nXDr9O7jkU8FjRl8A2P61d0i5P_x2WuGFeffsNz9rTbDsU2bfxD5RNxXCBrlFn9DRG17OVPvXM-7GCGPhp0_NGuTWjgnCpbriXt5L4u3UOgpzgF9fiM6nwf9BudeeJU62sYW3YZrF_OVtzD9VdalyKj00g0OtVNm7Z-xD9aLvF4?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-111": {
+      "name": "Atlante di Citologia ed Istologia - Tessuto muscolare liscio",
+      "url": "https://images.openai.com/static-rsc-4/QxYWutM5oIVoNlRlcdEq1WI11e5Via7iS0F5kYYg4Kg4IH1i6fa-Us6EFNEUtCpydo2F25E0sp64JdiOxwNeINEyjhgHCtv6EqsUHtWCtQdh4ioGkE7J9fwmXSSAjk-A4W5quZY83VAqAIpAv8SGJV0g_JTZZfCGokjMrio1uFY?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-112": {
+      "name": "Exercise 28: Mammalian Female Reproductive System",
+      "url": "https://images.openai.com/static-rsc-4/8-PBK3bwmdCQtdDhrGimjCRU1iaC7XoBYEQEcx_L5NTdjnUAx8sa46jaOlpkojYRDgvTdsMjQA5hs8wkn7rqRGKBNOyHOrAS4HvssjSF8HUi_ZPGPi3OhjSXnFK0TR89bBSyBN-Yj5-uE-wiQ-Aw-lssiTr7wlFnnN8kDWA8Kw0?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-113": {
+      "name": "Histology: Reproductive System Flashcards | Quizlet",
+      "url": "https://images.openai.com/static-rsc-4/tO23VyI_KnDLv7ckro9EcEbNu1Q3yCK03Q8SOW_cPpXLNESFg_QFYGB4HhyTvyf-VvE4GWTb1vr5881EqQwCbgejJ9mHNUiWaD8MkIkk9FxDAPSRXIJTMlFl6CiIc6YuD8ZfZwbYFqedO-AMT0fcfNaeobh7Y74GT7-WXZoNBdI?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-114": {
+      "name": "Histology of ovary | PPTX",
+      "url": "https://images.openai.com/static-rsc-4/NCaXe-4oItjT7oGWkItl8oFaho5mmqQE62pSQQ2g8fc1mFEoMtAXo2YII2L8l-T-3iETwHW2qdxFSWeQvp0J8hSlusCaq3Y_JZJ4vHEtSwe3-kaWoNek9r4yhc8l-UiD9sbtldZmKQfv-vYTyjgOP53I1Fkcqgvp4KkAAZ3pgME?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-115": {
+      "name": "GRAAFIAN (Mature) FOLLICLE with an EGG in the OVARY, 25X",
+      "url": "https://images.openai.com/static-rsc-4/lvvqeKJsCUQE08Z_mYXMuzJWWUxj5wMfb3H9Sr7tp-fR7Dg-pHXMJ34KBcgLvB4pKWs6chtAAAf-Pw2oFkGMZOGuCCUECO6CVGiEtsU-fWyC5cpiNBGQYJCUa-onDbA3nsyzLL7Bl1IBSve_bTFvmOmDuUs4psZcB-ak0jWzyk0jo1geW_Ww-QmDjnxK4SPQ?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-116": {
+      "name": "Ovary and Follicle Development",
+      "url": "https://images.openai.com/static-rsc-4/6-XSoy7vnN8J8gaBB4JAUIsNvUmRcGD0cDkG7iiHySn7f9UrtbR0ZIq4IwZ4Kii-Wk0eD6A5cG3eG3Vq9rUbpqNT3d8TQIcgnTbfEIsLB3GeH4AonxNJom0UKtyh8Uop04mD3v_KoHeEWBiIc9azgaOjFRs-ZwgSyIicRnRfPv8?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-117": {
+      "name": "Female Reproductive System Laboratory Orientation From Netter 239",
+      "url": "https://images.openai.com/static-rsc-4/wn9shhAzNVNd_L25rtpVufytaFrvLeePJGq1Sn_aB1genH4kOFgD-VCqlRzgN51K2zHTzgDyzoQkc_YcOG91E4HeDSkI-0njlVKK_3wG-v8iiPPB7X76aBwP6gxs-kho-zy7dgdv9rmXTqNf4IbpRbxUWTZbqB0FBqLVOQwK5kE?purpose=inline",
+      "type": "original-chat-source"
+    },
+    "IMG-118": {
+      "name": "The Female Reproductive System | Basicmedical Key",
+      "url": "https://images.openai.com/static-rsc-4/y_hAUFS_a0K2ok3qf5GwCI8hn5x__FJ6kZ567KdVPxdEN6Vr3SIEuGk6o8KRH-6TVm5FBO3hP34WOqInkKJzpb_oTW_whiZSbnuCLilFq7uDsE_cQQRYCNqYrpcH_nfmkaIX1PMdYdG5pCpMjhXQLyChxMdaFBUcbNJtyNIaO04?purpose=inline",
+      "type": "original-chat-source"
+    }
+  }
+}
