@@ -162,6 +162,37 @@ try{
   });
   await ctx.close();
  }
+  // Build a compact annotated contact sheet for reviewer visual QA.
+  // Browser screenshots still remain in artifact at full resolution.
+  try {
+    const selected=[
+      'desktop-01-overview.png','desktop-02-atlas.png','desktop-03-section.png',
+      'phone-01-overview.png','phone-02-atlas.png','phone-03-section.png'
+    ].filter(name=>fs.existsSync(path.join(OUT,name)));
+    if(selected.length) {
+      const preview=await browser.newPage({viewport:{width:1040,height:1180}});
+      const sources=selected.map(name=>({name,data:'data:image/png;base64,'+fs.readFileSync(path.join(OUT,name)).toString('base64')}));
+      const uri=await preview.evaluate(async items=>{
+        const w=1040,h=Math.ceil(items.length/2)*355;
+        const canvas=document.createElement('canvas'); canvas.width=w;canvas.height=h;
+        const c=canvas.getContext('2d');c.fillStyle='#eef0f4';c.fillRect(0,0,w,h);
+        for(let i=0;i<items.length;i++){
+          const item=items[i],x=(i%2)*520,y=Math.floor(i/2)*355;
+          const im=new Image(); im.src=item.data;
+          await im.decode();
+          c.fillStyle='#fdfdff';c.fillRect(x+7,y+7,506,344);
+          c.fillStyle='#162031';c.font='bold 16px sans-serif';c.fillText(item.name,x+16,y+26);
+          const crop=Math.min(im.height,im.width*0.72);
+          c.drawImage(im,0,0,im.width,crop,x+16,y+36,488,300);
+        }
+        return canvas.toDataURL('image/jpeg',0.62);
+      },sources);
+      const b64=uri.split(',')[1]||'';
+      fs.writeFileSync(path.join(OUT,'contact-sheet.jpg'),Buffer.from(b64,'base64'));
+      for(let i=0;i<b64.length;i+=3000)console.log('LUMEN_CONTACT_CHUNK '+Math.floor(i/3000)+' '+b64.slice(i,i+3000));
+      await preview.close();
+    }
+  }catch(e){console.log('WARN contact-sheet generation: '+String(e?.message||e))}
 } finally {await browser.close();}
 report.finishedAt=new Date().toISOString();
 report.passCount=report.results.filter(x=>x.status==='PASS').length;
