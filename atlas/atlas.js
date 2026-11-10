@@ -89,7 +89,31 @@ return `<div class="kicker">LUMEN / HISTOLOGY ATLAS</div><h1 class="page-title">
 function renderGroup(k){const g=groupMap[k];if(!g)return '<div class="empty">分区不存在</div>';if(k==='comparisons')return renderComparisons();const ss=secs.filter(s=>s.group===k);return `<div class="kicker">${esc(g.area)} / ${esc(g.en)}</div><h1 class="page-title">${esc(g.label)}</h1><p class="page-desc">按组织、器官及结构展开切片形态和识别技巧。</p><div class="section-index">${ss.map((s,i)=>`<button class="section-tile" type="button" data-target="${s.id}"><span>${s.section_num||'SOURCE'} · ${esc(s.source.replace(/第\d+章[｜|]/,'').slice(0,22))}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`}
 function renderSection(id){const s=secMap[id];if(!s)return '<div class="empty">小节不存在</div>';const g=groupMap[s.group];const all=secs.filter(x=>x.group===s.group);const at=all.findIndex(x=>x.id===id);const previous=at>0?all[at-1]:null,next=at+1<all.length?all[at+1]:null;const headings=[...s.html.matchAll(/<h[234]>(.*?)<\/h[234]>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').slice(0,60));return `<div class="kicker">${esc(g.area)} / ${esc(g.label)}</div><h1 class="page-title">${esc(s.title)}</h1><article class="article" id="articleBody">${s.id==='intro'?s.html.replace('<p>按14章课程顺序编写</p>',''):s.html}</article>${sectionEvidence(id)}<div class="bottom-nav"><button type="button" data-target="${previous?previous.id:'group:'+s.group}">← ${esc(previous?previous.title:'返回本系统')}</button><button type="button" data-target="${next?next.id:'group:'+s.group}">${esc(next?next.title:'返回本系统')} →</button></div>`}
 function renderComparisons(){const c=DATA.comparisons;const names=['全部',...new Set(c.map(x=>x.group))];return `<div class="kicker">ATLAS / DIFFERENTIALS</div><h1 class="page-title">全局易混辨析 · G01–G45</h1><p class="page-desc">对照组织形态、关键识别点与常见误判。</p><div class="stats"><span class="stat"><strong>45</strong> 组对照</span><span class="stat">器官级 · 细胞级 · 管腔级</span></div><div class="comp-toolbar">${names.map(x=>`<button type="button" class="comp-filter ${selectedGroup===x?'selected':''}" data-compgroup="${esc(x)}">${esc(x)}</button>`).join('')}</div><div>${c.filter(x=>selectedGroup==='全部'||selectedGroup==='all'||x.group===selectedGroup).map(x=>`<details class="comp-card" id="${x.id}"><summary><span class="comp-tag">${esc(x.id)}</span><span><span class="comp-heading">${esc(x.title)}</span><br><span class="comp-sub">${esc(x.sub)}</span></span></summary><div class="comp-inside">${comparisonEvidence(x.id)}<table><tbody>${x.rows.map(z=>`<tr><td>${esc(z[0])}</td><td>${esc(z[1])}</td></tr>`).join('')}</tbody></table><p><b>考场判断：</b>${esc(x.key)}</p><p><b>易错陷阱：</b>${esc(x.trap)}</p></div></details>`).join('')}</div>`}
-function navTo(target,opts={}){if(!target)return;current=target;if(!opts.keepFilter)selectedGroup='all';$('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);$('#crumbTitle').textContent=titleFor();navMark();if(!opts.silent){history.pushState({atlas:target},'',`#${encodeURIComponent(target)}`);window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}})}if(!opts.preserveSearch)$('#search').value='';setSideOpen(false);bindImages();document.title=`${titleFor()} · LUMEN`}
+function navTo(target,opts={}){
+ if(!target)return;
+ const update=()=>{
+  current=target;
+  if(!opts.keepFilter)selectedGroup='all';
+  $('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);
+  $('#crumbTitle').textContent=titleFor();
+  navMark();
+  if(!opts.silent){
+   history.pushState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
+   window.scrollTo({top:0,behavior:'instant'});
+   requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}});
+  }
+  if(!opts.preserveSearch)$('#search').value='';
+  setSideOpen(false);
+  bindImages();
+  document.title=`${titleFor()} · LUMEN`;
+ };
+ const canAnimate=!opts.silent&&!opts.noTransition&&typeof document.startViewTransition==='function'
+  &&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(canAnimate){
+  try{const transition=document.startViewTransition(update);transition.finished.catch(()=>{});}
+  catch(e){update();}
+ }else update();
+}
 function bindImages(){
  for(const im of $$('#reader img')){
   const chat=im.closest('.chat-image');
