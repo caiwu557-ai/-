@@ -61,6 +61,14 @@ try{
     await page.goto(BASE,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#app .shell');
     await page.locator('text=学习工作台').first().waitFor({state:'visible',timeout:20000});
+    const dismiss=page.locator('[data-action="tour-skip"]');
+    if(await dismiss.count()){
+      await screenshot(page,label+'-00-onboarding.png');
+      const rect=await dismiss.boundingBox();
+      await assert(rect && rect.y>=0 && rect.y+rect.height<=height+2,'first-run tutorial dismiss button outside viewport: '+JSON.stringify(rect));
+      await dismiss.click();
+      await assert(await page.locator('.tour-panel').count()===0,'tutorial remains after dismiss');
+    }
     await screenshot(page,label+'-01-overview.png');
     const o=await noOverflow(page); await assert(o.pass,JSON.stringify(o));
   });
@@ -152,6 +160,7 @@ try{
   await attempt('reduced motion / root -> Atlas -> section',async()=>{
     await page.goto(BASE,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#app .shell');
+    if(await page.locator('[data-action="tour-skip"]').count())await page.locator('[data-action="tour-skip"]').click();
     await page.locator('.mobile-nav .atlas-bottom-link').click();
     await assertReady(page,'#reader .section-tile');
     const reduced=await page.evaluate(()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches);
