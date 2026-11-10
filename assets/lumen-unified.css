@@ -408,3 +408,34 @@
   }
   .atlas-page .workspace-tabs { z-index: 60; }
 }
+
+/* Keep within-section Next/Previous controls above long evidence disclosures. */
+.atlas-page #reader .bottom-nav {
+  position: relative;
+  z-index: 3;
+  isolation: isolate;
+  clear: both;
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 40px;
+}
+.atlas-page #reader .bottom-nav button {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  min-height: 44px;
+  flex: 1 1 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.atlas-page .term-evidence { display: flow-root; }
+@media(max-width:650px) {
+  .atlas-page #reader .bottom-nav {
+    margin-top: 28px;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .atlas-page #reader .bottom-nav button { flex: 1 1 130px; }
+}
