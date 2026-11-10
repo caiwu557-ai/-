@@ -909,7 +909,7 @@ function shouldShowRoundPrompt(){
 function roundPromptHtml(){
  if(!shouldShowRoundPrompt())return '';
  const remaining=countNew(study.mode),attempted=study.correct+study.wrong;
- const accuracy=attempted?Math.round(study.correct/attempted*100):0;
+ const accuracy=attempted?Math.round(study.correct/attempted*100):null;
  const modeLabel=study.mode==='mixed'?'混合训练':study.mode==='spell'?'英文拼写':'四选一辨认';
  const context=remaining
   ?`当前词单还有 <b>${remaining}</b> 个未接触的术语。下一轮继续使用「${modeLabel}」题型，不重复已作答的新词。`
@@ -918,19 +918,19 @@ function roundPromptHtml(){
  <section class="round-prompt" id="round-prompt" role="dialog" aria-modal="true" aria-labelledby="round-prompt-title" aria-describedby="round-prompt-desc" tabindex="-1">
   <div class="round-prompt-graphic" aria-hidden="true"><span class="round-prompt-icon">${ic('sparkle',35)}</span></div>
   <div class="round-prompt-eyebrow">SESSION COMPLETE · ${safe(modeLabel)}</div>
-  <h2 id="round-prompt-title">你已完成一轮学习。</h2>
+  <h2 id="round-prompt-title">${attempted?'你已完成一轮学习。':'本轮尚无已作答的题目。'}</h2>
   <p class="round-prompt-desc" id="round-prompt-desc">还要继续学习新单词吗？</p>
   <div class="round-prompt-stats" aria-label="本轮成绩">
    <div class="round-prompt-stat"><b class="mono">${study.cards.length}</b><span>本轮题数</span></div>
    <div class="round-prompt-stat"><b class="mono">${study.correct}</b><span>正确</span></div>
-   <div class="round-prompt-stat"><b class="mono">${accuracy}%</b><span>准确率</span></div>
+   <div class="round-prompt-stat"><b class="mono">${accuracy===null?'—':accuracy+'%'}</b><span>已答准确率</span></div>
   </div>
   <div class="round-prompt-note">${ic(remaining?'book':'info',18)}<div><strong>${remaining?'准备进入下一批':'新词已学完'}</strong><p>${context}</p></div></div>
   <div class="round-prompt-actions">
    <button type="button" class="round-prompt-btn exit" data-action="round-exit">退出</button>
    <button type="button" class="round-prompt-btn continue" id="round-prompt-next" data-action="round-continue" ${remaining?'':'disabled aria-disabled="true"'}>继续学习新单词 ${ic('arrow',16)}</button>
   </div>
-  <p class="round-prompt-foot">原题型保持不变 · 本轮学习记录已保存</p>
+  <p class="round-prompt-foot">原题型保持不变 · 已作答的记录已保存${study.skipped?' · 跳过 '+study.skipped+' 题不计入已学':''}</p>
  </section></div>`;
 }
 function focusRoundPrompt(){
@@ -1104,13 +1104,13 @@ function typingHtml(w){let groups=(w.en.match(/[A-Za-z]+(?:[-'’][A-Za-z]+)*|[^
 function optionsHtml(w){return `<div class="options-grid">${study.options.map((x,i)=>{let correct=x.id===w.id,selected=study.selected===i;let cls=study.graded?(correct?'is-answer':selected?'is-wrong':'disabled'):selected?'selected':'';return `<button class="option ${cls}" data-action="option" data-index="${i}" ${study.graded?'disabled':''} aria-label="选项 ${i+1}: ${safe(x.en)}"><span class="letter">${'ABCD'[i]}</span><span class="opt-text">${safe(x.en)}</span>${study.graded&&correct?ic('check',17):''}</button>`}).join('')}</div>`;}
 function feedbackHtml(w,mode){let result=study.result,ok=result==='correct',skipped=result==='skip'||result==='timeout';return `<div class="feedback show ${ok?'':'err'}" role="status"><div class="feedback-heading"><span class="feedback-symbol">${ic(ok?'check':skipped?'clock':'close',21)}</span>${ok?'回答正确 · 很漂亮':skipped?'已显示标准答案':'再巩固一次'}</div><div class="reveal-en">${safe(w.en)}</div><div class="tip-stack"><div class="tip-row"><strong>看片线索</strong><p class="watch">${safe(w.clue||'从所属组织与邻近结构确认。')}</p></div>${w.compare?`<div class="tip-row"><strong>鉴别对照</strong><p>${safe(w.compare)}</p></div>`:''}${w.trap?`<div class="tip-row"><strong>易错提醒</strong><p>${safe(w.trap)}</p></div>`:''}</div></div>`;}
 function finishedPage(){
- const attempted=study.correct+study.wrong,accuracy=attempted?Math.round(study.correct/attempted*100):0;
- const reviewOnly=study.onlyDue,single=study.singleCard;
+ const attempted=study.correct+study.wrong,accuracy=attempted?Math.round(study.correct/attempted*100):null;
+ const reviewOnly=study.onlyDue,single=study.singleCard,skipped=study.skipped||0;
  return `<div class="practice-layout"><section class="review-end">
  <div class="finish-icon">${ic('trophy',37)}</div><div class="eyebrow">SESSION COMPLETE</div>
- <h2>${reviewOnly?'到期复习已完成。':single?'本词练习完成。':'这一轮完成了。'}</h2>
- <p class="muted">${reviewOnly?'复习成绩已保存，之后按间隔计划继续即可。':single?'本词作答记录已保存。':'本轮学习记录已自动保存。'}</p>
- <div class="summary-row"><div><strong class="mono">${study.correct}</strong><span>正确</span></div><div><strong class="mono">${study.wrong}</strong><span>待加强</span></div><div><strong class="mono">${accuracy}%</strong><span>本轮准确率</span></div></div>
+ <h2>${attempted?(reviewOnly?'到期复习已完成。':single?'本词练习完成。':'这一轮完成了。'):'本轮尚无已作答的题目。'}</h2>
+ <p class="muted">${attempted?(reviewOnly?'复习成绩已保存，之后按间隔计划继续即可。':single?'本词作答记录已保存。':'本轮已作答的学习记录已自动保存。'):'跳过的题目没有写入学习记录，仍可在后续轮次中练习。'}</p>
+ <div class="summary-row"><div><strong class="mono">${study.correct}</strong><span>正确</span></div><div><strong class="mono">${study.wrong}</strong><span>待加强</span></div><div><strong class="mono">${accuracy===null?'—':accuracy+'%'}</strong><span>已答准确率</span></div></div>${skipped?`<p class="muted" role="status">本轮跳过 ${skipped} 题，未计入已学或已掌握统计。</p>`:''}
  ${reviewOnly||single?`<div class="btn-row" style="justify-content:center"><button class="btn btn-accent" data-action="nav" data-view="${reviewOnly?'review':'home'}">${reviewOnly?'返回复习计划':'返回概览'} ${ic('arrow',16)}</button></div>`:''}
  </section></div>`;
 }
