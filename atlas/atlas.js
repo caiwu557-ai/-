@@ -77,8 +77,9 @@ const imgMap=Object.fromEntries(DATA.images.map(x=>[x.id,x]));
 let current='overview',selectedGroup='all',lastQuery='';
 function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function get(k,def=''){try{return localStorage.getItem(k)||def}catch(e){return def}}
-function readHubTheme(){try{const saved=JSON.parse(localStorage.getItem('lumen_histology_recall_v1')||'null');return saved?.prefs?.theme==='dark'?'dark':'light'}catch{return get('lumen_atlas_theme_v1','light')}}
+function readHubTheme(){try{const saved=JSON.parse(localStorage.getItem('lumen_histology_recall_v1')||'null');if(['light','dark'].includes(saved?.prefs?.theme))return saved.prefs.theme}catch(e){}return get('lumen_atlas_theme_v1','light')}
 document.documentElement.dataset.theme=readHubTheme();
+window.addEventListener('storage',e=>{if(e.key==='lumen_histology_recall_v1'||e.key==='lumen_atlas_theme_v1')document.documentElement.dataset.theme=readHubTheme()});
 function navMark(){const k=current.startsWith('group:')?current.slice(6):secMap[current]?.group;$$('.nav-btn').forEach(x=>x.classList.toggle('active',x.dataset.target===current || (x.dataset.target==='group:'+k&&k && current!== 'overview')))}
 function menuHtml(){let h='<button type="button" data-target="overview" class="nav-btn"><span>目录总览</span></button>';let prev='';for(const g of groups){if(g.area!==prev){h+=`<div class="nav-label">${esc(g.area)}</div>`;prev=g.area}h+=`<button type="button" class="nav-btn" data-target="group:${g.key}"><span>${esc(g.label)}</span><span class="count">${g.key==='comparisons'?45:g.n}</span></button>`}return h}
 $('#sideNav').innerHTML=menuHtml();

@@ -26,6 +26,8 @@ const checks={
   brokenImageFeedback:js.includes('function bindImages()')&&js.includes('image-unavailable')&&css.includes('.image-unavailable'),
   noPrematureLazyFailure:!js.includes('im.complete&&im.naturalWidth===0'),
   themeControl:js.includes("'lumen_histology_recall_v1'"),
+  themePersistence:js.includes("includes(saved?.prefs?.theme)")&&js.includes("addEventListener('storage'"),
+  honestNetworkScope:hub.includes('切片图谱中的外部图片需要联网'),
   modalSemantics:index.includes('role="dialog" aria-modal="true"'),
   originalData:Array.isArray(manual.sections)&&manual.sections.length===182&&manual.comparisons.length===45,
   localAssetMetadata:Object.keys(imageMap.media).length>=193,
