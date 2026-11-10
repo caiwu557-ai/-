@@ -66,7 +66,7 @@ try{
       await screenshot(page,label+'-00-onboarding.png');
       const rect=await dismiss.boundingBox();
       await assert(rect && rect.y>=0 && rect.y+rect.height<=height+2,'first-run tutorial dismiss button outside viewport: '+JSON.stringify(rect));
-      await dismiss.click();
+      if(touch)await dismiss.tap();else await dismiss.click();
       await assert(await page.locator('.tour-panel').count()===0,'tutorial remains after dismiss');
     }
     await screenshot(page,label+'-01-overview.png');
@@ -74,7 +74,7 @@ try{
   });
   await attempt(label+' / Atlas navigation',async()=>{
     const selector=width<=850?'.mobile-nav .atlas-bottom-link':'.atlas-home-link';
-    await page.locator(selector).first().click();
+    if(touch)await page.locator(selector).first().tap();else await page.locator(selector).first().click();
     await page.waitForURL(/\/atlas\//,{timeout:12000});
     await assertReady(page,'#reader .page-title');
     const title=await page.locator('#reader .page-title').first().innerText();
@@ -107,8 +107,20 @@ try{
     await assert(Object.keys(credits.media||{}).length>0,'image credit registry empty');
     await screenshot(page,label+'-03b-image-credits.png');
   });
+  await attempt(label+' / animation frame and settled state',async()=>{
+    const next=page.locator('#reader .bottom-nav [data-target]').last();
+    await next.click({noWaitAfter:true});
+    await page.waitForTimeout(65);
+    const name=label+'-03c-motion-frame.png';
+    await page.screenshot({path:path.join(OUT,name),animations:'allow',fullPage:false});
+    report.screenshots.push(name);
+    await page.waitForTimeout(250);
+    await assertReady(page,'#reader h1');
+    await screenshot(page,label+'-03d-motion-settled.png');
+    const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
+  });
   await attempt(label+' / Atlas local search',async()=>{
-    if(width<=850)await page.locator('#topSearchBtn').click();
+    if(width<=850){if(touch)await page.locator('#topSearchBtn').tap();else await page.locator('#topSearchBtn').click();}
     await page.locator('#search').fill('上皮');
     await page.locator('#reader .page-title').first().waitFor({state:'visible'});
     const h=await page.locator('#reader .page-title').first().innerText();
@@ -117,7 +129,7 @@ try{
     await page.locator('#search').press('Escape');
   });
   await attempt(label+' / Atlas -> review deep link',async()=>{
-    if(width<=850){await page.locator('.workspace-tabs a[href="../?view=review"]').click()}
+    if(width<=850){if(touch)await page.locator('.workspace-tabs a[href="../?view=review"]').tap();else await page.locator('.workspace-tabs a[href="../?view=review"]').click()}
     else {await page.locator('.app-route[href="../?view=review"]').click()}
     await page.waitForURL(/\?view=review/,{timeout:12000});
     await assertReady(page,'#app .shell');
@@ -127,18 +139,18 @@ try{
   });
   await attempt(label+' / theme across modules',async()=>{
     const btn=page.locator('[data-action="toggle-theme"]').first();
-    await btn.click();
+    if(touch)await btn.tap();else await btn.click();
     const theme=await page.locator('html').getAttribute('data-theme');
     await assert(theme==='dark','expected dark, got '+theme);
     const target=width<=850?'.mobile-nav .atlas-bottom-link':'.atlas-hub-link';
-    await page.locator(target).first().click();
+    if(touch)await page.locator(target).first().tap();else await page.locator(target).first().click();
     await page.waitForURL(/\/atlas\//,{timeout:12000});
     await assert((await page.locator('html').getAttribute('data-theme'))==='dark','dark theme lost during navigation');
     await screenshot(page,label+'-06-atlas-dark.png');
   });
   await attempt(label+' / Atlas keyboard and focus',async()=>{
     const search=page.locator('#search');
-    if(width<=850)await page.locator('#topSearchBtn').click();
+    if(width<=850){if(touch)await page.locator('#topSearchBtn').tap();else await page.locator('#topSearchBtn').click();}
     await search.focus();
     const name=await page.evaluate(()=>document.activeElement?.id);
     await assert(name==='search','search cannot receive keyboard focus');
