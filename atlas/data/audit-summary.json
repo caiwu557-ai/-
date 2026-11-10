@@ -1,0 +1,17 @@
+{
+  "scope": "user-supplied histology manual and completed G01-G45 comparisons",
+  "named_term_occurrences": 386,
+  "comparison_sides": 112,
+  "all_image_slots": 498,
+  "slots_with_direct_links": 498,
+  "exact_or_alias_and_source_audited": 471,
+  "examples_or_context": 27,
+  "locally_embedded_term_images": 425,
+  "external_online_direct_images": 73,
+  "original_chat_image_urls_kept": 118,
+  "unverified_external_http_live_status": true,
+  "completed_expert_pixel_level_qa": false,
+  "local_image_files": 193,
+  "reading_sections": 182,
+  "comparison_groups": 45
+}
