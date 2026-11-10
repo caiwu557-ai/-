@@ -187,6 +187,28 @@ try{
     await page.keyboard.press('Escape');
     await page.locator('#reader .page-title').first().waitFor({state:'visible'});
   });
+  for(const [view,heading] of [
+    ['library','术语词库'],['stats','学习记录'],['settings','设置与备份']
+  ]){
+    await attempt(label+' / '+view+' page and layout',async()=>{
+      await page.goto(new URL('?view='+view,BASE).href,{waitUntil:'domcontentloaded'});
+      await assertReady(page,'#app .main-content');
+      const text=await page.locator('#app .main-content h1').first().innerText();
+      await assert(text.includes(heading),'unexpected '+view+' title: '+text);
+      const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
+      await screenshot(page,label+'-07-'+view+'.png');
+    });
+  }
+  await attempt(label+' / practice card interactive entry',async()=>{
+    await page.goto(BASE,{waitUntil:'domcontentloaded'});
+    await assertReady(page,'#app .main-content');
+    await page.locator('[data-action="start"]:not([disabled])').first().click();
+    await assertReady(page,'#practice-card');
+    const content=await page.locator('#practice-card').innerText();
+    await assert(content.length>10,'practice card is empty');
+    await screenshot(page,label+'-08-practice.png');
+    const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
+  });
   await attempt(label+' / errors',async()=>{
     await assert(pageErrors.length===0,pageErrors.join(' | '));
   });
