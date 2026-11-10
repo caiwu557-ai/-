@@ -94,21 +94,18 @@ try{
     await screenshot(page,label+'-03-section.png');
     const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
   });
-  await attempt(label+' / image source credit availability',async()=>{
-    // Source attribution must not disappear if remote image delivery fails.
-    let anchors=await page.locator('.image-credit a,.term-links a').count();
-    for(let i=0;anchors===0&&i<12;i++){
-      const next=page.locator('#reader .bottom-nav [data-target]').last();
-      if(!await next.count())break;
-      await next.click();
-      anchors=await page.locator('.image-credit a,.term-links a').count();
-    }
-    // An early textual section may have no pictures. Verify the deployed credit registry too.
+  await attempt(label+' / image sources and section deep link',async()=>{
+    await page.goto(new URL('atlas/#sec-1-1',BASE).href,{waitUntil:'domcontentloaded'});
+    await assertReady(page,'#reader .page-title');
+    const heading=await page.locator('#reader .page-title').innerText();
+    await assert(heading.includes('HE染色'),'deep-link failed to resolve HE section: '+heading);
+    const count=await page.locator('.image-credit a,.term-links a').count();
+    await assert(count>0,'HE section has microscopy images but lacks image credit links');
     const response=await page.request.get(new URL('atlas/data/credits.json',BASE).href);
     await assert(response.ok(),'credit registry unreachable');
     const credits=await response.json();
     await assert(Object.keys(credits.media||{}).length>0,'image credit registry empty');
-    if(!anchors)console.log('INFO: first article sequence contained no image credits; registry verified');
+    await screenshot(page,label+'-03b-image-credits.png');
   });
   await attempt(label+' / Atlas local search',async()=>{
     if(width<=850)await page.locator('#topSearchBtn').click();
