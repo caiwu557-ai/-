@@ -13,6 +13,9 @@ const credits=JSON.parse(fs.readFileSync(path.join(root,'atlas/data/credits.json
 const checks={
   hubIntegration:hub.includes('href="./atlas/"')&&hub.includes('lumen_histology_recall_v1'),
   learningContinuity:hub.includes('shouldShowRoundPrompt()')&&hub.includes('function reviewPage()')&&hub.includes('function settingsPage()'),
+  atlasDeepLink:js.includes("new URLSearchParams(location.search).get('q')"),
+  mobileSearch:index.includes('id="topSearchBtn"')&&js.includes("$('#topSearchBtn')"),
+  termToAtlas:hub.includes('./atlas/?q=${encodeURIComponent(w.en)}'),
   globalSearch:js.includes('function renderSearchResults(')&&js.includes('const sectionIndex=')&&js.includes('const comparisonIndex='),
   comparisonsInSearch:js.includes('data-opencomp=')&&js.includes('found.dataset.opencomp'),
   searchRanking:js.includes('function sectionSearchRank('),

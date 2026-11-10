@@ -159,3 +159,6 @@
 .modal-actions a,.modal-actions button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:10px 13px}
 .image-modal .image-dialog{outline:1px solid var(--line)}
 @media(prefers-reduced-motion:reduce){.section-tile{transition:none}.section-tile:hover{transform:none}}
+
+.mobile-search-btn{display:none}
+@media(max-width:850px){.mobile-search-btn{display:grid;min-width:44px;min-height:44px}}

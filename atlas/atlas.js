@@ -128,6 +128,7 @@ $('#themeBtn').addEventListener('click',()=>{const v=document.documentElement.da
 $('#menuBtn').setAttribute('aria-expanded','false');
 $('#menuBtn').addEventListener('click',()=>setSideOpen(!$('#side').classList.contains('open')));
 $('#scrim').addEventListener('click',()=>setSideOpen(false));
+$('#topSearchBtn')?.addEventListener('click',()=>{setSideOpen(true);requestAnimationFrame(()=>$('#search').focus())});
 const normalizedSearch=(s)=>String(s||'').normalize('NFKC').toLocaleLowerCase();
 const sectionIndex=secs.map(s=>({section:s,key:normalizedSearch(s.title+' '+s.html.replace(/<[^>]+>/g,' '))}));
 const comparisonIndex=DATA.comparisons.map(c=>({item:c,key:normalizedSearch(c.title+' '+c.sub+' '+c.group+' '+c.rows.map(r=>r.join(' ')).join(' '))}));
@@ -191,5 +192,6 @@ window.addEventListener('popstate',handleHistoryNavigation);
 window.addEventListener('hashchange',handleHistoryNavigation);
 window.openEvidenceImage=openEvidenceImage;
 navTo(decodeURIComponent(location.hash.slice(1))||'overview',{silent:true});
+const initialSearch=new URLSearchParams(location.search).get('q');if(initialSearch){$('#search').value=initialSearch;renderSearchResults(initialSearch)}
 
 })().catch(err=>{console.error('Histology Atlas bootstrap failed',err);const el=document.getElementById('reader');if(el)el.innerHTML='<div class="notice warning"><strong>图谱数据载入失败</strong><p>请通过 Web 服务打开本站，确认 data/ 三份 JSON 文件已部署；若在本地直接双击 HTML，浏览器可能阻止读取 JSON。<br>错误：'+String(err.message).replace(/[&<>"']/g,'')+'</p></div>';});
