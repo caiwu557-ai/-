@@ -379,3 +379,19 @@
   outline-offset: 2px;
 }
 .atlas-page .top-tools .tool[title] { touch-action: manipulation; }
+
+/* Nested source documents keep their headings without competing with the page title. */
+.atlas-page .article h2.source-document-title {
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 720;
+  letter-spacing: -.025em;
+  line-height: 1.36;
+  border: 0;
+  padding: 0;
+  margin: 17px 0 8px;
+  overflow-wrap: anywhere;
+}
+@media(max-width:650px) {
+  .atlas-page .article h2.source-document-title { margin-top: 14px; font-size: 20px; }
+  .atlas-page .page-title { margin-bottom: 15px; }
+}
