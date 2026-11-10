@@ -1,0 +1,40 @@
+name: LUMEN Browser QA
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Static regression checks
+        run: |
+          node qa/validate-terminology.mjs
+          node qa/validate-learning-flow.mjs
+          node qa/validate-round-prompt.mjs
+          node qa/validate-atlas.mjs
+          node qa/validate-unified-workspace.mjs
+      - name: Serve website and run real Chromium UX checks
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/lumen-http.log 2>&1 &
+          sleep 2
+          node qa/browser-lumen.mjs
+      - name: Preserve screenshot and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumen-browser-evidence
+          path: qa/browser-evidence/
+          if-no-files-found: warn
+          retention-days: 14
