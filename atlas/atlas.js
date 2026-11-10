@@ -54,7 +54,7 @@ sectionEvidence=function(id){
  return `<section class="term-evidence" aria-label="本节逐术语图片"><div class="term-evidence-header"><h2>本节逐术语图像</h2><small>${terms.length} 个 · 图文对照</small></div><div class="term-evidence-list">${first.map(v8MediaCard).join('')}</div>${rest.length?`<details class="term-evidence-more"><summary>展开其余 ${rest.length} 个术语图位</summary><div class="term-evidence-list">${rest.map(v8MediaCard).join('')}</div></details>`:''}<div class="term-evidence-meta">定位图与技术示例用于整体结构辨认。</div></section>`;
 };
 
-const $=s=>document.querySelector(s), $=s=>Array.from(document.querySelectorAll(s));
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
 let modalReturnFocus=null, bodyOverflowBeforeModal='';
 function presentImageModal(){
  modalReturnFocus=document.activeElement;bodyOverflowBeforeModal=document.body.style.overflow;
