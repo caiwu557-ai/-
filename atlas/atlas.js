@@ -188,6 +188,7 @@ function showSearch(q){
  navMark();renderSearchResults(clean);
 }
 function leaveSearch(){
+ setSideOpen(false);
  const target=searchReturnTarget&&searchReturnTarget!=='search'?searchReturnTarget:'overview';
  history.replaceState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
  $('#search').value='';navTo(target,{silent:true});
