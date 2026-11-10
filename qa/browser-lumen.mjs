@@ -30,11 +30,15 @@ async function assertReady(page,match){
   if(body.includes('图谱数据载入失败'))throw new Error('Atlas JSON loading failed');
 }
 async function noOverflow(page){
-  return page.evaluate(() => ({
+  const expected=page.viewportSize().width;
+  return page.evaluate(expected => ({
+    expected,
     viewport:innerWidth,
+    clientWidth:document.documentElement.clientWidth,
+    visualViewport:window.visualViewport?.width,
     scroll:document.documentElement.scrollWidth,
-    pass:document.documentElement.scrollWidth <= innerWidth + 2
-  }));
+    pass:document.documentElement.scrollWidth<=expected+2 && innerWidth<=expected+2
+  }),expected);
 }
 async function assert(condition,message){
   if(!condition)throw new Error(message);
