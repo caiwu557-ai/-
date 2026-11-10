@@ -439,3 +439,28 @@
   }
   .atlas-page #reader .bottom-nav button { flex: 1 1 130px; }
 }
+
+/* Never let source tables enlarge the mobile layout viewport.
+   Long histology comparison tables scroll in their own frame. */
+@media (max-width: 850px) {
+  .atlas-page .article table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .atlas-page .article table th,
+  .atlas-page .article table td {
+    min-width: 86px;
+    overflow-wrap: anywhere;
+  }
+  .atlas-page #reader,
+  .atlas-page .article,
+  .atlas-page .term-evidence {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
