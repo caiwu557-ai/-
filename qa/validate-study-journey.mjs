@@ -25,3 +25,10 @@ x.showSearch('睾丸细胞');assert.equal(replace,1);
 x.leaveSearch();assert.equal(x.current(),'group:epithelium');
 assert(atlas.includes("next==='search'"));assert(atlas.includes("initialRoute==='search'"));
 console.log('PASS — session safety, drawer accessibility, atlas query route and history');
+
+// Theme uses a separate cross-module key; the atlas must never rewrite learner history.
+assert(atlas.includes("const shared=get('lumen_atlas_theme_v1','')"));
+assert(!atlas.includes("localStorage.setItem(k,JSON.stringify(s))"));
+assert(hub.includes("function publishTheme()"));
+assert(hub.includes("if(e.key!=='lumen_atlas_theme_v1'"));
+assert(hub.includes("persist();publishTheme();render()"));

@@ -77,7 +77,7 @@ const imgMap=Object.fromEntries(DATA.images.map(x=>[x.id,x]));
 let current='overview',selectedGroup='all',lastQuery='';
 function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function get(k,def=''){try{return localStorage.getItem(k)||def}catch(e){return def}}
-function readHubTheme(){try{const saved=JSON.parse(localStorage.getItem('lumen_histology_recall_v1')||'null');if(['light','dark'].includes(saved?.prefs?.theme))return saved.prefs.theme}catch(e){}return get('lumen_atlas_theme_v1','light')}
+function readHubTheme(){const shared=get('lumen_atlas_theme_v1','');if(['light','dark'].includes(shared))return shared;try{const saved=JSON.parse(localStorage.getItem('lumen_histology_recall_v1')||'null');if(['light','dark'].includes(saved?.prefs?.theme))return saved.prefs.theme}catch(e){}return 'light'}
 document.documentElement.dataset.theme=readHubTheme();
 window.addEventListener('storage',e=>{if(e.key==='lumen_histology_recall_v1'||e.key==='lumen_atlas_theme_v1')document.documentElement.dataset.theme=readHubTheme()});
 function navMark(){const k=current.startsWith('group:')?current.slice(6):secMap[current]?.group;$$('.nav-btn').forEach(x=>x.classList.toggle('active',x.dataset.target===current || (x.dataset.target==='group:'+k&&k && current!== 'overview')))}
@@ -125,7 +125,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('[data-target]');
  const found=e.target.closest('[data-opencomp]');if(found){selectedGroup='all';navTo('group:comparisons',{keepFilter:true});const panel=document.getElementById(found.dataset.opencomp);if(panel){panel.open=true;panel.scrollIntoView({block:'start',behavior:'smooth'})}return}
  const f=e.target.closest('[data-compgroup]');if(f){selectedGroup=f.dataset.compgroup;navTo('group:comparisons',{keepFilter:true});return}if(e.target.matches('#imageModal'))closeImage()});
 $('#closeModal').addEventListener('click',closeImage);
-$('#themeBtn').addEventListener('click',()=>{const v=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=v;save('lumen_atlas_theme_v1',v);try{const k='lumen_histology_recall_v1';const s=JSON.parse(localStorage.getItem(k)||'null');if(s&&s.schema===1&&s.prefs){s.prefs.theme=v;localStorage.setItem(k,JSON.stringify(s))}}catch(e){}});
+$('#themeBtn').addEventListener('click',()=>{const v=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=v;save('lumen_atlas_theme_v1',v);});
 $('#menuBtn').setAttribute('aria-expanded','false');
 $('#menuBtn').addEventListener('click',()=>setSideOpen(!$('#side').classList.contains('open')));
 $('#scrim').addEventListener('click',()=>setSideOpen(false));
