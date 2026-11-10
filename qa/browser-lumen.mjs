@@ -127,6 +127,9 @@ try{
     await assert(h.includes('搜索结果'),'search did not enter results');
     await screenshot(page,label+'-04-search.png');
     await page.locator('#search').press('Escape');
+    await page.waitForTimeout(240);
+    const drawerOpen=await page.locator('#side').evaluate(el=>el.classList.contains('open'));
+    await assert(!drawerOpen,'Atlas drawer remained open after Escape/search exit');
   });
   await attempt(label+' / Atlas -> review deep link',async()=>{
     if(width<=850){if(touch)await page.locator('.workspace-tabs a[href="../?view=review"]').tap();else await page.locator('.workspace-tabs a[href="../?view=review"]').click()}
