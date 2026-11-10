@@ -153,9 +153,24 @@ function renderSearchResults(q){
  ${foundComparisons.length?`<h2 class="search-subheading">易混辨析 · ${foundComparisons.length}</h2><div class="section-index">${foundComparisons.map(c=>`<button type="button" class="section-tile" data-opencomp="${esc(c.id)}"><span>${esc(c.id)} · ${esc(c.group)}</span><strong>${esc(c.title)}</strong></button>`).join('')}</div>`:''}
  ${!total?'<div class="empty" role="status">没有匹配项。尝试完整结构名称、器官名称或英文术语。</div>':''}`;
 }
+let searchReturnTarget='overview';
+function showSearch(q){
+ const clean=String(q||'').trim();if(!clean){leaveSearch();return;}
+ if(current!=='search')searchReturnTarget=current;
+ const entering=current!=='search';current='search';
+ const url=location.pathname+'?q='+encodeURIComponent(clean)+'#search';
+ const state={atlas:'search',from:searchReturnTarget};
+ if(entering)history.pushState(state,'',url);else history.replaceState(state,'',url);
+ navMark();renderSearchResults(clean);
+}
+function leaveSearch(){
+ const target=searchReturnTarget&&searchReturnTarget!=='search'?searchReturnTarget:'overview';
+ history.replaceState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
+ $('#search').value='';navTo(target,{silent:true});
+}
 $('#search').addEventListener('input',e=>{
- const q=e.target.value.trim();if(!q){navTo(current,{silent:true,keepFilter:true});return;}
- renderSearchResults(q);
+ const q=e.target.value.trim();if(!q){leaveSearch();return;}
+ showSearch(q);
 });
 $('#search').addEventListener('keydown',e=>{
  if(e.key==='Enter' && e.target.value.trim()){
@@ -178,7 +193,7 @@ document.addEventListener('keydown',e=>{
  }
  if(e.key==='Escape'){
   if($('#side').classList.contains('open'))setSideOpen(false);
-  if($('#search').value){$('#search').value='';navTo(current,{silent:true,keepFilter:true})}
+  if($('#search').value){leaveSearch()}
  }
  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){
   e.preventDefault();if(innerWidth<=850)setSideOpen(true);$('#search').focus();
@@ -187,12 +202,21 @@ document.addEventListener('keydown',e=>{
 window.addEventListener('scroll',()=>{const doc=document.documentElement;const max=doc.scrollHeight-innerHeight;$('#progress').style.width=(max>0?100*scrollY/max:0)+'%'},{passive:true});
 function handleHistoryNavigation(){
  const next=decodeURIComponent(location.hash.slice(1))||'overview';
- if(next!==current)navTo(next,{silent:true});
+ if(next==='search'){
+  const q=new URLSearchParams(location.search).get('q')||'';
+  current='search';searchReturnTarget=history.state?.from||searchReturnTarget;
+  $('#search').value=q;navMark();renderSearchResults(q);
+ }else if(next!==current)navTo(next,{silent:true});
 }
 window.addEventListener('popstate',handleHistoryNavigation);
 window.addEventListener('hashchange',handleHistoryNavigation);
 window.openEvidenceImage=openEvidenceImage;
-navTo(decodeURIComponent(location.hash.slice(1))||'overview',{silent:true});
-const initialSearch=new URLSearchParams(location.search).get('q');if(initialSearch){$('#search').value=initialSearch;renderSearchResults(initialSearch)}
+const initialRoute=decodeURIComponent(location.hash.slice(1))||'overview';
+const initialSearch=new URLSearchParams(location.search).get('q');
+if(initialSearch&&(initialRoute==='overview'||initialRoute==='search')){
+ current='search';$('#search').value=initialSearch;
+ if(initialRoute!=='search')history.replaceState({atlas:'search',from:'overview'},'',location.pathname+'?q='+encodeURIComponent(initialSearch)+'#search');
+ navMark();renderSearchResults(initialSearch);
+}else navTo(initialRoute,{silent:true});
 
 })().catch(err=>{console.error('Histology Atlas bootstrap failed',err);const el=document.getElementById('reader');if(el)el.innerHTML='<div class="notice warning"><strong>图谱数据载入失败</strong><p>请通过 Web 服务打开本站，确认 data/ 三份 JSON 文件已部署；若在本地直接双击 HTML，浏览器可能阻止读取 JSON。<br>错误：'+String(err.message).replace(/[&<>"']/g,'')+'</p></div>';});
