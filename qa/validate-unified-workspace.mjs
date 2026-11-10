@@ -47,7 +47,7 @@ equals(count(atlas,'class="app-route"'),6,'Atlas desktop nav contains six produc
 check(atlas.includes('aria-label="LUMEN 全局导航"'),'Atlas global navigation is labeled');
 check(atlas.includes('class="workspace-tabs"'),'Atlas has mobile product nav');
 check(atlas.includes('aria-current="page"'),'Atlas active destination is marked');
-check(atlas.includes('class="atlas-brand-home"'),'Atlas brand has an accessible home action');
+check(atlas.includes('class="brand atlas-brand-home"'),'Atlas brand has an accessible home action');
 check(atlas.includes('class="atlas-page"'),'Atlas shared styles are scoped to atlas body');
 check(atlas.includes('href="../?view=review"'),'Atlas can return straight to due review');
 check(atlas.includes('href="../?view=settings"'),'Atlas can return straight to settings');
