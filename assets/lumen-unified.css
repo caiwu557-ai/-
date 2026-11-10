@@ -395,3 +395,16 @@
   .atlas-page .article h2.source-document-title { margin-top: 14px; font-size: 20px; }
   .atlas-page .page-title { margin-bottom: 15px; }
 }
+
+/* Mobile global navigation stays usable while the local Atlas directory is open. */
+@media (max-width: 850px) {
+  .atlas-page .side {
+    z-index: 50;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+  .atlas-page .drawer-scrim.open {
+    z-index: 49;
+    bottom: calc(73px + env(safe-area-inset-bottom));
+  }
+  .atlas-page .workspace-tabs { z-index: 60; }
+}
