@@ -109,6 +109,28 @@ try{
   });
   await attempt(label+' / animation frame and settled state',async()=>{
     const next=page.locator('#reader .bottom-nav [data-target]').last();
+    await next.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+    const diagnosis=await page.evaluate(()=>{
+      const button=document.querySelector('#reader .bottom-nav button:last-child');
+      const nav=button?.closest('.bottom-nav');
+      const b=button?.getBoundingClientRect();
+      const hit=b?document.elementFromPoint(b.left+b.width/2,b.top+b.height/2):null;
+      const evidence=document.querySelector('#reader .term-evidence');
+      const er=evidence?.getBoundingClientRect();
+      const tabs=document.querySelector('.workspace-tabs');
+      const rect=x=>x?({x:Math.round(x.x),y:Math.round(x.y),width:Math.round(x.width),height:Math.round(x.height),bottom:Math.round(x.bottom)}):null;
+      return {viewport:{w:innerWidth,h:innerHeight,scrollY},button:rect(b),
+        nav:rect(nav?.getBoundingClientRect()),evidence:rect(er),
+        elementAtClick:hit?.outerHTML.slice(0,300),navZ:nav&&getComputedStyle(nav).zIndex,
+        navPosition:nav&&getComputedStyle(nav).position,
+        tabs:rect(tabs?.getBoundingClientRect()),sideOpen:document.querySelector('#side')?.classList.contains('open'),
+        imageCount:document.querySelectorAll('#reader img').length};
+    });
+    console.log('LUMEN_HIT_DIAG '+label+' '+JSON.stringify(diagnosis));
+    const hitName=label+'-03b-hit-test.png';
+    await page.screenshot({path:path.join(OUT,hitName),animations:'allow',fullPage:false});
+    report.screenshots.push(hitName);
     await next.click({noWaitAfter:true});
     await page.waitForTimeout(65);
     const name=label+'-03c-motion-frame.png';
@@ -188,7 +210,7 @@ try{
   try {
     const selected=[
       'desktop-01-overview.png','desktop-02-atlas.png','desktop-03-section.png',
-      'phone-01-overview.png','phone-02-atlas.png','phone-03-section.png'
+      'phone-01-overview.png','phone-02-atlas.png','phone-03b-hit-test.png'
     ].filter(name=>fs.existsSync(path.join(OUT,name)));
     if(selected.length) {
       const preview=await browser.newPage({viewport:{width:1040,height:1180}});
