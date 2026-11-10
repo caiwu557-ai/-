@@ -31,6 +31,41 @@
   --lw-focus: #b3b1ff;
 }
 
+
+/* Atlas consumes the same semantic palette as Recall, without losing its reading layout. */
+.atlas-page {
+  --page: var(--lw-bg);
+  --panel: var(--lw-paper-muted);
+  --surface: var(--lw-paper);
+  --text: var(--lw-text);
+  --heading: var(--lw-text);
+  --muted: var(--lw-secondary);
+  --line: var(--lw-rule);
+  --line-dark: var(--lw-rule);
+  --accent: var(--lw-brand);
+  --soft: var(--lw-brand-tint);
+  --sidebar: var(--lw-sidebar);
+  --side-w: var(--lw-sidebar-width);
+}
+.atlas-page .atlas-brand-home {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  color: #e8ecf3;
+  cursor: pointer;
+}
+.atlas-page .atlas-brand-home:hover .brand-text strong { color: #fff; }
+.atlas-page .atlas-brand-home:focus-visible { outline: 3px solid var(--lw-focus); outline-offset: 2px; border-radius: 11px; }
+.atlas-page #reader { view-transition-name: lumen-atlas-reader; }
+::view-transition-old(lumen-atlas-reader) { animation: 120ms ease-out both lw-out; }
+::view-transition-new(lumen-atlas-reader) { animation: 200ms var(--lw-curve) both lw-in; }
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-old(lumen-atlas-reader),
+  ::view-transition-new(lumen-atlas-reader) {animation:none!important;}
+}
+
 /* Cross-document transitions: keep the shell steady; change only the working area. */
 #app .sidebar, .atlas-page .side { view-transition-name: lumen-workspace-sidebar; }
 #app .topbar, .atlas-page .topbar { view-transition-name: lumen-workspace-topbar; }
