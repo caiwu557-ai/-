@@ -464,3 +464,30 @@
     max-width: 100%;
   }
 }
+
+/* Small-screen glossary filters: contained horizontal scrolling, never page overflow. */
+@media (max-width:650px) {
+  #app .controls-row { min-width:0; max-width:100%; }
+  #app .controls-row .segment {
+    display:flex;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    justify-content:flex-start;
+    scrollbar-width:thin;
+  }
+  #app .controls-row .segment button {
+    flex:0 0 auto;
+    min-width:0;
+    padding:10px 11px;
+    white-space:nowrap;
+  }
+  #app .controls-row .select-box {
+    min-width:0;
+    max-width:100%;
+  }
+  #app .vocab-item { min-width:0; max-width:100%; }
+}
