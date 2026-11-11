@@ -85,11 +85,35 @@ function menuHtml(){let h='<button type="button" data-target="overview" class="n
 $('#sideNav').innerHTML=menuHtml();
 function titleFor(){if(current==='overview')return '总目录';if(current.startsWith('group:'))return groupMap[current.slice(6)]?.label||'分区';return secMap[current]?.title||'阅读'}
 function renderOverview(){const blocks=[];let prev='';for(const g of groups){if(g.area!==prev){blocks.push(`<h2>${esc(g.area)}</h2>`);prev=g.area}blocks.push(`<button class="section-tile" type="button" data-target="group:${g.key}"><span>${esc(g.en)} · ${g.key==='comparisons'?'45组辨析':g.n+'节'}</span><strong>${esc(g.label)}</strong></button>`)}
-return `<div class="kicker">LUMEN / HISTOLOGY ATLAS</div><h1 class="page-title">组织切片图谱</h1><p class="page-desc">按基础组织与器官系统检索切片，学习形态识别，并通过45组易混辨析巩固判断。</p><div class="stats"><span class="stat"><strong>${DATA.meta.source_sections}</strong> 个细分条目</span><span class="stat"><strong>${DATA.meta.images_occurrences}</strong> 处原图引用</span><span class="stat"><strong>${DATA.meta.images_unique}</strong> 个不同原图链接</span><span class="stat"><strong>45</strong> 组全局辨析</span></div><div class="notice warning"><strong>图像可用性</strong><div>部分图片需联网加载；无法显示时可点击图片来源或原图链接。</div></div><div class="section-index">${blocks.join('')}</div>`}
-function renderGroup(k){const g=groupMap[k];if(!g)return '<div class="empty">分区不存在</div>';if(k==='comparisons')return renderComparisons();const ss=secs.filter(s=>s.group===k);return `<div class="kicker">${esc(g.area)} / ${esc(g.en)}</div><h1 class="page-title">${esc(g.label)}</h1><p class="page-desc">按组织、器官及结构展开切片形态和识别技巧。</p><div class="section-index">${ss.map((s,i)=>`<button class="section-tile" type="button" data-target="${s.id}"><span>${s.section_num||'SOURCE'} · ${esc(s.source.replace(/第\d+章[｜|]/,'').slice(0,22))}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`}
-function renderSection(id){const s=secMap[id];if(!s)return '<div class="empty">小节不存在</div>';const g=groupMap[s.group];const all=secs.filter(x=>x.group===s.group);const at=all.findIndex(x=>x.id===id);const previous=at>0?all[at-1]:null,next=at+1<all.length?all[at+1]:null;const headings=[...s.html.matchAll(/<h[234]>(.*?)<\/h[234]>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').slice(0,60));return `<div class="kicker">${esc(g.area)} / ${esc(g.label)}</div><h1 class="page-title">${esc(s.title)}</h1><article class="article" id="articleBody">${s.id==='intro'?s.html.replace('<p>按14章课程顺序编写</p>',''):s.html}</article>${sectionEvidence(id)}<div class="bottom-nav"><button type="button" data-target="${previous?previous.id:'group:'+s.group}">← ${esc(previous?previous.title:'返回本系统')}</button><button type="button" data-target="${next?next.id:'group:'+s.group}">${esc(next?next.title:'返回本系统')} →</button></div>`}
+return `<div class="kicker">切片阅读 · 结构识别</div><h1 class="page-title">组织切片图谱</h1><p class="page-desc">按基础组织与器官系统检索切片，学习形态识别，并通过45组易混辨析巩固判断。</p><div class="stats"><span class="stat"><strong>${DATA.meta.source_sections}</strong> 个细分条目</span><span class="stat"><strong>${DATA.meta.images_occurrences}</strong> 处原图引用</span><span class="stat"><strong>${DATA.meta.images_unique}</strong> 个不同原图链接</span><span class="stat"><strong>45</strong> 组全局辨析</span></div><div class="notice warning"><strong>图像可用性</strong><div>部分图片需联网加载；无法显示时可点击图片来源或原图链接。</div></div><div class="section-index">${blocks.join('')}</div>`}
+function renderGroup(k){const g=groupMap[k];if(!g)return '<div class="empty">分区不存在</div>';if(k==='comparisons')return renderComparisons();const ss=secs.filter(s=>s.group===k);return `<div class="kicker">${esc(g.area)} / ${esc(g.en)}</div><h1 class="page-title">${esc(g.label)}</h1><p class="page-desc">按器官和组织定位条目，查看形态特征与易混结构。</p><div class="section-index">${ss.map((s,i)=>`<button class="section-tile" type="button" data-target="${s.id}"><span>${s.section_num||'SOURCE'} · ${esc(s.source.replace(/第\d+章[｜|]/,'').slice(0,22))}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`}
+function renderSection(id){const s=secMap[id];if(!s)return '<div class="empty">小节不存在</div>';const g=groupMap[s.group];const all=secs.filter(x=>x.group===s.group);const at=all.findIndex(x=>x.id===id);const previous=at>0?all[at-1]:null,next=at+1<all.length?all[at+1]:null;const headings=[...s.html.matchAll(/<h[234]>(.*?)<\/h[234]>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').slice(0,60));return `<div class="kicker">${esc(g.area)} / ${esc(g.label)}</div><h1 class="page-title">${esc(s.title)}</h1><article class="article" id="articleBody">${(s.id==='intro'?s.html.replace('<p>按14章课程顺序编写</p>',''):s.html).replace(/<h1\b[^>]*>/gi,'<h2 class="source-document-title">').replace(/<\/h1\s*>/gi,'</h2>')}</article>${sectionEvidence(id)}<div class="bottom-nav"><button type="button" data-target="${previous?previous.id:'group:'+s.group}">← ${esc(previous?previous.title:'返回本系统')}</button><button type="button" data-target="${next?next.id:'group:'+s.group}">${esc(next?next.title:'返回本系统')} →</button></div>`}
 function renderComparisons(){const c=DATA.comparisons;const names=['全部',...new Set(c.map(x=>x.group))];return `<div class="kicker">ATLAS / DIFFERENTIALS</div><h1 class="page-title">全局易混辨析 · G01–G45</h1><p class="page-desc">对照组织形态、关键识别点与常见误判。</p><div class="stats"><span class="stat"><strong>45</strong> 组对照</span><span class="stat">器官级 · 细胞级 · 管腔级</span></div><div class="comp-toolbar">${names.map(x=>`<button type="button" class="comp-filter ${selectedGroup===x?'selected':''}" data-compgroup="${esc(x)}">${esc(x)}</button>`).join('')}</div><div>${c.filter(x=>selectedGroup==='全部'||selectedGroup==='all'||x.group===selectedGroup).map(x=>`<details class="comp-card" id="${x.id}"><summary><span class="comp-tag">${esc(x.id)}</span><span><span class="comp-heading">${esc(x.title)}</span><br><span class="comp-sub">${esc(x.sub)}</span></span></summary><div class="comp-inside">${comparisonEvidence(x.id)}<table><tbody>${x.rows.map(z=>`<tr><td>${esc(z[0])}</td><td>${esc(z[1])}</td></tr>`).join('')}</tbody></table><p><b>考场判断：</b>${esc(x.key)}</p><p><b>易错陷阱：</b>${esc(x.trap)}</p></div></details>`).join('')}</div>`}
-function navTo(target,opts={}){if(!target)return;current=target;if(!opts.keepFilter)selectedGroup='all';$('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);$('#crumbTitle').textContent=titleFor();navMark();if(!opts.silent){history.pushState({atlas:target},'',`#${encodeURIComponent(target)}`);window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}})}if(!opts.preserveSearch)$('#search').value='';setSideOpen(false);bindImages();document.title=`${titleFor()} · LUMEN`}
+function navTo(target,opts={}){
+ if(!target)return;
+ const update=()=>{
+  current=target;
+  if(!opts.keepFilter)selectedGroup='all';
+  $('#reader').innerHTML=current==='overview'?renderOverview():current.startsWith('group:')?renderGroup(current.slice(6)):renderSection(current);
+  $('#crumbTitle').textContent=titleFor();
+  navMark();
+  if(!opts.silent){
+   history.pushState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
+   window.scrollTo({top:0,behavior:'instant'});
+   requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}});
+  }
+  if(!opts.preserveSearch)$('#search').value='';
+  setSideOpen(false);
+  bindImages();
+  document.title=`${titleFor()} · LUMEN`;
+ };
+ const canAnimate=!opts.silent&&!opts.noTransition&&typeof document.startViewTransition==='function'
+  &&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(canAnimate){
+  try{const transition=document.startViewTransition(update);transition.finished.catch(()=>{});}
+  catch(e){update();}
+ }else update();
+}
 function bindImages(){
  for(const im of $$('#reader img')){
   const chat=im.closest('.chat-image');
@@ -148,7 +172,7 @@ function renderSearchResults(q){
  const foundComparisons=comparisonIndex.filter(x=>x.key.includes(needle)).map(x=>x.item).slice(0,45);
  const total=foundSections.length+foundComparisons.length;
  $('#crumbTitle').textContent='搜索结果';document.title='搜索结果 · LUMEN';
- $('#reader').innerHTML=`<div class="kicker">LUMEN / SEARCH</div><h1 class="page-title">搜索结果</h1><p class="page-desc">“${esc(q)}” · ${total} 条结果，点击进入对应结构或辨析。</p>
+ $('#reader').innerHTML=`<div class="kicker">图谱检索</div><h1 class="page-title">搜索结果</h1><p class="page-desc">“${esc(q)}” · ${total} 条结果，点击进入对应结构或辨析。</p>
  ${foundSections.length?`<h2 class="search-subheading">组织与器官 · ${foundSections.length}</h2><div class="section-index">${foundSections.map(s=>`<button type="button" class="section-tile" data-target="${esc(s.id)}"><span>${esc(groupMap[s.group]?.label||'组织学')}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`:''}
  ${foundComparisons.length?`<h2 class="search-subheading">易混辨析 · ${foundComparisons.length}</h2><div class="section-index">${foundComparisons.map(c=>`<button type="button" class="section-tile" data-opencomp="${esc(c.id)}"><span>${esc(c.id)} · ${esc(c.group)}</span><strong>${esc(c.title)}</strong></button>`).join('')}</div>`:''}
  ${!total?'<div class="empty" role="status">没有匹配项。尝试完整结构名称、器官名称或英文术语。</div>':''}`;
@@ -164,6 +188,7 @@ function showSearch(q){
  navMark();renderSearchResults(clean);
 }
 function leaveSearch(){
+ setSideOpen(false);
  const target=searchReturnTarget&&searchReturnTarget!=='search'?searchReturnTarget:'overview';
  history.replaceState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
  $('#search').value='';navTo(target,{silent:true});
