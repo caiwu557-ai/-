@@ -1,0 +1,365 @@
+﻿id,category,target_type,cn,en,status,scope,auto_eligible,prompt,scope_reason,accepted_aliases,image
+Q0001,消化系统,器官,食管,esophagus,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,食管 | esophagus,images/Q0001.webp
+Q0002,消化系统,器官,食管,esophagus,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,食管 | esophagus,images/Q0002.webp
+Q0003,消化系统,器官,食管,esophagus,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,食管 | esophagus,images/Q0003.webp
+Q0004,消化系统,结构,黏膜,mucosa,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,黏膜 | mucosa,images/Q0004.webp
+Q0005,消化系统,组织,黏膜上皮,mucosal epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,黏膜上皮 | mucosal epithelium,images/Q0005.webp
+Q0006,消化系统,结构,固有层,lamina propria,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,固有层 | lamina propria,images/Q0006.webp
+Q0007,消化系统,结构,黏膜下层,submucosa,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,黏膜下层 | submucosa,images/Q0007.webp
+Q0008,消化系统,结构,黏膜肌层,muscularis mucosae,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,黏膜肌层 | muscularis mucosae,images/Q0008.webp
+Q0009,消化系统,结构,肌层,muscular layer,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌层 | muscular layer,images/Q0009.webp
+Q0010,消化系统,结构,食管腺,esophageal gland,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,食管腺 | esophageal gland,images/Q0010.webp
+Q0011,消化系统,组织,未角化的复层扁平上皮,non-keratinized stratified squamous epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,未角化的复层扁平上皮 | non-keratinized stratified squamous epithelium,images/Q0011.webp
+Q0012,消化系统,组织,复层扁平上皮,stratified squamous epithelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,复层扁平上皮 | stratified squamous epithelium,images/Q0012.webp
+Q0013,消化系统,组织,复层扁平上皮,stratified squamous epithelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,复层扁平上皮 | stratified squamous epithelium | 未角化的复层扁平上皮,images/Q0013.webp
+Q0014,消化系统,器官,胃,stomach,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,胃 | stomach,images/Q0014.webp
+Q0015,消化系统,结构,胃小凹,gastric pit,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胃小凹 | gastric pit,images/Q0015.webp
+Q0016,消化系统,细胞,表面黏液细胞,surface mucous cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,表面黏液细胞 | surface mucous cell,images/Q0016.webp
+Q0017,消化系统,细胞,壁细胞,parietal cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,壁细胞 | parietal cell,images/Q0017.webp
+Q0018,消化系统,细胞,壁细胞,parietal cell,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,壁细胞 | parietal cell,images/Q0018.webp
+Q0019,消化系统,细胞,主细胞,chief cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,主细胞 | chief cell,images/Q0019.webp
+Q0020,消化系统,细胞,主细胞,chief cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,主细胞 | chief cell,images/Q0020.webp
+Q0021,消化系统,细胞,主细胞,chief cell,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,主细胞 | chief cell,images/Q0021.webp
+Q0022,消化系统,器官,十二指肠,duodenum,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,十二指肠 | duodenum,images/Q0022.webp
+Q0023,消化系统,器官,空肠,jejunum,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,空肠 | jejunum,images/Q0023.webp
+Q0024,消化系统,器官,回肠,ileum,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,回肠 | ileum,images/Q0024.webp
+Q0025,消化系统,结构,小肠皱襞,circular fold of small intestine,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小肠皱襞 | circular fold of small intestine,images/Q0025.webp
+Q0026,消化系统,结构,小肠绒毛,intestinal villus,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,小肠绒毛 | intestinal villus,images/Q0026.webp
+Q0027,消化系统,器官,十二指肠,duodenum,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,十二指肠 | duodenum,images/Q0027.webp
+Q0028,消化系统,细胞,吸收细胞,absorptive cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,吸收细胞 | absorptive cell,images/Q0028.webp
+Q0029,消化系统,细胞,吸收细胞,absorptive cell,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,吸收细胞 | absorptive cell,images/Q0029.webp
+Q0030,消化系统,组织,单层柱状上皮,simple columnar epithelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,单层柱状上皮 | simple columnar epithelium,images/Q0030.webp
+Q0031,消化系统,细胞,杯状细胞,goblet cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,杯状细胞 | goblet cell,images/Q0031.webp
+Q0032,消化系统,细胞,潘氏细胞,Paneth cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,潘氏细胞 | Paneth cell | Paneth 细胞,images/Q0032.webp
+Q0033,消化系统,结构,中央乳糜管,central lacteal,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,中央乳糜管 | central lacteal,images/Q0033.webp
+Q0034,消化系统,结构,集合淋巴小结,aggregated lymphoid nodule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,集合淋巴小结 | aggregated lymphoid nodule,images/Q0034.webp
+Q0035,消化系统,结构,集合淋巴小结,aggregated lymphoid nodule,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,集合淋巴小结 | aggregated lymphoid nodule,images/Q0035.webp
+Q0036,消化系统,器官,阑尾,appendix,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,阑尾 | appendix,images/Q0036.webp
+Q0037,消化系统,器官,阑尾,appendix,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,阑尾 | appendix,images/Q0037.webp
+Q0038,消化系统,器官,阑尾,appendix,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,阑尾 | appendix,images/Q0038.webp
+Q0039,消化系统,结构,消化管壁四层,four layers of the digestive tract wall,review_needed,core,False,请依据图中连续编号描述的管壁层次，按从内到外的顺序识别各层。此题尚待拆分为多空，暂不参与自动作答。,,消化管壁四层 | four layers of the digestive tract wall,images/Q0039.webp
+Q0040,消化系统,器官,结肠,colon,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,结肠 | colon,images/Q0040.webp
+Q0041,消化系统,结构,黏膜下神经丛,submucosal plexus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,黏膜下神经丛 | submucosal plexus,images/Q0041.webp
+Q0042,消化系统,结构,黏膜下神经丛,submucosal plexus,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,黏膜下神经丛 | submucosal plexus,images/Q0042.webp
+Q0043,消化系统,结构,肌间神经丛,myenteric plexus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌间神经丛 | myenteric plexus,images/Q0043.webp
+Q0044,内分泌系统,器官,肾上腺,adrenal gland,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,肾上腺 | adrenal gland,images/Q0044.webp
+Q0045,内分泌系统,器官,肾上腺,adrenal gland,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,肾上腺 | adrenal gland,images/Q0045.webp
+Q0046,内分泌系统,结构,肾上腺皮质,adrenal cortex,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肾上腺皮质 | adrenal cortex,images/Q0046.webp
+Q0047,内分泌系统,结构,肾上腺髓质,adrenal medulla,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肾上腺髓质 | adrenal medulla,images/Q0047.webp
+Q0048,内分泌系统,结构,束状带,zona fasciculata,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,束状带 | zona fasciculata,images/Q0048.webp
+Q0049,内分泌系统,结构,血窦,sinusoid,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血窦 | sinusoid,images/Q0049.webp
+Q0050,内分泌系统,器官,甲状腺,thyroid gland,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,甲状腺 | thyroid gland,images/Q0050.webp
+Q0051,内分泌系统,细胞,滤泡旁细胞,parafollicular cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,滤泡旁细胞 | parafollicular cell,images/Q0051.webp
+Q0052,内分泌系统,细胞,滤泡旁细胞,parafollicular cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,滤泡旁细胞 | parafollicular cell,images/Q0052.webp
+Q0053,内分泌系统,结构,胶质,colloid,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胶质 | colloid,images/Q0053.webp
+Q0054,内分泌系统,器官,甲状腺,thyroid gland,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,甲状腺 | thyroid gland,images/Q0054.webp
+Q0055,内分泌系统,器官,甲状旁腺,parathyroid gland,source_extracted,supplement,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,甲状旁腺独立器官不在已列出的内分泌玻片中,甲状旁腺 | parathyroid gland,images/Q0055.webp
+Q0056,内分泌系统,结构,结缔组织间隔,connective tissue septum,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,结缔组织间隔 | connective tissue septum,images/Q0056.webp
+Q0057,内分泌系统,结构,腺垂体,adenohypophysis,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,腺垂体 | adenohypophysis,images/Q0057.webp
+Q0058,内分泌系统,细胞,垂体细胞,pituicyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,垂体细胞 | pituicyte,images/Q0058.webp
+Q0059,内分泌系统,细胞,垂体细胞,pituicyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,垂体细胞 | pituicyte,images/Q0059.webp
+Q0060,内分泌系统,细胞,嫌色细胞,chromophobe cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,嫌色细胞 | chromophobe cell,images/Q0060.webp
+Q0061,内分泌系统,细胞,嗜碱性细胞,basophil,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,嗜碱性细胞 | basophil,images/Q0061.webp
+Q0062,内分泌系统,结构,赫令体,Herring body,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,赫令体 | Herring body,images/Q0062.webp
+Q0063,呼吸系统,结构,外膜,adventitia,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,外膜 | adventitia,images/Q0063.webp
+Q0064,呼吸系统,结构,肺泡管,alveolar duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡管 | alveolar duct,images/Q0064.webp
+Q0065,呼吸系统,结构,呼吸性细支气管,respiratory bronchiole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,呼吸性细支气管 | respiratory bronchiole,images/Q0065.webp
+Q0066,呼吸系统,细胞,纤毛细胞,ciliated cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,纤毛细胞 | ciliated cell,images/Q0066.webp
+Q0067,呼吸系统,细胞,杯状细胞,goblet cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,杯状细胞 | goblet cell,images/Q0067.webp
+Q0068,呼吸系统,结构,呼吸性细支气管,respiratory bronchiole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,呼吸性细支气管 | respiratory bronchiole,images/Q0068.webp
+Q0069,呼吸系统,结构,呼吸性细支气管,respiratory bronchiole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,呼吸性细支气管 | respiratory bronchiole,images/Q0069.webp
+Q0070,呼吸系统,结构,肺泡管,alveolar duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡管 | alveolar duct,images/Q0070.webp
+Q0071,呼吸系统,结构,肺泡囊,alveolar sac,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡囊 | alveolar sac,images/Q0071.webp
+Q0072,呼吸系统,结构,肺泡,alveolus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡 | alveolus,images/Q0072.webp
+Q0073,呼吸系统,细胞,II型肺泡上皮细胞,type II alveolar epithelial cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,II型肺泡上皮细胞 | type II alveolar epithelial cell,images/Q0073.webp
+Q0074,呼吸系统,结构,肺泡囊,alveolar sac,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡囊 | alveolar sac,images/Q0074.webp
+Q0075,呼吸系统,组织,疏松结缔组织,loose connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,疏松结缔组织 | loose connective tissue,images/Q0075.webp
+Q0076,呼吸系统,结构,小支气管,small bronchus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小支气管 | small bronchus,images/Q0076.webp
+Q0077,呼吸系统,结构,终末细支气管,terminal bronchiole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,终末细支气管 | terminal bronchiole,images/Q0077.webp
+Q0078,呼吸系统,结构,细支气管,bronchiole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,细支气管 | bronchiole,images/Q0078.webp
+Q0079,呼吸系统,结构,肺泡隔,alveolar septum,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肺泡隔 | alveolar septum,images/Q0079.webp
+Q0080,呼吸系统,组织,假复层纤毛柱状上皮,pseudostratified ciliated columnar epithelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,假复层纤毛柱状上皮 | pseudostratified ciliated columnar epithelium,images/Q0080.webp
+Q0081,血液与血细胞,细胞,淋巴细胞,lymphocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,淋巴细胞 | lymphocyte,images/Q0081.webp
+Q0082,血液与血细胞,细胞,红细胞,erythrocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,红细胞 | erythrocyte,images/Q0082.webp
+Q0083,血液与血细胞,细胞,中性粒细胞,neutrophil,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,中性粒细胞 | neutrophil,images/Q0083.webp
+Q0084,血液与血细胞,细胞,红细胞,erythrocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,红细胞 | erythrocyte,images/Q0084.webp
+Q0085,血液与血细胞,细胞,嗜酸性粒细胞,eosinophil,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,嗜酸性粒细胞 | eosinophil,images/Q0085.webp
+Q0086,血液与血细胞,结构,血小板,platelet,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血小板 | platelet,images/Q0086.webp
+Q0087,血液与血细胞,细胞,单核细胞,monocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,单核细胞 | monocyte,images/Q0087.webp
+Q0088,血液与血细胞,细胞,单核细胞,monocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,单核细胞 | monocyte,images/Q0088.webp
+Q0089,血液与血细胞,细胞,淋巴细胞,lymphocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,淋巴细胞 | lymphocyte,images/Q0089.webp
+Q0090,血液与血细胞,细胞,中性粒细胞,neutrophil,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,中性粒细胞 | neutrophil,images/Q0090.webp
+Q0091,血液与血细胞,细胞,淋巴细胞,lymphocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,淋巴细胞 | lymphocyte,images/Q0091.webp
+Q0092,血液与血细胞,结构,血小板,platelet,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血小板 | platelet,images/Q0092.webp
+Q0093,血液与血细胞,细胞,单核细胞,monocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,单核细胞 | monocyte,images/Q0093.webp
+Q0094,血液与血细胞,组织,血涂片,blood smear,review_needed,core,False,判断图中重点显示区域的组织学类型。,,血涂片 | blood smear,images/Q0094.webp
+Q0095,血液与血细胞,细胞,嗜碱性粒细胞,basophil granulocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,嗜碱性粒细胞 | basophil granulocyte,images/Q0095.webp
+Q0096,上皮组织,组织,内皮,endothelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,内皮 | endothelium,images/Q0096.webp
+Q0097,上皮组织,组织,单层柱状上皮,simple columnar epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,单层柱状上皮 | simple columnar epithelium,images/Q0097.webp
+Q0098,上皮组织,组织,单层柱状上皮,simple columnar epithelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,单层柱状上皮 | simple columnar epithelium,images/Q0098.webp
+Q0099,上皮组织,结构,纹状缘,striated border,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,纹状缘 | striated border | 单层柱状上皮的纹状缘,images/Q0099.webp
+Q0100,上皮组织,结构,纤毛,cilium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,纤毛 | cilium | 假复层纤毛柱状上皮的纤毛,images/Q0100.webp
+Q0101,上皮组织,细胞,杯状细胞,goblet cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,杯状细胞 | goblet cell,images/Q0101.webp
+Q0102,上皮组织,细胞,盖细胞,umbrella cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,盖细胞 | umbrella cell | 变移上皮的盖细胞,images/Q0102.webp
+Q0103,上皮组织,组织,角化的复层扁平上皮,keratinized stratified squamous epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,角化的复层扁平上皮 | keratinized stratified squamous epithelium,images/Q0103.webp
+Q0104,上皮组织,组织,复层立方上皮,stratified cuboidal epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,复层立方上皮 | stratified cuboidal epithelium,images/Q0104.webp
+Q0105,上皮组织,组织,复层柱状上皮,stratified columnar epithelium,source_extracted,supplement,False,判断箭头所指管腔表面的上皮类型。,前期434题对照表将复层柱状上皮列为补充，不作为指定核心图题,复层柱状上皮 | stratified columnar epithelium,images/Q0105.webp
+Q0106,上皮组织,结构,微绒毛,microvillus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,微绒毛 | microvillus,images/Q0106.webp
+Q0107,上皮组织,结构,纤毛,cilium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,纤毛 | cilium,images/Q0107.webp
+Q0108,上皮组织,组织,间皮,mesothelium,review_needed,core,False,判断图中重点显示区域的组织学类型。,,间皮 | mesothelium,images/Q0108.webp
+Q0109,结缔组织,细胞,巨噬细胞,macrophage,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,巨噬细胞 | macrophage,images/Q0109.webp
+Q0110,结缔组织,组织,黄色脂肪组织,yellow adipose tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,黄色脂肪组织 | yellow adipose tissue,images/Q0110.webp
+Q0111,结缔组织,组织,不规则致密结缔组织,dense irregular connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,不规则致密结缔组织 | dense irregular connective tissue,images/Q0111.webp
+Q0112,结缔组织,结构,弹性纤维,elastic fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,弹性纤维 | elastic fiber,images/Q0112.webp
+Q0113,结缔组织,结构,胶原纤维,collagen fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胶原纤维 | collagen fiber,images/Q0113.webp
+Q0114,结缔组织,结构,网状纤维,reticular fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,网状纤维 | reticular fiber,images/Q0114.webp
+Q0115,结缔组织,结构,脂肪细胞细胞核,nucleus of adipocyte,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,脂肪细胞细胞核 | nucleus of adipocyte,images/Q0115.webp
+Q0116,结缔组织,组织,疏松结缔组织,loose connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,疏松结缔组织 | loose connective tissue,images/Q0116.webp
+Q0117,结缔组织,细胞,肥大细胞,mast cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肥大细胞 | mast cell,images/Q0117.webp
+Q0118,结缔组织,组织,规则致密结缔组织,dense regular connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,规则致密结缔组织 | dense regular connective tissue,images/Q0118.webp
+Q0119,结缔组织,细胞,成纤维细胞,fibroblast,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,成纤维细胞 | fibroblast,images/Q0119.webp
+Q0120,结缔组织,细胞,浆细胞,plasma cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,浆细胞 | plasma cell,images/Q0120.webp
+Q0121,结缔组织,细胞,网状细胞,reticular cell,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,网状细胞 | reticular cell,images/Q0121.webp
+Q0122,结缔组织,细胞,肥大细胞,mast cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肥大细胞 | mast cell,images/Q0122.webp
+Q0123,结缔组织,细胞,浆细胞,plasma cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,浆细胞 | plasma cell,images/Q0123.webp
+Q0124,结缔组织,细胞,浆细胞,plasma cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,浆细胞 | plasma cell,images/Q0124.webp
+Q0125,结缔组织,组织,不规则致密结缔组织,dense irregular connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,不规则致密结缔组织 | dense irregular connective tissue,images/Q0125.webp
+Q0126,结缔组织,细胞,巨噬细胞,macrophage,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,巨噬细胞 | macrophage,images/Q0126.webp
+Q0127,结缔组织,细胞,浆细胞,plasma cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,浆细胞 | plasma cell,images/Q0127.webp
+Q0128,结缔组织,细胞,肥大细胞,mast cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肥大细胞 | mast cell,images/Q0128.webp
+Q0129,结缔组织,细胞,肥大细胞,mast cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肥大细胞 | mast cell,images/Q0129.webp
+Q0130,神经组织,细胞,神经元,neuron,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,神经元 | neuron,images/Q0130.webp
+Q0131,神经组织,细胞,星形胶质细胞,astrocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,星形胶质细胞 | astrocyte,images/Q0131.webp
+Q0132,神经组织,结构,尼氏体,Nissl body,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,尼氏体 | Nissl body,images/Q0132.webp
+Q0133,神经组织,结构,树突,dendrite,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,树突 | dendrite,images/Q0133.webp
+Q0134,神经组织,结构,轴丘,axon hillock,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,轴丘 | axon hillock,images/Q0134.webp
+Q0135,神经组织,结构,有髓神经纤维,myelinated nerve fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,有髓神经纤维 | myelinated nerve fiber,images/Q0135.webp
+Q0136,神经组织,结构,郎飞节,node of Ranvier,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,郎飞节 | node of Ranvier,images/Q0136.webp
+Q0137,神经组织,结构,触觉小体,tactile corpuscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,触觉小体 | tactile corpuscle,images/Q0137.webp
+Q0138,神经组织,结构,环层小体,lamellated corpuscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,环层小体 | lamellated corpuscle,images/Q0138.webp
+Q0139,神经组织,结构,运动终板,motor end plate,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,运动终板 | motor end plate,images/Q0139.webp
+Q0140,神经组织,结构,神经束膜,perineurium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,神经束膜 | perineurium,images/Q0140.webp
+Q0141,神经组织,结构,髓鞘,myelin sheath,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓鞘 | myelin sheath,images/Q0141.webp
+Q0142,神经组织,结构,轴突,axon,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,轴突 | axon,images/Q0142.webp
+Q0143,神经组织,细胞,多极神经元,multipolar neuron,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,多极神经元 | multipolar neuron,images/Q0143.webp
+Q0144,神经组织,结构,树突,dendrite,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,树突 | dendrite,images/Q0144.webp
+Q0145,神经组织,结构,有髓神经纤维,myelinated nerve fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,有髓神经纤维 | myelinated nerve fiber,images/Q0145.webp
+Q0146,神经组织,结构,轴突,axon,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,轴突 | axon,images/Q0146.webp
+Q0147,神经组织,结构,髓鞘,myelin sheath,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓鞘 | myelin sheath,images/Q0147.webp
+Q0148,神经组织,结构,施万细胞核,Schwann cell nucleus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,施万细胞核 | Schwann cell nucleus | 施万细胞的细胞核,images/Q0148.webp
+Q0149,神经组织,结构,施万细胞核,Schwann cell nucleus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,施万细胞核 | Schwann cell nucleus | 施万细胞的细胞核,images/Q0149.webp
+Q0150,神经组织,结构,大脑锥体细胞的树突,dendrite of pyramidal cell,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,大脑锥体细胞的树突 | dendrite of pyramidal cell,images/Q0150.webp
+Q0151,神经组织,结构,神经原纤维,neurofibril,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,神经原纤维 | neurofibril,images/Q0151.webp
+Q0152,神经组织,结构,突触小泡,synaptic vesicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,突触小泡 | synaptic vesicle,images/Q0152.webp
+Q0153,神经组织,结构,突触前膜,presynaptic membrane,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,突触前膜 | presynaptic membrane,images/Q0153.webp
+Q0154,神经组织,结构,突触后膜,postsynaptic membrane,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,突触后膜 | postsynaptic membrane,images/Q0154.webp
+Q0155,神经组织,结构,髓鞘,myelin sheath,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓鞘 | myelin sheath,images/Q0155.webp
+Q0156,神经组织,结构,突触前成分,presynaptic element,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,突触前成分 | presynaptic element,images/Q0156.webp
+Q0157,神经组织,结构,施万细胞质,Schwann cell cytoplasm,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,施万细胞质 | Schwann cell cytoplasm | 施万细胞的细胞质,images/Q0157.webp
+Q0158,神经组织,结构,施万细胞核,Schwann cell nucleus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,施万细胞核 | Schwann cell nucleus | 施万细胞的细胞核,images/Q0158.webp
+Q0159,神经组织,结构,轴突,axon,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,轴突 | axon | 神经元轴突,images/Q0159.webp
+Q0160,神经组织,结构,骨骼肌纤维,skeletal muscle fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,骨骼肌纤维 | skeletal muscle fiber,images/Q0160.webp
+Q0161,神经组织,细胞,神经元,neuron,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,神经元 | neuron | 神经细胞,images/Q0161.webp
+Q0162,神经组织,细胞,卫星细胞,satellite cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,卫星细胞 | satellite cell,images/Q0162.webp
+Q0163,神经组织,结构,中央管,central canal,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,中央管 | central canal,images/Q0163.webp
+Q0164,神经组织,器官,脊髓,spinal cord,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,脊髓 | spinal cord,images/Q0164.webp
+Q0165,神经组织,器官,脊神经节,spinal ganglion,review_needed,core,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,脊神经节 | spinal ganglion,images/Q0165.webp
+Q0166,神经组织,细胞,假单极神经元,pseudounipolar neuron,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,假单极神经元 | pseudounipolar neuron,images/Q0166.webp
+Q0167,神经组织,结构,神经原纤维,neurofibril,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,神经原纤维 | neurofibril,images/Q0167.webp
+Q0168,神经组织,细胞,星形胶质细胞,astrocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,星形胶质细胞 | astrocyte,images/Q0168.webp
+Q0169,神经组织,结构,有髓神经纤维,myelinated nerve fiber,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,有髓神经纤维 | myelinated nerve fiber,images/Q0169.webp
+Q0170,神经组织,结构,运动终板,motor end plate,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,运动终板 | motor end plate,images/Q0170.webp
+Q0171,神经组织,结构,汗腺导管,sweat gland duct,review_needed,core,False,写出箭头指向的皮肤附属器结构名称。,,汗腺导管 | sweat gland duct,images/Q0171.webp
+Q0172,神经组织,结构,有髓神经纤维,myelinated nerve fiber,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,有髓神经纤维 | myelinated nerve fiber,images/Q0172.webp
+Q0173,神经组织,结构,突触,synapse,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,突触 | synapse,images/Q0173.webp
+Q0174,神经组织,结构,有髓神经纤维,myelinated nerve fiber,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,有髓神经纤维 | myelinated nerve fiber,images/Q0174.webp
+Q0175,神经组织,结构,神经外膜,epineurium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,神经外膜 | epineurium,images/Q0175.webp
+Q0176,神经组织,细胞,锥体细胞,pyramidal cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,锥体细胞 | pyramidal cell | 大脑锥体细胞,images/Q0176.webp
+Q0177,神经组织,结构,神经原纤维,neurofibril,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,神经原纤维 | neurofibril,images/Q0177.webp
+Q0178,消化系统,器官,肝,liver,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,肝 | liver | 肝脏,images/Q0178.webp
+Q0179,消化系统,细胞,肝巨噬细胞,hepatic macrophage,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肝巨噬细胞 | hepatic macrophage,images/Q0179.webp
+Q0180,消化系统,结构,肝板,hepatic plate,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肝板 | hepatic plate | 肝索,images/Q0180.webp
+Q0181,消化系统,结构,中央静脉,central vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中央静脉 | central vein,images/Q0181.webp
+Q0182,消化系统,结构,肝血窦,hepatic sinusoid,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肝血窦 | hepatic sinusoid,images/Q0182.webp
+Q0183,消化系统,结构,小叶间静脉,interlobular vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间静脉 | interlobular vein,images/Q0183.webp
+Q0184,消化系统,结构,小叶间动脉,interlobular artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间动脉 | interlobular artery,images/Q0184.webp
+Q0185,消化系统,结构,小叶间胆管,interlobular bile duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间胆管 | interlobular bile duct,images/Q0185.webp
+Q0186,消化系统,结构,胆小管,bile canaliculus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胆小管 | bile canaliculus,images/Q0186.webp
+Q0187,消化系统,细胞,泡心细胞,centroacinar cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,泡心细胞 | centroacinar cell,images/Q0187.webp
+Q0188,消化系统,结构,胰岛,pancreatic islet,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胰岛 | pancreatic islet,images/Q0188.webp
+Q0189,消化系统,结构,闰管,intercalated duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,闰管 | intercalated duct,images/Q0189.webp
+Q0190,消化系统,结构,浆半月,serous demilune,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,浆半月 | serous demilune,images/Q0190.webp
+Q0191,消化系统,结构,闰管,intercalated duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,闰管 | intercalated duct,images/Q0191.webp
+Q0192,消化系统,结构,纹状管,striated duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,纹状管 | striated duct,images/Q0192.webp
+Q0193,消化系统,器官,腮腺,parotid gland,source_extracted,supplement,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,腮腺独立器官不在指定下颌下腺玻片范围中,腮腺 | parotid gland,images/Q0193.webp
+Q0194,消化系统,器官,下颌下腺,submandibular gland,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,下颌下腺 | submandibular gland,images/Q0194.webp
+Q0195,消化系统,细胞,肝细胞,hepatocyte,review_needed,core,False,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肝细胞 | hepatocyte,images/Q0195.webp
+Q0196,消化系统,器官,舌下腺,sublingual gland,source_extracted,supplement,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,舌下腺独立器官不在指定下颌下腺玻片范围中,舌下腺 | sublingual gland,images/Q0196.webp
+Q0197,消化系统,结构,肝小叶,hepatic lobule,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,肝小叶 | hepatic lobule,images/Q0197.webp
+Q0198,消化系统,器官,腮腺,parotid gland,review_needed,supplement,False,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,腮腺独立器官不在指定下颌下腺玻片范围中,腮腺 | parotid gland,images/Q0198.webp
+Q0199,消化系统,结构,浆液性腺泡,serous acinus,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,浆液性腺泡 | serous acinus,images/Q0199.webp
+Q0200,消化系统,结构,纹状管,striated duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,纹状管 | striated duct | 分泌管,images/Q0200.webp
+Q0201,消化系统,结构,小叶间导管,interlobular duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间导管 | interlobular duct,images/Q0201.webp
+Q0202,消化系统,结构,血管,blood vessel,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血管 | blood vessel,images/Q0202.webp
+Q0203,消化系统,结构,肝小叶,hepatic lobule,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,肝小叶 | hepatic lobule,images/Q0203.webp
+Q0204,消化系统,细胞,纹状管上皮细胞,striated duct epithelial cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,纹状管上皮细胞 | striated duct epithelial cell | 分泌管上皮细胞,images/Q0204.webp
+Q0205,消化系统,结构,浆液性腺泡,serous acinus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,浆液性腺泡 | serous acinus,images/Q0205.webp
+Q0206,消化系统,细胞,肌上皮细胞,myoepithelial cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肌上皮细胞 | myoepithelial cell,images/Q0206.webp
+Q0207,消化系统,结构,腮腺小叶,parotid lobule,source_extracted,supplement,False,辨认图中重点标示的组织结构，写出其名称。,腮腺特指的小叶，超出已确认下颌下腺指定玻片；按补充处理,腮腺小叶 | parotid lobule,images/Q0207.webp
+Q0208,消化系统,结构,小叶间隔,interlobular septum,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间隔 | interlobular septum,images/Q0208.webp
+Q0209,消化系统,结构,主导管,main duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,主导管 | main duct,images/Q0209.webp
+Q0210,消化系统,组织,脂肪组织,adipose tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,脂肪组织 | adipose tissue,images/Q0210.webp
+Q0211,消化系统,结构,主导管,main duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,主导管 | main duct,images/Q0211.webp
+Q0212,消化系统,结构,被膜,capsule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,被膜 | capsule,images/Q0212.webp
+Q0213,消化系统,结构,主导管,main duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,主导管 | main duct,images/Q0213.webp
+Q0214,消化系统,组织,结缔组织,connective tissue,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,结缔组织 | connective tissue,images/Q0214.webp
+Q0215,消化系统,结构,主导管,main duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,主导管 | main duct,images/Q0215.webp
+Q0216,消化系统,结构,小叶间导管,interlobular duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间导管 | interlobular duct,images/Q0216.webp
+Q0217,消化系统,结构,闰管,intercalated duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,闰管 | intercalated duct,images/Q0217.webp
+Q0218,消化系统,结构,小叶间导管,interlobular duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间导管 | interlobular duct,images/Q0218.webp
+Q0219,消化系统,结构,小动脉,small artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小动脉 | small artery,images/Q0219.webp
+Q0220,消化系统,结构,小静脉,small vein,review_needed,core,False,辨认图中重点标示的组织结构，写出其名称。,,小静脉 | small vein,images/Q0220.webp
+Q0221,消化系统,结构,小神经,small nerve,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小神经 | small nerve,images/Q0221.webp
+Q0222,消化系统,结构,主导管,main duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,主导管 | main duct,images/Q0222.webp
+Q0223,消化系统,组织,假复层柱状上皮,pseudostratified columnar epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,假复层柱状上皮 | pseudostratified columnar epithelium,images/Q0223.webp
+Q0224,消化系统,结构,小叶间导管,interlobular duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小叶间导管 | interlobular duct,images/Q0224.webp
+Q0225,泌尿系统,器官,肾,kidney,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,肾 | kidney,images/Q0225.webp
+Q0226,泌尿系统,器官,肾,kidney,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,肾 | kidney,images/Q0226.webp
+Q0227,泌尿系统,结构,肾小体,renal corpuscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肾小体 | renal corpuscle,images/Q0227.webp
+Q0228,泌尿系统,结构,远端小管曲部,distal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,远端小管曲部 | distal convoluted tubule | 远曲小管,images/Q0228.webp
+Q0229,泌尿系统,结构,近端小管曲部,proximal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,近端小管曲部 | proximal convoluted tubule | 近曲小管,images/Q0229.webp
+Q0230,泌尿系统,结构,细段,thin segment,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,细段 | thin segment,images/Q0230.webp
+Q0231,泌尿系统,结构,远端小管曲部,distal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,远端小管曲部 | distal convoluted tubule | 远曲小管,images/Q0231.webp
+Q0232,泌尿系统,结构,近端小管曲部,proximal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,近端小管曲部 | proximal convoluted tubule | 近曲小管,images/Q0232.webp
+Q0233,泌尿系统,结构,集合小管,collecting tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,集合小管 | collecting tubule | 集合管,images/Q0233.webp
+Q0234,泌尿系统,结构,血管球,glomerulus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血管球 | glomerulus,images/Q0234.webp
+Q0235,泌尿系统,结构,髓放线,medullary ray,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓放线 | medullary ray,images/Q0235.webp
+Q0236,泌尿系统,结构,致密斑,macula densa,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,致密斑 | macula densa,images/Q0236.webp
+Q0237,泌尿系统,结构,血管球,glomerulus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,血管球 | glomerulus,images/Q0237.webp
+Q0238,泌尿系统,细胞,球外系膜细胞,extraglomerular mesangial cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,球外系膜细胞 | extraglomerular mesangial cell,images/Q0238.webp
+Q0239,泌尿系统,结构,肾小囊腔,Bowman's space,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肾小囊腔 | Bowman's space,images/Q0239.webp
+Q0240,泌尿系统,结构,尿极,urinary pole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,尿极 | urinary pole,images/Q0240.webp
+Q0241,泌尿系统,器官,输尿管,ureter,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,输尿管 | ureter,images/Q0241.webp
+Q0242,泌尿系统,器官,膀胱,bladder,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,膀胱 | bladder,images/Q0242.webp
+Q0243,泌尿系统,结构,固有层,lamina propria,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,固有层 | lamina propria,images/Q0243.webp
+Q0244,泌尿系统,器官,膀胱,bladder,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,膀胱 | bladder,images/Q0244.webp
+Q0245,泌尿系统,组织,变移上皮,transitional epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,变移上皮 | transitional epithelium,images/Q0245.webp
+Q0246,泌尿系统,组织,变移上皮,transitional epithelium,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,变移上皮 | transitional epithelium,images/Q0246.webp
+Q0247,泌尿系统,器官,输尿管,ureter,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,输尿管 | ureter,images/Q0247.webp
+Q0248,泌尿系统,结构,肌层,muscular layer,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌层 | muscular layer,images/Q0248.webp
+Q0249,泌尿系统,结构,致密斑,macula densa,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,致密斑 | macula densa,images/Q0249.webp
+Q0250,泌尿系统,结构,皮质集合小管,cortical collecting tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,皮质集合小管 | cortical collecting tubule | 皮质集合管,images/Q0250.webp
+Q0251,泌尿系统,结构,皮质迷路,cortical labyrinth,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,皮质迷路 | cortical labyrinth | 肾皮质迷路,images/Q0251.webp
+Q0252,泌尿系统,结构,髓放线,medullary ray,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓放线 | medullary ray | 肾皮质髓放线,images/Q0252.webp
+Q0253,泌尿系统,结构,远端小管曲部,distal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,远端小管曲部 | distal convoluted tubule | 远曲小管,images/Q0253.webp
+Q0254,泌尿系统,结构,远端小管直部,straight part of distal tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,远端小管直部 | straight part of distal tubule | 远直小管,images/Q0254.webp
+Q0255,泌尿系统,结构,近端小管曲部,proximal convoluted tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,近端小管曲部 | proximal convoluted tubule | 近曲小管,images/Q0255.webp
+Q0256,泌尿系统,结构,近端小管直部,straight part of proximal tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,近端小管直部 | straight part of proximal tubule | 近直小管,images/Q0256.webp
+Q0257,泌尿系统,结构,髓质集合小管,medullary collecting tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,髓质集合小管 | medullary collecting tubule | 髓质集合管,images/Q0257.webp
+Q0258,泌尿系统,结构,细段,thin segment,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,细段 | thin segment,images/Q0258.webp
+Q0259,泌尿系统,结构,尿极,urinary pole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,尿极 | urinary pole,images/Q0259.webp
+Q0260,泌尿系统,结构,肾小体,renal corpuscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肾小体 | renal corpuscle,images/Q0260.webp
+Q0261,循环系统,结构,内弹性膜,internal elastic lamina,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,内弹性膜 | internal elastic lamina,images/Q0261.webp
+Q0262,循环系统,结构,中动脉,medium-sized artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中动脉 | medium-sized artery,images/Q0262.webp
+Q0263,循环系统,结构,外膜,adventitia,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,外膜 | adventitia,images/Q0263.webp
+Q0264,循环系统,结构,中膜,tunica media,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中膜 | tunica media,images/Q0264.webp
+Q0265,循环系统,结构,内皮细胞核,endothelial nucleus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,内皮细胞核 | endothelial nucleus,images/Q0265.webp
+Q0266,循环系统,细胞,平滑肌细胞,smooth muscle cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,平滑肌细胞 | smooth muscle cell,images/Q0266.webp
+Q0267,循环系统,结构,外膜,adventitia,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,外膜 | adventitia,images/Q0267.webp
+Q0268,循环系统,结构,中静脉,medium-sized vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中静脉 | medium-sized vein,images/Q0268.webp
+Q0269,循环系统,结构,中静脉中膜,tunica media of medium-sized vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中静脉中膜 | tunica media of medium-sized vein,images/Q0269.webp
+Q0270,循环系统,结构,小动脉,small artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小动脉 | small artery,images/Q0270.webp
+Q0271,循环系统,结构,小静脉,small vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小静脉 | small vein,images/Q0271.webp
+Q0272,循环系统,结构,微动脉,arteriole,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,微动脉 | arteriole,images/Q0272.webp
+Q0273,循环系统,结构,小淋巴管,small lymphatic vessel,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小淋巴管 | small lymphatic vessel,images/Q0273.webp
+Q0274,循环系统,结构,大静脉,large vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,大静脉 | large vein,images/Q0274.webp
+Q0275,循环系统,结构,大静脉外膜,adventitia of large vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,大静脉外膜 | adventitia of large vein,images/Q0275.webp
+Q0276,循环系统,结构,平滑肌束,smooth muscle bundle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,平滑肌束 | smooth muscle bundle,images/Q0276.webp
+Q0277,循环系统,结构,内皮,endothelium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,内皮 | endothelium,images/Q0277.webp
+Q0278,循环系统,结构,大动脉,large artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,大动脉 | large artery,images/Q0278.webp
+Q0279,循环系统,结构,中膜弹性膜,elastic lamella of tunica media,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中膜弹性膜 | elastic lamella of tunica media,images/Q0279.webp
+Q0280,循环系统,结构,中膜弹性膜,elastic lamella of tunica media,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,中膜弹性膜 | elastic lamella of tunica media,images/Q0280.webp
+Q0281,循环系统,结构,平滑肌细胞核,nucleus of smooth muscle cell,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,平滑肌细胞核 | nucleus of smooth muscle cell,images/Q0281.webp
+Q0282,循环系统,结构,毛细血管,capillary,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,毛细血管 | capillary,images/Q0282.webp
+Q0283,循环系统,结构,心瓣膜,cardiac valve,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心瓣膜 | cardiac valve,images/Q0283.webp
+Q0284,循环系统,结构,浦肯野纤维,Purkinje fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,浦肯野纤维 | Purkinje fiber,images/Q0284.webp
+Q0285,循环系统,细胞,内皮细胞,endothelial cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,内皮细胞 | endothelial cell,images/Q0285.webp
+Q0286,循环系统,结构,心内膜,endocardium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心内膜 | endocardium,images/Q0286.webp
+Q0287,循环系统,结构,心肌膜,myocardium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心肌膜 | myocardium,images/Q0287.webp
+Q0288,循环系统,结构,心外膜,epicardium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心外膜 | epicardium,images/Q0288.webp
+Q0289,循环系统,结构,小静脉,small vein,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,小静脉 | small vein,images/Q0289.webp
+Q0290,循环系统,结构,胶原纤维束,collagen fiber bundle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,胶原纤维束 | collagen fiber bundle,images/Q0290.webp
+Q0291,循环系统,结构,心内膜,endocardium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心内膜 | endocardium,images/Q0291.webp
+Q0292,循环系统,结构,内皮下层,subendothelial layer,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,内皮下层 | subendothelial layer,images/Q0292.webp
+Q0293,循环系统,细胞,心肌细胞,cardiomyocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,心肌细胞 | cardiomyocyte,images/Q0293.webp
+Q0294,生殖系统,细胞,精子细胞,spermatid,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精子细胞 | spermatid,images/Q0294.webp
+Q0295,生殖系统,细胞,初级精母细胞,primary spermatocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,初级精母细胞 | primary spermatocyte,images/Q0295.webp
+Q0296,生殖系统,细胞,精原细胞,spermatogonium,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精原细胞 | spermatogonium,images/Q0296.webp
+Q0297,生殖系统,细胞,精子,sperm,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精子 | sperm,images/Q0297.webp
+Q0298,生殖系统,细胞,精子细胞,spermatid,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精子细胞 | spermatid,images/Q0298.webp
+Q0299,生殖系统,细胞,支持细胞,Sertoli cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,支持细胞 | Sertoli cell,images/Q0299.webp
+Q0300,生殖系统,细胞,肌样细胞,myoid cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,肌样细胞 | myoid cell,images/Q0300.webp
+Q0301,生殖系统,细胞,睾丸间质细胞,Leydig cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,睾丸间质细胞 | Leydig cell,images/Q0301.webp
+Q0302,生殖系统,细胞,精原细胞,spermatogonium,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精原细胞 | spermatogonium,images/Q0302.webp
+Q0303,生殖系统,细胞,初级精母细胞,primary spermatocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,初级精母细胞 | primary spermatocyte,images/Q0303.webp
+Q0304,生殖系统,细胞,精子,sperm,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精子 | sperm,images/Q0304.webp
+Q0305,生殖系统,细胞,精子细胞,spermatid,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,精子细胞 | spermatid,images/Q0305.webp
+Q0306,生殖系统,细胞,支持细胞,Sertoli cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,支持细胞 | Sertoli cell,images/Q0306.webp
+Q0307,生殖系统,细胞,睾丸间质细胞,Leydig cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,睾丸间质细胞 | Leydig cell,images/Q0307.webp
+Q0308,生殖系统,器官,睾丸,testis,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,睾丸 | testis,images/Q0308.webp
+Q0309,生殖系统,结构,附睾管,epididymal duct,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,附睾管 | epididymal duct,images/Q0309.webp
+Q0310,生殖系统,结构,生精小管,seminiferous tubule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,生精小管 | seminiferous tubule,images/Q0310.webp
+Q0311,生殖系统,结构,输出小管,efferent ductule,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,输出小管 | efferent ductule,images/Q0311.webp
+Q0312,生殖系统,结构,次级卵泡,secondary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,次级卵泡 | secondary follicle,images/Q0312.webp
+Q0313,生殖系统,结构,初级卵泡,primary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,初级卵泡 | primary follicle,images/Q0313.webp
+Q0314,生殖系统,结构,初级卵泡,primary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,初级卵泡 | primary follicle,images/Q0314.webp
+Q0315,生殖系统,结构,原始卵泡,primordial follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,原始卵泡 | primordial follicle,images/Q0315.webp
+Q0316,生殖系统,结构,黄体,corpus luteum,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,黄体 | corpus luteum,images/Q0316.webp
+Q0317,生殖系统,细胞,卵泡细胞,follicular cell,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,卵泡细胞 | follicular cell,images/Q0317.webp
+Q0318,生殖系统,细胞,初级卵母细胞,primary oocyte,source_extracted,core,True,图中箭头指向卵泡内的生殖细胞。请写出该细胞所处的发育阶段名称。,,初级卵母细胞 | primary oocyte,images/Q0318.webp
+Q0319,生殖系统,细胞,初级卵母细胞,primary oocyte,source_extracted,core,True,观察图中箭头、圈选或重点标示的细胞，写出其细胞类型。,,初级卵母细胞 | primary oocyte,images/Q0319.webp
+Q0320,生殖系统,结构,透明带,zona pellucida,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,透明带 | zona pellucida,images/Q0320.webp
+Q0321,生殖系统,结构,放射冠,corona radiata,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,放射冠 | corona radiata,images/Q0321.webp
+Q0322,生殖系统,结构,卵丘,cumulus oophorus,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,卵丘 | cumulus oophorus,images/Q0322.webp
+Q0323,生殖系统,结构,卵泡膜,theca folliculi,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,卵泡膜 | theca folliculi,images/Q0323.webp
+Q0324,生殖系统,组织,卵巢表面上皮,ovarian surface epithelium,review_needed,core,False,判断两支箭头所指、覆盖器官外表面的上皮层名称。,,卵巢表面上皮 | ovarian surface epithelium,images/Q0324.webp
+Q0325,生殖系统,结构,卵泡腔,follicular antrum,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,卵泡腔 | follicular antrum,images/Q0325.webp
+Q0326,生殖系统,器官,卵巢,ovary,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,卵巢 | ovary,images/Q0326.webp
+Q0327,生殖系统,器官,卵巢,ovary,source_extracted,core,True,根据整幅切片的组织布局，写出所属器官名称。图中辅助编号无需逐项作答。,,卵巢 | ovary,images/Q0327.webp
+Q0328,生殖系统,结构,月经期子宫内膜,endometrium in menstrual phase,review_needed,core,False,根据整张切片的腺体和间质形态，判断该组织所处的周期阶段。,,月经期子宫内膜 | endometrium in menstrual phase,images/Q0328.webp
+Q0329,生殖系统,结构,增生期子宫内膜,endometrium in proliferative phase,review_needed,core,False,根据整张切片的腺体和间质形态，判断该组织所处的周期阶段。,,增生期子宫内膜 | endometrium in proliferative phase,images/Q0329.webp
+Q0330,生殖系统,结构,分泌期子宫内膜,endometrium in secretory phase,review_needed,core,False,根据整张切片的腺体和间质形态，判断该组织所处的周期阶段。,,分泌期子宫内膜 | endometrium in secretory phase,images/Q0330.webp
+Q0331,生殖系统,结构,螺旋动脉,spiral artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,螺旋动脉 | spiral artery,images/Q0331.webp
+Q0332,生殖系统,结构,子宫腺,uterine gland,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,子宫腺 | uterine gland,images/Q0332.webp
+Q0333,生殖系统,结构,螺旋动脉,spiral artery,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,螺旋动脉 | spiral artery,images/Q0333.webp
+Q0334,生殖系统,结构,透明带,zona pellucida,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,透明带 | zona pellucida,images/Q0334.webp
+Q0335,生殖系统,结构,次级卵泡,secondary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,次级卵泡 | secondary follicle,images/Q0335.webp
+Q0336,生殖系统,结构,闭锁卵泡,atretic follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,闭锁卵泡 | atretic follicle,images/Q0336.webp
+Q0337,生殖系统,结构,次级卵泡,secondary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,次级卵泡 | secondary follicle,images/Q0337.webp
+Q0338,生殖系统,结构,次级卵泡,secondary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,次级卵泡 | secondary follicle,images/Q0338.webp
+Q0339,生殖系统,结构,次级卵泡,secondary follicle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,次级卵泡 | secondary follicle,images/Q0339.webp
+Q0340,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0340.webp
+Q0341,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0341.webp
+Q0342,肌组织,结构,肌束膜,perimysium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌束膜 | perimysium,images/Q0342.webp
+Q0343,肌组织,结构,骨骼肌横纹,striation of skeletal muscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,骨骼肌横纹 | striation of skeletal muscle,images/Q0343.webp
+Q0344,肌组织,组织,心肌,cardiac muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,心肌 | cardiac muscle,images/Q0344.webp
+Q0345,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0345.webp
+Q0346,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0346.webp
+Q0347,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0347.webp
+Q0348,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0348.webp
+Q0349,肌组织,结构,肌束膜,perimysium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌束膜 | perimysium,images/Q0349.webp
+Q0350,肌组织,结构,肌内膜,endomysium,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,肌内膜 | endomysium,images/Q0350.webp
+Q0351,肌组织,结构,骨骼肌细胞核,nucleus of skeletal muscle fiber,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,骨骼肌细胞核 | nucleus of skeletal muscle fiber,images/Q0351.webp
+Q0352,肌组织,结构,骨骼肌横纹,striation of skeletal muscle,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,骨骼肌横纹 | striation of skeletal muscle,images/Q0352.webp
+Q0353,肌组织,组织,心肌,cardiac muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,心肌 | cardiac muscle,images/Q0353.webp
+Q0354,肌组织,组织,心肌,cardiac muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,心肌 | cardiac muscle,images/Q0354.webp
+Q0355,肌组织,结构,心肌细胞核,nucleus of cardiomyocyte,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心肌细胞核 | nucleus of cardiomyocyte,images/Q0355.webp
+Q0356,肌组织,结构,心肌细胞核,nucleus of cardiomyocyte,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,心肌细胞核 | nucleus of cardiomyocyte,images/Q0356.webp
+Q0357,肌组织,结构,闰盘,intercalated disc,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,闰盘 | intercalated disc,images/Q0357.webp
+Q0358,肌组织,组织,平滑肌,smooth muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,平滑肌 | smooth muscle,images/Q0358.webp
+Q0359,肌组织,结构,平滑肌细胞核,nucleus of smooth muscle cell,source_extracted,core,True,辨认图中重点标示的组织结构，写出其名称。,,平滑肌细胞核 | nucleus of smooth muscle cell,images/Q0359.webp
+Q0360,肌组织,组织,平滑肌,smooth muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,平滑肌 | smooth muscle,images/Q0360.webp
+Q0361,肌组织,组织,平滑肌,smooth muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,平滑肌 | smooth muscle,images/Q0361.webp
+Q0362,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0362.webp
+Q0363,肌组织,组织,骨骼肌,skeletal muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,骨骼肌 | skeletal muscle,images/Q0363.webp
+Q0364,肌组织,组织,心肌,cardiac muscle,source_extracted,core,True,判断图中重点显示区域的组织学类型。,,心肌 | cardiac muscle,images/Q0364.webp
