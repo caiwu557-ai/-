@@ -7,7 +7,7 @@
 - `node qa/validate-terminology.mjs` / `validate-learning-flow.mjs` / `validate-round-prompt.mjs`：主站词汇与轮次回归。
 - `node qa/validate-atlas.mjs` / `validate-unified-workspace.mjs`：图谱、来源链接和导航。
 - `node image-quiz/qa/validate_project.mjs` / `runtime_smoke.mjs`：364 个题号与 WebP、305 自动可用、医学别名及答题状态、备份校验和防公式注入。
-- `node qa/browser-lumen.mjs` / `validate-recall-resume.mjs` / `browser-image-quiz.mjs`：真实 Chromium，跨模块跳转、320–1440px 布局、未提交输入在刷新后恢复、键盘连续答题、定位环缩放、Escape 关闭、备份损坏拒绝、浏览器存储失败告警。
+- `node qa/browser-lumen.mjs` / `validate-recall-resume.mjs` / `browser-image-quiz.mjs`：真实 Chromium，跨模块跳转、320–1440px 布局、手机端答题专注态（固定导航不遮挡主操作）、未提交输入在刷新后恢复、键盘连续答题、定位环缩放、Escape 关闭、备份损坏拒绝、浏览器存储失败告警。
 - 工作流：`.github/workflows/lumen-browser-qa.yml`。验收须以**当前 PR HEAD** 对应的最新 run 为准，不能沿用早期通过的 CI。
 
 ## 保留的数据与医学边界
