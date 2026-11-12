@@ -72,4 +72,12 @@ t('Skipped card does not count against recall accuracy',()=>{
 t('Session restored to home has new and due counts grounded in real attempts',()=>{
  api.go('home');const stats=api.currentStats();assert.equal(stats.newCount,305-2);assert.equal(get('#metric-new').textContent,stats.newCount);
 });
+t('Backups with invalid structures are rejected before overwrite',()=>{
+ const current=api.getStore();
+ const backup=JSON.parse(JSON.stringify(current));
+ assert.equal(api.normalizeProgress(backup).version,1);
+ assert.throws(()=>api.normalizeProgress({...backup,sessions:'invalid'}),/结构/);
+ assert.throws(()=>api.normalizeProgress({...backup,flags:{'Q9999':{type:'test',note:'test',when:Date.now()}}}),/核验记录/);
+ assert.equal(api.getStore(),current);
+});
 console.log('RUNTIME_SMOKE_SUMMARY',JSON.stringify({pass,fail:0}));
