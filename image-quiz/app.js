@@ -43,7 +43,36 @@ const icons={
 function svg(name){return '<svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(icons[name]||icons.target)+'</svg>'}
 function applyIcons(root=document){$$('[data-icon]',root).forEach(el=>{el.innerHTML=svg(el.dataset.icon)})}
 const empty=()=>({version:1,items:{},sessions:[],flags:{},active:null});
-function load(){try{const v=JSON.parse(localStorage.getItem(STORAGE));if(v&&v.version===1&&v.items&&typeof v.items==='object')return {...empty(),...v}}catch{}return empty()}
+const isRecord=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
+const MODES=new Set(['adaptive','new','weak','exam','single']);
+const validAnswer=a=>isRecord(a)&&typeof a.id==='string'&&typeof a.user==='string'&&a.user.length<=1000&&typeof a.ok==='boolean'&&typeof a.skipped==='boolean'&&Number.isFinite(a.when);
+function validSession(x,completed=false){
+ if(!isRecord(x)||!MODES.has(x.mode)||!Array.isArray(x.ids)||!x.ids.length||x.ids.length>364||!Number.isFinite(x.startedAt)||!Array.isArray(x.answers)||x.answers.length>x.ids.length)return false;
+ if(!x.ids.every(id=>typeof id==='string'&&byId[id]?.autoEligible))return false;
+ if(!x.answers.every((a,i)=>validAnswer(a)&&a.id===x.ids[i]))return false;
+ if(completed)return Number.isFinite(x.finishedAt)&&Number.isInteger(x.correct)&&Number.isInteger(x.skipped)&&x.correct>=0&&x.skipped>=0&&x.correct+x.skipped<=x.ids.length;
+ return x.finishedAt==null&&Number.isInteger(x.index)&&x.index>=0&&x.index<x.ids.length&&
+  (x.answers.length===x.index||x.answers.length===x.index+1)&&
+  (x.draftInput===undefined||(typeof x.draftInput==='string'&&x.draftInput.length<=200));
+}
+function normalizeProgress(p){
+ if(!isRecord(p)||p.version!==1||!isRecord(p.items)||!Array.isArray(p.sessions)||!isRecord(p.flags)||p.sessions.length>40)throw Error('学习进度结构不符合本模块格式');
+ if(Object.keys(p.items).length>QS.length||Object.keys(p.flags).length>QS.length)throw Error('学习记录数量异常');
+ for(const [id,r] of Object.entries(p.items)){
+  if(!byId[id]||!isRecord(r)||!['attempts','correct','wrong','streak'].every(k=>Number.isInteger(r[k])&&r[k]>=0)||
+    r.correct>r.attempts||r.wrong>r.attempts||r.correct+r.wrong!==r.attempts||
+    (r.lastAt!==undefined&&!Number.isFinite(r.lastAt))||(r.dueAt!==undefined&&!Number.isFinite(r.dueAt))||
+    (r.lastWrong!==undefined&&typeof r.lastWrong!=='boolean'))throw Error('题目练习记录异常：'+id);
+ }
+ for(const x of p.sessions){if(!validSession(x,true))throw Error('历史练习记录格式异常')}
+ for(const [id,f] of Object.entries(p.flags)){
+  if(!byId[id]||!isRecord(f)||typeof f.type!=='string'||f.type.length>100||
+   typeof f.note!=='string'||f.note.length>2000||!Number.isFinite(f.when))throw Error('核验记录格式异常：'+id);
+ }
+ if(p.active!=null&&!validSession(p.active))throw Error('未完成练习记录格式异常');
+ return {version:1,items:p.items,sessions:p.sessions,flags:p.flags,active:p.active??null};
+}
+function load(){try{return normalizeProgress(JSON.parse(localStorage.getItem(STORAGE)))}catch{return empty()}}
 let store=load();
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(store));return true}catch{return false}}
 const groups=Object.keys(BANK.meta.categories),types=['器官','组织','结构','细胞'];
