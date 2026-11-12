@@ -69,4 +69,14 @@ t('Module namespace does not overwrite vocabulary review data',()=>{
 });
 t('Responsive and reduced-motion support present',()=>{for(const marker of ['@media(max-width:870px)','@media(max-width:650px)','@media(max-width:370px)','prefers-reduced-motion:reduce'])assert.ok(css.includes(marker),marker)});
 t('Original bundled JPEG base64 not leaked into new app',()=>{assert.ok(!markup.includes('data:image/jpeg;base64'));assert.ok(!read('data/bank.js').includes('data:image/jpeg;base64'))});
+t('Exported CSV neutralizes spreadsheet formulas',()=>{
+ const start=app.indexOf('function csv(rows){');
+ const end=app.indexOf('\nfunction exportMistakes()',start);
+ assert.ok(start>=0&&end>start);
+ const ctx=vm.createContext({});
+ vm.runInContext(app.slice(start,end)+'\nglobalThis.csvFn=csv;',ctx);
+ const value=ctx.csvFn([['safe','=1+2','+SUM(1)',' -4','@FORMULA']]);
+ for(const term of ["'=1+2","'+SUM(1)","' -4","'@FORMULA"])assert.ok(value.includes(term),term);
+ assert.ok(value.includes('"safe"'));
+});
 console.log('STATIC_QA_SUMMARY',JSON.stringify({pass:passed,fail:0,totalImages:364,reviewNeeded:43,visualHold:11,examEligible:305}));
