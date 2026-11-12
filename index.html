@@ -792,6 +792,12 @@ button:focus-visible,a:focus-visible,select:focus-visible,.spark-col:focus-visib
 /* Cross-module term lookup; does not alter training state */
 .detail-actions .atlas-term-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;text-decoration:none;font-size:12px}
 .detail-actions .atlas-term-link:focus-visible{outline:3px solid #a5a1ff;outline-offset:3px}
+/* Unfinished recall rounds survive navigation and refresh. */
+.resume-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 21px;margin:0 0 21px;border:1px solid var(--line,#e4e9f0);border-left:3px solid #827ef7;border-radius:13px;background:var(--surface,#fff);}
+.resume-strip strong{font-size:15px}.resume-strip p{font-size:12.5px;line-height:1.55;color:var(--muted,#677184);margin:4px 0 0}
+.resume-actions{display:flex;flex-wrap:wrap;gap:9px}.resume-actions .btn{min-height:42px;white-space:nowrap}
+.typing-full-preview{display:block;min-height:20px;margin-top:9px;overflow-wrap:anywhere;font-family:ui-monospace,monospace;font-size:13px;color:var(--muted,#677184)}
+@media(max-width:700px){.resume-strip{flex-direction:column;align-items:stretch}.resume-actions .btn{flex:1}}
 </style>
 <link rel="stylesheet" href="./assets/lumen-unified.css" />
 </head>
@@ -823,6 +829,7 @@ DATA.meta.totalTerms=DATA.cards.length;
 const WORDS=DATA.cards;
 const BY_ID=new Map(WORDS.map(w=>[w.id,w]));
 const STORE_KEY='lumen_histology_recall_v1';
+const SESSION_KEY='lumen_recall_active_round_v1'; // independent checkpoint; existing SRS data stays intact.
 const GUIDE_KEY='lumen_histology_guide_v3'; // Separate from learning history; legacy records stay intact.
 function guideSeen(){try{return localStorage.getItem(GUIDE_KEY)==='done';}catch{return false;}}
 let guideStep=guideSeen()?-1:0;
@@ -840,8 +847,33 @@ function ic(name,size=18){return `<svg aria-hidden="true" width="${size}" height
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function deepClone(v){return JSON.parse(JSON.stringify(v));}
 function load(){try{const parsed=JSON.parse(localStorage.getItem(STORE_KEY)||'null');if(!parsed||parsed.schema!==1)return deepClone(DEFAULT);const prefs={...DEFAULT.prefs,...parsed.prefs};if(!Object.prototype.hasOwnProperty.call(parsed.prefs||{},'scope'))prefs.scope=prefs.extended?'r10-all':'r10-core';return {...deepClone(DEFAULT),...parsed,history:parsed.history&&typeof parsed.history==='object'?parsed.history:{},events:Array.isArray(parsed.events)?parsed.events.slice(-10000):[],favorites:Array.isArray(parsed.favorites)?parsed.favorites:[],prefs};}catch{return deepClone(DEFAULT);}}
-let store=load();try{const sharedTheme=localStorage.getItem('lumen_atlas_theme_v1');if(['light','dark'].includes(sharedTheme))store.prefs.theme=sharedTheme;}catch(e){}if(!['r10-core','r10-all','all',EXAM_SCOPE_ID,...Object.keys(DATA.meta.courseNames||{})].includes(store.prefs.scope))store.prefs.scope=store.prefs.extended?'r10-all':'r10-core';const app=document.getElementById('app');const initialWorkspace=new URLSearchParams(location.search).get('view');let route=['home','review','library','stats','settings'].includes(initialWorkspace)?initialWorkspace:'home';let study=null,drawerId=null;let libraryQuery='',libraryTier='all',libraryTopic='all',libraryCount=30,librarySort='alpha';let toastHandle,typingFocusNeeded=false;let guideRestoreFocus=null;let sessionClock=null;let sessionTimeRemaining=60;let sessionTickId=0;
-function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(store));}catch(e){toast('本地保存受限：请及时导出备份');}}
+let store=load();try{const sharedTheme=localStorage.getItem('lumen_atlas_theme_v1');if(['light','dark'].includes(sharedTheme))store.prefs.theme=sharedTheme;}catch(e){}if(!['r10-core','r10-all','all',EXAM_SCOPE_ID,...Object.keys(DATA.meta.courseNames||{})].includes(store.prefs.scope))store.prefs.scope=store.prefs.extended?'r10-all':'r10-core';const app=document.getElementById('app');const initialWorkspace=new URLSearchParams(location.search).get('view');let route=['home','review','library','stats','settings'].includes(initialWorkspace)?initialWorkspace:'home';let study=restoreStudyCheckpoint(),drawerId=null;let libraryQuery='',libraryTier='all',libraryTopic='all',libraryCount=30,librarySort='alpha';let toastHandle,typingFocusNeeded=false;let guideRestoreFocus=null;let sessionClock=null;let sessionTimeRemaining=60;let sessionTickId=0;
+function restoreStudyCheckpoint(){
+ try{
+  const p=JSON.parse(localStorage.getItem(SESSION_KEY)||'null');
+  if(!p||p.version!==1||!Array.isArray(p.cards)||p.cards.length<1||p.cards.length>30||!['mixed','spell','choice'].includes(p.mode))return null;
+  if(!Number.isInteger(p.index)||p.index<0||p.index>=p.cards.length||p.cards.some(id=>!BY_ID.has(id)))return null;
+  const cards=p.cards.map(id=>BY_ID.get(id));
+  const options=Array.isArray(p.options)?p.options.map(id=>BY_ID.get(id)).filter(Boolean):[];
+  const model={mode:p.mode,cards,index:p.index,intent:p.intent||'mixed',correct:Number(p.correct)||0,wrong:Number(p.wrong)||0,skipped:Number(p.skipped)||0,
+   selected:Number.isInteger(p.selected)?p.selected:null,typed:String(p.typed||'').slice(0,160),hint:!!p.hint,graded:!!p.graded,
+   result:String(p.result||''),options,finished:false,timer:!!p.timer,onlyDue:!!p.onlyDue,singleCard:!!p.singleCard,
+   started:Number(p.started)||Date.now(),scopeAtStart:String(p.scopeAtStart||store.prefs.scope)};
+  if(!model.options.length)model.options=[cards[p.index]];
+  return model;
+ }catch{return null;}
+}
+function persistStudyCheckpoint(){
+ try{
+  if(!study||study.finished){localStorage.removeItem(SESSION_KEY);return;}
+  const p={version:1,scopeAtStart:study.scopeAtStart||store.prefs.scope,mode:study.mode,intent:study.intent,cards:study.cards.map(w=>w.id),
+   index:study.index,correct:study.correct,wrong:study.wrong,skipped:study.skipped,selected:study.selected,
+   typed:study.typed,hint:study.hint,graded:study.graded,result:study.result,options:study.options.map(w=>w.id),
+   timer:study.timer,onlyDue:study.onlyDue,singleCard:study.singleCard,started:study.started};
+  localStorage.setItem(SESSION_KEY,JSON.stringify(p));
+ }catch(e){/* Storage failure should never break answering. */}
+}
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(store));persistStudyCheckpoint();}catch(e){toast('本地保存受限：请及时导出备份');}}
 function publishTheme(){try{localStorage.setItem('lumen_atlas_theme_v1',store.prefs.theme);}catch(e){}}
 function applyPrefs(){document.documentElement.dataset.theme=store.prefs.theme;document.documentElement.dataset.motion=store.prefs.motion?'on':'off';}
 applyPrefs();
@@ -879,10 +911,20 @@ function availableWords(){const id=store.prefs.scope||'r10-core';if(id===EXAM_SC
 const CHAPTERS=Object.entries(DATA.meta.courseNames||{}).sort((a,b)=>a[0].localeCompare(b[0]));
 function scopeName(id=store.prefs.scope){if(id===EXAM_SCOPE_ID)return '切片考试 · 课堂重点';if(id==='all')return '全课程 · 综合训练';if(id==='r10-all')return 'R10 · 全部考试候选';if(id==='r10-core')return 'R10 · 核心候选';return (DATA.meta.courseNames||{})[id]||'R10 · 核心候选';}
 function courseChooser(label='当前学习课程',hint='按课程独立选题 · 可随时切换'){const choices=[[EXAM_SCOPE_ID,'切片考试 · 课堂重点'],['r10-core','R10 核心候选'],['r10-all','R10 所有候选'],['all','全部课程 · 综合'],...CHAPTERS.map(([id,name])=>[id,id+' · '+name])];return `<div class="scope-chooser" data-tour="course"><div class="scope-caption"><span class="scope-icon">${ic('layers',18)}</span><div><strong>${safe(label)}</strong><small>${safe(hint)}</small></div></div><select class="scope-select" id="course-scope" aria-label="选择练习词单">${choices.map(([key,label])=>`<option value="${safe(key)}" ${store.prefs.scope===key?'selected':''}>${safe(label)}</option>`).join('')}</select><span class="scope-count">独立练习 ${practiceWords().length} / 总词条 ${availableWords().length}</span></div>`;}
-function displayCn(w){let id=store.prefs.scope;return (w.cnByCourse&&w.cnByCourse[id])||w.cn;}
+function displayCn(w){let id=store.prefs.scope;const raw=String((w.cnByCourse&&w.cnByCourse[id])||w.cn||'');return raw.replace(/[（(][^()（）]*[A-Za-z][^()（）]*[）)]/g,'').replace(/\s+/g,' ').trim()||'请根据中文提示写出英文术语';}
 function displayTopic(w){const id=store.prefs.scope;return CHAPTERS.some(x=>x[0]===id)?(DATA.meta.courseNames[id]||w.topic):w.topic;}
 function isContextAmbiguous(w){let names=new Set([w.cn,...Object.values(w.cnByCourse||{})]);return names.size>1;}
 function isSpellEligible(w){const id=store.prefs.scope||'r10-core';if(id===EXAM_SCOPE_ID)return w.spellingEligible!==false;if(id==='01')return !!(w.spellingByCourse||{})['01'];if((DATA.meta.introRecognitionOnly||[]).includes(w.en.toLowerCase()))return false;return w.spellingEligible!==false;}
+/* Verified term equivalence. Do not accept anatomical neighbors, function descriptions
+   or other cards merely because their Chinese explanations overlap. */
+const VERIFIED_ACADEMIC_ALIASES={
+ leydigcell:['testicular interstitial cell','testicular interstitial cells','interstitial cell of testis','interstitial cells of the testis'],
+ sertolicell:['sustentacular cell','sustentacular cell of Sertoli','sustentacular cells'],
+};
+function acceptedSpellings(w){
+ const academic=VERIFIED_ACADEMIC_ALIASES[normalize(w.en)]||[];
+ return [...new Set([w.en,...(w.aliases||[]),...(w.courseAliases||[]),...(w.academicAliases||[]),...academic].filter(v=>typeof v==='string'&&v.trim()))];
+}
 function spellingPool(){return practiceWords().filter(isSpellEligible);}
 function headFamily(w){const s=w.en.toLowerCase().trim();const heads=['epithelium','epithelial cell','cell','muscle','gland','acinus','duct','ductule','tubule','follicle','artery','vein','capillary','vessel','fiber','fibers','tissue','cartilage','bone','osteon','corpuscle','papilla','layer','membrane','sinus','sinusoid','lymphocyte','granulocyte','oocyte','spermatocyte','spermatid','neuron','nucleus','fold','villus','crypt','plexus','lamina','cortex','medulla','septum','lobule','lobes','stratum','zona'];for(const h of heads){if(s===h||s.endsWith(' '+h))return h;}if(s.startsWith('stratum '))return 'stratum';if(s.startsWith('zona '))return 'zona';return s.split(/\s+/).slice(-1)[0].replace(/s$/,'');}
 function discriminativeTokens(w){return new Set(w.en.toLowerCase().split(/[^a-z]+/).filter(t=>t.length>=3&&!['the','and','with','from','cell','gland','tissue','duct','system','layer'].includes(t)));}
@@ -950,7 +992,7 @@ function advanceRound(){
  startStudy(study.mode,{onlyNew:true});
 }
 function render(){if(opticsCleanup){opticsCleanup();opticsCleanup=null;}applyPrefs();const content=route==='home'?homePage():route==='review'?reviewPage():route==='library'?libraryPage():route==='stats'?statsPage():route==='settings'?settingsPage():studyPage();app.innerHTML=`<div class="shell" ${guideStep>=0||shouldShowRoundPrompt()?'inert':''}>${sidebar()}<div class="workspace">${topbar()}<main class="main-content screen-enter">${content}</main></div>${bottomNav()}</div>${drawerId?drawerHtml(BY_ID.get(drawerId)):''}${guideStep>=0?guideHtml():''}${shouldShowRoundPrompt()?roundPromptHtml():''}`;if(route==='study')syncPracticeDom();bindBarChart();initOptics();if(guideStep>=0)requestAnimationFrame(positionGuide);if(shouldShowRoundPrompt())requestAnimationFrame(focusRoundPrompt);}
-function goto(view){if(route==='study'&&study&&!study.finished&&view!=='study'&&!window.confirm('这一轮尚未完成。离开会结束当前轮次，已提交的答案仍会保留。确定离开？'))return;if(route==='study')stopClock();drawerId=null;drawerReturnFocus=null;route=view;try{const url=new URL(location.href);if(['home','review','library','stats','settings'].includes(view)){if(view==='home')url.searchParams.delete('view');else url.searchParams.set('view',view);history.replaceState({lumen:view},'',url.pathname+url.search+url.hash);}}catch(e){}render();window.scrollTo({top:0,behavior:'instant'});}
+function goto(view){if(route==='study'){persistStudyCheckpoint();stopClock();}drawerId=null;drawerReturnFocus=null;route=view;try{const url=new URL(location.href);if(['home','review','library','stats','settings'].includes(view)){if(view==='home')url.searchParams.delete('view');else url.searchParams.set('view',view);history.replaceState({lumen:view},'',url.pathname+url.search+url.hash);}}catch(e){}render();window.scrollTo({top:0,behavior:'instant'});}
 function guideHtml(){const t=GUIDE[guideStep];const last=guideStep===GUIDE.length-1;return `<div class="tour-layer ${guideStep===0?'is-intro':''}" role="presentation"><div class="tour-focus" aria-hidden="true"></div><section class="tour-panel" role="dialog" aria-modal="true" aria-labelledby="tour-title" aria-describedby="tour-text"><div class="tour-top"><span class="tour-symbol">${ic('sparkle',19)}</span><span class="tour-count">${String(guideStep+1).padStart(2,'0')} / ${String(GUIDE.length).padStart(2,'0')}</span></div><div class="tour-eyebrow">${safe(t.eyebrow)}</div><h2 id="tour-title">${safe(t.title)}</h2><p id="tour-text">${safe(t.body)}</p><div class="tour-progress" aria-hidden="true">${GUIDE.map((_,i)=>`<span class="${i<=guideStep?'on':''}"></span>`).join('')}</div><div class="tour-actions"><button class="tour-dismiss" data-action="tour-skip">${guideStep===0?'暂时跳过':'跳过教程'}</button><div class="tour-push">${guideStep>0?'<button class="tour-back" data-action="tour-back">上一步</button>':''}<button class="tour-next" data-action="tour-next">${last?'完成导览':guideStep===0?'开始导览':'下一步'} ${ic(last?'check':'arrow',16)}</button></div></div></section></div>`;}
 function beginGuide(){if(route==='study')stopClock();guideRestoreFocus=document.activeElement;route='home';drawerId=null;guideStep=0;render();requestAnimationFrame(()=>{document.querySelector('.tour-next')?.focus({preventScroll:true})});}
 function endGuide(){guideStep=-1;try{localStorage.setItem(GUIDE_KEY,'done');}catch{}render();window.scrollTo({top:0,behavior:'instant'});const focusTarget=app.querySelector('.training-heading h3');if(focusTarget)focusTarget.focus({preventScroll:true});}
@@ -986,6 +1028,10 @@ function modesBlock(){
   <button class="mode-card home-mode-card" data-action="start" data-mode="mixed" data-due="1" ${disabled}><span class="mode-icon">${ic('clock',20)}</span><strong>04 · 到期复习 <small class="mode-count">${due}</small></strong><p>${due?'只练当前词单中已到期的 '+due+' 个术语。':'当前词单暂无到期术语。'}</p><span class="arrow">${ic('arrow',18)}</span></button>
  </div>`;
 }
+function resumeStudyBanner(){
+ if(!study||study.finished)return '';
+ return '<section class="resume-strip" aria-label="尚未完成的学习轮次"><div><strong>继续未完成的练习</strong><p>已到本轮第 '+(study.index+1)+' / '+study.cards.length+' 题。离开、刷新后都能从这里接着练。</p></div><div class="resume-actions"><button class="btn btn-accent" data-action="resume-study">继续上一轮</button><button class="btn btn-outline" data-action="new-round" data-mode="'+study.mode+'">放弃本轮并新建</button></div></section>';
+}
 function homePage(){
  const words=practiceWords();
  const allInScope=availableWords();
@@ -1003,6 +1049,7 @@ function homePage(){
   <div class="home-toolbar">
    <div class="home-toolbar-title"><span class="home-overline">LUMEN · 学习</span><h2>学习工作台</h2></div><a href="./atlas/" class="atlas-home-link" aria-label="查看组织切片图谱">${ic('layers',18)}<span>组织切片图谱</span>${ic('arrow',15)}</a>
   </div>
+  ${resumeStudyBanner()}
   <section class="hero home-hero" id="hero-masthead" aria-labelledby="home-hero-heading">
    <div class="hero-left">
     <span class="tag">当前学习任务</span>
@@ -1095,10 +1142,22 @@ function pickWords(options={}){
  }
  return chosen;
 }
-function startStudy(mode='mixed',options={}){stopClock();const cards=pickWords({...options,mode});if(!cards.length){toast(options.onlyNew?'当前模式没有剩余新词，可换词单或巩固旧词':options.onlyDue?'当前练习词单暂无到期术语':options.onlyLearned?'当前范围还没有已学过的词':'当前练习词单暂无可用术语');return;}study={mode,cards,intent:options.onlyNew?'new':options.onlyLearned?'consolidate':options.onlyDue?'review':'mixed',index:0,correct:0,wrong:0,skipped:0,selected:null,typed:'',hint:false,graded:false,result:'',options:[],finished:false,timer:options.timer||false,onlyDue:!!options.onlyDue,singleCard:!!options.specificId,started:Date.now()};route='study';drawerId=null;prepareStudyCard();render();window.scrollTo({top:0,behavior:'instant'});}
+function startStudy(mode='mixed',options={}){
+ if(study&&!study.finished&&!options.forceNew&&!options.specificId){
+  if(study.scopeAtStart&&store.prefs.scope!==study.scopeAtStart){store.prefs.scope=study.scopeAtStart;persist();}
+  route='study';drawerId=null;render();window.scrollTo({top:0,behavior:'instant'});return;
+ }
+ if(study&&!study.finished&&(options.forceNew||options.specificId)&&!window.confirm('当前轮次尚未完成。已提交的成绩已保存，但新建轮次将放弃当前题序与未提交输入。确定继续吗？'))return;
+ stopClock();const cards=pickWords({...options,mode});
+ if(!cards.length){toast(options.onlyNew?'当前模式没有剩余新词，可换词单或巩固旧词':options.onlyDue?'当前练习词单暂无到期术语':options.onlyLearned?'当前范围还没有已学过的词':'当前练习词单暂无可用术语');return;}
+ study={mode,cards,intent:options.onlyNew?'new':options.onlyLearned?'consolidate':options.onlyDue?'review':'mixed',index:0,correct:0,wrong:0,skipped:0,
+  selected:null,typed:'',hint:false,graded:false,result:'',options:[],finished:false,timer:options.timer||false,onlyDue:!!options.onlyDue,
+  singleCard:!!options.specificId,started:Date.now(),scopeAtStart:store.prefs.scope};
+ route='study';drawerId=null;prepareStudyCard();persistStudyCheckpoint();render();window.scrollTo({top:0,behavior:'instant'});
+}
 function currentCard(){return study?study.cards[study.index]:null;}
 function currentMode(){if(!study)return 'choice';const intended=study.mode==='mixed'?(study.index%3===1?'spell':'choice'):study.mode;return intended==='spell'&&!isSpellEligible(currentCard())?'choice':intended;}
-function prepareStudyCard(){if(!study||study.index>=study.cards.length){study.finished=true;return;}study.selected=null;study.typed='';typingComposition=false;typingCompositionBase='';study.hint=false;study.graded=false;study.result='';study.options=shuffled([currentCard(),...chooseDistractors(currentCard())]);sessionTimeRemaining=60;}
+function prepareStudyCard(){if(!study||study.index>=study.cards.length){study.finished=true;persistStudyCheckpoint();return;}study.selected=null;study.typed='';typingComposition=false;typingCompositionBase='';study.hint=false;study.graded=false;study.result='';study.options=shuffled([currentCard(),...chooseDistractors(currentCard())]);sessionTimeRemaining=60;persistStudyCheckpoint();}
 function stopClock(){if(sessionTickId)clearInterval(sessionTickId);sessionTickId=0;sessionClock=null;}
 function startClock(){stopClock();if(!study||!study.timer||study.graded||study.finished)return;const begin=Date.now();let offset=sessionTimeRemaining;sessionTickId=setInterval(()=>{if(!study||study.finished||study.graded){stopClock();return;}sessionTimeRemaining=Math.max(0,offset-(Date.now()-begin)/1000);let v=document.getElementById('timer-num');if(v)v.textContent=Math.ceil(sessionTimeRemaining)+'s';if(sessionTimeRemaining<=0){stopClock();skipCard('timeout');}},120);}
 function studyPage(){if(!study)return `<div class="empty"><strong>还没有开始练习</strong><button class="btn btn-accent" data-action="start" data-mode="mixed">开始混合训练</button></div>`;if(study.finished)return finishedPage();const w=currentCard(),mode=currentMode(),graded=study.graded,tip=study.hint;let pct=(study.index/study.cards.length)*100;const result=study.result;return `<div class="practice-layout"><div class="practice-top"><button class="practice-back" data-action="exit-study">${ic('back',16)} 返回概览</button><div class="practice-flags"><span class="flag purple">${mode==='spell'?'逐字母拼写':'四选一辨认'}</span><span class="flag">${safe(scopeName())}</span>${study.timer?`<span class="flag" id="timer-num">${Math.ceil(sessionTimeRemaining)}s</span>`:''}</div></div><div class="practice-progress"><span style="width:${pct}%"></span></div>
@@ -1137,6 +1196,7 @@ function setTyped(next,animated=true){
  if(input){input.value=study.typed;lockTypingCaret(input);}
  updateSlots();
  if(animated)animateTypedSlot(previous,study.typed);
+ persistStudyCheckpoint();
 }
 function handleTypingBeforeInput(e){
  if(e.target.id!=='typing-input'||!study||study.graded||typingComposition||e.isComposing||!e.cancelable)return;
@@ -1402,12 +1462,12 @@ function initOptics(){
 
 function updateSlots(){const w=currentCard();if(!w||currentMode()!=='spell')return;const chars=(study.typed||'').replace(/[^a-zA-Z]/g,'').toLowerCase().split('');const slots=document.querySelectorAll('.letter-slot');slots.forEach((s,i)=>{s.textContent=chars[i]||'';s.classList.toggle('filled',i<chars.length);s.classList.toggle('current',i===chars.length&&!study.graded);s.classList.toggle('good',study.graded&&study.result==='correct');s.classList.toggle('bad',study.graded&&study.result==='wrong'&&i<chars.length)});let helper=document.getElementById('typing-help');if(helper){let n=(w.en.match(/[A-Za-z]/g)||[]).length;helper.textContent=study.graded?'':`${chars.length} / ${n} 个字母 · Enter 检查`;}}
 function submitAnswer(){if(!study||study.finished||study.graded)return;let w=currentCard(),mode=currentMode();if(mode==='spell'&&!study.typed.trim()){toast('先输入英文术语');return;}if(mode==='choice'&&study.selected===null){toast('先选择一个英文名称');return;}
- let variants=[w.en,...(w.aliases||[])];if(w.origin==='r10'&&['r10-core','r10-all'].includes(store.prefs.scope)){for(const candidate of WORDS){if(candidate.id!==w.id&&candidate.origin==='r10'&&candidate.cn===w.cn)variants.push(candidate.en,...(candidate.aliases||[]));}}
+ let variants=acceptedSpellings(w);
  const correct=mode==='spell'?variants.some(a=>normalize(a)===normalize(study.typed)):study.options[study.selected]?.id===w.id;
  study.graded=true;study.result=correct?'correct':'wrong';correct?study.correct++:study.wrong++;saveAnswer(w,correct,mode,study.hint);stopClock();render();animateFeedback(correct);if(store.prefs.sound)playTone(correct);}
 function chooseOption(index){if(!study||study.finished||study.graded||currentMode()!=='choice')return;if(index<0||index>=study.options.length)return;study.selected=index;submitAnswer();}
-function skipCard(reason='skip'){if(!study||study.graded||study.finished)return;study.graded=true;study.result=reason==='timeout'?'timeout':'skip';study.skipped++;stopClock();render();}
-function nextCard(){if(!study||!study.graded)return;study.index++;prepareStudyCard();render();const main=document.querySelector('.practice-layout');if(main&&store.prefs.motion&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){main.animate([{opacity:.55,transform:'translateY(11px)'},{opacity:1,transform:'translateY(0)'}],{duration:390,easing:'cubic-bezier(.22,1,.36,1)'})}}
+function skipCard(reason='skip'){if(!study||study.graded||study.finished)return;study.graded=true;study.result=reason==='timeout'?'timeout':'skip';study.skipped++;stopClock();persistStudyCheckpoint();render();}
+function nextCard(){if(!study||!study.graded)return;study.index++;prepareStudyCard();persistStudyCheckpoint();render();const main=document.querySelector('.practice-layout');if(main&&store.prefs.motion&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){main.animate([{opacity:.55,transform:'translateY(11px)'},{opacity:1,transform:'translateY(0)'}],{duration:390,easing:'cubic-bezier(.22,1,.36,1)'})}}
 function animateFeedback(correct){if(!store.prefs.motion||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;let c=document.getElementById('practice-card');if(!c)return;c.classList.add(correct?'celebrate':'shake');setTimeout(()=>c.classList.remove('celebrate','shake'),480);if(!correct)return;let width=c.clientWidth;let colors=['#827ef7','#70cbb8','#b3acef','#ffc88f','#a3d4ed'];for(let k=0;k<16;k++){let el=document.createElement('i');el.className='particle';el.style.left=(width-65)+'px';el.style.top='92px';el.style.background=colors[k%colors.length];c.appendChild(el);let angle=(k/16)*Math.PI*2;let dx=Math.cos(angle)*(38+Math.random()*70),dy=Math.sin(angle)*(38+Math.random()*90);el.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(${Math.round(Math.random()*300)}deg) scale(.25)`,opacity:0}],{duration:690+Math.random()*360,easing:'cubic-bezier(.15,.85,.24,1)'}).onfinish=()=>el.remove();}}
 function playTone(correct){try{let C=window.AudioContext||window.webkitAudioContext;if(!C)return;const a=new C(),o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type='sine';o.frequency.setValueAtTime(correct?620:230,t);o.frequency.exponentialRampToValueAtTime(correct?880:165,t+.16);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.05,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+.27);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.28);o.onended=()=>a.close();}catch{}}
 function drawerHtml(w){if(!w)return '';let starred=store.favorites.includes(w.id);return `<div class="drawer-backdrop" id="drawer-backdrop" data-action="close-drawer"><aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="detail-title"><div class="drawer-head"><span class="eyebrow">TERM INSIGHT</span><button class="icon-button" data-action="close-drawer" aria-label="关闭词条详情">${ic('close',18)}</button></div><h2 id="detail-title">${safe(w.en)}</h2><div class="cn">${safe(displayCn(w))}</div><div class="detail-meta"><span class="tier ${w.tier==='core'?'core':w.tier==='extension'?'extension':''}">${tierLabel(w)}</span><span class="tier">${safe(displayTopic(w))}</span><span class="tier">${safe(terminologyLabel(w))}</span>${w.sourceCount?`<span class="tier">原题关联 ${w.sourceCount}</span>`:''}</div>${Object.keys(w.cnByCourse||{}).length?`<p class="course-memberships">章节归属：${(w.courseIds||[]).map(id=>safe(DATA.meta.courseNames[id]||id)).join(" · ")}</p>`:""}<div class="detail-primary"><strong style="color:#7770d5;font-size:11px">切片识别关键</strong><div style="margin-top:9px">${safe(w.clue||'观察细胞排列、染色、所在层次以及相邻结构。')}</div></div><div class="detail-section"><h3>WHY IT IS THIS · 判断依据</h3><p>${safe(w.explain)}</p></div>${w.compare?`<div class="detail-section"><h3>LOOK-ALIKE · 鉴别要点</h3><p>${safe(w.compare)}</p></div>`:''}${w.trap?`<div class="detail-section"><h3>TRAP · 常见误判</h3><p>${safe(w.trap)}</p></div>`:''}<div class="detail-section"><h3>ACCEPTED ENGLISH · 认可拼写</h3><p>${safe(w.aliases.join(' / '))}</p></div>${w.sourceIds.length?`<div class="detail-section"><h3>TRACEABILITY · R10 来源</h3><p>${w.sourceIds.map(safe).join(' · ')}</p></div>`:''}<div class="detail-actions"><button class="btn btn-accent" data-action="practice-one" data-id="${safe(w.id)}" data-mode="${isSpellEligible(w)?'spell':'choice'}">${isSpellEligible(w)?'拼写这个词':'辨认这个词'} ${ic('arrow',15)}</button><button class="btn btn-outline" data-action="favorite" data-id="${safe(w.id)}">${ic('star',15)} ${starred?'取消收藏':'加入收藏'}</button><a class="btn btn-outline atlas-term-link" href="./atlas/?q=${encodeURIComponent(w.en)}" target="_blank" rel="noopener noreferrer" aria-label="在组织切片图谱中搜索此术语">在图谱中搜索 ${ic('layers',15)}</a></div></aside></div>`;}
@@ -1431,10 +1491,10 @@ function validateImport(payload){if(!payload||payload.format!=='lumen-progress-v
  if(Array.isArray(p.events))cleaned.events=p.events.filter(e=>e&&BY_ID.has(e.id)&&['correct','wrong'].includes(e.result)&&Number.isFinite(e.time)).slice(-10000).map(e=>({id:e.id,time:e.time,result:e.result,mode:e.mode==='spell'?'spell':'choice'}));
  if(Array.isArray(p.favorites))cleaned.favorites=[...new Set(p.favorites.filter(id=>BY_ID.has(id)))];
  if(p.prefs&&typeof p.prefs==='object'){cleaned.prefs.goal=Math.max(8,Math.min(30,Number(p.prefs.goal)||14));for(let key of ['extended','motion','sound','includeBasics'])cleaned.prefs[key]=p.prefs[key]===true;cleaned.prefs.theme=p.prefs.theme==='dark'?'dark':'light';cleaned.prefs.scope=['r10-core','r10-all','all',EXAM_SCOPE_ID,...Object.keys(DATA.meta.courseNames||{})].includes(p.prefs.scope)?p.prefs.scope:(p.prefs.extended?'r10-all':'r10-core');}return cleaned;}
-async function importProgress(file){try{if(!file||file.size>12*1024*1024)throw Error('备份文件过大');const contents=await file.text(),candidate=validateImport(JSON.parse(contents));if(!window.confirm('导入将替换此浏览器当前学习记录。建议先导出当前进度备份。确定继续？'))return;store=candidate;persist();publishTheme();goto('home');toast('进度已导入，复习计划已恢复');}catch(e){toast(e.message||'导入失败：文件格式不正确');}}
+async function importProgress(file){try{if(!file||file.size>12*1024*1024)throw Error('备份文件过大');const contents=await file.text(),candidate=validateImport(JSON.parse(contents));if(!window.confirm('导入将替换此浏览器当前学习记录。建议先导出当前进度备份。确定继续？'))return;study=null;store=candidate;persist();publishTheme();goto('home');toast('进度已导入，复习计划已恢复');}catch(e){toast(e.message||'导入失败：文件格式不正确');}}
 function handleClick(e){const el=e.target.closest('[data-action]');if(!el)return;let action=el.dataset.action;
  if(action==='close-drawer'&&e.target.closest('#drawer')&&!e.target.closest('button[data-action="close-drawer"]'))return;
- switch(action){case 'tour-next':stepGuide(1);break;case 'tour-back':stepGuide(-1);break;case 'tour-skip':endGuide();break;case 'tutorial':beginGuide();break;case 'chart-day':toggleChartDay(el);break;case 'nav':goto(el.dataset.view);break;case 'toggle-theme':store.prefs.theme=store.prefs.theme==='light'?'dark':'light';persist();publishTheme();render();break;case 'set-theme':store.prefs.theme=el.dataset.theme;persist();publishTheme();render();break;case 'start':startStudy(el.dataset.mode||'mixed',{onlyDue:el.dataset.due==='1',onlyNew:el.dataset.new==='1',onlyLearned:el.dataset.learned==='1'});break;case 'round-exit':goto('home');break;case 'round-continue':advanceRound();break;case 'exit-study':goto('home');break;case 'option':chooseOption(Number(el.dataset.index));break;case 'submit':submitAnswer();break;case 'skip':skipCard();break;case 'next':nextCard();break;case 'hint':if(study&&!study.graded){study.hint=!study.hint;const typed=study.typed;render();study.typed=typed;}break;case 'focus-typing':{let input=document.getElementById('typing-input');if(input)input.focus({preventScroll:true});break;}case 'detail':openDetail(el.dataset.id);break;case 'close-drawer':closeDetail();break;case 'favorite':toggleFavorite(el.dataset.id);if(drawerId){closeDetail();openDetail(el.dataset.id);}else render();toast('收藏列表已更新');break;case 'practice-one':startStudy(el.dataset.mode||'spell',{specificId:el.dataset.id});break;case 'library-tier':libraryTier=el.dataset.tier;libraryCount=30;render();break;case 'more':libraryCount+=30;render();break;case 'toggle-pref':{let k=el.dataset.key;if(k in store.prefs)store.prefs[k]=!store.prefs[k];persist();render();break;}case 'export':exportProgress();break;case 'import':document.getElementById('restore-file').click();break;case 'reset':if(confirm('确认清空所有本地学习记录？此操作无法撤销。')){store=deepClone(DEFAULT);persist();publishTheme();goto('home');toast('已清空本地学习记录');}break;}
+ switch(action){case 'tour-next':stepGuide(1);break;case 'tour-back':stepGuide(-1);break;case 'tour-skip':endGuide();break;case 'tutorial':beginGuide();break;case 'chart-day':toggleChartDay(el);break;case 'nav':goto(el.dataset.view);break;case 'toggle-theme':store.prefs.theme=store.prefs.theme==='light'?'dark':'light';persist();publishTheme();render();break;case 'set-theme':store.prefs.theme=el.dataset.theme;persist();publishTheme();render();break;case 'start':startStudy(el.dataset.mode||'mixed',{onlyDue:el.dataset.due==='1',onlyNew:el.dataset.new==='1',onlyLearned:el.dataset.learned==='1'});break;case 'resume-study':startStudy(study?.mode||'mixed');break;case 'new-round':startStudy(el.dataset.mode||'mixed',{forceNew:true});break;case 'round-exit':goto('home');break;case 'round-continue':advanceRound();break;case 'exit-study':goto('home');break;case 'option':chooseOption(Number(el.dataset.index));break;case 'submit':submitAnswer();break;case 'skip':skipCard();break;case 'next':nextCard();break;case 'hint':if(study&&!study.graded){study.hint=!study.hint;persistStudyCheckpoint();render();}break;case 'focus-typing':{let input=document.getElementById('typing-input');if(input)input.focus({preventScroll:true});break;}case 'detail':openDetail(el.dataset.id);break;case 'close-drawer':closeDetail();break;case 'favorite':toggleFavorite(el.dataset.id);if(drawerId){closeDetail();openDetail(el.dataset.id);}else render();toast('收藏列表已更新');break;case 'practice-one':startStudy(el.dataset.mode||'spell',{specificId:el.dataset.id});break;case 'library-tier':libraryTier=el.dataset.tier;libraryCount=30;render();break;case 'more':libraryCount+=30;render();break;case 'toggle-pref':{let k=el.dataset.key;if(k in store.prefs)store.prefs[k]=!store.prefs[k];persist();render();break;}case 'export':exportProgress();break;case 'import':document.getElementById('restore-file').click();break;case 'reset':if(confirm('确认清空所有本地学习记录？此操作无法撤销。')){study=null;store=deepClone(DEFAULT);persist();publishTheme();goto('home');toast('已清空本地学习记录');}break;}
 }
 function handleInput(e){if(e.target.id==='typing-input'&&study&&!study.graded){
  if(typingComposition||e.isComposing)return;
