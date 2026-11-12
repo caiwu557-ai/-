@@ -17,6 +17,11 @@ try{
   assert.equal((await page.locator('#metric-total').innerText()).trim(),'364');
   assert.equal((await page.locator('#available-total').innerText()).trim(),'305');
   await page.locator('#start-btn').click();
+  if(width<=650){
+   assert.equal(await page.locator('.bottom-tabs').evaluate(el=>getComputedStyle(el).display),'none','mobile tabbar must not cover quiz actions');
+   assert.ok(await page.locator('#page-quiz [data-action="leave-quiz"]').isVisible(),'focus view retains a visible exit');
+   checks+=2;
+  }
   const img=page.locator('#page-quiz .image-stage img');
   await img.waitFor();
   await img.evaluate(el=>el.decode());
@@ -30,6 +35,10 @@ try{
   await page.locator('[data-action="submit"]').click();
   assert.ok(await page.locator('#page-quiz').innerText().then(t=>t.includes('需要重新辨认')),'feedback must render');
   await page.locator('[data-action="leave-quiz"]').click();
+  if(width<=650){
+   assert.notEqual(await page.locator('.bottom-tabs').evaluate(el=>getComputedStyle(el).display),'none','mobile tabbar returns outside focused quiz');
+   checks++;
+  }
   await page.reload({waitUntil:'load'});
   await page.locator('#resume-box button[data-action="resume"]').waitFor();
   await page.locator('#resume-box button[data-action="resume"]').click();
