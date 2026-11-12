@@ -28,12 +28,15 @@ jobs:
           node qa/validate-round-prompt.mjs
           node qa/validate-atlas.mjs
           node qa/validate-unified-workspace.mjs
+          node image-quiz/qa/validate_project.mjs
+          node image-quiz/qa/runtime_smoke.mjs
       - name: Serve website and run real Chromium UX checks
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/lumen-http.log 2>&1 &
           sleep 2
           node qa/browser-lumen.mjs
           node qa/validate-recall-resume.mjs
+          node qa/browser-image-quiz.mjs
       - name: Preserve screenshot and failure evidence
         if: always()
         uses: actions/upload-artifact@v4

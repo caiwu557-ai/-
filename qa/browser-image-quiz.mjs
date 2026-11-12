@@ -1,0 +1,117 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {chromium} from 'playwright';
+
+const base='http://127.0.0.1:4173';
+fs.mkdirSync('qa/browser-evidence',{recursive:true});
+const browser=await chromium.launch({headless:true});
+let checks=0;
+try{
+ for(const width of [1440,390,320]){
+  const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+  const errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  const response=await page.goto(base+'/image-quiz/',{waitUntil:'load'});
+  assert.equal(response.status(),200,'image-quiz route should respond HTTP 200');
+  await page.locator('#metric-total').waitFor();
+  assert.equal((await page.locator('#metric-total').innerText()).trim(),'364');
+  assert.equal((await page.locator('#available-total').innerText()).trim(),'305');
+  await page.locator('#start-btn').click();
+  if(width<=650){
+   assert.equal(await page.locator('.bottom-tabs').evaluate(el=>getComputedStyle(el).display),'none','mobile tabbar must not cover quiz actions');
+   assert.ok(await page.locator('#page-quiz [data-action="leave-quiz"]').isVisible(),'focus view retains a visible exit');
+   checks+=2;
+  }
+  const img=page.locator('#page-quiz .image-stage img');
+  await img.waitFor();
+  await img.evaluate(el=>el.decode());
+  assert.ok(await img.evaluate(el=>el.naturalWidth>0),'real image must decode');
+  const unsentDraft='Unsaved input should persist';
+  await page.locator('#answer-input').fill(unsentDraft);
+  await page.reload({waitUntil:'load'});
+  await page.locator('#resume-box button[data-action="resume"]').click();
+  assert.equal(await page.locator('#answer-input').inputValue(),unsentDraft,'unsent answer must survive reload');
+  await page.locator('#answer-input').fill('definitely-not-the-answer');
+  await page.locator('[data-action="submit"]').click();
+  assert.ok(await page.locator('#page-quiz').innerText().then(t=>t.includes('需要重新辨认')),'feedback must render');
+  await page.locator('[data-action="leave-quiz"]').click();
+  if(width<=650){
+   assert.notEqual(await page.locator('.bottom-tabs').evaluate(el=>getComputedStyle(el).display),'none','mobile tabbar returns outside focused quiz');
+   checks++;
+  }
+  await page.reload({waitUntil:'load'});
+  await page.locator('#resume-box button[data-action="resume"]').waitFor();
+  await page.locator('#resume-box button[data-action="resume"]').click();
+  assert.ok(await page.locator('#page-quiz').isVisible(),'unfinished image session resumes');
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  assert.ok(overflow<=8,'horizontal overflow at '+width+'px: '+overflow);
+  assert.deepEqual(errors,[],'browser errors');
+  await page.screenshot({path:'qa/browser-evidence/image-quiz-'+width+'.png',fullPage:true});
+  checks+=8;
+  await page.close();
+ }
+ const viewerPage=await browser.newPage({viewport:{width:390,height:844}});
+ await viewerPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await viewerPage.locator('.bottom-tabs [data-view="bank"]').click();
+ await viewerPage.locator('#bank-search').fill('Q0301');
+ await viewerPage.locator('.bank-tile [data-action="single"]').click();
+ await viewerPage.locator('#page-quiz [data-action="zoom"]').first().click();
+ await viewerPage.locator('[data-zoom="plus"]').click();
+ const transformBefore=await viewerPage.locator('#viewer-content').getAttribute('style');
+ assert.ok(transformBefore?.includes('scale(1.35)'), 'zoom should work');
+ await viewerPage.locator('#viewer-focus-toggle').click();
+ const transformAfter=await viewerPage.locator('#viewer-content').getAttribute('style');
+ assert.equal(transformAfter,transformBefore,'focus toggle must not reset magnification');
+ await viewerPage.keyboard.press('Escape');
+ assert.equal(await viewerPage.locator('#viewer').evaluate(el=>el.open),false,'Escape closes image dialog');
+ assert.equal(await viewerPage.locator('#viewer-image').getAttribute('src'),'','Escape clears image resources');
+ assert.equal(await viewerPage.locator('#page-quiz .focus-btn').getAttribute('aria-pressed'),'false','practice marker reflects viewer selection');
+ checks+=5;
+ await viewerPage.close();
+
+ const keyboardPage=await browser.newPage();
+ await keyboardPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await keyboardPage.locator('#start-btn').click();
+ await keyboardPage.locator('#answer-input').fill('unrecognized structure');
+ await keyboardPage.locator('#answer-input').press('Enter');
+ assert.ok(await keyboardPage.locator('#page-quiz [data-action="next"]').evaluate(el=>el===document.activeElement),'keyboard focus must move to next button');
+ await keyboardPage.keyboard.press('Enter');
+ assert.ok((await keyboardPage.locator('#page-quiz .top-counter').innerText()).startsWith('2 /'),'second Enter must advance the quiz');
+ checks+=2;
+ await keyboardPage.close();
+
+ const importPage=await browser.newPage();
+ await importPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await importPage.locator('.local-nav [data-view="history"]').click();
+ const fileChooser=importPage.waitForEvent('filechooser');
+ await importPage.locator('[data-action="import-progress"]').click();
+ const chooser=await fileChooser;
+ const payload={schema:'lumen-image-progress-v1',progress:{version:1,items:{},sessions:'not an array',flags:{},active:null}};
+ await chooser.setFiles({name:'malformed-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await importPage.locator('#toast').waitFor({state:'visible'});
+ assert.ok((await importPage.locator('#toast').innerText()).includes('导入失败'),'invalid JSON backup must be rejected');
+ assert.equal((await importPage.locator('#metric-total').innerText()).trim(),'364','failed import must preserve current data');
+ checks+=2;
+ await importPage.close();
+
+ const blockedPage=await browser.newPage();
+ await blockedPage.addInitScript(()=>{
+  Storage.prototype.setItem=function(){throw new DOMException('Local storage blocked','QuotaExceededError')};
+ });
+ await blockedPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await blockedPage.locator('#start-btn').click();
+ await blockedPage.locator('#storage-alert').waitFor({state:'visible'});
+ assert.ok((await blockedPage.locator('#storage-alert').innerText()).includes('禁止保存'),'blocked localStorage must be disclosed');
+ checks++;
+ await blockedPage.close();
+
+ const page=await browser.newPage();
+ const home=await page.goto(base+'/',{waitUntil:'load'});
+ assert.equal(home.status(),200);
+ assert.ok(await page.locator('a[href="./image-quiz/"]').count()>=1,'workspace must link to image quiz');
+ await page.goto(base+'/atlas/',{waitUntil:'load'});
+ assert.ok(await page.locator('a[href="../image-quiz/"]').count()>=1,'atlas must link to image quiz');
+ checks+=2;
+ await page.close();
+ console.log('IMAGE_QUIZ_BROWSER_QA_PASS',checks);
+} finally {await browser.close()}

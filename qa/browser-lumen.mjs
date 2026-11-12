@@ -83,7 +83,7 @@ try{
     await assertReady(page,'#reader .page-title');
     const title=await page.locator('#reader .page-title').first().innerText();
     await assert(title.includes('组织切片图谱'),'wrong Atlas title: '+title);
-    await assert(await page.locator('.app-route').count()===6,'Atlas desktop route inventory !=6');
+    await assert(await page.locator('.app-route').count()===7,'Atlas desktop route inventory !=7');
     const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
     await screenshot(page,label+'-02-atlas.png');
   });

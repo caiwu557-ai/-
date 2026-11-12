@@ -1,0 +1,50 @@
+{
+  "schema": "lumen.imagebank.v2",
+  "title": "组胚看图填空 · 来源题库重构",
+  "sourceFile": "组胚看图填空_修订版.html",
+  "sourceSha256": "3bd2ef4d5aee2859f399e0bc1ef432924dcb8a231c0e4890bcf163cc2eb56b80",
+  "questionCount": 364,
+  "imagesFormat": "webp",
+  "provenance": "user-supplied bundled HTML; upstream image rights not independently verified",
+  "reviewPolicy": "Images have not undergone per-marker expert confirmation; strict exam excludes review_needed",
+  "categories": {
+    "消化系统": 90,
+    "内分泌系统": 19,
+    "呼吸系统": 18,
+    "血液与血细胞": 15,
+    "上皮组织": 13,
+    "结缔组织": 21,
+    "神经组织": 48,
+    "泌尿系统": 36,
+    "循环系统": 33,
+    "生殖系统": 46,
+    "肌组织": 25
+  },
+  "types": {
+    "器官": 33,
+    "结构": 211,
+    "组织": 41,
+    "细胞": 79
+  },
+  "extractedReviewCount": 43,
+  "imagesTotalBytes": 27183112,
+  "originalImageTotalBytes": 52988846,
+  "legacyAliasExclusions": 42,
+  "totalExcludedAliasEntries": 98,
+  "hasValidBilingualAnswers": true,
+  "duplicateExactImages": 0,
+  "resolutionChanged": false,
+  "scopeSupplementCount": 6,
+  "automaticEligibleCount": 316,
+  "reviewNeeded": 43,
+  "medicallyCorrected": [
+    "Q0318"
+  ],
+  "publicHostingPermission": "confirmed_by_user_not_independently_documented",
+  "browserQA": {
+    "environment": "headless Chromium in about:blank with inlined original HTML/CSS/JS and selected real WebP fixtures",
+    "pass": 37,
+    "fail": 0,
+    "limitation": "not a live HTTP routing, file-origin or standalone cross-module navigation test"
+  }
+}
