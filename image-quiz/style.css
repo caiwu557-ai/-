@@ -29,3 +29,20 @@ dialog::backdrop{background:#0a1323cc;backdrop-filter:blur(7px)}.viewer{backgrou
 /* Buttons get a consistent inline icon size; native SVG default 300px is not allowed. */
 .ui-icon{display:inline-block;width:18px;height:18px;flex:0 0 18px;vertical-align:middle;}
 #main:focus{outline:none;}
+
+/* V3 · Non-destructive target indication. Source WebP pixels stay untouched. */
+.image-tools{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+.focus-btn{border:1px solid var(--line);border-radius:8px;background:var(--paper2);color:var(--accent);font-weight:730;font-size:11px;padding:7px 10px;min-height:36px}
+.focus-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.image-stage button{display:grid;place-items:center}
+.image-figure{position:relative;display:inline-block;width:fit-content;max-width:100%;max-height:62vh;line-height:0;isolation:isolate}
+.image-stage .image-figure img{display:block;width:auto;max-width:100%;height:auto;max-height:62vh;object-fit:contain}
+.image-focus{pointer-events:none;position:absolute;left:var(--target-x);top:var(--target-y);width:var(--target-d);height:var(--target-d);border-radius:50%;border:3px solid #f8fdfc;box-shadow:0 0 0 3px #087783,0 0 0 7px #ffffff80,0 0 14px #04262baa;transform:translate(-50%,-50%);background:#10a7b211;z-index:2}
+.viewer-content{display:inline-block;position:relative;line-height:0;max-width:90vw;max-height:83dvh;transform-origin:center;will-change:transform;isolation:isolate}
+.viewer-content>img{max-width:90vw;max-height:83dvh;height:auto;width:auto;display:block;object-fit:contain}
+.viewer-content .image-focus{border-width:3px;box-shadow:0 0 0 3px #0ea7b5,0 0 0 7px #ffffff5a,0 0 20px #0006}
+.viewer-content .image-focus.hidden{display:none}
+.viewer-stage img{transform:none!important;will-change:auto}
+@media(max-width:870px){.image-figure{max-height:65vh}.image-stage .image-figure img{max-height:65vh}}
+@media(max-width:650px){.image-card-head{align-items:flex-start}.image-tools{gap:6px}.image-tools small{display:none}}
+@media(prefers-reduced-motion:reduce){.image-focus{animation:none}}

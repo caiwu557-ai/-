@@ -1,0 +1,23 @@
+<PARSED TEXT FOR SHEET: 1 / 1 TABS
+TAB NAME: qa__VISUAL_TARGET_AUDIT_V3.csv>
+index,id,answer_for_audit_only,decision,reason,original_image,new_image,image_marked
+0,Q0044,肾上腺,replace,原图只显示皮质局部，替换为同题库 Q0045：有皮质与髓质层次的低倍整器官图,images/Q0044.webp,images/Q0045.webp,False
+1,Q0058,垂体细胞,hold,垂体后叶的核与间质重叠，裁切区域不足以仅靠箭头可靠确定垂体细胞,images/Q0058.webp,images/Q0058.webp,False
+2,Q0060,嫌色细胞,hold,嫌色细胞与邻近细胞染色界限不鲜明，单个箭头定位不足以支持严格判分,images/Q0060.webp,images/Q0060.webp,False
+3,Q0066,纤毛细胞,marker_verified,上皮游离缘的细长运动性突起,images/Q0066.webp,images/Q0066.webp,True
+4,Q0067,杯状细胞,marker_verified,上皮内杯状、顶端充满黏液的细胞群,images/Q0067.webp,images/Q0067.webp,True
+5,Q0073,II型肺泡上皮细胞,hold,Ⅱ型肺泡上皮细胞需辨认凸向肺泡腔的胞体，当前裁切和箭头均不足以排除其他细胞,images/Q0073.webp,images/Q0073.webp,False
+6,Q0074,肺泡囊,hold,多个肺泡腔连续出现，但未唯一指明共同汇入的肺泡囊范围,images/Q0074.webp,images/Q0074.webp,False
+7,Q0106,微绒毛,marker_verified,电镜刷状缘柱状突起所在区域,images/Q0106.webp,images/Q0106.webp,True
+8,Q0134,轴丘,hold,轴丘与胞体近端的边界在现有裁切和染色中不能可靠定位,images/Q0134.webp,images/Q0134.webp,False
+9,Q0149,施万细胞核,marker_verified,神经纤维旁长梭形的细胞核,images/Q0149.webp,images/Q0149.webp,True
+10,Q0150,大脑锥体细胞的树突,hold,Golgi 神经元图可见多条突起，未唯一标示要求辨认的锥体细胞树突,images/Q0150.webp,images/Q0150.webp,False
+11,Q0170,运动终板,hold,神经肌接头只呈现局部神经末梢与肌纤维，目标边界与参照结构不足,images/Q0170.webp,images/Q0170.webp,False
+12,Q0175,神经外膜,hold,外周神经横切图截去周围结缔组织关系，不能可靠识别神经外膜,images/Q0175.webp,images/Q0175.webp,False
+13,Q0177,神经原纤维,hold,神经原纤维与其周边神经突起在局部图片里未清楚分隔，原标记不足以唯一判定,images/Q0177.webp,images/Q0177.webp,False
+14,Q0188,胰岛,marker_verified,胰腺腺泡之间染色较浅的细胞团,images/Q0188.webp,images/Q0188.webp,True
+15,Q0217,闰管,hold,高倍导管局部缺少腺泡连接关系，闰管与类似小管道不易唯一排除,images/Q0217.webp,images/Q0217.webp,False
+16,Q0219,小动脉,marker_verified,标号附近的环形小血管壁与管腔,images/Q0219.webp,images/Q0219.webp,True
+17,Q0278,大动脉,hold,仅见大动脉中膜局部弹性层，缺失血管腔与全壁层次，器官/管型判定条件不足,images/Q0278.webp,images/Q0278.webp,False
+18,Q0301,睾丸间质细胞,marker_verified,间质细胞群；位置在相邻生精小管之间,images/Q0301.webp,images/Q0301.webp,True
+19,Q0357,闰盘,marker_verified,肌纤维连接处的深染横向线条,images/Q0357.webp,images/Q0357.webp,True

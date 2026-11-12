@@ -26,7 +26,7 @@ const api=win.LUMEN_IMAGE_TEST;
 assert.ok(api,'test API missing');
 let pass=0;
 const t=(name,fn)=>{fn();pass++;console.log('PASS',name)};
-t('The actual app initializes home with 364 questions',()=>{assert.equal(get('#metric-total').textContent,364);assert.equal(api.getState().view,'home');assert.equal(api.eligiblePool('adaptive').length,316)});
+t('The actual app initializes home with 364 questions',()=>{assert.equal(get('#metric-total').textContent,364);assert.equal(api.getState().view,'home');assert.equal(api.eligiblePool('adaptive').length,305)});
 t('Supplement and image-ambiguous items are never auto-graded',()=>{
  for(const id of ['Q0055','Q0105','Q0193','Q0196','Q0198','Q0207','Q0039'])
  assert.ok(!api.eligiblePool('adaptive').some(q=>q.id===id));
@@ -70,6 +70,6 @@ t('Skipped card does not count against recall accuracy',()=>{
  assert.equal(api.currentStats().attempts,before);assert.equal(api.getState().view,'result');
 });
 t('Session restored to home has new and due counts grounded in real attempts',()=>{
- api.go('home');const stats=api.currentStats();assert.equal(stats.newCount,316-2);assert.equal(get('#metric-new').textContent,stats.newCount);
+ api.go('home');const stats=api.currentStats();assert.equal(stats.newCount,305-2);assert.equal(get('#metric-new').textContent,stats.newCount);
 });
 console.log('RUNTIME_SMOKE_SUMMARY',JSON.stringify({pass,fail:0}));
