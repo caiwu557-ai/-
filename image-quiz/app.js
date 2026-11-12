@@ -134,7 +134,7 @@ function renderHistory(){const stats=currentStats();const attempts=stats.attempt
 }
 function makeDownload(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 function downloadText(text,name,type='text/plain'){makeDownload(new Blob([text],{type:type+';charset=utf-8'}),name)}
-function csv(rows){const quote=x=>'"'+String(x??'').replace(/"/g,'""')+'"';return '\ufeff'+rows.map(r=>r.map(quote).join(',')).join('\r\n')}
+function csv(rows){const quote=x=>{let v=String(x??'');if(/^\s*[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};return '\ufeff'+rows.map(r=>r.map(quote).join(',')).join('\r\n')}
 function exportMistakes(){const s=state.session;if(!s?.finishedAt)return;const rows=[['题目ID','系统','目标类型','标准中文','标准英文','用户答案','图片路径'],...s.answers.filter(a=>!a.ok&&!a.skipped).map(a=>{const q=byId[a.id];return [q.id,q.group,q.type,q.cn,q.en,a.user,q.image]})];downloadText(csv(rows),'LUMEN_看图填空_错题.csv','text/csv')}
 function copyTerm(id){const q=byId[id];if(!q)return;const text=q.cn+' · '+q.en;const fallback=()=>{const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).catch(fallback);else fallback();toast('已复制：'+text)}
 function flagQuestion(id){if(!byId[id])return;state.flagging=id;$('#flag-target').textContent=id+' · '+byId[id].cn;$('#flag-note').value=store.flags[id]?.note||'';$('#flag-type').value=store.flags[id]?.type||'编号或目标不明确';$('#flag-dialog').showModal()}
