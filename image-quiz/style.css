@@ -29,3 +29,6 @@ dialog::backdrop{background:#0a1323cc;backdrop-filter:blur(7px)}.viewer{backgrou
 /* Buttons get a consistent inline icon size; native SVG default 300px is not allowed. */
 .ui-icon{display:inline-block;width:18px;height:18px;flex:0 0 18px;vertical-align:middle;}
 #main:focus{outline:none;}
+
+/* v3: Target cue is task clarification, never a pre-answer hint. */
+.target-cue{font-size:13px;line-height:1.6;margin:5px 0 12px;color:var(--secondary);padding:9px 13px;border-left:2px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0}.inline-actions{display:flex;flex-wrap:wrap;gap:9px}.inline-actions button{min-height:42px}
