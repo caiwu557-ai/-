@@ -85,6 +85,17 @@ try{
  checks+=2;
  await importPage.close();
 
+ const blockedPage=await browser.newPage();
+ await blockedPage.addInitScript(()=>{
+  Storage.prototype.setItem=function(){throw new DOMException('Local storage blocked','QuotaExceededError')};
+ });
+ await blockedPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await blockedPage.locator('#start-btn').click();
+ await blockedPage.locator('#storage-alert').waitFor({state:'visible'});
+ assert.ok((await blockedPage.locator('#storage-alert').innerText()).includes('禁止保存'),'blocked localStorage must be disclosed');
+ checks++;
+ await blockedPage.close();
+
  const page=await browser.newPage();
  const home=await page.goto(base+'/',{waitUntil:'load'});
  assert.equal(home.status(),200);
