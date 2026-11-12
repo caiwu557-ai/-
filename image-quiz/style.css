@@ -46,3 +46,6 @@ dialog::backdrop{background:#0a1323cc;backdrop-filter:blur(7px)}.viewer{backgrou
 @media(max-width:870px){.image-figure{max-height:65vh}.image-stage .image-figure img{max-height:65vh}}
 @media(max-width:650px){.image-card-head{align-items:flex-start}.image-tools{gap:6px}.image-tools small{display:none}}
 @media(prefers-reduced-motion:reduce){.image-focus{animation:none}}
+/* Persistence failures must remain visible; the short toast is not enough. */
+.storage-alert{width:min(1170px,calc(100% - 32px));margin:10px auto 0;padding:12px 16px;background:var(--err-bg);color:var(--err);border:1px solid var(--err);border-radius:12px;font-size:13px;line-height:1.6;font-weight:650}
+.storage-alert[hidden]{display:none}
