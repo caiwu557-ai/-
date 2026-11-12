@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 const BASE=process.env.LUMEN_BASE_URL||'http://127.0.0.1:4173/';
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-const cases=[];
+const cases=[];let expectedCard=null;
 async function test(name,fn){
  try{await fn();cases.push({name,result:'PASS'});console.log('PASS',name);}
  catch(e){cases.push({name,result:'FAIL',error:String(e?.message||e)});console.log('FAIL',name,String(e?.message||e));}
@@ -59,7 +59,7 @@ try{
   });
   assert.equal(info.index,4);assert.equal(info.correct,4);
   assert.equal(info.done,18);
-  globalThis.expectedCard=info.remaining;
+  expectedCard=info.remaining;
   page.once('dialog',dialog=>dialog.accept());
   await page.evaluate(()=>window.LUMEN_TEST_API.goto('home'));
   await page.locator('[data-action="resume-study"]').waitFor();
