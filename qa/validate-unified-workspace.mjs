@@ -43,7 +43,9 @@ check(main.includes("new URLSearchParams(location.search).get('view')"),'Recall 
 check(main.includes("['home','review','library','stats','settings'].includes(initialWorkspace)"),'Recall view query uses an allowlist');
 check(main.includes('history.replaceState({lumen:view}'),'Recall updates route address after internal navigation');
 check(main.includes('class="atlas-bottom-link"'),'Recall mobile nav includes Atlas');
-equals(count(atlas,'class="app-route"'),6,'Atlas desktop nav contains six product destinations');
+equals(count(atlas,'class="app-route"'),7,'Atlas desktop nav contains seven product destinations');
+check(atlas.includes('href="../image-quiz/"'),'Atlas links directly to image recognition');
+check(main.includes('href="./image-quiz/"'),'Recall links directly to image recognition');
 check(atlas.includes('aria-label="LUMEN 全局导航"'),'Atlas global navigation is labeled');
 check(atlas.includes('class="workspace-tabs"'),'Atlas has mobile product nav');
 check(atlas.includes('aria-current="page"'),'Atlas active destination is marked');
