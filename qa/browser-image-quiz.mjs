@@ -53,10 +53,23 @@ try{
  await viewerPage.locator('#viewer-focus-toggle').click();
  const transformAfter=await viewerPage.locator('#viewer-content').getAttribute('style');
  assert.equal(transformAfter,transformBefore,'focus toggle must not reset magnification');
- await viewerPage.locator('#viewer-close').click();
+ await viewerPage.keyboard.press('Escape');
+ assert.equal(await viewerPage.locator('#viewer').evaluate(el=>el.open),false,'Escape closes image dialog');
+ assert.equal(await viewerPage.locator('#viewer-image').getAttribute('src'),'','Escape clears image resources');
  assert.equal(await viewerPage.locator('#page-quiz .focus-btn').getAttribute('aria-pressed'),'false','practice marker reflects viewer selection');
- checks+=3;
+ checks+=5;
  await viewerPage.close();
+
+ const keyboardPage=await browser.newPage();
+ await keyboardPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await keyboardPage.locator('#start-btn').click();
+ await keyboardPage.locator('#answer-input').fill('unrecognized structure');
+ await keyboardPage.locator('#answer-input').press('Enter');
+ assert.ok(await keyboardPage.locator('#page-quiz [data-action="next"]').evaluate(el=>el===document.activeElement),'keyboard focus must move to next button');
+ await keyboardPage.keyboard.press('Enter');
+ assert.ok((await keyboardPage.locator('#page-quiz .top-counter').innerText()).startsWith('2 /'),'second Enter must advance the quiz');
+ checks+=2;
+ await keyboardPage.close();
 
  const importPage=await browser.newPage();
  await importPage.goto(base+'/image-quiz/',{waitUntil:'load'});
