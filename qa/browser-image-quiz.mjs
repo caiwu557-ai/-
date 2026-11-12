@@ -21,6 +21,11 @@ try{
   await img.waitFor();
   await img.evaluate(el=>el.decode());
   assert.ok(await img.evaluate(el=>el.naturalWidth>0),'real image must decode');
+  const unsentDraft='Unsaved input should persist';
+  await page.locator('#answer-input').fill(unsentDraft);
+  await page.reload({waitUntil:'load'});
+  await page.locator('#resume-box button[data-action="resume"]').click();
+  assert.equal(await page.locator('#answer-input').inputValue(),unsentDraft,'unsent answer must survive reload');
   await page.locator('#answer-input').fill('definitely-not-the-answer');
   await page.locator('[data-action="submit"]').click();
   assert.ok(await page.locator('#page-quiz').innerText().then(t=>t.includes('需要重新辨认')),'feedback must render');
@@ -33,9 +38,40 @@ try{
   assert.ok(overflow<=8,'horizontal overflow at '+width+'px: '+overflow);
   assert.deepEqual(errors,[],'browser errors');
   await page.screenshot({path:'qa/browser-evidence/image-quiz-'+width+'.png',fullPage:true});
-  checks+=7;
+  checks+=8;
   await page.close();
  }
+ const viewerPage=await browser.newPage({viewport:{width:390,height:844}});
+ await viewerPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await viewerPage.locator('.local-nav [data-view="bank"]').click();
+ await viewerPage.locator('#bank-search').fill('Q0301');
+ await viewerPage.locator('.bank-tile [data-action="single"]').click();
+ await viewerPage.locator('#page-quiz [data-action="zoom"]').first().click();
+ await viewerPage.locator('[data-zoom="plus"]').click();
+ const transformBefore=await viewerPage.locator('#viewer-content').getAttribute('style');
+ assert.ok(transformBefore?.includes('scale(1.35)'), 'zoom should work');
+ await viewerPage.locator('#viewer-focus-toggle').click();
+ const transformAfter=await viewerPage.locator('#viewer-content').getAttribute('style');
+ assert.equal(transformAfter,transformBefore,'focus toggle must not reset magnification');
+ await viewerPage.locator('#viewer-close').click();
+ assert.equal(await viewerPage.locator('#page-quiz .focus-btn').getAttribute('aria-pressed'),'false','practice marker reflects viewer selection');
+ checks+=3;
+ await viewerPage.close();
+
+ const importPage=await browser.newPage();
+ await importPage.goto(base+'/image-quiz/',{waitUntil:'load'});
+ await importPage.locator('.local-nav [data-view="history"]').click();
+ const fileChooser=importPage.waitForEvent('filechooser');
+ await importPage.locator('[data-action="import-progress"]').click();
+ const chooser=await fileChooser;
+ const payload={schema:'lumen-image-progress-v1',progress:{version:1,items:{},sessions:'not an array',flags:{},active:null}};
+ await chooser.setFiles({name:'malformed-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await importPage.locator('#toast').waitFor({state:'visible'});
+ assert.ok((await importPage.locator('#toast').innerText()).includes('导入失败'),'invalid JSON backup must be rejected');
+ assert.equal((await importPage.locator('#metric-total').innerText()).trim(),'364','failed import must preserve current data');
+ checks+=2;
+ await importPage.close();
+
  const page=await browser.newPage();
  const home=await page.goto(base+'/',{waitUntil:'load'});
  assert.equal(home.status(),200);
