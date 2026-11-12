@@ -491,3 +491,16 @@
   }
   #app .vocab-item { min-width:0; max-width:100%; }
 }
+
+/* Progress indicator belongs beneath the sticky navigation, never over headings.
+   Chapter and search landing screens have no reading progress to display. */
+.atlas-page .progress-line {
+  top: 88px;
+  z-index: 19;
+  pointer-events: none;
+  height: 2px;
+}
+.atlas-page .progress-line[hidden] { display: none !important; }
+@media (max-width: 850px) {
+  .atlas-page .progress-line { top: 70px; }
+}
