@@ -69,6 +69,7 @@ t('Module namespace does not overwrite vocabulary review data',()=>{
 });
 t('Responsive and reduced-motion support present',()=>{for(const marker of ['@media(max-width:870px)','@media(max-width:650px)','@media(max-width:370px)','prefers-reduced-motion:reduce'])assert.ok(css.includes(marker),marker)});
 t('Original bundled JPEG base64 not leaked into new app',()=>{assert.ok(!markup.includes('data:image/jpeg;base64'));assert.ok(!read('data/bank.js').includes('data:image/jpeg;base64'))});
+t('Storage failure has a persistent accessible warning',()=>{assert.ok(markup.includes('id="storage-alert"'));assert.ok(markup.includes('role="alert"'));assert.ok(css.includes('.storage-alert[hidden]'));assert.ok(app.includes('storageFailureShown'))});
 t('Exported CSV neutralizes spreadsheet formulas',()=>{
  const start=app.indexOf('function csv(rows){');
  const end=app.indexOf('\nfunction exportMistakes()',start);
