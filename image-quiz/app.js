@@ -107,7 +107,7 @@ function toast(message){const el=$('#toast');el.textContent=message;el.hidden=fa
 function themeSync(){const dark=document.documentElement.dataset.theme==='dark';$('#theme-btn .nav-icon').dataset.icon=dark?'sun':'moon';applyIcons($('#theme-btn'))}
 function setTheme(){const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem(THEME,theme)}catch{}themeSync()}
 function titleFor(view){return ({home:'看图填空',quiz:'识图练习',result:'本轮结果',bank:'全部题库',history:'学习记录'})[view]||'看图填空'}
-function setView(view){if(!['home','quiz','result','bank','history'].includes(view))return;state.view=view;
+function setView(view){if(!['home','quiz','result','bank','history'].includes(view))return;state.view=view;document.body.classList?.toggle('image-quiz-focus-mode',view==='quiz');
  $$('.page').forEach(el=>el.classList.toggle('hidden',el.id!=='page-'+view));
  $('#breadcrumb').textContent=titleFor(view);
  $$('[data-view]').forEach(el=>{const active=el.dataset.view===view||(view==='result'&&el.dataset.view==='home')||(view==='quiz'&&el.dataset.view==='home');el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
