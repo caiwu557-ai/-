@@ -74,7 +74,19 @@ function normalizeProgress(p){
 }
 function load(){try{return normalizeProgress(JSON.parse(localStorage.getItem(STORAGE)))}catch{return empty()}}
 let store=load();
-function save(){try{localStorage.setItem(STORAGE,JSON.stringify(store));return true}catch{return false}}
+let storageFailureShown=false;
+function save(){
+ try{
+  localStorage.setItem(STORAGE,JSON.stringify(store));
+  if(storageFailureShown){storageFailureShown=false;const alert=$('#storage-alert');if(alert)alert.hidden=true;const badge=$('#local-badge');if(badge)badge.textContent='本机练习'}
+  return true;
+ }catch{
+  const alert=$('#storage-alert');if(alert)alert.hidden=false;
+  const badge=$('#local-badge');if(badge)badge.textContent='进度无法保存';
+  if(!storageFailureShown){storageFailureShown=true;toast('浏览器拒绝保存学习进度，请检查本机存储权限')}
+  return false;
+ }
+}
 const groups=Object.keys(BANK.meta.categories),types=['器官','组织','结构','细胞'];
 let state={view:'home',mode:'adaptive',size:20,groups:new Set(),types:new Set(),session:restoreActive(),bankQuery:'',bankGroup:'all',bankReview:'all',bankShown:36,flagging:null};
 function restoreActive(){return validSession(store.active)?store.active:null}
