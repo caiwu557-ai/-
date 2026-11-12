@@ -34,10 +34,10 @@ try{
    let first=[];
    for(let i=0;i<14;i++){
     const card=api.currentCard();
-    assert.ok(card,'missing card '+i);
+    if(!card)throw new Error('missing card '+i);
     first.push(card.id);
     const k=api.getStudy().options.findIndex(w=>w.id===card.id);
-    api.chooseOption(k);assert.equal(api.getStudy().result,'correct');
+    api.chooseOption(k);if(api.getStudy().result!=='correct')throw new Error('grading mismatch on '+i);
     api.nextCard();
    }
    return {ids:first,finished:api.getStudy().finished,correct:api.getStudy().correct,events:api.getState().events.length};
