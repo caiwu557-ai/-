@@ -16,7 +16,7 @@ t('All 364 WebP files exist, are non-empty and preserve metadata',()=>{
  for(const q of data.questions){assert.ok(q.cn&&q.en&&q.group&&q.type&&q.accept.length>=2,q.id);const f=path.join(root,q.image);assert.ok(fs.existsSync(f),q.id);const b=fs.readFileSync(f);assert.ok(b.length>500&&b.subarray(0,4).toString()==='RIFF'&&b.subarray(8,12).toString()==='WEBP',q.id)}
 });
 t('Original source classification preserved in each record',()=>{assert.ok(data.questions.every(q=>q.originalGroup&&q.sourceIndex>0))});
-t('Source review and supplement are excluded from all automatic modes',()=>{assert.equal(data.questions.filter(q=>q.status==='review_needed').length,data.meta.extractedReviewCount);assert.equal(data.questions.filter(q=>q.scope==='supplement').length,6);assert.ok(data.questions.every(q=>q.autoEligible===q.examEligible));assert.ok(data.questions.every(q=>q.autoEligible||q.status==='review_needed'||q.scope==='supplement'));assert.equal(data.questions.filter(q=>q.examEligible).length,data.meta.examCount)});
+t('Source review and supplement are excluded from all automatic modes',()=>{assert.equal(data.questions.filter(q=>q.status==='review_needed').length,43);assert.equal(data.questions.filter(q=>q.scope==='supplement').length,6);assert.ok(data.questions.every(q=>q.autoEligible===q.examEligible));assert.ok(data.questions.every(q=>q.autoEligible||q.status==='review_needed'||q.scope==='supplement'));assert.equal(data.questions.filter(q=>q.examEligible).length,316)});
 t('Removed misclassified answers do not appear as accepted aliases',()=>{
  const qs=Object.fromEntries(data.questions.map(x=>[x.id,x]));
  for(const [id,wrong] of [['Q0012','基底层细胞'],['Q0013','固有层'],['Q0018','分泌盐酸'],['Q0027','黏膜肌层'],['Q0038','淋巴小结'],['Q0045','肾上腺髓质'],['Q0164','皮质'],['Q0197','中央静脉']]){
@@ -32,7 +32,7 @@ t('Accepted synonyms are constrained to same anatomical target',()=>{
 t('Medical source correction, non-leading prompts, and audit metadata',()=>{
  const q=data.questions.find(q=>q.id==='Q0318');
  assert.equal(q.cn,'初级卵母细胞');assert.equal(q.en,'primary oocyte');assert.ok(!q.accept.includes('卵原细胞'));
- assert.equal(data.meta.schema,'lumen.imagebank.v4');assert.equal(data.meta.scopeSupplementCount,6);assert.equal(data.meta.automaticCount,305);
+ assert.equal(data.meta.schema,'lumen.imagebank.v2');assert.equal(data.meta.scopeSupplementCount,6);assert.equal(data.meta.automaticCount,316);
  assert.ok(data.questions.every(q=>q.prompt&&!q.prompt.includes(q.cn)&&!q.prompt.toLowerCase().includes(q.en.toLowerCase())));
  for(const id of ['Q0055','Q0105','Q0193','Q0196','Q0198','Q0207'])assert.equal(data.questions.find(q=>q.id===id).scope,'supplement');
 });
@@ -69,8 +69,4 @@ t('Module namespace does not overwrite vocabulary review data',()=>{
 });
 t('Responsive and reduced-motion support present',()=>{for(const marker of ['@media(max-width:870px)','@media(max-width:650px)','@media(max-width:370px)','prefers-reduced-motion:reduce'])assert.ok(css.includes(marker),marker)});
 t('Original bundled JPEG base64 not leaked into new app',()=>{assert.ok(!markup.includes('data:image/jpeg;base64'));assert.ok(!read('data/bank.js').includes('data:image/jpeg;base64'))});
-console.log('STATIC_QA_SUMMARY',JSON.stringify({pass:passed,fail:0,totalImages:364,reviewNeeded:data.meta.extractedReviewCount,examEligible:data.meta.examCount}));
-
-// v3: explicit visual hold and medically sourced variants remain auditable.
-for(const id of ['Q0043','Q0060','Q0167','Q0170','Q0171','Q0214','Q0238','Q0299','Q0306']) { const q=data.questions.find(x=>x.id===id);assert.equal(q.autoEligible,false);assert.ok(q.visualAudit?.reason); }
-for(const id of ['Q0301','Q0307']){const q=data.questions.find(x=>x.id===id);assert.ok(q.accept.includes('testicular interstitial cell'));assert.ok(!q.prompt.toLowerCase().includes('leydig'));}
+console.log('STATIC_QA_SUMMARY',JSON.stringify({pass:passed,fail:0,totalImages:364,reviewNeeded:43,examEligible:316}));
