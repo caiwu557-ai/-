@@ -43,7 +43,7 @@ try{
  }
  const viewerPage=await browser.newPage({viewport:{width:390,height:844}});
  await viewerPage.goto(base+'/image-quiz/',{waitUntil:'load'});
- await viewerPage.locator('.local-nav [data-view="bank"]').click();
+ await viewerPage.locator('.bottom-tabs [data-view="bank"]').click();
  await viewerPage.locator('#bank-search').fill('Q0301');
  await viewerPage.locator('.bank-tile [data-action="single"]').click();
  await viewerPage.locator('#page-quiz [data-action="zoom"]').first().click();
