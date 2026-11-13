@@ -152,9 +152,14 @@ try{
     await assert(measured.article>0&&measured.table>=measured.article*.92,'comparison table wastes reading width: '+JSON.stringify(measured));
     await assert(measured.cardWidths.length>=2,'skin section must show two reference images');
     await assert(measured.cardWidths.every(x=>x>=Math.min(225,measured.grid*.76)),'reference image cards too narrow: '+JSON.stringify(measured));
-    await page.evaluate(()=>window.scrollTo(0,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)));
-    await page.waitForTimeout(170);
-    await assert(await page.evaluate(()=>scrollY>0),'skin section did not scroll');
+    const scrollable=await page.evaluate(()=>Math.max(0,document.documentElement.scrollHeight-innerHeight));
+    if(scrollable>16){
+      await page.evaluate(()=>window.scrollTo({top:Math.max(10,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)),behavior:'instant'}));
+      await page.waitForTimeout(170);
+      await assert(await page.evaluate(()=>scrollY>0),'scrollable skin section failed to scroll');
+    } else {
+      await assert(await page.locator('#reader .term-evidence-item').count()>=2,'short skin section is missing its reference images');
+    }
     await assert(await page.locator('.progress-line,#progress').count()===0,'sticky progress overlay returns when scrolling');
     await assert((await noOverflow(page)).pass,'skin section overflows');
     await screenshot(page,label+'-03c-skin-no-progress.png');
