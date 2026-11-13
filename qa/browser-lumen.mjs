@@ -98,6 +98,21 @@ try{
     await screenshot(page,label+'-03-section.png');
     const o=await noOverflow(page);await assert(o.pass,JSON.stringify(o));
   });
+  await attempt(label+' / skin section has no sticky cross-page rule',async()=>{
+    // Exact regression for the screenshot: sec-7-2 (thick skin vs thin skin),
+    // after scrolling down to the comparison table and microscopy thumbnails.
+    await page.goto(new URL('atlas/#sec-7-2',BASE).href,{waitUntil:'domcontentloaded'});
+    await assertReady(page,'#reader .page-title');
+    const title=await page.locator('#reader .page-title').innerText();
+    await assert(title.includes('Thick skin')&&title.includes('Thin skin'),'wrong skin comparison route: '+title);
+    await assert(await page.locator('.progress-line,#progress').count()===0,'sticky reading progress bar still exists');
+    await page.evaluate(()=>window.scrollTo(0,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)));
+    await page.waitForTimeout(170);
+    await assert(await page.evaluate(()=>scrollY>0),'skin section did not scroll');
+    await assert(await page.locator('.progress-line,#progress').count()===0,'sticky progress overlay returns when scrolling');
+    await assert((await noOverflow(page)).pass,'skin section overflows');
+    await screenshot(page,label+'-03c-skin-no-progress.png');
+  });
   await attempt(label+' / image sources and section deep link',async()=>{
     await page.goto(new URL('atlas/#sec-1-1',BASE).href,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#reader .page-title');
