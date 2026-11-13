@@ -618,7 +618,10 @@
   border-radius:12px;
   background:var(--lw-paper);
   color:var(--lw-text);
-  font:500 13px/1.35 inherit;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.35;
   cursor:pointer;
   box-shadow:none;
 }
