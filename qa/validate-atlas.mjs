@@ -31,4 +31,8 @@ const html=fs.readFileSync(path.join(folder,'index.html'),'utf8');
 fail(html.includes('href="../"'),'Missing back link to LUMEN');
 fail(html.includes('atlas.js'),'Missing UI script');
 fail(css.includes('--accent:#615cf6'),'Host accent not applied');
+fail(manual.sections.some(s=>s.id==='sec-7-2'&&s.title.includes('Thick skin')),'Missing skin comparison regression fixture');
+fail(!html.includes('class="progress-line"')&&!html.includes('id="progress"'),'Obsolete sticky progress DOM remains');
+fail(!css.includes('.progress-line'),'Obsolete sticky progress CSS remains');
+fail(!atlasJS.includes("$('#progress')")&&!atlasJS.includes("document.querySelector('.progress-line')"),'Obsolete progress JS remains');
 console.log(JSON.stringify({sections:manual.sections.length, comparisons:manual.comparisons.length,originalLinks:manual.images.length,localMedia:local.length,creditRecords:Object.keys(credits.media).length+Object.keys(credits.chat).length,termSectionCount:Object.keys(terms).length,qa:'pass'},null,2));
