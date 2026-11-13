@@ -77,6 +77,10 @@ try{
     await assert(await hero.count()===1,'study homepage hero missing');
     const heroFinish=await hero.evaluate(el=>({background:getComputedStyle(el).backgroundImage,shadow:getComputedStyle(el).boxShadow}));
     await assert(heroFinish.background==='none'&&heroFinish.shadow==='none','flat homepage hero regression: '+JSON.stringify(heroFinish));
+    await assert(await hero.evaluate(el=>getComputedStyle(el,'::before').display)==='none','decorative hero pseudo overlay remains');
+    const wordmark=await page.locator('#app .sidebar .brand-text strong').first().evaluate(el=>getComputedStyle(el).color);
+    const rgb=wordmark.match(/\d+/g).slice(0,3).map(Number);
+    await assert(rgb.every(n=>n>=220),'LUMEN sidebar wordmark contrast too low: '+wordmark);
     await screenshot(page,label+'-01-overview.png');
     const o=await noOverflow(page); await assert(o.pass,JSON.stringify(o));
   });
