@@ -1368,9 +1368,10 @@ function initOptics(){
   if(w<=0||h<=0)return;
   if(!reset&&Math.abs(w-width)<.5&&Math.abs(h-height)<.5)return;
   width=w;height=h;
-  const radius=Math.min(h*.438,w*.385,190);
-  originX=clamp(width-radius-Math.max(18,width*.032),radius+2,width-radius-2);
-  originY=height*.52;
+  const compact=w<=650;
+  const radius=compact?Math.min(h*.235,w*.30,112):Math.min(h*.438,w*.385,190);
+  originX=compact?clamp(w*.58,radius+2,w-radius-2):clamp(width-radius-Math.max(18,width*.032),radius+2,width-radius-2);
+  originY=compact?height-radius-54:height*.52;
   bodies.forEach((b,i)=>{
    b.r=radius*b.factor;
    b.t=i===2?0:Math.min(b.r*.44,b.thickness*radius/145);
