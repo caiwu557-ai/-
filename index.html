@@ -1080,6 +1080,11 @@ function homePage(){
     <h1 id="home-hero-heading" class="home-hero-title">${safe(headline)}</h1>
     <p class="home-hero-description">${safe(description)}</p>
     <span class="home-session-limit">每轮最多 ${goal} 题，不设每日上限 · 独立训练 ${words.length} / 收录 ${allInScope.length}</span>
+    <div class="onion-layer-notes" id="onion-layer-notes" aria-live="polite" aria-label="三层学习结构" hidden>
+      <span><b>01 · 外层</b> 观察</span>
+      <span><b>02 · 中层</b> 辨认</span>
+      <span><b>03 · 核心</b> 理解</span>
+    </div>
    </div>
    <div class="hero-optic" aria-hidden="true">
     <span class="optic-kinetic optic-ring optic-ring-one" data-body="shell-outer"></span>
@@ -1087,6 +1092,7 @@ function homePage(){
     <span class="optic-kinetic optic-orb optic-orb-one" data-body="orb-core"></span>
    </div>
    <div class="hero-glass" aria-hidden="true"><span class="glass-hover-mist"></span><span class="glass-ripple-layer"></span></div>
+   <button type="button" class="onion-toggle" data-onion-toggle aria-controls="onion-layer-notes" aria-expanded="false"><span class="onion-toggle-label">展开三层结构</span><span class="onion-toggle-icon" aria-hidden="true">+</span></button>
   </section>
   <div class="home-status-row" aria-label="当前课程学习状态">
    <div class="home-status-item"><span class="home-status-name">${ic('clock',17)} 到期复习</span><strong class="mono">${due}</strong><small>${due?'优先安排':'目前没有到期项'}</small></div>
@@ -1294,6 +1300,19 @@ function initOptics(){
  const bodies=specs.map((spec)=>({...spec,el:field.querySelector('[data-body="'+spec.id+'"]'),
   x:0,y:0,vx:0,vy:0,r:0,t:0}));
  if(bodies.some(b=>!b.el))return;
+ const toggle=hero.querySelector('[data-onion-toggle]');
+ const notes=hero.querySelector('#onion-layer-notes');
+ if(!toggle||!notes)return;
+ let expanded=false;
+ function setExpanded(next){
+  expanded=Boolean(next);
+  hero.classList.toggle('is-onion-expanded',expanded);
+  toggle.setAttribute('aria-expanded',String(expanded));
+  toggle.querySelector('.onion-toggle-label').textContent=expanded?'收起三层结构':'展开三层结构';
+  notes.hidden=!expanded;
+  if(expanded)bodies.forEach(b=>{b.vx=0;b.vy=0;});
+ }
+ function onToggleClick(e){e.stopPropagation();setExpanded(!expanded)}
  let width=0,height=0,originX=0,originY=0,raf=0,last=0,frame=0;
  let collisions=0,wallCollisions=0,rippleCount=0,disposed=false;
  let pointerX=0,pointerY=0,previousX=NaN,previousY=NaN,hasPointer=false;
@@ -1370,12 +1389,12 @@ function initOptics(){
   const outer=bodies[0];
   const wallGap=Math.min(outer.x-outer.r,width-outer.x-outer.r,
    outer.y-outer.r,height-outer.y-outer.r);
-  return {frames:frame,collisions,wallCollisions,active:canMove(),bodies:bodies.length,
+  return {frames:frame,collisions,wallCollisions,active:canMove()&&!expanded,expanded,bodies:bodies.length,
    minGap:Math.min(...edgeGaps),edgeGaps,wallGap,width,height,
    center:{x:originX,y:originY},shells,ripples:rippleCount};
  }
  function onMove(e){
-  if(e.pointerType==='touch'||reduced())return;
+  if(e.pointerType==='touch'||reduced()||expanded)return;
   const rect=hero.getBoundingClientRect();
   const x=e.clientX-rect.left,y=e.clientY-rect.top;
   if(Number.isFinite(previousX)){
@@ -1395,10 +1414,12 @@ function initOptics(){
  }
  function onLeave(){previousX=NaN;previousY=NaN;hasPointer=false;}
  function onClick(e){
-  if(reduced())return;
+  if(e.target.closest('.hero-left,button,a,input,select,textarea'))return;
   const rect=hero.getBoundingClientRect();
   const x=e.clientX-rect.left,y=e.clientY-rect.top;
   if(x<0||x>rect.width||y<0||y>rect.height)return;
+  if(Math.hypot(x-originX,y-originY)<bodies[0].r*.88){setExpanded(!expanded);return;}
+  if(reduced())return;
   // The ripple lives in the glass layer, below copy and above the onion.
   // Restrained, transparent lens ring; contact with the onion does not flash.
   const ripple=document.createElement('span');
@@ -1431,6 +1452,7 @@ function initOptics(){
  hero.addEventListener('pointerleave',onLeave);
  hero.addEventListener('pointercancel',onLeave);
  hero.addEventListener('click',onClick);
+ toggle.addEventListener('click',onToggleClick);
  const onResize=()=>layout(false);
  const ro=typeof ResizeObserver!=='undefined'?new ResizeObserver(onResize):null;
  if(ro)ro.observe(hero);else window.addEventListener('resize',onResize);
@@ -1438,7 +1460,7 @@ function initOptics(){
  function tick(now){
   if(disposed)return;
   raf=requestAnimationFrame(tick);
-  if(!canMove()){last=now;opticsFrameStats=diagnostics();return;}
+  if(!canMove()||expanded){last=now;opticsFrameStats=diagnostics();return;}
   const dt=Math.min(.035,Math.max(.002,last?(now-last)/1000:.016));last=now;
   const time=now/1000;frame++;
   const steps=Math.max(2,Math.ceil(dt/.012)),h=dt/steps;
@@ -1469,6 +1491,7 @@ function initOptics(){
   hero.removeEventListener('pointerleave',onLeave);
   hero.removeEventListener('pointercancel',onLeave);
   hero.removeEventListener('click',onClick);
+  toggle.removeEventListener('click',onToggleClick);
   if(ro)ro.disconnect();else window.removeEventListener('resize',onResize);
   rippleLayer.replaceChildren();
   opticsFrameStats.active=false;
