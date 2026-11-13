@@ -73,6 +73,10 @@ try{
       if(touch)await dismiss.tap();else await dismiss.click();
       await assert(await page.locator('.tour-panel').count()===0,'tutorial remains after dismiss');
     }
+    const hero=page.locator('.home-dashboard .home-hero').first();
+    await assert(await hero.count()===1,'study homepage hero missing');
+    const heroFinish=await hero.evaluate(el=>({background:getComputedStyle(el).backgroundImage,shadow:getComputedStyle(el).boxShadow}));
+    await assert(heroFinish.background==='none'&&heroFinish.shadow==='none','flat homepage hero regression: '+JSON.stringify(heroFinish));
     await screenshot(page,label+'-01-overview.png');
     const o=await noOverflow(page); await assert(o.pass,JSON.stringify(o));
   });
@@ -106,6 +110,16 @@ try{
     const title=await page.locator('#reader .page-title').innerText();
     await assert(title.includes('Thick skin')&&title.includes('Thin skin'),'wrong skin comparison route: '+title);
     await assert(await page.locator('.progress-line,#progress').count()===0,'sticky reading progress bar still exists');
+    const measured=await page.evaluate(()=>{
+      const article=document.querySelector('#reader .article');
+      const table=article?.querySelector('table');
+      const gallery=document.querySelector('#reader .term-evidence-list');
+      const cards=[...(gallery?.querySelectorAll('.term-evidence-item')||[])];
+      return {article:article?.getBoundingClientRect().width||0,table:table?.getBoundingClientRect().width||0,grid:gallery?.getBoundingClientRect().width||0,cardWidths:cards.map(x=>x.getBoundingClientRect().width)};
+    });
+    await assert(measured.article>0&&measured.table>=measured.article*.92,'comparison table wastes reading width: '+JSON.stringify(measured));
+    await assert(measured.cardWidths.length>=2,'skin section must show two reference images');
+    await assert(measured.cardWidths.every(x=>x>=Math.min(225,measured.grid*.76)),'reference image cards too narrow: '+JSON.stringify(measured));
     await page.evaluate(()=>window.scrollTo(0,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)));
     await page.waitForTimeout(170);
     await assert(await page.evaluate(()=>scrollY>0),'skin section did not scroll');
