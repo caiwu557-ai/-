@@ -84,6 +84,17 @@ try{
     const rings=page.locator('.home-hero .hero-optic .optic-kinetic');
     await assert(await rings.count()===3,'kinetic optical onion must retain exactly three visible bodies');
     await assert(await rings.first().evaluate(el=>getComputedStyle(el).display!=='none'&&el.getBoundingClientRect().width>30),'the optical onion must be visible');
+    if(width<=390){
+      const geometry=await page.evaluate(()=>{
+        const ring=document.querySelector('.optic-ring-one').getBoundingClientRect();
+        const description=document.querySelector('.home-hero-description').getBoundingClientRect();
+        const card=document.querySelector('.home-hero').getBoundingClientRect();
+        return {ringTop:ring.top,ringBottom:ring.bottom,copyBottom:description.bottom,cardBottom:card.bottom,opacity:Number(getComputedStyle(document.querySelector('.hero-optic')).opacity)};
+      });
+      await assert(geometry.ringTop>geometry.copyBottom+12,'mobile onion overlaps main reading copy: '+JSON.stringify(geometry));
+      await assert(geometry.ringBottom<=geometry.cardBottom-13,'mobile onion clipped by hero edge: '+JSON.stringify(geometry));
+      await assert(geometry.opacity>=.7,'mobile onion too faded to function as focal object: '+JSON.stringify(geometry));
+    }
     const onionToggle=page.locator('[data-onion-toggle]');
     await assert(await onionToggle.isVisible(),'accessible onion layer toggle missing');
     await assert(await onionToggle.getAttribute('aria-expanded')==='false','onion must start collapsed');
