@@ -500,12 +500,9 @@
   box-shadow: none !important;
   isolation: isolate;
 }
-#app .home-dashboard .home-hero .hero-optic,
-#app .home-dashboard .home-hero .hero-glass,
-#app .home-dashboard .home-hero .glass-hover-mist,
-#app .home-dashboard .home-hero .glass-ripple-layer,
 #app .home-dashboard .home-hero .hero-gloss,
-#app .home-dashboard .home-hero .optical-flare { display:none !important; }
+#app .home-dashboard .home-hero .optical-flare,
+#app .home-dashboard .home-hero .glass-hover-mist { display:none !important; }
 #app .home-dashboard .home-hero-title { color:var(--lw-text) !important; font-weight:500; }
 #app .home-dashboard .home-hero-description { color:var(--lw-secondary) !important; font-size:15px; line-height:1.7; font-weight:400; }
 #app .home-dashboard .home-hero .hero-left { width:100%; max-width:800px; }
@@ -559,3 +556,142 @@
 #app .nav-group-label { font-size:11px; }
 #app .home-dashboard .home-hero::before,
 #app .home-dashboard .home-hero::after { display:none !important; }
+
+/* Stageshow-informed, causal three-layer hero reveal. The study interface stays flat. */
+#app .home-dashboard .home-hero {
+  min-height:356px;
+  overflow:hidden;
+  position:relative;
+}
+#app .home-dashboard .home-hero .hero-left {
+  width:min(65%,660px);
+  max-width:none;
+  padding-bottom:64px;
+  z-index:4;
+}
+#app .home-dashboard .home-hero .hero-optic {
+  display:block !important;
+  z-index:1 !important;
+  opacity:1 !important;
+  pointer-events:none;
+}
+#app .home-dashboard .home-hero .hero-glass {
+  display:block !important;
+  z-index:2 !important;
+  pointer-events:none;
+}
+#app .home-dashboard .home-hero .hero-glass::before,
+#app .home-dashboard .home-hero .hero-glass::after {
+  display:none !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+}
+#app .home-dashboard .home-hero .glass-ripple-layer {
+  display:block !important;
+  opacity:.65;
+}
+#app .home-dashboard .home-hero .optic-kinetic {
+  transition:translate .65s cubic-bezier(.2,.8,.2,1),opacity .4s ease;
+}
+#app .home-dashboard .home-hero.is-onion-expanded .optic-ring-one {
+  translate:-27px -18px;
+  opacity:.83;
+}
+#app .home-dashboard .home-hero.is-onion-expanded .optic-ring-two {
+  translate:33px 29px;
+}
+#app .home-dashboard .home-hero.is-onion-expanded .optic-orb-one {
+  translate:78px -19px;
+}
+#app .home-dashboard .onion-toggle {
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  z-index:7;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:9px;
+  padding:11px 15px;
+  min-height:44px;
+  border:1px solid var(--lw-rule);
+  border-radius:12px;
+  background:var(--lw-paper);
+  color:var(--lw-text);
+  font:500 13px/1.35 inherit;
+  cursor:pointer;
+  box-shadow:none;
+}
+#app .home-dashboard .onion-toggle:hover {
+  border-color:var(--lw-brand);
+  color:var(--lw-brand);
+}
+#app .home-dashboard .onion-toggle:focus-visible {
+  outline:3px solid var(--lw-brand);
+  outline-offset:3px;
+}
+#app .home-dashboard .onion-toggle-icon {
+  display:inline-block;
+  font-size:16px;
+  font-weight:500;
+  transition:transform .35s ease;
+}
+#app .home-dashboard .home-hero.is-onion-expanded .onion-toggle-icon {
+  transform:rotate(45deg);
+}
+#app .home-dashboard .onion-layer-notes {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  max-width:560px;
+}
+#app .home-dashboard .onion-layer-notes[hidden] {display:none!important;}
+#app .home-dashboard .onion-layer-notes span {
+  border:.5px solid var(--lw-rule);
+  border-radius:8px;
+  padding:6px 9px;
+  background:var(--lw-paper);
+  color:var(--lw-secondary);
+  font-size:12px;
+  line-height:1.4;
+  font-weight:400;
+}
+#app .home-dashboard .onion-layer-notes b {
+  color:var(--lw-brand);
+  font-weight:500;
+}
+@media(max-width:800px) {
+  #app .home-dashboard .home-hero .hero-left {
+    width:70%;
+    padding:29px 24px 74px;
+  }
+}
+@media(max-width:650px) {
+  #app .home-dashboard .home-hero {
+    min-height:400px;
+    align-items:flex-start;
+  }
+  #app .home-dashboard .home-hero .hero-left {
+    width:100%;
+    max-width:none;
+    padding:27px 22px 95px;
+  }
+  #app .home-dashboard .home-hero .hero-optic {
+    opacity:.38 !important;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 3%,rgba(0,0,0,.05) 32%,black 83%);
+    mask-image:linear-gradient(to bottom,transparent 3%,rgba(0,0,0,.05) 32%,black 83%);
+  }
+  #app .home-dashboard .onion-toggle {
+    right:14px;
+    bottom:14px;
+    padding:10px 13px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  #app .home-dashboard .home-hero .optic-kinetic,
+  #app .home-dashboard .onion-toggle-icon {transition:none!important;}
+}
+:root[data-motion=off] #app .home-dashboard .home-hero .optic-kinetic,
+:root[data-motion=off] #app .home-dashboard .onion-toggle-icon {transition:none!important;}
