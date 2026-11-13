@@ -673,7 +673,7 @@
 }
 @media(max-width:650px) {
   #app .home-dashboard .home-hero {
-    min-height:400px;
+    min-height:475px;
     align-items:flex-start;
   }
   #app .home-dashboard .home-hero .hero-left {
@@ -682,9 +682,9 @@
     padding:27px 22px 95px;
   }
   #app .home-dashboard .home-hero .hero-optic {
-    opacity:.38 !important;
-    -webkit-mask-image:linear-gradient(to bottom,transparent 3%,rgba(0,0,0,.05) 32%,black 83%);
-    mask-image:linear-gradient(to bottom,transparent 3%,rgba(0,0,0,.05) 32%,black 83%);
+    opacity:.86 !important;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 4%,rgba(0,0,0,.18) 37%,black 65%);
+    mask-image:linear-gradient(to bottom,transparent 4%,rgba(0,0,0,.18) 37%,black 65%);
   }
   #app .home-dashboard .onion-toggle {
     right:14px;
