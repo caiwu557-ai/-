@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
-const base='http://127.0.0.1:4173/vnext/';
+const base='http://127.0.0.1:4173/vnext/?compat=1';
 const out='qa/browser-evidence';
 fs.mkdirSync(out,{recursive:true});
 const tests=[];
