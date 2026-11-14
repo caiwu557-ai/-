@@ -1,6 +1,6 @@
 const base=new URL('../',window.location.href);
 const spaces={
- learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./',base).href},
+ learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./?embed=1',base).href},
  atlas:{title:'切片图谱',eyebrow:'Histology atlas',url:new URL('./atlas/',base).href},
  quiz:{title:'看图填空',eyebrow:'Image recognition',url:new URL('./image-quiz/',base).href}
 };
@@ -100,14 +100,15 @@ function activateFrame(target){
   frame.dataset.space=target.space;
   frame.loading='eager';
   frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
-  frame.src=target.space==='learn'&&target.view!=='home'?new URL('?view='+target.view,spaces.learn.url).href:target.space==='atlas'&&target.section?spaces.atlas.url+'#'+target.section:spaces[target.space].url;
+  const learnRoute=new URL(spaces.learn.url);if(target.view!=='home')learnRoute.searchParams.set('view',target.view);
+  frame.src=target.space==='learn'?learnRoute.href:target.space==='atlas'&&target.section?spaces.atlas.url+'#'+target.section:spaces[target.space].url;
   frameCache.set(target.space,frame);
   stage.appendChild(frame);
   frame.addEventListener('load',()=>bridgeFrame(frame));
   status.hidden=false;status.textContent='正在载入'+spaces[target.space].title+'…';
  }else if(target.space==='learn'&&target.view!==lastLearnView(frame)){
   const node=frame.contentDocument?.querySelector('[data-action="nav"][data-view="'+target.view+'"]');
-  if(node)node.click();else frame.src=new URL(target.view==='home'?'./':'?view='+target.view,spaces.learn.url).href;
+  if(node)node.click();else{const u=new URL(spaces.learn.url);if(target.view!=='home')u.searchParams.set('view',target.view);frame.src=u.href;}
  }
  else if(target.space==='atlas'&&target.section){
   try{frame.contentWindow.location.hash=target.section}catch{}
