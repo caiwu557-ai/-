@@ -24,6 +24,12 @@ try{
    const title=await page.locator('.vnext-native-atlas #reader .page-title').innerText();
    if(!title.includes('Thick skin')&&!title.includes('厚皮'))throw Error('wrong section '+title);
    if(!page.url().includes('section=sec-7-2'))throw Error('section not reflected in parent URL');
+   const geometry=await page.locator('.vnext-native-atlas #reader').evaluate(reader=>{
+    const article=reader.querySelector('.article'),table=article?.querySelector('table'),gallery=reader.querySelector('.term-evidence-list');
+    return {articleWidth:article?.getBoundingClientRect().width||0,tableWidth:table?.getBoundingClientRect().width||0,mediaCount:gallery?.querySelectorAll('.term-evidence-item').length||0};
+   });
+   if(geometry.articleWidth<150||geometry.tableWidth<geometry.articleWidth*.92)throw Error('native Atlas comparison table collapsed: '+JSON.stringify(geometry));
+   if(geometry.mediaCount<2)throw Error('skin comparison lost reference images');
    const badImages=await page.locator('.vnext-native-atlas #reader img').evaluateAll(imgs=>imgs.filter(img=>img.src.includes('/vnext/images/')).map(img=>img.src));
    if(badImages.length)throw Error('Atlas local image paths still point into VNext shell: '+badImages.slice(0,2).join(' | '));
    await page.screenshot({path:'qa/browser-evidence/vnext-native-atlas-'+width+'.png',animations:'disabled'});
