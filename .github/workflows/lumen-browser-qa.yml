@@ -39,6 +39,7 @@ jobs:
           node qa/browser-image-quiz.mjs
           node qa/browser-vnext.mjs
           node qa/browser-vnext-native.mjs
+          node qa/browser-vnext-atlas.mjs
       - name: Preserve screenshot and failure evidence
         if: always()
         uses: actions/upload-artifact@v4
