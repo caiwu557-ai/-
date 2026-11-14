@@ -1,7 +1,7 @@
 const atlasBase=new URL('../../atlas/',import.meta.url);
 export async function mountAtlas(parent,opts={}){
- const html=await fetch(new URL('../../atlas/index.html',import.meta.url)).then(r=>r.text());
- const rawCSS=await fetch(new URL('../../atlas/atlas.css',import.meta.url)).then(r=>r.text());
+ const html=await window.fetch(new URL('../../atlas/index.html',import.meta.url)).then(r=>r.text());
+ const rawCSS=await window.fetch(new URL('../../atlas/atlas.css',import.meta.url)).then(r=>r.text());
  const template=new DOMParser().parseFromString(html,'text/html');
  const element=window.document.createElement('div');element.className='vnext-native-atlas';
  element.dataset.theme=window.document.documentElement.dataset.theme||'light';
