@@ -8,7 +8,7 @@ try{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   await test(width+' native Atlas boot',async()=>{
-   await page.goto('http://127.0.0.1:4173/vnext/?space=atlas&nativeAtlas=1',{waitUntil:'domcontentloaded'});
+   await page.goto('http://127.0.0.1:4173/vnext/?space=atlas',{waitUntil:'domcontentloaded'});
    await page.locator('.vnext-native-atlas #reader .page-title').waitFor({timeout:25000});
    if(await page.locator('iframe[data-space=atlas]').count())throw Error('native Atlas unexpectedly fell back to iframe');
    const text=await page.locator('.vnext-native-atlas #reader .page-title').innerText();
