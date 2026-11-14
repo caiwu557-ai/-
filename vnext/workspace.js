@@ -8,6 +8,8 @@ const localViews={home:'概览',review:'复习',library:'词库',stats:'记录',
 const frameCache=new Map();
 let useNativeQuiz=new URLSearchParams(location.search).has('native');
 let nativeQuiz=null,nativeQuizPending=null;
+let useNativeAtlas=new URLSearchParams(location.search).has('nativeAtlas');
+let nativeAtlas=null,nativeAtlasPending=null;
 const stage=document.querySelector('#moduleStage');
 const shell=document.querySelector('#shell');
 const scrollRegion=document.querySelector('#workspace');
@@ -26,6 +28,7 @@ function theme(next){
   try{frame.contentDocument.documentElement.dataset.theme=t;}catch{}
  }
  nativeQuiz?.setTheme(t);
+ nativeAtlas?.setTheme(t);
  try{localStorage.setItem('lumen_atlas_theme_v1',t)}catch{}
 }
 theme();
@@ -61,7 +64,8 @@ function route(target,{replace=false,historyChange=true}={}){
   if(active)node.setAttribute('aria-current','page');else node.removeAttribute('aria-current');
  });
  for(const [name,frame] of frameCache)frame.hidden=name!==next.space;
- if(nativeQuiz)nativeQuiz.element.hidden=next.space!=='quiz';
+ if(nativeQuiz){nativeQuiz.element.hidden=next.space!=='quiz';nativeQuiz.element.style.display=next.space==='quiz'?'block':'none'}
+ if(nativeAtlas){nativeAtlas.element.hidden=next.space!=='atlas';nativeAtlas.element.style.display=next.space==='atlas'?'block':'none'}
  buildModuleTabs();
  activateFrame(next);
  if(old.space!==next.space||old.view!==next.view){scrollRegion.scrollTo({top:0,behavior:'instant'})}
@@ -81,13 +85,15 @@ function buildModuleTabs(){
 }
 function moduleTab(id){
  if(current.space==='learn')return route({space:'learn',view:id});
- const frame=frameCache.get(current.space);if(!frame?.contentDocument&&!(current.space==='quiz'&&useNativeQuiz&&nativeQuiz))return;
+ const frame=frameCache.get(current.space);
+ if(!frame?.contentDocument&&!(current.space==='quiz'&&useNativeQuiz&&nativeQuiz)&&!(current.space==='atlas'&&useNativeAtlas&&nativeAtlas))return;
  const doc=frame.contentDocument;
  if(current.space==='quiz'){
   if(useNativeQuiz&&nativeQuiz){nativeQuiz.tab(id);document.querySelectorAll('#moduleTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));return}
   const node=doc.querySelector('.local-nav [data-view="'+id+'"],.bottom-tabs [data-view="'+id+'"]');
   if(node){node.click();document.querySelectorAll('#moduleTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id))}
- }else if(id==='search'){
+ }else if(current.space==='atlas'&&useNativeAtlas&&nativeAtlas){nativeAtlas.tab(id);return}
+ else if(id==='search'){
   const input=doc.getElementById('search');
   const menu=doc.getElementById('menuBtn');
   if(menu && innerWidth<=780)menu.click();
@@ -97,6 +103,25 @@ function moduleTab(id){
  }
 }
 function activateFrame(target){
+ if(target.space==='atlas'&&useNativeAtlas){
+  if(nativeAtlas){nativeAtlas.element.hidden=false;nativeAtlas.element.style.display='block';status.hidden=true;return}
+  if(nativeAtlasPending)return;
+  status.hidden=false;status.textContent='正在接入原生切片图谱…';
+  nativeAtlasPending=import('./modules/atlas.js').then(m=>m.mountAtlas(stage,{section:target.section})).then(instance=>{
+   nativeAtlas=instance;
+   instance.element.hidden=current.space!=='atlas';
+   instance.element.style.display=current.space==='atlas'?'block':'none';
+   instance.setTheme(document.documentElement.dataset.theme);
+   instance.element.addEventListener('lumen:navigate',ev=>route(ev.detail));
+   instance.element.addEventListener('lumen:section',ev=>{
+    if(current.space!=='atlas')return;
+    current.section=ev.detail.section;
+    updateUrl(current,ev.detail.replace);
+   });
+   status.hidden=true;
+  }).catch(e=>{console.error('Native Atlas failed; legacy fallback enabled',e);status.textContent='原生图谱加载异常，正在恢复兼容入口';useNativeAtlas=false;nativeAtlasPending=null;const u=new URL(location.href);u.searchParams.delete('nativeAtlas');history.replaceState(history.state,'',u);activateFrame(target)});
+  return;
+ }
  if(target.space==='quiz'&&useNativeQuiz){
   if(nativeQuiz){nativeQuiz.element.hidden=false;status.hidden=true;return}
   if(nativeQuizPending)return;
