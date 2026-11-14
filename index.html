@@ -838,7 +838,7 @@ const BY_ID=new Map(WORDS.map(w=>[w.id,w]));
 const STORE_KEY='lumen_histology_recall_v1';
 const GUIDE_KEY='lumen_histology_guide_v3'; // Separate from learning history; legacy records stay intact.
 function guideSeen(){try{return localStorage.getItem(GUIDE_KEY)==='done';}catch{return false;}}
-let guideStep=guideSeen()?-1:0;
+let guideStep=(new URLSearchParams(location.search).has('embed')||guideSeen())?-1:0;
 const GUIDE=[
 {title:'欢迎来到 LUMEN',eyebrow:'WELCOME / 01',body:'用两种方式训练组织学英文术语：看中文选英文、或逐字母拼出英文。第一次使用，花半分钟认识操作。',target:null},
 {title:'切换训练范围',eyebrow:'COURSE / 02',body:'可以使用 R10 核心、综合范围或单独章节。切换后，训练题目和当前范围的统计都会更新。',target:'[data-tour=course]'},

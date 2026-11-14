@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="LUMEN VNext — 术语、切片图谱与识图训练在统一工作区中无缝切换">
+<title>LUMEN · 统一学习工作区</title>
+<link rel="stylesheet" href="./workspace.css">
+<script type="module" src="./workspace.js"></script>
+</head>
+<body>
+<div class="app-shell" id="shell">
+ <aside class="global-rail" id="globalRail" aria-label="统一工作区导航">
+  <a href="?space=learn" class="brand" data-space="learn" aria-label="LUMEN 首页"><span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span><span class="brand-copy"><strong>LUMEN</strong><small>Histology studio</small></span></a>
+  <div class="rail-caption">学习空间</div>
+  <nav class="primary-nav" aria-label="主功能">
+   <a href="?space=learn" data-space="learn"><span class="nav-glyph" aria-hidden="true">◫</span><span>学习概览</span></a>
+   <a href="?space=atlas" data-space="atlas"><span class="nav-glyph" aria-hidden="true">◎</span><span>切片图谱</span></a>
+   <a href="?space=quiz" data-space="quiz"><span class="nav-glyph" aria-hidden="true">⊕</span><span>看图填空</span></a>
+  </nav>
+  <div class="rail-caption rail-caption-sub">术语训练</div>
+  <nav class="secondary-nav" aria-label="学习工具">
+   <a href="?space=learn&view=review" data-space="learn" data-view="review">到期复习</a>
+   <a href="?space=learn&view=library" data-space="learn" data-view="library">术语词库</a>
+   <a href="?space=learn&view=stats" data-space="learn" data-view="stats">学习记录</a>
+  </nav>
+  <div class="rail-foot"><span class="online-dot" aria-hidden="true"></span>所有学习记录保留在本机<br><small>一个工作区 · 三种学习方式</small></div>
+ </aside>
+ <div class="app-column">
+  <header class="global-topbar">
+   <div class="breadcrumb"><span class="crumb-mark">L</span><span class="crumb-text">LUMEN</span><span class="slash">/</span><strong id="currentSpace">学习概览</strong><span id="currentView"></span></div>
+   <div class="topbar-actions">
+    <span class="status-chip"><span class="status-pulse" aria-hidden="true"></span>已连接本机学习记录</span>
+    <button id="themeToggle" class="icon-control" type="button" aria-label="切换深浅色">◐</button>
+    <a class="legacy-link" href="../" title="打开旧版站点">旧版入口 <span aria-hidden="true">↗</span></a>
+   </div>
+  </header>
+  <main class="workspace" id="workspace" tabindex="-1">
+   <section class="experience" id="experience" aria-labelledby="heroTitle">
+    <div class="hero-copy">
+     <div class="overline"><span class="line" aria-hidden="true"></span>Study the invisible</div>
+     <h1 id="heroTitle">看得更深，<em>记得更牢。</em></h1>
+     <p>把组织结构拆开看，再把它们联系起来。图谱、识图与术语记忆，都在这里。</p>
+     <div class="hero-actions"><button class="primary-action" data-go="quiz" type="button">开始识图训练 <span aria-hidden="true">↗</span></button><button class="quiet-action" data-go="atlas" type="button">探索切片图谱 <span aria-hidden="true">→</span></button></div>
+     <div class="hero-footnote"><span class="footnote-line" aria-hidden="true"></span>拖动视角 · 点击显微层片</div>
+    </div>
+    <div class="sculpture-frame">
+     <div class="ambient-ring ambient-ring-a"></div><div class="ambient-ring ambient-ring-b"></div>
+     <div id="sculpture" class="sculpture" role="button" tabindex="0" aria-label="展开显微层片" aria-pressed="false">
+      <div class="slice slice-back" data-depth="back"><span class="slice-body"><span class="microgrid"></span><span class="slice-cut"></span></span></div>
+      <div class="slice slice-mid" data-depth="mid"><span class="slice-body"><span class="tissue-pattern"></span><span class="slice-cut"></span></span></div>
+      <div class="slice slice-front" data-depth="front"><span class="slice-body"><span class="cells cell-a"></span><span class="cells cell-b"></span><span class="cells cell-c"></span><span class="slice-cut"></span></span></div>
+      <div class="nucleus"><span class="nucleus-core"></span><span class="nucleus-light"></span></div>
+      <div class="sculpture-glint" aria-hidden="true"></div>
+     </div>
+     <div class="slice-label slice-label-back"><span>01</span>观察</div>
+     <div class="slice-label slice-label-mid"><span>02</span>辨认</div>
+     <div class="slice-label slice-label-front"><span>03</span>理解</div>
+     <div class="scene-action"><button id="layerToggle" type="button" aria-pressed="false">探索内部结构 <span aria-hidden="true">+</span></button></div>
+    </div>
+   </section>
+   <div class="module-bar" id="moduleBar">
+    <div class="module-heading"><span class="overline" id="moduleEyebrow">Your workspace</span><h2 id="moduleTitle">学习概览</h2></div>
+    <div class="module-tabs" id="moduleTabs" aria-label="当前模块操作"></div>
+   </div>
+   <div class="module-stage" id="moduleStage" aria-label="学习模块内容" aria-live="off"></div>
+   <div id="frameStatus" class="frame-status" role="status" aria-live="polite">准备学习空间…</div>
+  </main>
+ </div>
+ <nav class="mobile-nav" aria-label="移动端工作区导航">
+  <a href="?space=learn" data-space="learn"><span aria-hidden="true">◫</span>概览</a>
+  <a href="?space=atlas" data-space="atlas"><span aria-hidden="true">◎</span>图谱</a>
+  <a href="?space=quiz" data-space="quiz"><span aria-hidden="true">⊕</span>识图</a>
+ </nav>
+</div>
+</body>
+</html>
