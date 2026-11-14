@@ -137,7 +137,16 @@ function bridgeFrame(frame){
 body.atlas-page{margin:0!important;min-height:0!important}
 .atlas-page .shell{min-height:0!important}
 .atlas-page .side .brand,.atlas-page .app-nav,.atlas-page .nav-group-label,.atlas-page .side-footer{display:none!important}
-.atlas-page .side{background:var(--paper,var(--bg))!important;border-right:1px solid var(--line);padding-top:22px!important}
+.atlas-page .side{background:#f6f7fb!important;border-right:1px solid #e2e6ee;padding-top:22px!important;color:#303b52!important}
+.atlas-page .side .nav-btn{color:#46516e!important}
+.atlas-page .side .nav-btn .count{color:#74829a!important}
+.atlas-page .side .nav-btn:hover{background:#e9ebf5!important;color:#332e5b!important}
+.atlas-page .side .nav-btn.active{background:#eae7fb!important;color:#332e5b!important}
+.atlas-page .side .nav-label,.atlas-page .side .atlas-nav-heading{color:#66718d!important}
+:root[data-theme=dark] .atlas-page .side{background:#1c2637!important;color:#d3dfef!important;border-color:#36445b}
+:root[data-theme=dark] .atlas-page .side .nav-btn{color:#c8d5ea!important}
+:root[data-theme=dark] .atlas-page .side .nav-btn.active{background:#373758!important;color:#f2efff!important}
+:root[data-theme=dark] .atlas-page .side .nav-label{color:#a6b3c9!important}
 .atlas-page .topbar,.atlas-page .workspace-tabs,.atlas-page .site-return{display:none!important}
 .atlas-page .main{min-width:0!important;max-width:none!important}
 .atlas-page .reader-wrap{min-width:0!important;max-width:none!important;padding:22px 25px 70px!important}
