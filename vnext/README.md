@@ -6,21 +6,23 @@ A non-destructive preview at `/vnext/`. It is intentionally **not** a production
 
 The legacy workspace, atlas and image quiz render different document shells, nav bars and mobile tabs. Links in the image quiz include `target="_blank"`. CSS-only page transition effects cannot make separate documents behave as one continuous application.
 
-## Architecture — compatibility stage A
+## Architecture — native modules with compatibility fallback
 
 - `vnext/index.html`: one persistent global rail, top bar, module tabs, mobile navigation and browser route.
 - `vnext/workspace.js`: route registry, History API navigation, keyboard/touch scene interaction, persistent same-origin module adapters and theme synchronization.
 - `vnext/workspace.css`: shared visual tokens, responsive chrome and 2.5D histology sculpture.
-- Original engines are loaded unchanged inside same-origin embedded module adapters. Their duplicate top/global navigation is hidden and cross-module anchors are intercepted by the parent shell, so switching no longer opens a new window and previously loaded modules retain their in-memory state.
+- VNext now opens **Atlas** and **Image Quiz** as native Shadow DOM components by default, directly mounted into the persistent workspace without a separate document or duplicate global navigation. They retain their original content, domain logic and storage keys.
+- The terminology engine is still cached inside a same-origin legacy iframe while its 1.4 MB bundle is decomposed. All modules share a single browser tab, URL/History API, app header and navigation.
+- `?compat=1` enables the original iframe compatibility mode for all three modules; this remains tested and is an automatic fallback if native startup fails.
 - The existing `localStorage` keys are unmodified. No data migrations, regrading, question exclusions or file moves occur.
 - Legacy URLs remain available as compatibility fallbacks.
 
-**Engineering honesty:** Stage A is a shared SPA shell with cached legacy islands, **not** the final single JavaScript runtime. An iframe still separates each engine internally. That buys a safer continuous UX and preserves every specialized module while the core is refactored; pretending this is already a full native merger would be misleading.
+**Engineering honesty:** Atlas and Image Quiz are now native Shadow DOM modules in VNext; the glossary is not yet native. This is progressive integration with a single app shell, not yet a finished clean-domain ES-module architecture. No data migration or regrading is implied.
 
-## Stage B — planned native migration
+## Next migration — modular glossary and shared service contracts
 
 1. Extract the 1.4 MB glossary payload from `index.html` into versioned data files. Split the main application into route view, domain, storage and UI modules.
-2. Convert Atlas and Quiz to `mount(container, context)` / `unmount()` ES modules under a shared DOM shell. Remove duplicate nav and iframe adapters only after feature equivalence tests pass.
+2. Complete the native adapters' lifecycle and isolate their global listeners, then replace transitional wrappers with small importable controllers and scoped components.
 3. Share a context contract for theme, route, focus, keyboard, academic source attribution and progress status. **Keep the grading and three storage domains separate unless a migration is explicitly approved.**
 4. Preserve paths and deep links using redirect or History API routing, with a tested backup-and-rollback plan.
 
@@ -35,7 +37,7 @@ Inspired by Linear's stable shell and Rive's state-driven movement: the microsco
 
 ## Test acceptance
 
-`node qa/browser-vnext.mjs` joins the existing Chromium workflow for 1440 / 768 / 390 / 320 px. It verifies route continuity, module data loading, browser history, theme sync, source image quiz count and interactive hero states. The original site's existing regressions still execute.
+`node qa/browser-vnext.mjs` validates the `?compat=1` fallback on 1440 / 768 / 390 / 320 px. `node qa/browser-vnext-native.mjs` and `node qa/browser-vnext-atlas.mjs` validate native modules by default at 1440 / 390 px, including image decoding, section deep links, training continuity, theme and browser history. The original regressions still execute.
 
 ## Release gate
 
