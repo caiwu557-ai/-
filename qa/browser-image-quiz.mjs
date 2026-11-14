@@ -26,6 +26,21 @@ try{
   await img.waitFor();
   await img.evaluate(el=>el.decode());
   assert.ok(await img.evaluate(el=>el.naturalWidth>0),'real image must decode');
+  const jumpButton=page.locator('#page-quiz [data-action="jump-answer"]');
+  const backButton=page.locator('#page-quiz [data-action="jump-image"]');
+  if(width<=870){
+   assert.ok(await jumpButton.isVisible(),'phone needs a visible jump-to-answer action');
+   await jumpButton.click();
+   await page.waitForFunction(()=>document.activeElement?.id==='answer-input');
+   assert.ok(await backButton.isVisible(),'answer card needs a back-to-image action');
+   await backButton.click();
+   assert.ok(await img.isVisible(),'image remains accessible after returning from answer');
+   checks+=4;
+  }else{
+   assert.equal(await jumpButton.isVisible(),false,'desktop should not show redundant jump action');
+   checks++;
+  }
+
   const unsentDraft='Unsaved input should persist';
   await page.locator('#answer-input').fill(unsentDraft);
   await page.reload({waitUntil:'load'});

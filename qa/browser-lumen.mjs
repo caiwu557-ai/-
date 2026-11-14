@@ -73,6 +73,42 @@ try{
       if(touch)await dismiss.tap();else await dismiss.click();
       await assert(await page.locator('.tour-panel').count()===0,'tutorial remains after dismiss');
     }
+    const hero=page.locator('.home-dashboard .home-hero').first();
+    await assert(await hero.count()===1,'study homepage hero missing');
+    const heroFinish=await hero.evaluate(el=>({background:getComputedStyle(el).backgroundImage,shadow:getComputedStyle(el).boxShadow}));
+    await assert(heroFinish.background==='none'&&heroFinish.shadow==='none','flat homepage hero regression: '+JSON.stringify(heroFinish));
+    await assert(await hero.evaluate(el=>getComputedStyle(el,'::before').display)==='none','decorative hero pseudo overlay remains');
+    const wordmark=await page.locator('#app .sidebar .brand-text strong').first().evaluate(el=>getComputedStyle(el).color);
+    const rgb=wordmark.match(/\d+/g).slice(0,3).map(Number);
+    await assert(rgb.every(n=>n>=220),'LUMEN sidebar wordmark contrast too low: '+wordmark);
+    const rings=page.locator('.home-hero .hero-optic .optic-kinetic');
+    await assert(await rings.count()===3,'kinetic optical onion must retain exactly three visible bodies');
+    await assert(await rings.first().evaluate(el=>getComputedStyle(el).display!=='none'&&el.getBoundingClientRect().width>30),'the optical onion must be visible');
+    if(width<=390){
+      const geometry=await page.evaluate(()=>{
+        const ring=document.querySelector('.optic-ring-one').getBoundingClientRect();
+        const description=document.querySelector('.home-hero-description').getBoundingClientRect();
+        const card=document.querySelector('.home-hero').getBoundingClientRect();
+        return {ringTop:ring.top,ringBottom:ring.bottom,copyBottom:description.bottom,cardBottom:card.bottom,opacity:Number(getComputedStyle(document.querySelector('.hero-optic')).opacity)};
+      });
+      await assert(geometry.ringTop>geometry.copyBottom+12,'mobile onion overlaps main reading copy: '+JSON.stringify(geometry));
+      await assert(geometry.ringBottom<=geometry.cardBottom-13,'mobile onion clipped by hero edge: '+JSON.stringify(geometry));
+      await assert(geometry.opacity>=.7,'mobile onion too faded to function as focal object: '+JSON.stringify(geometry));
+    }
+    const onionToggle=page.locator('[data-onion-toggle]');
+    await assert(await onionToggle.isVisible(),'accessible onion layer toggle missing');
+    await assert(await onionToggle.getAttribute('aria-expanded')==='false','onion must start collapsed');
+    await onionToggle.click();
+    await assert(await onionToggle.getAttribute('aria-expanded')==='true','onion did not expand');
+    await assert(await page.locator('#onion-layer-notes').isVisible(),'layer explanation missing');
+    await assert(await page.locator('#onion-layer-notes span').count()===3,'layer explanation must contain three steps');
+    const translated=await page.locator('.optic-orb-one').evaluate(el=>getComputedStyle(el).translate);
+    await assert(translated!=='none','core must visibly separate from its shell on expansion');
+    await page.waitForTimeout(680);
+    await screenshot(page,label+'-01b-onion-expanded.png');
+    await onionToggle.click();
+    await assert(await onionToggle.getAttribute('aria-expanded')==='false','onion did not collapse');
+    await assert(await page.locator('#onion-layer-notes').isHidden(),'layer notes must hide after collapse');
     await screenshot(page,label+'-01-overview.png');
     const o=await noOverflow(page); await assert(o.pass,JSON.stringify(o));
   });
@@ -106,9 +142,24 @@ try{
     const title=await page.locator('#reader .page-title').innerText();
     await assert(title.includes('Thick skin')&&title.includes('Thin skin'),'wrong skin comparison route: '+title);
     await assert(await page.locator('.progress-line,#progress').count()===0,'sticky reading progress bar still exists');
-    await page.evaluate(()=>window.scrollTo(0,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)));
-    await page.waitForTimeout(170);
-    await assert(await page.evaluate(()=>scrollY>0),'skin section did not scroll');
+    const measured=await page.evaluate(()=>{
+      const article=document.querySelector('#reader .article');
+      const table=article?.querySelector('table');
+      const gallery=document.querySelector('#reader .term-evidence-list');
+      const cards=[...(gallery?.querySelectorAll('.term-evidence-item')||[])];
+      return {article:article?.getBoundingClientRect().width||0,table:table?.getBoundingClientRect().width||0,grid:gallery?.getBoundingClientRect().width||0,cardWidths:cards.map(x=>x.getBoundingClientRect().width)};
+    });
+    await assert(measured.article>0&&measured.table>=measured.article*.92,'comparison table wastes reading width: '+JSON.stringify(measured));
+    await assert(measured.cardWidths.length>=2,'skin section must show two reference images');
+    await assert(measured.cardWidths.every(x=>x>=Math.min(225,measured.grid*.76)),'reference image cards too narrow: '+JSON.stringify(measured));
+    const scrollable=await page.evaluate(()=>Math.max(0,document.documentElement.scrollHeight-innerHeight));
+    if(scrollable>16){
+      await page.evaluate(()=>window.scrollTo({top:Math.max(10,Math.floor((document.documentElement.scrollHeight-innerHeight)*.65)),behavior:'instant'}));
+      await page.waitForTimeout(170);
+      await assert(await page.evaluate(()=>scrollY>0),'scrollable skin section failed to scroll');
+    } else {
+      await assert(await page.locator('#reader .term-evidence-item').count()>=2,'short skin section is missing its reference images');
+    }
     await assert(await page.locator('.progress-line,#progress').count()===0,'sticky progress overlay returns when scrolling');
     await assert((await noOverflow(page)).pass,'skin section overflows');
     await screenshot(page,label+'-03c-skin-no-progress.png');
@@ -236,6 +287,10 @@ try{
     await page.goto(BASE,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#app .shell');
     if(await page.locator('[data-action="tour-skip"]').count())await page.locator('[data-action="tour-skip"]').click();
+    const onion=page.locator('[data-onion-toggle]');
+    await onion.click();
+    await assert(await onion.getAttribute('aria-expanded')==='true','reduced-motion onion remains operable');
+    await assert(await page.locator('.optic-ring-one').evaluate(el=>getComputedStyle(el).transitionDuration)==='0s','reduced-motion onion must not animate');
     await page.locator('.mobile-nav .atlas-bottom-link').click();
     await assertReady(page,'#reader .section-tile');
     const reduced=await page.evaluate(()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches);

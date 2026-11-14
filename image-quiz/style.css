@@ -52,3 +52,33 @@ dialog::backdrop{background:#0a1323cc;backdrop-filter:blur(7px)}.viewer{backgrou
 
 /* On narrow screens, the quiz is a focused task; the visible back arrow remains the escape route. */
 @media(max-width:650px){body.image-quiz-focus-mode .bottom-tabs{display:none!important}body.image-quiz-focus-mode #menu-btn{display:none!important}body.image-quiz-focus-mode .main{padding-bottom:34px}}
+
+/* Recognition flow: quiet surfaces and thumb-reachable, non-floating jumps. */
+.image-card,.answer-card,.review-card,.bank-list-card,.setting-card,.panel,.mode-option { box-shadow:none !important; }
+.question-eyebrow,.answer-help,.answer-card .qid,.image-card-head small { font-size:11px; }
+.question-title { font-weight:500; line-height:1.42; }
+.answer-card .question-description { font-size:14px; line-height:1.7; }
+.answer-card .question-eyebrow { margin-bottom:12px; }
+.image-card-head strong,.answer-card label,.answer-feedback strong { font-weight:500; }
+.image-stage { background:var(--paper2); }
+.image-stage .image-figure img { object-fit:contain; }
+.image-card-foot .image-card-actions { display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:9px; }
+.image-card-foot .image-card-actions button { min-height:42px; border-radius:9px; padding:7px 11px; font-size:12px; font-weight:500; }
+.image-card-foot .image-card-actions button:focus-visible,
+.quiz-jump-back:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.quiz-jump,.quiz-jump-back { display:none; }
+.answer-feedback { box-shadow:none !important; }
+@media(max-width:870px){
+ .image-card-foot { align-items:center; gap:8px; }
+ .image-card-foot > span { min-width:0; overflow-wrap:anywhere; }
+ .image-card-foot .image-card-actions .quiz-jump { display:inline-flex; align-items:center; justify-content:center; gap:5px; background:var(--accent-weak); color:var(--accent); border:1px solid var(--accent); }
+ .quiz-jump-back { display:inline-flex; align-items:center; gap:5px; margin:0 0 12px; border:1px solid var(--line); background:var(--paper2); border-radius:9px; min-height:42px; padding:8px 12px; color:var(--accent); font-size:12px; font-weight:500; }
+ .answer-card { padding:20px; }
+ .question-title { font-size:21px; }
+}
+@media(max-width:370px){
+ .image-card-foot .image-card-actions { gap:3px; }
+ .image-card-foot .image-card-actions button { padding:6px 8px; }
+ .image-card-foot { font-size:11px; }
+}
+@media(prefers-reduced-motion:reduce){ .image-card-foot .image-card-actions button,.quiz-jump-back { transition:none !important; } }
