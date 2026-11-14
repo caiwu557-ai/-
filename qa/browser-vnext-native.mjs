@@ -9,7 +9,7 @@ try{
   page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   await check(width+' native quiz boot',async()=>{
-   await page.goto('http://127.0.0.1:4173/vnext/?space=quiz&native=1',{waitUntil:'domcontentloaded'});
+   await page.goto('http://127.0.0.1:4173/vnext/?space=quiz',{waitUntil:'domcontentloaded'});
    await page.locator('.vnext-native-quiz #metric-total').waitFor({timeout:20000});
    const total=(await page.locator('.vnext-native-quiz #metric-total').innerText()).trim();
    if(total!=='364')throw Error('wrong quiz count '+total);
