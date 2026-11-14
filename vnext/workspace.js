@@ -6,8 +6,8 @@ const spaces={
 };
 const localViews={home:'概览',review:'复习',library:'词库',stats:'记录',settings:'设置'};
 const frameCache=new Map();
-const useNativeQuiz=new URLSearchParams(location.search).has('native');
-let nativeQuiz=null;
+let useNativeQuiz=new URLSearchParams(location.search).has('native');
+let nativeQuiz=null,nativeQuizPending=null;
 const stage=document.querySelector('#moduleStage');
 const shell=document.querySelector('#shell');
 const scrollRegion=document.querySelector('#workspace');
@@ -99,14 +99,15 @@ function moduleTab(id){
 function activateFrame(target){
  if(target.space==='quiz'&&useNativeQuiz){
   if(nativeQuiz){nativeQuiz.element.hidden=false;status.hidden=true;return}
+  if(nativeQuizPending)return;
   status.hidden=false;status.textContent='正在接入原生识图引擎…';
-  import('./modules/quiz.js').then(m=>m.mountQuiz(stage)).then(instance=>{
+  nativeQuizPending=import('./modules/quiz.js').then(m=>m.mountQuiz(stage)).then(instance=>{
    nativeQuiz=instance;
    instance.element.hidden=current.space!=='quiz';
    instance.setTheme(document.documentElement.dataset.theme);
    instance.element.addEventListener('lumen:navigate',ev=>route(ev.detail));
    status.hidden=true;
-  }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';const u=new URL(location.href);u.searchParams.delete('native');history.replaceState(history.state,'',u);activateFrame(target)});
+  }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';useNativeQuiz=false;nativeQuizPending=null;const u=new URL(location.href);u.searchParams.delete('native');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
  }
  let frame=frameCache.get(target.space);
