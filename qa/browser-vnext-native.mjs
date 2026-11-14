@@ -17,6 +17,14 @@ try{
    if(await page.locator('.vnext-native-quiz .global-nav').isVisible())throw Error('duplicate quiz global nav');
    if(errors.length)throw Error(errors.join(' | '));
   });
+  await check(width+' internal source links stay in one workspace',async()=>{
+   const before=page.context().pages().length;
+   await page.locator('.vnext-native-quiz #page-home a.muted-link[href="../atlas/"]').click();
+   if(!page.url().includes('space=atlas'))throw Error('quiz-to-atlas link escaped the app router');
+   if(page.context().pages().length!==before)throw Error('quiz-to-atlas link opened an extra tab');
+   await page.goBack({waitUntil:'domcontentloaded'});
+   await page.locator('.vnext-native-quiz #metric-total').waitFor({state:'visible'});
+  });
   await check(width+' native quiz navigation and state',async()=>{
    await page.locator('#moduleTabs button[data-tab=bank]').click();
    await page.locator('.vnext-native-quiz #page-bank').waitFor({state:'visible'});
