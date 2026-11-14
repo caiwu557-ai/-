@@ -16,6 +16,8 @@ try{
    if(errors.length)throw Error(errors.join(' | '));
   });
   await test(width+' native Atlas sections and images',async()=>{
+   const group=page.locator('.vnext-native-atlas [data-target="group:integument"]').first();
+   await group.evaluate(el=>el.click());
    const section=page.locator('.vnext-native-atlas [data-target="sec-7-2"]').first();
    await section.evaluate(el=>el.click());
    await page.locator('.vnext-native-atlas #reader .page-title').waitFor({state:'visible'});
