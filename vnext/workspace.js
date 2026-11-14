@@ -6,9 +6,9 @@ const spaces={
 };
 const localViews={home:'概览',review:'复习',library:'词库',stats:'记录',settings:'设置'};
 const frameCache=new Map();
-let useNativeQuiz=new URLSearchParams(location.search).has('native');
+let useNativeQuiz=!new URLSearchParams(location.search).has('compat');
 let nativeQuiz=null,nativeQuizPending=null;
-let useNativeAtlas=new URLSearchParams(location.search).has('nativeAtlas');
+let useNativeAtlas=!new URLSearchParams(location.search).has('compat');
 let nativeAtlas=null,nativeAtlasPending=null;
 const stage=document.querySelector('#moduleStage');
 const shell=document.querySelector('#shell');
@@ -119,7 +119,7 @@ function activateFrame(target){
     updateUrl(current,ev.detail.replace);
    });
    status.hidden=true;
-  }).catch(e=>{console.error('Native Atlas failed; legacy fallback enabled',e);status.textContent='原生图谱加载异常，正在恢复兼容入口';useNativeAtlas=false;nativeAtlasPending=null;const u=new URL(location.href);u.searchParams.delete('nativeAtlas');history.replaceState(history.state,'',u);activateFrame(target)});
+  }).catch(e=>{console.error('Native Atlas failed; legacy fallback enabled',e);status.textContent='原生图谱加载异常，正在恢复兼容入口';useNativeAtlas=false;nativeAtlasPending=null;const u=new URL(location.href);u.searchParams.delete('nativeAtlas');u.searchParams.set('compat','1');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
  }
  if(target.space==='quiz'&&useNativeQuiz){
@@ -132,7 +132,7 @@ function activateFrame(target){
    instance.setTheme(document.documentElement.dataset.theme);
    instance.element.addEventListener('lumen:navigate',ev=>route(ev.detail));
    status.hidden=true;
-  }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';useNativeQuiz=false;nativeQuizPending=null;const u=new URL(location.href);u.searchParams.delete('native');history.replaceState(history.state,'',u);activateFrame(target)});
+  }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';useNativeQuiz=false;nativeQuizPending=null;const u=new URL(location.href);u.searchParams.delete('native');u.searchParams.set('compat','1');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
  }
  let frame=frameCache.get(target.space);
