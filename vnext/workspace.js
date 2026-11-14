@@ -87,7 +87,7 @@ function moduleTab(id){
  if(current.space==='learn')return route({space:'learn',view:id});
  const frame=frameCache.get(current.space);
  if(!frame?.contentDocument&&!(current.space==='quiz'&&useNativeQuiz&&nativeQuiz)&&!(current.space==='atlas'&&useNativeAtlas&&nativeAtlas))return;
- const doc=frame.contentDocument;
+ const doc=frame?.contentDocument;
  if(current.space==='quiz'){
   if(useNativeQuiz&&nativeQuiz){nativeQuiz.tab(id);document.querySelectorAll('#moduleTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));return}
   const node=doc.querySelector('.local-nav [data-view="'+id+'"],.bottom-tabs [data-view="'+id+'"]');
