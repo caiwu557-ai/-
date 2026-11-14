@@ -19,6 +19,16 @@ export async function mountAtlas(parent,opts={}){
 .atlas-root .side .nav-label{color:#69768e!important}
 .atlas-root .reader-wrap{max-width:none!important;padding:20px 25px 68px!important}
 .atlas-root .page-title:focus{outline:none}
+.atlas-root .article{max-width:none!important;line-height:1.7}
+.atlas-root .article>p,.atlas-root .article>ul,.atlas-root .article>ol,.atlas-root .article>blockquote{max-width:75ch}
+.atlas-root .article table{display:table!important;width:100%!important;min-width:0!important;max-width:100%!important;table-layout:auto!important;overflow:visible;border-collapse:collapse;line-height:1.7;font-size:14px}
+.atlas-root .article table th,.atlas-root .article table td{padding:13px 15px;border-bottom:.5px solid var(--line);overflow-wrap:anywhere}
+.atlas-root .term-evidence-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:14px}
+.atlas-root .term-evidence-item{width:100%;max-width:540px;box-shadow:none}
+.atlas-root .term-evidence-item .term-image{object-fit:contain}
+.atlas-root .chat-gallery-2,.atlas-root .evidence-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr))}
+@media(max-width:700px){.atlas-root .article table{font-size:13px}.atlas-root .article table th,.atlas-root .article table td{padding:10px 9px}.atlas-root .term-evidence-list,.atlas-root .chat-gallery-2,.atlas-root .evidence-grid{grid-template-columns:1fr}}
+
 :host([data-theme=dark]) .atlas-root .side{background:#1c2637!important;color:#d2dbed!important;border-color:#3c4961!important}
 :host([data-theme=dark]) .atlas-root .side .nav-btn{color:#c8d5ea!important}
 :host([data-theme=dark]) .atlas-root .side .nav-btn.active{color:#f2efff!important;background:#373758!important}
