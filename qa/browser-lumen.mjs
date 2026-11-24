@@ -270,7 +270,8 @@ try{
   await attempt(label+' / practice card interactive entry',async()=>{
     await page.goto(BASE,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#app .main-content');
-    await page.locator('[data-action="start"]:not([disabled])').first().click();
+    await page.locator('[data-action="choose-learning"]').click();
+    await page.locator('[data-action="start"][data-new="1"]:not([disabled])').click();
     await assertReady(page,'#practice-card');
     const content=await page.locator('#practice-card').innerText();
     await assert(content.length>10,'practice card is empty');
