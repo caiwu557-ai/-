@@ -1,3 +1,4 @@
+import { enter, reduce, workspaceTop } from './motion.js';
 import { icon } from './icons.js';
 const base=new URL('../',window.location.href);
 const spaces={
@@ -18,7 +19,7 @@ const status=document.querySelector('#frameStatus');
 const scene=document.querySelector('.sculpture-frame');
 const sculpture=document.querySelector('#sculpture');
 const layerToggle=document.querySelector('#layerToggle');
-const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduced=reduce;
 let current={space:'learn',view:'home',section:''},expanded=false,tx=0,ty=0,rx=0,ry=0,velocityX=0,velocityY=0,raf=0;
 const prefersLight=()=>{try{return localStorage.getItem('lumen_atlas_theme_v1')!=='dark'}catch{return true}};
 function theme(next){
@@ -73,7 +74,7 @@ function route(target,{replace=false,historyChange=true}={}){
  if(nativeAtlas){nativeAtlas.element.hidden=next.space!=='atlas';nativeAtlas.element.style.display=next.space==='atlas'?'block':'none'}
  buildModuleTabs();
  activateFrame(next);
- if(old.space!==next.space||old.view!==next.view){scrollRegion.scrollTo({top:0,behavior:'instant'})}
+ if(old.space!==next.space||old.view!==next.view){workspaceTop();enter(stage)}
 }
 function buildModuleTabs(){
  const target=document.querySelector('#moduleTabs');
@@ -126,6 +127,7 @@ function activateFrame(target){
     updateUrl(current,ev.detail.replace);
    });
    status.hidden=true;
+   if(current.space===target.space)enter(instance.element);
   }).catch(e=>{console.error('Native Atlas failed; legacy fallback enabled',e);status.textContent='原生图谱加载异常，正在恢复兼容入口';useNativeAtlas=false;nativeAtlasPending=null;const u=new URL(location.href);u.searchParams.delete('nativeAtlas');u.searchParams.set('compat','1');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
  }
@@ -141,6 +143,7 @@ function activateFrame(target){
    instance.element.addEventListener('lumen:quiz-view',()=>{if(current.space!=='quiz')return;const view=instance.element.dataset.view;document.querySelectorAll('#moduleTabs button').forEach(b=>{const active=b.dataset.tab===view;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})});
    if(current.space==='quiz')buildModuleTabs();
    status.hidden=true;
+   if(current.space===target.space)enter(instance.element);
   }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';useNativeQuiz=false;nativeQuizPending=null;const u=new URL(location.href);u.searchParams.delete('native');u.searchParams.set('compat','1');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
  }
@@ -156,7 +159,7 @@ function activateFrame(target){
   frame.src=target.space==='learn'?learnRoute.href:target.space==='atlas'&&target.section?spaces.atlas.url+'#'+target.section:spaces[target.space].url;
   frameCache.set(target.space,frame);
   stage.appendChild(frame);
-  frame.addEventListener('load',()=>bridgeFrame(frame));
+  frame.addEventListener('load',()=>{bridgeFrame(frame);if(current.space===target.space)enter(frame)});
   status.hidden=false;status.textContent='正在载入'+spaces[target.space].title+'…';
  }else if(target.space==='learn'&&target.view!==lastLearnView(frame)){
   const node=frame.contentDocument?.querySelector('[data-action="nav"][data-view="'+target.view+'"]');
@@ -175,7 +178,7 @@ function bridgeFrame(frame){
  if(!doc||!doc.body)return;
  const space=frame.dataset.space;
  const stylesheet=document.createElement('style');stylesheet.id='lumen-vnext-adapter';
- const common='html{scroll-behavior:smooth!important}a,button{scroll-margin-top:16px}';
+ const common=`html{scroll-behavior:auto}a,button,input{scroll-margin-top:16px}button,a{transition:background-color 120ms ease,color 120ms ease,border-color 120ms ease}dialog[open]{animation:lw-dialog-in 200ms cubic-bezier(.22,1,.36,1) both}@keyframes lw-dialog-in{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}`;
  const learnCSS=common+`
 .sidebar,.topbar,.mobile-nav,.bottom-nav,.workspace-tabs,.nav-mobile{display:none!important}
 #app .shell{display:block!important;min-height:0!important}

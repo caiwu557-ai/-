@@ -1,3 +1,4 @@
+import { enter, reveal, workspaceTop } from '../motion.js';
 import { icon } from '../icons.js';
 const sourceBase=new URL('../../image-quiz/',import.meta.url);
 const asset=x=>/^https?:\/\//.test(x)?x:new URL(x,sourceBase).href;
@@ -22,6 +23,15 @@ export async function mountQuiz(parent){
 .quiz-root .sidebar,.quiz-root .topbar,.quiz-root .bottom-tabs,.quiz-root .scrim{display:none!important}
 .quiz-root .content-area,.quiz-root .main{width:100%!important;max-width:none!important;min-width:0!important}
 .quiz-root .main{padding:22px 27px 70px!important}
+.quiz-root .page{animation:none!important}
+.quiz-root .mode-option,.quiz-root .filter-chip,.quiz-root button{transition:background-color var(--motion-fast,120ms) ease,color var(--motion-fast,120ms) ease,border-color var(--motion-fast,120ms) ease}
+.quiz-root .progress-track div{transition:width var(--motion-standard,200ms) var(--motion-ease,ease)}
+.quiz-root .simple-dialog[open]{animation:quiz-pop var(--motion-panel,240ms) var(--motion-ease,ease) both}
+.quiz-root .viewer[open]{animation:quiz-fade var(--motion-standard,200ms) ease both}
+.quiz-root dialog[open]::backdrop{animation:quiz-fade var(--motion-fast,120ms) ease both}
+@keyframes quiz-fade{from{opacity:0}to{opacity:1}}
+@keyframes quiz-pop{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.quiz-root *,.quiz-root *::before,.quiz-root *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 @media(max-width:650px){.quiz-root .main{padding:16px 14px 38px!important}}
 `;
  shadow.append(style);
@@ -154,7 +164,7 @@ function setView(view){if(!['home','quiz','result','bank','history'].includes(vi
  $$('[data-view]').forEach(el=>{const active=el.dataset.view===view||(view==='result'&&el.dataset.view==='home')||(view==='quiz'&&el.dataset.view==='home');el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
  $('#shell').classList.remove('menu-open');
  if(view==='home')renderHome();if(view==='quiz')renderQuiz();if(view==='result')renderResult();if(view==='bank')renderBank();if(view==='history')renderHistory();
- window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true});
+ workspaceTop();enter($('#page-'+view));$('#main').focus({preventScroll:true});
 }
 function renderHome(){const stats=currentStats();$('#metric-total').textContent=QS.length;$('#metric-new').textContent=stats.newCount;$('#metric-due').textContent=stats.due;$('#metric-accuracy').textContent=stats.attempts?Math.round(stats.correct/stats.attempts*100)+'%':'—';$('#audit-count').textContent=BANK.meta.extractedReviewCount+(BANK.meta.visualQaSuspendedCount||0);$('#supplement-count').textContent=BANK.meta.scopeSupplementCount;$('#available-total').textContent=BANK.meta.automaticCount;
  $('#group-chips').innerHTML=groups.map(g=>`<button type="button" class="filter-chip ${state.groups.has(g)?'on':''}" data-group="${htmlEscape(g)}" aria-pressed="${state.groups.has(g)}">${htmlEscape(g)} <span>${BANK.meta.categories[g]}</span></button>`).join('');
@@ -198,7 +208,7 @@ function applyAttempt(a){const rec=store.items[a.id]||{attempts:0,correct:0,wron
  const days=[0,1,3,7,14,30,60];rec.dueAt=Date.now()+(a.ok?days[Math.min(rec.streak,6)]*86400000:10*60000);store.items[a.id]=rec;
 }
 function next(){const s=state.session;if(!s)return;if(!s.answers.some(a=>a.id===current().id)){toast('先提交或跳过本题');return}
- if(s.index+1<s.ids.length){s.index++;store.active=s;save();renderQuiz();window.scrollTo({top:0,behavior:'instant'})}else finish();}
+ if(s.index+1<s.ids.length){s.index++;store.active=s;save();renderQuiz();workspaceTop();enter($('#page-quiz'))}else finish();}
 function finish(){const s=state.session;if(!s)return;
  if(s.mode==='exam'&&!s.applied){s.answers.filter(x=>!x.skipped).forEach(applyAttempt);s.applied=true}
  s.finishedAt=Date.now();const correct=s.answers.filter(a=>a.ok).length,skipped=s.answers.filter(a=>a.skipped).length;
@@ -223,7 +233,7 @@ function flagQuestion(id){if(!byId[id])return;state.flagging=id;$('#flag-target'
 function saveFlag(){const id=state.flagging;if(!id)return;store.flags[id]={type:$('#flag-type').value,note:$('#flag-note').value.trim().slice(0,2000),when:Date.now()};save();$('#flag-dialog').close();toast(id+' 的核验问题已保存在本机');if(state.view==='history')renderHistory()}
 function handleAction(action,el){const id=el.dataset.id;
  if(action==='toggle-focus'){focusVisible=!focusVisible;if(state.view==='quiz')renderQuiz();else if(viewer.open)openViewer(state.viewerId);}else if(action==='submit')submit();else if(action==='skip')submit(true);else if(action==='next')next();else if(action==='leave-quiz'){setView('home');}
- else if(action==='resume')setView('quiz');else if(action==='zoom')openViewer(id);else if(action==='jump-answer'){const target=$('#page-quiz .answer-feedback')||$('#answer-input');target?.scrollIntoView({block:'center',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});if(target?.id==='answer-input')target.focus({preventScroll:true})}else if(action==='jump-image'){$('#page-quiz .image-card')?.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}else if(action==='single')startRound([id],'single');
+ else if(action==='resume')setView('quiz');else if(action==='zoom')openViewer(id);else if(action==='jump-answer'){const target=$('#page-quiz .answer-feedback')||$('#answer-input');reveal(target,{block:'center',focus:target?.id==='answer-input'})}else if(action==='jump-image'){reveal($('#page-quiz .image-card'),{block:'start'})}else if(action==='single')startRound([id],'single');
  else if(action==='more-bank'){state.bankShown+=36;renderBank()}
  else if(action==='flag')flagQuestion(id);else if(action==='copy-term')copyTerm(id);else if(action==='handoff'){window.open('../?view=library','_blank','noopener');copyTerm(id)}
  else if(action==='export-mistakes')exportMistakes();else if(action==='train-wrong'){const s=state.session,ids=s.answers.filter(a=>!a.ok&&!a.skipped).map(a=>a.id);if(ids.length)startRound(ids,'weak')}

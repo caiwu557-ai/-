@@ -176,3 +176,16 @@ body:not([data-space=learn]) .experience,body[data-space=learn]:not([data-view=h
 /* Cross-shadow semantic token contract; values resolve in the outer theme. */
 :root{--lumen-paper:var(--paper);--lumen-paper2:var(--paper2);--lumen-ink:var(--ink);--lumen-line:var(--line);--lumen-muted:var(--muted);--lumen-accent:var(--accent)}
 @media(min-width:851px){#moduleTabs button[data-tab=directory]{display:none}}
+
+/* Shared motion: stable shell, quiet content changes, no gratuitous movement. */
+:root{--motion-fast:120ms;--motion-standard:200ms;--motion-panel:240ms;--motion-ease:cubic-bezier(.22,1,.36,1)}
+.primary-nav a,.secondary-nav a,.mobile-nav a,.module-tabs button,.icon-control,.primary-action,.quiet-action,.scene-action button{transition:background-color var(--motion-fast) ease,border-color var(--motion-fast) ease,color var(--motion-fast) ease,box-shadow var(--motion-fast) ease}
+.primary-nav a:active,.secondary-nav a:active,.mobile-nav a:active,.module-tabs button:active,.primary-action:active,.quiet-action:active,.icon-control:active{filter:brightness(.96)}
+.workspace{overscroll-behavior-y:contain;scroll-padding-block:12px 24px}
+.module-tabs{scrollbar-width:thin}
+#frameStatus{transition:opacity var(--motion-fast) ease}
+.sculpture-frame .slice,.sculpture-frame .nucleus{transition-duration:560ms;transition-timing-function:var(--motion-ease)}
+.sculpture-frame .slice-label{transition-duration:180ms,260ms}
+.sculpture-frame.is-expanded .slice-label{transition-delay:120ms}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+:root[data-motion=off] *, :root[data-motion=off] *::before,:root[data-motion=off] *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}

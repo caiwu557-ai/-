@@ -1,3 +1,4 @@
+import { enter, reveal, reduce, workspaceTop } from '../motion.js';
 import { icon as lumenIcon } from '../icons.js';
 const atlasBase=new URL('../../atlas/',import.meta.url);
 export async function mountAtlas(parent,opts={}){
@@ -30,6 +31,16 @@ export async function mountAtlas(parent,opts={}){
 .atlas-root .side .nav-btn:hover{background:var(--soft);color:var(--text)}
 .atlas-root .side .nav-btn{min-height:44px}
 .atlas-root .lumen-atlas-icon{flex:none;vertical-align:middle}
+.atlas-root .nav-btn,.atlas-root .section-tile,.atlas-root .comp-filter,.atlas-root .searchbar{transition:background-color var(--motion-fast,120ms) ease,border-color var(--motion-fast,120ms) ease,color var(--motion-fast,120ms) ease}
+.atlas-root .side{transition:transform var(--motion-panel,240ms) var(--motion-ease,ease);overscroll-behavior:contain}
+.atlas-root .image-modal{z-index:1200}
+.atlas-root .image-modal.open{animation:atlas-fade var(--motion-standard,200ms) ease both}
+.atlas-root .image-modal.open .image-dialog{animation:atlas-pop var(--motion-panel,240ms) var(--motion-ease,ease) both}
+.atlas-root .drawer-scrim.open{animation:atlas-fade var(--motion-fast,120ms) ease both}
+.atlas-root .comp-card[open] .comp-inside{animation:atlas-pop var(--motion-standard,200ms) var(--motion-ease,ease) both}
+@keyframes atlas-fade{from{opacity:0}to{opacity:1}}
+@keyframes atlas-pop{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.atlas-root *,.atlas-root *::before,.atlas-root *::after{transition-duration:.001ms!important;animation-duration:.001ms!important;scroll-behavior:auto!important}}
 @media(max-width:850px){.atlas-root .side{z-index:1001!important}.atlas-root .drawer-scrim.open{z-index:1000!important}}
 .atlas-root .reader-wrap{max-width:none!important;padding:20px 25px 68px!important}
 .atlas-root .page-title:focus{outline:none}
@@ -164,7 +175,7 @@ function presentImageModal(){
 function setSideOpen(open){
  const show=Boolean(open);$('#side').classList.toggle('open',show);$('#scrim').classList.toggle('open',show);
  $('#menuBtn').setAttribute('aria-expanded',String(show));
- if(!show && innerWidth<=850 && $('#side').contains(document.activeElement))$('#menuBtn').focus({preventScroll:true});
+ if(!show && innerWidth<=850 && $('#side').contains(document.activeElement))window.document.querySelector('#moduleTabs [data-tab=directory]')?.focus({preventScroll:true});
 }
 
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -198,7 +209,7 @@ function navTo(target,opts={}){
   navMark();
   if(!opts.silent){
    atlasHistory.pushState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
-   window.scrollTo({top:0,behavior:'instant'});
+   workspaceTop();enter($('#reader'));
    requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}});
   }
   if(!opts.preserveSearch)$('#search').value='';
@@ -207,7 +218,7 @@ function navTo(target,opts={}){
   document.title=`${titleFor()} · LUMEN`;
  };
  const canAnimate=!opts.silent&&!opts.noTransition&&typeof document.startViewTransition==='function'
-  &&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  &&!reduce();
  if(canAnimate){
   try{const transition=document.startViewTransition(update);transition.finished.catch(()=>{});}
   catch(e){update();}
@@ -245,7 +256,7 @@ function closeImage(){
 document.addEventListener('click',e=>{const a=e.target.closest('[data-target]');if(a){navTo(a.dataset.target);return}const i=e.target.closest('[data-viewimage]');if(i){openImage(i.dataset.viewimage);return}
  const evidence=e.target.closest('[data-evidence]');if(evidence){openEvidenceImage(evidence.dataset.evidence);return}
  const term=e.target.closest('[data-termimage]');if(term){openV8TermImage(term.dataset.termimage,term.dataset.termname);return}
- const found=e.target.closest('[data-opencomp]');if(found){selectedGroup='all';navTo('group:comparisons',{keepFilter:true});const panel=document.getElementById(found.dataset.opencomp);if(panel){panel.open=true;panel.scrollIntoView({block:'start',behavior:'smooth'})}return}
+ const found=e.target.closest('[data-opencomp]');if(found){selectedGroup='all';navTo('group:comparisons',{keepFilter:true});const panel=document.getElementById(found.dataset.opencomp);if(panel){panel.open=true;reveal(panel,{block:'start'})}return}
  const f=e.target.closest('[data-compgroup]');if(f){selectedGroup=f.dataset.compgroup;navTo('group:comparisons',{keepFilter:true});return}if(e.target.matches('#imageModal'))closeImage()});
 $('#closeModal').addEventListener('click',closeImage);
 $('#themeBtn').addEventListener('click',()=>{const v=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=v;save('lumen_atlas_theme_v1',v);});
