@@ -233,3 +233,39 @@ body:not([data-space=learn]) .experience.editorial-home,body[data-space=learn]:n
 @media(max-width:650px){.experience.editorial-home{padding:15px;gap:18px}.editorial-copy h1{font-size:29px;margin:12px 0}}
 
 .global-rail .brand-copy strong{font-size:16px;letter-spacing:.12em}.global-rail .brand{gap:10px}
+
+/* Scroll ownership: page flow for overview and native quiz, one inner viewport
+   for legacy practice/library and compatibility, two independent Atlas columns. */
+html,body{height:100%;overflow:hidden}
+.app-shell{height:100dvh;min-height:0}
+.app-column{min-height:0}
+.workspace{min-width:0}
+body[data-space=learn][data-view=home][data-learn-mode=home] .module-stage{background:transparent;border:0;border-radius:0;min-height:0;overflow:visible;box-shadow:none;width:100%}
+body[data-space=learn][data-view=home] #moduleBar{margin:18px auto 14px}
+body[data-space=learn][data-view=home] #moduleTitle{font-size:22px}
+body[data-space=learn][data-view=home] #moduleEyebrow{display:none}
+body[data-space=learn][data-view=home] #moduleTabs{display:none}
+body[data-space=learn][data-learn-mode=study] #experience{display:none}
+.module-stage iframe[data-space=learn][data-flow=home]{min-height:0;background:transparent}
+body[data-scroll-owner=frame] .workspace{display:flex;flex-direction:column;overflow:hidden;gap:12px;padding-bottom:16px}
+body[data-scroll-owner=frame] .module-bar{flex:0 0 auto;width:100%;margin:0 auto}
+body[data-scroll-owner=frame] .module-stage{width:100%;flex:1 1 0;min-height:0;height:auto;overflow:hidden;margin:0 auto}
+body[data-scroll-owner=frame] .module-stage iframe{height:100%;min-height:0}
+body[data-scroll-owner=frame][data-space=learn] .module-stage{border:0;border-radius:0;background:transparent}
+body[data-scroll-owner=frame][data-space=learn] #experience{display:none}
+body[data-scroll-owner=frame] #frameStatus{flex:0 0 auto}
+@media(max-width:650px){body[data-scroll-owner=frame] .workspace{padding-bottom:calc(76px + env(safe-area-inset-bottom))}}
+body[data-space=learn][data-view=home] #moduleBar:has(#moduleTabs[hidden]){display:none}
+#moduleTabs button[data-tab=directory]{display:inline-flex}
+.rail-toggle{flex-shrink:0;display:grid;place-items:center}
+@media(min-width:851px){.app-shell{transition:grid-template-columns 200ms var(--motion-ease)}.app-shell[data-rail-collapsed=true]{grid-template-columns:70px minmax(0,1fr)}.app-shell[data-rail-collapsed=true] .global-rail{padding:24px 10px}.app-shell[data-rail-collapsed=true] .brand{padding:4px 3px 40px}.app-shell[data-rail-collapsed=true] .brand-copy,.app-shell[data-rail-collapsed=true] .rail-caption,.app-shell[data-rail-collapsed=true] .primary-nav a span:not(.nav-glyph),.app-shell[data-rail-collapsed=true] .secondary-nav a span,.app-shell[data-rail-collapsed=true] .rail-foot{display:none}.app-shell[data-rail-collapsed=true] .primary-nav a,.app-shell[data-rail-collapsed=true] .secondary-nav a{justify-content:center;padding:12px 0}}
+@media(max-width:850px){.rail-toggle{display:none}.secondary-nav{display:grid}.secondary-nav a{justify-content:center;padding:12px 0}.secondary-nav a span{display:none}}
+/* Spatial onboarding: modal top layer retains keyboard trapping and cursor access.
+   The transparent spotlight frames real controls instead of illustrating them. */
+.workspace-guide[open]{position:fixed;inset:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;padding:0;border:0;background:transparent;box-shadow:none;overflow:hidden;animation:none}
+.workspace-guide::backdrop{background:transparent;backdrop-filter:none}
+.guide-spotlight{position:absolute;left:0;top:0;width:0;height:0;border-radius:12px;box-shadow:0 0 0 160vmax rgba(10,17,31,.72);outline:2px solid #a9a5ff;outline-offset:2px;pointer-events:none;transition:left 200ms var(--motion-ease),top 200ms var(--motion-ease),width 200ms var(--motion-ease),height 200ms var(--motion-ease)}
+.guide-card{position:absolute;left:16px;top:16px;width:min(350px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:15px;box-shadow:0 20px 60px #0005;transition:left 200ms var(--motion-ease),top 200ms var(--motion-ease)}
+.guide-card .guide-content{padding:8px 20px 16px}.guide-card .guide-step-icon{width:36px;height:36px;margin-bottom:9px}.guide-card .guide-step-icon svg{width:20px;height:20px}.guide-card .guide-content h2{font-size:22px;margin:5px 0 8px}.guide-card .guide-content p{font-size:13px;min-height:0}.guide-card .guide-progress{margin-top:12px}.guide-card .guide-footer{padding:10px 12px}.guide-card .guide-footer button{min-height:40px;padding:0 9px}
+@media(max-width:650px){.guide-card{max-height:55dvh}.guide-card .guide-content{padding:5px 14px 12px}.guide-card .guide-content h2{font-size:19px}.guide-card .guide-step-icon{display:none}.guide-card .guide-header{padding:6px 10px 0}.guide-card .guide-footer{gap:4px;padding:7px 8px}}
+@media(prefers-reduced-motion:reduce){.guide-card,.guide-spotlight,.app-shell{transition:none!important}}

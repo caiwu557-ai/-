@@ -1,3 +1,4 @@
+import { bridgeLearnLayout } from './learn-layout.js';
 import { mountMicroHero } from './micro-hero.js';
 import { installGlassCursor } from './glass-cursor.js';
 import { installGuide } from './onboarding.js';
@@ -19,6 +20,12 @@ const stage=document.querySelector('#moduleStage');
 const shell=document.querySelector('#shell');
 const scrollRegion=document.querySelector('#workspace');
 const status=document.querySelector('#frameStatus');
+const railToggle=document.querySelector('#railToggle');
+let railCollapsed=false;try{railCollapsed=localStorage.getItem('histodone_nav_collapsed_v1')==='1'}catch{}
+function paintRail(){shell.dataset.railCollapsed=String(railCollapsed);railToggle.innerHTML=icon('panel-left');const label=railCollapsed?'展开导航':'收起导航';railToggle.setAttribute('aria-expanded',String(!railCollapsed));railToggle.setAttribute('aria-label',label);railToggle.title=label;document.querySelectorAll('#globalRail nav a').forEach(a=>{a.title=a.textContent.trim()})}
+paintRail();railToggle.addEventListener('click',()=>{railCollapsed=!railCollapsed;try{localStorage.setItem('histodone_nav_collapsed_v1',railCollapsed?'1':'0')}catch{}paintRail()});
+function scrollOwner(value){if(document.body.dataset.scrollOwner!==value){document.body.dataset.scrollOwner=value;scrollRegion.scrollTop=0}}
+
 let current={space:'learn',view:'home',section:''};
 const prefersLight=()=>{try{return localStorage.getItem('lumen_atlas_theme_v1')!=='dark'}catch{return true}};
 function theme(next){
@@ -71,8 +78,11 @@ function route(target,{replace=false,historyChange=true}={}){
  for(const [name,frame] of frameCache)frame.hidden=name!==next.space;
  if(nativeQuiz){nativeQuiz.element.hidden=next.space!=='quiz';nativeQuiz.element.style.display=next.space==='quiz'?'block':'none'}
  if(nativeAtlas){nativeAtlas.element.hidden=next.space!=='atlas';nativeAtlas.element.style.display=next.space==='atlas'?'block':'none'}
+ document.body.dataset.learnMode='';
+ scrollOwner(next.space==='learn'?(next.view==='home'?'page':'frame'):next.space==='quiz'&&!useNativeQuiz||next.space==='atlas'&&!useNativeAtlas?'frame':next.space==='atlas'?'atlas':'page');
  buildModuleTabs();
  activateFrame(next);
+ frameCache.get(next.space)?._syncLayout?.();
  if(old.space!==next.space||old.view!==next.view){workspaceTop();enter(stage)}
 }
 function buildModuleTabs(){
@@ -100,11 +110,11 @@ function moduleTab(id){
   const node=doc.querySelector('.local-nav [data-view="'+id+'"],.bottom-tabs [data-view="'+id+'"]');
   if(node){node.click();document.querySelectorAll('#moduleTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id))}
  }else if(current.space==='atlas'&&useNativeAtlas&&nativeAtlas){nativeAtlas.tab(id);return}
- else if(id==='directory'){doc.getElementById('menuBtn')?.click();return}
+ else if(id==='directory'){const side=doc.getElementById('side');if(frame.clientWidth>850){const collapsed=doc.documentElement.dataset.directoryCollapsed!=='true';doc.documentElement.dataset.directoryCollapsed=String(collapsed)}else doc.getElementById('menuBtn')?.click();return}
  else if(id==='search'){
   const input=doc.getElementById('search');
   const menu=doc.getElementById('menuBtn');
-  if(menu && innerWidth<=850){doc.getElementById('topSearchBtn')?.click();}else input?.focus();
+  if(menu && frame.clientWidth<=850){doc.getElementById('topSearchBtn')?.click();}else{doc.documentElement.dataset.directoryCollapsed='false';input?.focus();}
  }else{
   const overview=doc.querySelector('[data-target="overview"]');overview?.click();
  }
@@ -160,7 +170,7 @@ function activateFrame(target){
   stage.appendChild(frame);
   frame.addEventListener('load',()=>{bridgeFrame(frame);if(current.space===target.space)enter(frame)});
   status.hidden=false;status.textContent='正在载入'+spaces[target.space].title+'…';
- }else if(target.space==='learn'&&target.view!==lastLearnView(frame)){
+ }else if(target.space==='learn'&&(target.view!==lastLearnView(frame)||frame.contentDocument?.querySelector('.practice-layout,.round-prompt-backdrop'))){
   const node=frame.contentDocument?.querySelector('[data-action="nav"][data-view="'+target.view+'"]');
   if(node)node.click();else{const u=new URL(spaces.learn.url);if(target.view!=='home')u.searchParams.set('view',target.view);frame.src=u.href;}
  }
@@ -176,6 +186,7 @@ function bridgeFrame(frame){
  let doc;try{doc=frame.contentDocument}catch{return}
  if(!doc||!doc.body)return;
  const space=frame.dataset.space;
+ if(current.space===space&&space!=='learn')scrollOwner('frame');
  const stylesheet=document.createElement('style');stylesheet.id='lumen-vnext-adapter';
  const common=`html{scroll-behavior:auto}a,button,input{scroll-margin-top:16px}button,a{transition:background-color 120ms ease,color 120ms ease,border-color 120ms ease}dialog[open]{animation:lw-dialog-in 200ms cubic-bezier(.22,1,.36,1) both}@keyframes lw-dialog-in{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}`;
  const learnCSS=common+`
@@ -203,6 +214,7 @@ body.atlas-page{margin:0!important;min-height:0!important}
 :root[data-theme=dark] .atlas-page .side .nav-label{color:#a6b3c9!important}
 .atlas-page .topbar,.atlas-page .workspace-tabs,.atlas-page .site-return{display:none!important}
 .atlas-page .main{min-width:0!important;max-width:none!important}
+@media(min-width:851px){html[data-directory-collapsed=true] .atlas-page .shell{grid-template-columns:0 minmax(0,1fr)}html[data-directory-collapsed=true] .atlas-page .side{visibility:hidden;overflow:hidden;padding:0!important;border:0!important}}
 .atlas-page .reader-wrap{min-width:0!important;max-width:none!important;padding:22px 25px 70px!important}
 @media(max-width:750px){.atlas-page .side{z-index:500!important}.atlas-page .reader-wrap{padding:15px 13px 50px!important}}
 `;
@@ -219,6 +231,7 @@ body{margin:0!important}
  doc.getElementById(stylesheet.id)?.remove();
  doc.head.append(stylesheet);
  installGlassCursor(doc);
+ if(space==='learn')bridgeLearnLayout(frame,doc,{workspace:scrollRegion,onMode:(mode,study)=>{if(current.space!=='learn'||frame.hidden)return;document.body.dataset.learnMode=study?'study':mode;scrollOwner(mode==='home'?'page':'frame')},onView:view=>{if(current.space==='learn'&&view!=='study'&&localViews[view]&&current.view!==view)route({space:'learn',view},{replace:true})}});
  doc.documentElement.dataset.theme=document.documentElement.dataset.theme;
  doc.addEventListener('click',e=>{
   const tutorial=e.target.closest?.('[data-action="tutorial"]');if(tutorial&&space==='learn'){e.preventDefault();e.stopImmediatePropagation();guide.open();return}

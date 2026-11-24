@@ -25,6 +25,9 @@ export async function mountAtlas(parent,opts={}){
  .atlas-root .shell{height:100%;display:grid;grid-template-columns:minmax(200px,238px) minmax(0,1fr);align-items:stretch;overflow:hidden}
  .atlas-root .side{height:auto!important;min-height:0;max-height:100%;position:relative!important;top:auto!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable;padding:16px 12px!important}
  .atlas-root .main{min-height:0;min-width:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+ .atlas-root .shell{transition:grid-template-columns 200ms var(--motion-ease,ease)}
+ :host([data-directory-collapsed=true]) .atlas-root .shell{grid-template-columns:0 minmax(0,1fr)}
+ :host([data-directory-collapsed=true]) .atlas-root .side{visibility:hidden;overflow:hidden!important;padding:0!important;border:0!important}
  .atlas-root .reader-wrap{min-height:100%;padding:24px 26px 64px!important}
 }
 @media(max-width:850px){.atlas-root .side{height:100dvh!important;max-height:100dvh;overflow-y:auto!important;padding-bottom:calc(84px + env(safe-area-inset-bottom))!important}}
@@ -368,8 +371,8 @@ if(initialSearch&&(initialRoute==='overview'||initialRoute==='search')){
 }
  initialize();
  const tabs=id=>{
-  if(id==='search'){const field=shadow.getElementById('search');if(innerWidth<=850){shadow.getElementById('topSearchBtn')?.click()}else field?.focus();return}
-  if(id==='directory'){if(innerWidth<=850)shadow.getElementById('menuBtn')?.click();else shadow.querySelector('.side')?.scrollIntoView({block:'nearest'});return}
+  if(id==='search'){const field=shadow.getElementById('search');if(innerWidth<=850){shadow.getElementById('topSearchBtn')?.click()}else{element.dataset.directoryCollapsed='false';field?.focus()}return}
+  if(id==='directory'){if(innerWidth<=850)shadow.getElementById('menuBtn')?.click();else element.dataset.directoryCollapsed=String(element.dataset.directoryCollapsed!=='true');return}
   const button=shadow.querySelector('[data-target="overview"]');button?.click();
  };
  return {element,tab:tabs,navigate:target=>{hash='#'+encodeURIComponent(target);navigateSection?.(target)},setTheme:t=>{element.dataset.theme=t},getRoot:()=>shadow};

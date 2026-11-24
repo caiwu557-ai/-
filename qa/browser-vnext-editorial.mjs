@@ -5,14 +5,14 @@ try{for(const [w,h] of [[1440,900],[1024,768],[768,1024],[390,844],[320,720]]){
  await page.goto('http://127.0.0.1:4173/');await page.waitForURL(/\/vnext\//);await page.locator('#workspaceGuide').waitFor({state:'visible'});
  await page.locator('iframe[data-space=learn]').contentFrame().locator('#app .shell').waitFor();
  assert.equal(await page.locator('#guideCount').textContent(),'1 / 6');
- for(let i=0;i<5;i++)await page.locator('#guideNext').click();
+ for(let i=0;i<5;i++){await page.locator('#guideNext').click();await page.locator('#guideSpotlight[data-positioned=true]').waitFor();if(i===0||i===2)await page.screenshot({path:out+'/guide-spotlight-'+w+'-'+i+'.png',animations:'disabled'});}
  assert.equal(await page.locator('#guideCount').textContent(),'6 / 6');
  if(w>850){const box=await page.locator('#guideNext').boundingBox();await page.mouse.move(box.x+box.width/2,box.y+box.height/2);assert.equal(await page.locator('#glassCursor').evaluate(el=>el.matches(':popover-open')),true,'cursor must be in modal top layer');}
  await page.screenshot({path:out+'/editorial-guide-'+w+'.png',animations:'disabled'});
  await page.locator('#guideNext').click();await page.locator('#workspaceGuide').waitFor({state:'hidden'});
  await page.reload();assert.equal(await page.locator('#workspaceGuide').isVisible(),false);
  await page.locator('#guideToggle').click();await page.locator('#workspaceGuide').waitFor({state:'visible'});await page.keyboard.press('Escape');await page.locator('#workspaceGuide').waitFor({state:'hidden'});
- assert.equal(await page.locator('.brand-mark').count(),1);await page.locator('#microHero #scene').waitFor();assert.equal(await page.locator('#microHero .feature-header').count(),0);
+ assert.equal(await page.locator('.global-rail .brand-mark').count(),1);await page.locator('#microHero #scene').waitFor();assert.equal(await page.locator('#microHero .feature-header').count(),0);
  assert.equal(await page.locator('#microHero').evaluate(el=>el.motion.state().running),false);
  await page.locator('#microHero').evaluate(el=>el.motion.seek(0));
  await page.screenshot({path:out+'/editorial-slide-'+w+'.png',animations:'disabled'});
