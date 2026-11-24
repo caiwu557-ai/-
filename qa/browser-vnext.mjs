@@ -10,18 +10,15 @@ try{
  for(const [label,width,height] of [['desktop',1440,900],['tablet',768,1024],['phone',390,844],['small-phone',320,720]]){
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});
   const page=await context.newPage();
+  await page.addInitScript(()=>localStorage.setItem('lumen_workspace_guide_v1','done'));
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await run(label+' shared workspace and 2.5D hero',async()=>{
+  await run(label+' shared workspace and glass-slide hero',async()=>{
    const response=await page.goto(base,{waitUntil:'domcontentloaded'});
    if(response.status()!==200)throw Error('VNext route not served');
-   await page.locator('#sculpture .slice').first().waitFor();
-   if((await page.locator('#sculpture .slice').count())!==3)throw Error('2.5D slice geometry missing');
-   await page.locator('#layerToggle').click();
-   if((await page.locator('#layerToggle').getAttribute('aria-pressed'))!=='true')throw Error('Explode does not expose pressed state');
-   if(!await page.locator('.sculpture-frame.is-expanded').count())throw Error('Exploded visual state not mounted');
-   await page.screenshot({path:out+'/vnext-'+label+'-hero-expanded.png',animations:'disabled'});
-   await page.locator('#layerToggle').click();
-   if((await page.locator('#layerToggle').getAttribute('aria-pressed'))!=='false')throw Error('Reassembly did not settle');
+   await page.locator('.slide-composition .glass-sheet').first().waitFor();
+   if(await page.locator('.glass-sheet').count()!==3)throw Error('Glass-slide composition missing');
+   if(await page.locator('#sculpture').count())throw Error('Retired onion remains');
+   await page.screenshot({path:out+'/vnext-'+label+'-glass-slides.png',animations:'disabled'});
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
    if(overflow>3)throw Error('horizontal layout overflow '+overflow);
   });
@@ -69,10 +66,11 @@ try{
  const page=await context.newPage();
  await run('reduced motion remains functional',async()=>{
   await page.goto(base,{waitUntil:'domcontentloaded'});
-  await page.locator('#sculpture').press('Enter');
-  if((await page.locator('#layerToggle').getAttribute('aria-pressed'))!=='true')throw Error('keyboard reveal did not work with reduced motion');
-  const transition=await page.locator('.slice').first().evaluate(el=>getComputedStyle(el).transitionDuration);
+  await page.locator('#guideSkip').click();
+  const transition=await page.locator('.glass-sheet').first().evaluate(el=>getComputedStyle(el).transitionDuration);
   if(transition.split(',').some(x=>parseFloat(x)>0.02))throw Error('reduced motion still animates');
+  await page.locator('.specimen-link').press('Enter');
+  await page.waitForURL(/space=atlas/);
  });
  await context.close();
 }finally{await browser.close()}
