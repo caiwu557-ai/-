@@ -19,6 +19,15 @@ export async function mountAtlas(parent,opts={}){
 :host([data-theme=dark]){--page:var(--paper);--panel:var(--paper2);--surface:var(--paper);--text:var(--ink);--heading:var(--ink);--muted:var(--lumen-muted,#b1bfd2);--line:var(--lumen-line,#35415a);--line-dark:var(--lumen-line,#35415a);--accent:var(--lumen-accent,#b4aaff);--soft:var(--accent-soft)}
 .atlas-root{background:var(--page);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-width:0}
 .atlas-root .shell{min-height:0!important}
+@media(min-width:851px){
+ :host{height:100%;min-height:0;overflow:hidden}
+ .atlas-root{height:100%;min-height:0}
+ .atlas-root .shell{height:100%;display:grid;grid-template-columns:minmax(200px,238px) minmax(0,1fr);align-items:stretch;overflow:hidden}
+ .atlas-root .side{height:auto!important;min-height:0;max-height:100%;position:relative!important;top:auto!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable;padding:16px 12px!important}
+ .atlas-root .main{min-height:0;min-width:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+ .atlas-root .reader-wrap{min-height:100%;padding:24px 26px 64px!important}
+}
+@media(max-width:850px){.atlas-root .side{height:100dvh!important;max-height:100dvh;overflow-y:auto!important;padding-bottom:calc(84px + env(safe-area-inset-bottom))!important}}
 .atlas-root .side .brand,.atlas-root .side .app-nav,.atlas-root .side .nav-group-label,.atlas-root .side .side-footer,.atlas-root .topbar,.atlas-root .workspace-tabs{display:none!important}
 .atlas-root .side{background:#f6f7fb!important;color:#3f4961!important;border-right:1px solid #e1e6ef!important}
 .atlas-root .side .nav-btn{color:#46516e!important}
@@ -209,7 +218,7 @@ function navTo(target,opts={}){
   navMark();
   if(!opts.silent){
    atlasHistory.pushState({atlas:target},'',location.pathname+'#'+encodeURIComponent(target));
-   workspaceTop();enter($('#reader'));
+   if(innerWidth>850)document.querySelector('.main')?.scrollTo({top:0,behavior:'instant'});else workspaceTop();enter($('#reader'));
    requestAnimationFrame(()=>{const heading=$('#reader h1');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true})}});
   }
   if(!opts.preserveSearch)$('#search').value='';

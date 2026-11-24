@@ -121,7 +121,7 @@ try{
  await blockedPage.close();
 
  const page=await browser.newPage();
- const home=await page.goto(base+'/',{waitUntil:'load'});
+ const home=await page.goto(base+'/learn-engine.html',{waitUntil:'load'});
  assert.equal(home.status(),200);
  assert.ok(await page.locator('a[href="./image-quiz/"]').count()>=1,'workspace must link to image quiz');
  await page.goto(base+'/atlas/',{waitUntil:'load'});

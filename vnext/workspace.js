@@ -1,8 +1,11 @@
+import { mountMicroHero } from './micro-hero.js';
+import { installGlassCursor } from './glass-cursor.js';
+import { installGuide } from './onboarding.js';
 import { enter, reduce, workspaceTop } from './motion.js';
 import { icon } from './icons.js';
 const base=new URL('../',window.location.href);
 const spaces={
- learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./?embed=1',base).href},
+ learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./learn-engine.html?embed=1',base).href},
  atlas:{title:'切片图谱',eyebrow:'Histology atlas',url:new URL('./atlas/',base).href},
  quiz:{title:'看图填空',eyebrow:'Image recognition',url:new URL('./image-quiz/',base).href}
 };
@@ -16,11 +19,7 @@ const stage=document.querySelector('#moduleStage');
 const shell=document.querySelector('#shell');
 const scrollRegion=document.querySelector('#workspace');
 const status=document.querySelector('#frameStatus');
-const scene=document.querySelector('.sculpture-frame');
-const sculpture=document.querySelector('#sculpture');
-const layerToggle=document.querySelector('#layerToggle');
-const reduced=reduce;
-let current={space:'learn',view:'home',section:''},expanded=false,tx=0,ty=0,rx=0,ry=0,velocityX=0,velocityY=0,raf=0;
+let current={space:'learn',view:'home',section:''};
 const prefersLight=()=>{try{return localStorage.getItem('lumen_atlas_theme_v1')!=='dark'}catch{return true}};
 function theme(next){
  const t=next|| (prefersLight()?'light':'dark');
@@ -219,8 +218,10 @@ body{margin:0!important}
  stylesheet.textContent=space==='learn'?learnCSS:space==='atlas'?atlasCSS:quizCSS;
  doc.getElementById(stylesheet.id)?.remove();
  doc.head.append(stylesheet);
+ installGlassCursor(doc);
  doc.documentElement.dataset.theme=document.documentElement.dataset.theme;
  doc.addEventListener('click',e=>{
+  const tutorial=e.target.closest?.('[data-action="tutorial"]');if(tutorial&&space==='learn'){e.preventDefault();e.stopImmediatePropagation();guide.open();return}
   const a=e.target.closest?.('a[href]');if(!a||e.defaultPrevented)return;
   const href=a.getAttribute('href');
   if(!href||href.startsWith('#')||a.hasAttribute('download'))return;
@@ -228,7 +229,7 @@ body{margin:0!important}
   if(u.origin!==base.origin)return;
   const relative=u.pathname.slice(base.pathname.length).replace(/^\/+/,'');
   let next=null;
-  if(relative===''||relative==='index.html'){next={space:'learn',view:localViews[u.searchParams.get('view')]?u.searchParams.get('view'):'home'}}
+  if(relative===''||relative==='index.html'||relative==='learn-engine.html'){next={space:'learn',view:localViews[u.searchParams.get('view')]?u.searchParams.get('view'):'home'}}
   if(relative==='atlas/'||relative==='atlas/index.html'){next={space:'atlas',section:u.hash.slice(1)}}
   if(relative==='image-quiz/'||relative==='image-quiz/index.html'){next={space:'quiz'}}
   if(!next)return;
@@ -254,37 +255,12 @@ document.addEventListener('click',e=>{
 window.addEventListener('popstate',()=>route(parseRoute(),{historyChange:false}));
 window.addEventListener('storage',e=>{if(e.key==='lumen_atlas_theme_v1'&&(e.newValue==='light'||e.newValue==='dark')&&e.newValue!==document.documentElement.dataset.theme)theme(e.newValue)});
 document.querySelector('#themeToggle').addEventListener('click',()=>theme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
-function setExploded(next){
- expanded=Boolean(next);
- scene.classList.toggle('is-expanded',expanded);
- sculpture.setAttribute('aria-pressed',String(expanded));
- sculpture.setAttribute('aria-label',expanded?'收起显微层片':'展开显微层片');
- layerToggle.setAttribute('aria-pressed',String(expanded));
- layerToggle.innerHTML=(expanded?'收拢层片 ':'展开层片 ')+icon(expanded?'minus':'plus');
-}
-layerToggle.addEventListener('click',()=>setExploded(!expanded));
-sculpture.addEventListener('click',()=>setExploded(!expanded));
-sculpture.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setExploded(!expanded)}});
-function pointerMove(e){
- if(reduced())return;
- const r=scene.getBoundingClientRect();
- tx=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2)));
- ty=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/(r.height/2)));
- ensureMotion();
-}
-scene.addEventListener('pointermove',pointerMove,{passive:true});
-scene.addEventListener('pointerleave',()=>{tx=0;ty=0;ensureMotion()});
-function ensureMotion(){if(!raf&&!reduced())raf=requestAnimationFrame(tick)}
-function tick(){
- const targetX=ty*-7,targetY=tx*9;
- velocityX=(velocityX+(targetX-rx)*.075)*.79;
- velocityY=(velocityY+(targetY-ry)*.075)*.79;
- rx+=velocityX;ry+=velocityY;
- sculpture.style.setProperty('--rx',rx.toFixed(3)+'deg');
- sculpture.style.setProperty('--ry',ry.toFixed(3)+'deg');
- if(Math.abs(rx-targetX)+Math.abs(ry-targetY)+Math.abs(velocityX)+Math.abs(velocityY)>.05){
-  raf=requestAnimationFrame(tick);
- }else{raf=0}
-}
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&raf){cancelAnimationFrame(raf);raf=0}else if(!document.hidden)ensureMotion()});
+const guide=installGuide({navigate:target=>route(target)});
+document.querySelectorAll('[data-icon]').forEach(n=>n.innerHTML=icon(n.dataset.icon));
+document.querySelector('#guideToggle').innerHTML=icon('circle-help');
+document.querySelector('#guideToggle').addEventListener('click',()=>guide.open());
+installGlassCursor();
+mountMicroHero(document.getElementById('microHero')).catch(error=>{console.error('LUMEN visual could not load',error);const host=document.getElementById('microHero');host.hidden=true});
 route(parseRoute(),{historyChange:false});
+
+guide.maybeOpen(parseRoute());

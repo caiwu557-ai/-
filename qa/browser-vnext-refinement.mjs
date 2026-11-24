@@ -7,6 +7,7 @@ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try {
  for(const [w,h] of [[1440,900],[768,1024],[390,844],[320,720]]){
   const page=await browser.newPage({viewport:{width:w,height:h},reducedMotion:'reduce'});
+  await page.addInitScript(()=>localStorage.setItem('lumen_workspace_guide_v1','done'));
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:4173/vnext/',{waitUntil:'domcontentloaded'});
   await page.locator('#experience').waitFor({state:'visible'});

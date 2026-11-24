@@ -55,9 +55,11 @@ try{
   const pageErrors=[];
   page.on('pageerror',e=>pageErrors.push(String(e)));
   // Prefer deterministic offline-friendly screenshots. Atlas fallback/source links must survive blocked third-party images.
-  await page.route('**/*',route=>{
+  // Exercise the retained engine in isolation; production root routing is tested separately.
+  await page.route('**/*',async route=>{
     try{const u=new URL(route.request().url());const base=new URL(BASE);
       if(u.origin!==base.origin)return route.abort('blockedbyclient');
+      if(route.request().isNavigationRequest()&&(u.pathname===base.pathname||u.pathname===base.pathname+'index.html')){const engine=new URL('learn-engine.html',base);engine.search=u.search;const response=await route.fetch({url:engine.href});return route.fulfill({response})}
     }catch{}
     return route.continue();
   });
@@ -283,6 +285,7 @@ try{
  {
   const ctx=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
   const page=await ctx.newPage();
+  await page.route('**/*',async route=>{const u=new URL(route.request().url()),base=new URL(BASE);if(u.origin===base.origin&&route.request().isNavigationRequest()&&u.pathname===base.pathname){const engine=new URL('learn-engine.html',base);engine.search=u.search;return route.fulfill({response:await route.fetch({url:engine.href})})}return route.continue()});
   await attempt('reduced motion / root -> Atlas -> section',async()=>{
     await page.goto(BASE,{waitUntil:'domcontentloaded'});
     await assertReady(page,'#app .shell');
