@@ -2,7 +2,7 @@ import { icon } from './icons.js';
 import { enter } from './motion.js';
 export const GUIDE_KEY='lumen_workspace_guide_v1';
 const steps=[
- ['欢迎来到 LUMEN','在这里，术语、切片与识图训练共享同一个工作区。第一次使用，快速了解操作；以后可在顶部问号重看。','house'],
+ ['欢迎来到 HISTONYM','在这里，术语、切片与识图训练共享同一个工作区。第一次使用，快速了解操作；以后可在顶部问号重看。','house'],
  ['选择训练范围','概览中的课程范围支持 R10 核心、综合范围或单独章节；统计和训练随范围更新。','book-open',{space:'learn',view:'home'}],
  ['选择训练方式','新词学习只抽未接触词，到期复习只抽应复习词；英文拼写与四选一辨认可单独训练。','refresh-cw',{space:'learn',view:'home'}],
  ['切片图谱与识图','先在图谱中观察结构、辨析易混点，再在看图填空中独立作答。两者可随时切换。','layers',{space:'atlas'}],

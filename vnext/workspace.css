@@ -231,3 +231,5 @@ body:not([data-space=learn]) .experience.editorial-home,body[data-space=learn]:n
 @media(max-width:1180px){.experience.editorial-home{grid-template-columns:minmax(185px,.65fr) minmax(0,1fr);padding:20px;gap:18px}.editorial-copy h1{font-size:35px}}
 @media(max-width:930px){.experience.editorial-home{grid-template-columns:1fr}.editorial-copy h1 br{display:none}.editorial-copy h1{font-size:36px}.editorial-copy p{max-width:none}.home-motion{max-width:720px;margin:auto}}
 @media(max-width:650px){.experience.editorial-home{padding:15px;gap:18px}.editorial-copy h1{font-size:29px;margin:12px 0}}
+
+.global-rail .brand-copy strong{font-size:16px;letter-spacing:.12em}.global-rail .brand{gap:10px}
