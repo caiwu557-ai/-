@@ -47,7 +47,7 @@ export async function mountAtlas(parent,opts={}){
   body,
   title:''
  };
- let hash='#'+(opts.section||'overview'),search='';
+ let hash='#'+(opts.section||'overview'),search='',navigateSection=null;
  const location={
   get pathname(){return atlasBase.pathname},
   get hash(){return hash},
@@ -321,6 +321,7 @@ function handleHistoryNavigation(){
 window.addEventListener('popstate',handleHistoryNavigation);
 window.addEventListener('hashchange',handleHistoryNavigation);
 window.openEvidenceImage=openEvidenceImage;
+navigateSection=target=>{if(target==='search')return;hash='#'+encodeURIComponent(target);if(target!==current)navTo(target,{silent:true});};
 const initialRoute=decodeURIComponent(location.hash.slice(1))||'overview';
 const initialSearch=new URLSearchParams(location.search).get('q');
 if(initialSearch&&(initialRoute==='overview'||initialRoute==='search')){
@@ -337,5 +338,5 @@ if(initialSearch&&(initialRoute==='overview'||initialRoute==='search')){
   if(id==='search'){shadow.getElementById('search')?.focus();return}
   const button=shadow.querySelector('[data-target="overview"]');button?.click();
  };
- return {element,tab:tabs,setTheme:t=>{element.dataset.theme=t},getRoot:()=>shadow};
+ return {element,tab:tabs,navigate:target=>{hash='#'+encodeURIComponent(target);navigateSection?.(target)},setTheme:t=>{element.dataset.theme=t},getRoot:()=>shadow};
 }

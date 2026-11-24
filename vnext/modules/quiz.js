@@ -1,3 +1,4 @@
+import { icon } from '../icons.js';
 const sourceBase=new URL('../../image-quiz/',import.meta.url);
 const asset=x=>/^https?:\/\//.test(x)?x:new URL(x,sourceBase).href;
 let bankPromise=null;
@@ -79,26 +80,8 @@ function focusHtml(q){if(!focusVisible||!q?.focusMark)return '';
 }
 function markButton(q){return q?.focusMark?`<button type="button" class="focus-btn" data-action="toggle-focus" aria-pressed="${focusVisible}">${focusVisible?'隐藏定位环':'显示定位环'}</button>`:'';}
 
-const icons={
- home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/>',
- repeat:'<path d="M4 11a8 8 0 0 1 14-5l2 2M20 4v4h-4"/><path d="M20 13a8 8 0 0 1-14 5l-2-2M4 20v-4h4"/>',
- book:'<path d="M12 6.5C9.5 5 6.2 5 3 6v14c3.2-1 6.5-1 9 1 2.5-2 5.8-2 9-1V6c-3.2-1-6.5-1-9 .5Z"/><path d="M12 6v15"/>',
- layers:'<path d="m12 3-9 5 9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>',
- scan:'<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="12" r="3"/><path d="M8 12h8"/>',
- moon:'<path d="M20 13A8.6 8.6 0 0 1 11 4a9 9 0 1 0 9 9Z"/>',
- sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M5 19l1.4-1.4M17.6 6.4 19 5"/>',
- menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.4 2c-.8.6-1.9 1-1.9 2.5M12 17h.01"/>',
- target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
- spark:'<path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/>',
- shield:'<path d="m12 3 8 3v6c0 5-4 7.8-8 9-4-1.2-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/>',
- arrow:'<path d="M5 12h14m-6-6 6 6-6 6"/>',
- chevron:'<path d="m9 18 6-6-6-6"/>',
- check:'<path d="m4 12 5 5L20 6"/>',
- zoom:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
- download:'<path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/>',
- alert:'<path d="M12 3 2 21h20L12 3Z"/><path d="M12 9v5M12 17h.01"/>'
-};
-function svg(name){return '<svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(icons[name]||icons.target)+'</svg>'}
+const iconNames={"home":"house","repeat":"refresh-cw","book":"book-open","layers":"layers","scan":"scan-line","moon":"moon","sun":"sun","menu":"menu","help":"circle-help","target":"target","spark":"sparkles","shield":"shield-check","arrow":"arrow-right","chevron":"chevron-right","check":"check","zoom":"zoom-in","download":"download","alert":"triangle-alert"};
+function svg(name){return icon(iconNames[name]||"target","ui-icon",18)}
 function applyIcons(root=document){$$('[data-icon]',root).forEach(el=>{el.innerHTML=svg(el.dataset.icon)})}
 const empty=()=>({version:1,items:{},sessions:[],flags:{},active:null});
 const isRecord=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
@@ -165,7 +148,7 @@ function toast(message){const el=$('#toast');el.textContent=message;el.hidden=fa
 function themeSync(){const dark=document.documentElement.dataset.theme==='dark';$('#theme-btn .nav-icon').dataset.icon=dark?'sun':'moon';applyIcons($('#theme-btn'))}
 function setTheme(){const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem(THEME,theme)}catch{}themeSync()}
 function titleFor(view){return ({home:'看图填空',quiz:'识图练习',result:'本轮结果',bank:'全部题库',history:'学习记录'})[view]||'看图填空'}
-function setView(view){if(!['home','quiz','result','bank','history'].includes(view))return;state.view=view;document.body.classList?.toggle('image-quiz-focus-mode',view==='quiz');
+function setView(view){if(!['home','quiz','result','bank','history'].includes(view))return;state.view=view;element.dataset.view=view;queueMicrotask(()=>element.dispatchEvent(new CustomEvent('lumen:quiz-view',{bubbles:true,composed:true})));document.body.classList?.toggle('image-quiz-focus-mode',view==='quiz');
  $$('.page').forEach(el=>el.classList.toggle('hidden',el.id!=='page-'+view));
  $('#breadcrumb').textContent=titleFor(view);
  $$('[data-view]').forEach(el=>{const active=el.dataset.view===view||(view==='result'&&el.dataset.view==='home')||(view==='quiz'&&el.dataset.view==='home');el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});

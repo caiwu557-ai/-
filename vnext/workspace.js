@@ -1,3 +1,4 @@
+import { icon } from './icons.js';
 const base=new URL('../',window.location.href);
 const spaces={
  learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./?embed=1',base).href},
@@ -23,7 +24,10 @@ const prefersLight=()=>{try{return localStorage.getItem('lumen_atlas_theme_v1')!
 function theme(next){
  const t=next|| (prefersLight()?'light':'dark');
  document.documentElement.dataset.theme=t;
- document.querySelector('#themeToggle').textContent=t==='dark'?'☼':'◐';
+ const themeButton=document.querySelector('#themeToggle');
+ themeButton.innerHTML=icon(t==='dark'?'sun':'moon');
+ themeButton.setAttribute('aria-label',t==='dark'?'切换浅色模式':'切换深色模式');
+ themeButton.title=themeButton.getAttribute('aria-label');
  for(const frame of frameCache.values()){
   try{frame.contentDocument.documentElement.dataset.theme=t;}catch{}
  }
@@ -36,7 +40,7 @@ function parseRoute(){
  const u=new URL(location.href);
  const space=spaces[u.searchParams.get('space')]?u.searchParams.get('space'):'learn';
  const view=localViews[u.searchParams.get('view')]?u.searchParams.get('view'):'home';
- return {space,view,section:(u.searchParams.get('section')||'').replace(/[^a-zA-Z0-9-]/g,'').slice(0,80)};
+ return {space,view,section:(u.searchParams.get('section')||'').replace(/[^a-zA-Z0-9:-]/g,'').slice(0,80)};
 }
 function updateUrl(next,replace=false){
  const u=new URL(location.href);
@@ -49,17 +53,18 @@ function updateUrl(next,replace=false){
 }
 function route(target,{replace=false,historyChange=true}={}){
  const next={space:spaces[target.space]?target.space:'learn',view:localViews[target.view]?target.view:'home',section:target.section||''};
- if(historyChange)updateUrl(next,replace);
+ if(historyChange&&(replace||next.space!==current.space||next.view!==current.view||next.section!==current.section))updateUrl(next,replace);
  const old=current;
  current=next;
  document.body.dataset.space=next.space;
+ document.body.dataset.view=next.view;
  document.querySelector('#currentSpace').textContent=spaces[next.space].title;
  document.querySelector('#currentView').textContent=next.space==='learn'&&next.view!=='home'?' / '+localViews[next.view]:'';
  document.querySelector('#moduleTitle').textContent=next.space==='learn'&&next.view!=='home'?localViews[next.view]:spaces[next.space].title;
  document.querySelector('#moduleEyebrow').textContent=spaces[next.space].eyebrow;
  document.title=spaces[next.space].title+' · LUMEN';
- document.querySelectorAll('[data-space]').forEach(node=>{
-  const active=node.dataset.space===next.space&&(!node.dataset.view||next.view===node.dataset.view);
+ document.querySelectorAll('nav a[data-space], .settings-link').forEach(node=>{
+  const active=node.dataset.space===next.space&&(node.dataset.view?next.view===node.dataset.view:next.space!=='learn'||next.view==='home');
   node.classList.toggle('active',active);
   if(active)node.setAttribute('aria-current','page');else node.removeAttribute('aria-current');
  });
@@ -73,13 +78,15 @@ function route(target,{replace=false,historyChange=true}={}){
 function buildModuleTabs(){
  const target=document.querySelector('#moduleTabs');
  const options=current.space==='learn'
-  ?[['home','概览'],['review','复习'],['library','词库'],['stats','记录']]
+  ?[['home','概览'],['review','复习'],['library','词库'],['stats','记录'],['settings','设置']]
   :current.space==='quiz'
    ?[['home','训练设置'],['bank','全部题库'],['history','学习记录']]
    :[['index','章节目录'],['search','搜索图谱']];
  target.replaceChildren(...options.map(([id,label])=>{
   const b=document.createElement('button');b.type='button';b.dataset.tab=id;b.textContent=label;
-  b.className=(current.space==='learn'&&current.view===id)||(current.space!=='learn'&&id==='home')?'active':'';
+  const active=(current.space==='learn'&&current.view===id)||(current.space==='quiz'&&(nativeQuiz?.element.dataset.view||'home')===id);
+  b.className=active?'active':'';
+  if(active)b.setAttribute('aria-current','page');
   b.addEventListener('click',()=>moduleTab(id));return b;
  }));
 }
@@ -104,7 +111,7 @@ function moduleTab(id){
 }
 function activateFrame(target){
  if(target.space==='atlas'&&useNativeAtlas){
-  if(nativeAtlas){nativeAtlas.element.hidden=false;nativeAtlas.element.style.display='block';status.hidden=true;return}
+  if(nativeAtlas){nativeAtlas.element.hidden=false;nativeAtlas.element.style.display='block';if(target.section)nativeAtlas.navigate?.(target.section);status.hidden=true;return}
   if(nativeAtlasPending)return;
   status.hidden=false;status.textContent='正在接入原生切片图谱…';
   nativeAtlasPending=import('./modules/atlas.js').then(m=>m.mountAtlas(stage,{section:target.section})).then(instance=>{
@@ -131,6 +138,8 @@ function activateFrame(target){
    instance.element.hidden=current.space!=='quiz';
    instance.setTheme(document.documentElement.dataset.theme);
    instance.element.addEventListener('lumen:navigate',ev=>route(ev.detail));
+   instance.element.addEventListener('lumen:quiz-view',()=>{if(current.space!=='quiz')return;const view=instance.element.dataset.view;document.querySelectorAll('#moduleTabs button').forEach(b=>{const active=b.dataset.tab===view;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})});
+   if(current.space==='quiz')buildModuleTabs();
    status.hidden=true;
   }).catch(e=>{console.error('Native quiz failed; legacy fallback enabled',e);status.textContent='原生模块加载异常，正在恢复兼容入口';useNativeQuiz=false;nativeQuizPending=null;const u=new URL(location.href);u.searchParams.delete('native');u.searchParams.set('compat','1');history.replaceState(history.state,'',u);activateFrame(target)});
   return;
@@ -236,10 +245,11 @@ body{margin:0!important}
  status.hidden=true;
 }
 document.addEventListener('click',e=>{
- const anchor=e.target.closest?.('a[data-space]');if(anchor){e.preventDefault();route({space:anchor.dataset.space,view:anchor.dataset.view||'home'});return}
- const button=e.target.closest?.('[data-go]');if(button)route({space:button.dataset.go});
+ const anchor=e.target.closest?.('a[data-space]');if(anchor){if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();route({space:anchor.dataset.space,view:anchor.dataset.view||'home'});return}
+ const button=e.target.closest?.('[data-go]');if(button)route({space:button.dataset.go,view:button.dataset.goView||'home'});
 });
 window.addEventListener('popstate',()=>route(parseRoute(),{historyChange:false}));
+window.addEventListener('storage',e=>{if(e.key==='lumen_atlas_theme_v1'&&(e.newValue==='light'||e.newValue==='dark')&&e.newValue!==document.documentElement.dataset.theme)theme(e.newValue)});
 document.querySelector('#themeToggle').addEventListener('click',()=>theme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
 function setExploded(next){
  expanded=Boolean(next);
@@ -247,7 +257,7 @@ function setExploded(next){
  sculpture.setAttribute('aria-pressed',String(expanded));
  sculpture.setAttribute('aria-label',expanded?'收起显微层片':'展开显微层片');
  layerToggle.setAttribute('aria-pressed',String(expanded));
- layerToggle.innerHTML=expanded?'收拢层片 <span aria-hidden="true">×</span>':'探索内部结构 <span aria-hidden="true">+</span>';
+ layerToggle.innerHTML=(expanded?'收拢层片 ':'展开层片 ')+icon(expanded?'minus':'plus');
 }
 layerToggle.addEventListener('click',()=>setExploded(!expanded));
 sculpture.addEventListener('click',()=>setExploded(!expanded));
