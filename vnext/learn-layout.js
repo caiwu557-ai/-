@@ -37,7 +37,7 @@ export function bridgeLearnLayout(frame,doc,{workspace,onMode,onView}){
  function sync(){
   raf=0;if(frame.hidden||!frame.isConnected)return;
   const home=Boolean(app.querySelector('.home-dashboard')),study=Boolean(app.querySelector('.practice-layout,.round-prompt-backdrop,.practice-result,.finished-page'))||!home&&lastView==='study'&&!app.querySelector('.page-heading,.settings-grid');
-  const overlay=Boolean(app.querySelector('.drawer-backdrop,.round-prompt-backdrop,.tour-layer'));
+  const overlay=Boolean(app.querySelector('.drawer-backdrop,.round-prompt-backdrop,.tour-layer,.learning-modal-backdrop'));
   const view=home?'home':study?'study':new URL(win.location.href).searchParams.get('view')||'home';
   const flow=home&&!overlay?'home':'frame';
   if(home)progress();
