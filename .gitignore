@@ -1,0 +1,8 @@
+# Defense in depth only; never store private memory inside this public checkout.
+.memory/
+.private/
+private-memory/
+private-context/
+.env
+.env.*
+!.env.example
