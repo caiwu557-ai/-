@@ -15,8 +15,8 @@ export async function mountQuiz(parent){
  const shadow=element.attachShadow({mode:'open'});
  const style=window.document.createElement('style');
  style.textContent=rawCSS.replace(/:root\[data-theme=dark\]/g,':host([data-theme=dark])').replace(/:root/g,':host')+`
-:host{display:block;--paper:#fff;--paper2:#f6f8fc;--line:#e0e6ef;--dim:#738098;--accent:#5a4bd5;color:#1e2740}
-:host([data-theme=dark]){--paper:#151e2e;--paper2:#1d283b;--line:#384961;--dim:#bac6d9;--accent:#b7a8ff;color:#edf0ff}
+:host{display:block;--paper:var(--lumen-paper,#fff);--paper2:var(--lumen-paper2,#f8f9fc);--line:var(--lumen-line,#dfe4ed);--dim:var(--lumen-muted,#59667e);--accent:var(--lumen-accent,#5145bf);color:var(--lumen-ink,#1b2340)}
+:host([data-theme=dark]){--paper:var(--lumen-paper,#141c2d);--paper2:var(--lumen-paper2,#1b2538);--line:var(--lumen-line,#35415a);--dim:var(--lumen-muted,#b1bfd2);--accent:var(--lumen-accent,#b4aaff);color:var(--lumen-ink,#f5f7ff)}
 .quiz-root{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:inherit;min-width:0}
 .quiz-root .shell{display:block!important;min-height:0!important}
 .quiz-root .sidebar,.quiz-root .topbar,.quiz-root .bottom-tabs,.quiz-root .scrim{display:none!important}

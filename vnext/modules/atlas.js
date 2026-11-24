@@ -1,15 +1,21 @@
+import { icon as lumenIcon } from '../icons.js';
 const atlasBase=new URL('../../atlas/',import.meta.url);
 export async function mountAtlas(parent,opts={}){
  const html=await window.fetch(new URL('../../atlas/index.html',import.meta.url)).then(r=>r.text());
  const rawCSS=await window.fetch(new URL('../../atlas/atlas.css',import.meta.url)).then(r=>r.text());
  const template=new DOMParser().parseFromString(html,'text/html');
+ const iconSelectors=[['.searchbar svg','search'],['#menuBtn svg','menu'],['#topSearchBtn svg','search'],['#themeBtn svg','moon'],['.top-tools button[title="打印当前页面"] svg','printer']];
+ for(const [selector,name] of iconSelectors){const node=template.querySelector(selector);if(node)node.outerHTML=lumenIcon(name,'lumen-atlas-icon',18)}
+ const navIcons=['house','refresh-cw','book-open','scan-line','layers','chart-no-axes-column','settings'];
+ template.querySelectorAll('.app-nav a').forEach((link,i)=>{const node=link.querySelector('svg');if(node&&navIcons[i])node.outerHTML=lumenIcon(navIcons[i],'lumen-atlas-icon',18)});
  const element=window.document.createElement('div');element.className='vnext-native-atlas';
  element.dataset.theme=window.document.documentElement.dataset.theme||'light';
  element.style.cssText='display:block;min-width:0';
  const shadow=element.attachShadow({mode:'open'});
  const style=window.document.createElement('style');
  style.textContent=rawCSS.replace(/:root\[data-theme=dark\]/g,':host([data-theme=dark])').replace(/:root/g,':host')+`
-:host{display:block}
+:host{display:block;--page:var(--paper);--panel:var(--paper2);--surface:var(--paper);--text:var(--ink);--heading:var(--ink);--muted:var(--lumen-muted,#59667e);--line:var(--lumen-line,#dfe4ed);--line-dark:var(--lumen-line,#dfe4ed);--accent:var(--lumen-accent,#5145bf);--soft:var(--accent-soft)}
+:host([data-theme=dark]){--page:var(--paper);--panel:var(--paper2);--surface:var(--paper);--text:var(--ink);--heading:var(--ink);--muted:var(--lumen-muted,#b1bfd2);--line:var(--lumen-line,#35415a);--line-dark:var(--lumen-line,#35415a);--accent:var(--lumen-accent,#b4aaff);--soft:var(--accent-soft)}
 .atlas-root{background:var(--page);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-width:0}
 .atlas-root .shell{min-height:0!important}
 .atlas-root .side .brand,.atlas-root .side .app-nav,.atlas-root .side .nav-group-label,.atlas-root .side .side-footer,.atlas-root .topbar,.atlas-root .workspace-tabs{display:none!important}
@@ -17,6 +23,14 @@ export async function mountAtlas(parent,opts={}){
 .atlas-root .side .nav-btn{color:#46516e!important}
 .atlas-root .side .nav-btn.active{color:#39316c!important;background:#eae7fb!important}
 .atlas-root .side .nav-label{color:#69768e!important}
+.atlas-root .side .searchbar{background:var(--page);border-color:var(--line);color:var(--text)}
+.atlas-root .side .searchbar input{color:var(--text)}
+.atlas-root .side .searchbar input::placeholder,.atlas-root .side .searchbar kbd{color:var(--muted)}
+.atlas-root .side .nav-btn .count{color:var(--muted)}
+.atlas-root .side .nav-btn:hover{background:var(--soft);color:var(--text)}
+.atlas-root .side .nav-btn{min-height:44px}
+.atlas-root .lumen-atlas-icon{flex:none;vertical-align:middle}
+@media(max-width:850px){.atlas-root .side{z-index:1001!important}.atlas-root .drawer-scrim.open{z-index:1000!important}}
 .atlas-root .reader-wrap{max-width:none!important;padding:20px 25px 68px!important}
 .atlas-root .page-title:focus{outline:none}
 .atlas-root .article{max-width:none!important;line-height:1.7}
@@ -153,7 +167,6 @@ function setSideOpen(open){
  if(!show && innerWidth<=850 && $('#side').contains(document.activeElement))$('#menuBtn').focus({preventScroll:true});
 }
 
-const icon={menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',theme:'<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z"/>'};
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const groups=DATA.systems;
 const groupMap=Object.fromEntries(groups.map(x=>[x.key,x]));
@@ -335,7 +348,8 @@ if(initialSearch&&(initialRoute==='overview'||initialRoute==='search')){
 }
  initialize();
  const tabs=id=>{
-  if(id==='search'){shadow.getElementById('search')?.focus();return}
+  if(id==='search'){const field=shadow.getElementById('search');if(innerWidth<=850){shadow.getElementById('topSearchBtn')?.click()}else field?.focus();return}
+  if(id==='directory'){if(innerWidth<=850)shadow.getElementById('menuBtn')?.click();else shadow.querySelector('.side')?.scrollIntoView({block:'nearest'});return}
   const button=shadow.querySelector('[data-target="overview"]');button?.click();
  };
  return {element,tab:tabs,navigate:target=>{hash='#'+encodeURIComponent(target);navigateSection?.(target)},setTheme:t=>{element.dataset.theme=t},getRoot:()=>shadow};

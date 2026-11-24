@@ -81,7 +81,7 @@ function buildModuleTabs(){
   ?[['home','概览'],['review','复习'],['library','词库'],['stats','记录'],['settings','设置']]
   :current.space==='quiz'
    ?[['home','训练设置'],['bank','全部题库'],['history','学习记录']]
-   :[['index','章节目录'],['search','搜索图谱']];
+   :[['index','总目录'],['directory','章节导航'],['search','搜索图谱']];
  target.replaceChildren(...options.map(([id,label])=>{
   const b=document.createElement('button');b.type='button';b.dataset.tab=id;b.textContent=label;
   const active=(current.space==='learn'&&current.view===id)||(current.space==='quiz'&&(nativeQuiz?.element.dataset.view||'home')===id);
@@ -100,11 +100,11 @@ function moduleTab(id){
   const node=doc.querySelector('.local-nav [data-view="'+id+'"],.bottom-tabs [data-view="'+id+'"]');
   if(node){node.click();document.querySelectorAll('#moduleTabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id))}
  }else if(current.space==='atlas'&&useNativeAtlas&&nativeAtlas){nativeAtlas.tab(id);return}
+ else if(id==='directory'){doc.getElementById('menuBtn')?.click();return}
  else if(id==='search'){
   const input=doc.getElementById('search');
   const menu=doc.getElementById('menuBtn');
-  if(menu && innerWidth<=780)menu.click();
-  input?.focus();
+  if(menu && innerWidth<=850){doc.getElementById('topSearchBtn')?.click();}else input?.focus();
  }else{
   const overview=doc.querySelector('[data-target="overview"]');overview?.click();
  }

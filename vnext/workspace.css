@@ -172,3 +172,7 @@ body:not([data-space=learn]) .experience,body[data-space=learn]:not([data-view=h
 }
 @media(max-width:370px){.hero-copy{padding:18px 14px 4px}.primary-action,.quiet-action{padding-inline:9px}.module-tabs button{padding-inline:8px}.mobile-nav a span{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.sculpture{will-change:auto}}
+
+/* Cross-shadow semantic token contract; values resolve in the outer theme. */
+:root{--lumen-paper:var(--paper);--lumen-paper2:var(--paper2);--lumen-ink:var(--ink);--lumen-line:var(--line);--lumen-muted:var(--muted);--lumen-accent:var(--accent)}
+@media(min-width:851px){#moduleTabs button[data-tab=directory]{display:none}}

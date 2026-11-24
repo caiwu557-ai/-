@@ -31,6 +31,12 @@ try {
   assert.equal(await page.locator('#moduleTabs button[data-tab=bank]').getAttribute('aria-current'),'page');
   await page.screenshot({path:out+'/refinement-'+w+'-bank-dark.png',animations:'disabled'});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));
+  await page.locator('.primary-nav a[data-space=atlas],.mobile-nav a[data-space=atlas]').first().evaluate(el=>el.click());
+  await page.locator('.vnext-native-atlas #reader .page-title').waitFor({state:'visible'});
+  await page.locator('#moduleTabs button[data-tab=search]').click();
+  if(w<=850) await page.locator('.vnext-native-atlas #side.open').waitFor({state:'visible'});
+  await page.locator('.vnext-native-atlas #search').fill('skin');
+  await page.screenshot({path:out+'/refinement-'+w+'-atlas-search-dark.png',animations:'disabled'});
   assert.deepEqual(errors,[]);
   console.log('REFINEMENT PASS '+w);await page.close();
  }
