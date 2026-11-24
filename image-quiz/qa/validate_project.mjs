@@ -11,12 +11,12 @@ const data=JSON.parse(read('data/bank.json'));
 let passed=0;
 const t=(name,fn)=>{fn();passed++;console.log('PASS',name)};
 t('Both JS sources compile',()=>{new vm.Script(app);new vm.Script(read('data/bank.js'))});
-t('364 complete records with unique stable IDs',()=>{assert.equal(data.questions.length,364);assert.equal(new Set(data.questions.map(q=>q.id)).size,364);assert.deepEqual(data.questions.map(q=>q.id),Array.from({length:364},(_,i)=>'Q'+String(i+1).padStart(4,'0')))});
+t('365 complete records with unique stable IDs',()=>{assert.equal(data.questions.length,365);assert.equal(new Set(data.questions.map(q=>q.id)).size,365);assert.deepEqual(data.questions.map(q=>q.id),Array.from({length:365},(_,i)=>'Q'+String(i+1).padStart(4,'0')))});
 t('All 364 WebP files exist, are non-empty and preserve metadata',()=>{
  for(const q of data.questions){assert.ok(q.cn&&q.en&&q.group&&q.type&&q.accept.length>=2,q.id);const f=path.join(root,q.image);assert.ok(fs.existsSync(f),q.id);const b=fs.readFileSync(f);assert.ok(b.length>500&&b.subarray(0,4).toString()==='RIFF'&&b.subarray(8,12).toString()==='WEBP',q.id)}
 });
 t('Original source classification preserved in each record',()=>{assert.ok(data.questions.every(q=>q.originalGroup&&q.sourceIndex>0))});
-t('Source review and supplement are excluded from all automatic modes',()=>{assert.equal(data.questions.filter(q=>q.status==='review_needed').length,43);assert.equal(data.questions.filter(q=>q.scope==='supplement').length,6);assert.ok(data.questions.every(q=>q.autoEligible===q.examEligible));assert.ok(data.questions.every(q=>q.autoEligible||['review_needed','visual_review_needed'].includes(q.status)||q.scope==='supplement'));assert.equal(data.questions.filter(q=>q.examEligible).length,305)});
+t('Exact retirement, supplemental scope and active eligibility',()=>{assert.equal(data.questions.filter(q=>q.archived).length,39);assert.equal(data.questions.filter(q=>q.scope==='supplement').length,6);assert.ok(data.questions.every(q=>q.autoEligible===q.examEligible));assert.ok(data.questions.every(q=>q.autoEligible?!q.archived&&q.scope==='core':q.archived||q.scope==='supplement'));assert.equal(data.questions.filter(q=>q.examEligible).length,320);const old=data.questions.find(q=>q.id==='Q0174'),fix=data.questions.find(q=>q.id==='Q0365');assert.equal(old.archived,true);assert.equal(fix.en,'unmyelinated nerve fiber');assert.equal(fix.image,old.image);assert.equal(fix.supersedes,old.id);assert.ok(!fix.accept.includes(old.en));const ctx=vm.createContext({window:{}});vm.runInContext(read('data/bank.js'),ctx);assert.equal(JSON.stringify(ctx.window.LUMEN_IMAGE_BANK),JSON.stringify(data))});
 t('Removed misclassified answers do not appear as accepted aliases',()=>{
  const qs=Object.fromEntries(data.questions.map(x=>[x.id,x]));
  for(const [id,wrong] of [['Q0012','基底层细胞'],['Q0013','固有层'],['Q0018','分泌盐酸'],['Q0027','黏膜肌层'],['Q0038','淋巴小结'],['Q0045','肾上腺髓质'],['Q0164','皮质'],['Q0197','中央静脉']]){
@@ -32,7 +32,7 @@ t('Accepted synonyms are constrained to same anatomical target',()=>{
 t('Medical source correction, non-leading prompts, and audit metadata',()=>{
  const q=data.questions.find(q=>q.id==='Q0318');
  assert.equal(q.cn,'初级卵母细胞');assert.equal(q.en,'primary oocyte');assert.ok(!q.accept.includes('卵原细胞'));
- assert.equal(data.meta.schema,'lumen.imagebank.v2');assert.equal(data.meta.scopeSupplementCount,6);assert.equal(data.meta.automaticCount,305);
+ assert.equal(data.meta.schema,'lumen.imagebank.v2');assert.equal(data.meta.scopeSupplementCount,6);assert.equal(data.meta.automaticCount,320);
  assert.ok(data.questions.every(q=>q.prompt&&!q.prompt.includes(q.cn)&&!q.prompt.toLowerCase().includes(q.en.toLowerCase())));
  for(const id of ['Q0055','Q0105','Q0193','Q0196','Q0198','Q0207'])assert.equal(data.questions.find(q=>q.id===id).scope,'supplement');
 });
@@ -80,4 +80,4 @@ t('Exported CSV neutralizes spreadsheet formulas',()=>{
  for(const term of ["'=1+2","'+SUM(1)","' -4","'@FORMULA"])assert.ok(value.includes(term),term);
  assert.ok(value.includes('"safe"'));
 });
-console.log('STATIC_QA_SUMMARY',JSON.stringify({pass:passed,fail:0,totalImages:364,reviewNeeded:43,visualHold:11,examEligible:305}));
+console.log('STATIC_QA_SUMMARY',JSON.stringify({pass:passed,fail:0,totalImages:364,archived:39,examEligible:320}));

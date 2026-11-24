@@ -14,8 +14,8 @@ try{
   const response=await page.goto(base+'/image-quiz/',{waitUntil:'load'});
   assert.equal(response.status(),200,'image-quiz route should respond HTTP 200');
   await page.locator('#metric-total').waitFor();
-  assert.equal((await page.locator('#metric-total').innerText()).trim(),'364');
-  assert.equal((await page.locator('#available-total').innerText()).trim(),'305');
+  assert.equal((await page.locator('#metric-total').innerText()).trim(),'320');
+  assert.equal((await page.locator('#available-total').innerText()).trim(),'320');
   await page.locator('#start-btn').click();
   if(width<=650){
    assert.equal(await page.locator('.bottom-tabs').evaluate(el=>getComputedStyle(el).display),'none','mobile tabbar must not cover quiz actions');
@@ -105,7 +105,7 @@ try{
  await chooser.setFiles({name:'malformed-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
  await importPage.locator('#toast').waitFor({state:'visible'});
  assert.ok((await importPage.locator('#toast').innerText()).includes('导入失败'),'invalid JSON backup must be rejected');
- assert.equal((await importPage.locator('#metric-total').innerText()).trim(),'364','failed import must preserve current data');
+ assert.equal((await importPage.locator('#metric-total').innerText()).trim(),'320','failed import must preserve current data');
  checks+=2;
  await importPage.close();
 

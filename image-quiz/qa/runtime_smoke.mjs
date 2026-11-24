@@ -26,7 +26,7 @@ const api=win.LUMEN_IMAGE_TEST;
 assert.ok(api,'test API missing');
 let pass=0;
 const t=(name,fn)=>{fn();pass++;console.log('PASS',name)};
-t('The actual app initializes home with 364 questions',()=>{assert.equal(get('#metric-total').textContent,364);assert.equal(api.getState().view,'home');assert.equal(api.eligiblePool('adaptive').length,305)});
+t('The actual app initializes home with 320 active questions',()=>{assert.equal(get('#metric-total').textContent,320);assert.equal(api.getState().view,'home');assert.equal(api.eligiblePool('adaptive').length,320)});
 t('Supplement and image-ambiguous items are never auto-graded',()=>{
  for(const id of ['Q0055','Q0105','Q0193','Q0196','Q0198','Q0207','Q0039'])
  assert.ok(!api.eligiblePool('adaptive').some(q=>q.id===id));
@@ -70,7 +70,7 @@ t('Skipped card does not count against recall accuracy',()=>{
  assert.equal(api.currentStats().attempts,before);assert.equal(api.getState().view,'result');
 });
 t('Session restored to home has new and due counts grounded in real attempts',()=>{
- api.go('home');const stats=api.currentStats();assert.equal(stats.newCount,305-2);assert.equal(get('#metric-new').textContent,stats.newCount);
+ api.go('home');const stats=api.currentStats();assert.equal(stats.newCount,320-2);assert.equal(get('#metric-new').textContent,stats.newCount);
 });
 t('Backups with invalid structures are rejected before overwrite',()=>{
  const current=api.getStore();
@@ -80,4 +80,5 @@ t('Backups with invalid structures are rejected before overwrite',()=>{
  assert.throws(()=>api.normalizeProgress({...backup,flags:{'Q9999':{type:'test',note:'test',when:Date.now()}}}),/核验记录/);
  assert.equal(api.getStore(),current);
 });
+t('Retirement preserves previous completed sessions and interrupted snapshots',()=>{const id='Q0041',a={id,user:'old answer',ok:true,skipped:false,when:1};const historic={mode:'single',ids:[id],startedAt:1,finishedAt:2,answers:[a],correct:1,skipped:0};const active={mode:'single',ids:[id],startedAt:1,index:0,answers:[],draftInput:'draft'};const p={version:1,items:{[id]:{attempts:1,correct:1,wrong:0,streak:1}},sessions:[historic],flags:{},active};const n=api.normalizeProgress(p);assert.equal(n.active,null);assert.equal(n.retiredActive.draftInput,'draft');assert.equal(n.sessions[0].ids[0],id);assert.equal(n.items[id].attempts,1);assert.equal(api.normalizeProgress(n).retiredActive.draftInput,'draft');assert.ok(!api.eligiblePool().some(q=>q.id===id));api.go('bank');assert.ok(!get('#page-bank').innerHTML.includes('Q0041'));});
 console.log('RUNTIME_SMOKE_SUMMARY',JSON.stringify({pass,fail:0}));

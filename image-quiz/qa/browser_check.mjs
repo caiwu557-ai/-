@@ -22,7 +22,7 @@ try{
   const tap=async sel=>touch?await page.locator(sel).first().tap():await page.locator(sel).first().click();
   await step(label+' / initial home and responsive',async()=>{
    await page.goto(BASE,{waitUntil:'domcontentloaded'});await page.locator('#metric-total').waitFor();
-   check((await page.locator('#metric-total').textContent())==='364','bank count !=364');
+   check((await page.locator('#metric-total').textContent())==='320','bank count !=320');
    check(await page.locator('#start-btn').isEnabled(),'start disabled');
    await fit();await shot('01-home');
   });

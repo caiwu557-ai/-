@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f6f7f9">
-  <meta name="description" content="HISTODONE 看图填空：364 道组胚显微图像识别题，提供智能复习、模拟考试与题目核验。">
+  <meta name="description" content="HISTODONE 看图填空：组胚显微图像识别题，提供智能复习、模拟考试与题目核验。">
   <title>看图填空 · HISTODONE</title>
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('lumen_atlas_theme_v1')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
   <link rel="stylesheet" href="./style.css">
@@ -29,7 +29,7 @@
     <p class="nav-caption with-rule">图像训练</p>
     <nav class="local-nav" aria-label="本模块导航">
       <button data-view="home" class="active" type="button">训练设置</button>
-      <button data-view="bank" type="button">全部题库 <span id="side-count">364</span></button>
+      <button data-view="bank" type="button">全部题库 <span id="side-count">320</span></button>
       <button data-view="history" type="button">学习记录</button>
     </nav>
     <div class="sidebar-foot"><span class="online-dot"></span>题图离线可用，记录仅存本机 <small>数据与术语训练互不覆盖</small></div>
@@ -48,14 +48,14 @@
           <a class="muted-link" href="../atlas/" target="_blank" rel="noopener"><span class="nav-icon" data-icon="layers"></span>打开切片图谱</a>
         </div>
         <div class="metric-grid" aria-label="学习统计">
-          <div class="metric"><span>题库总数</span><strong id="metric-total">364</strong><small>其中 <b id="available-total">305</b> 题可自动出题</small></div>
+          <div class="metric"><span>正式题库</span><strong id="metric-total">320</strong><small><b id="available-total">320</b> 题可自动出题</small></div>
           <div class="metric"><span>尚未练习</span><strong id="metric-new">316</strong><small>课纲核心 · 首次作答</small></div>
           <div class="metric"><span>待复习</span><strong id="metric-due">0</strong><small>基于答题结果安排</small></div>
           <div class="metric"><span>累计正确率</span><strong id="metric-accuracy">—</strong><small>仅计真实作答</small></div>
         </div>
         <div class="two-col">
           <section class="panel config-panel" aria-labelledby="mode-heading">
-            <div class="panel-title"><div><p class="overline">组卷规则</p><h2 id="mode-heading">组卷设置</h2></div><span class="count-hint" id="pool-badge">可用 364 题</span></div>
+            <div class="panel-title"><div><p class="overline">组卷规则</p><h2 id="mode-heading">组卷设置</h2></div><span class="count-hint" id="pool-badge">可用 320 题</span></div>
             <div class="field-label">训练模式</div>
             <div class="mode-grid" id="mode-grid" role="radiogroup" aria-label="选择训练模式">
               <button class="mode-option selected" type="button" data-mode="adaptive" role="radio" aria-checked="true"><span class="mode-icon" data-icon="target"></span><span><strong>综合练习</strong><small>错题、到期题与新题混合</small></span></button>
@@ -72,7 +72,7 @@
           </section>
           <div class="right-stack">
             <section class="panel read-panel"><p class="overline">判分说明</p><h2>每题只认一个目标</h2><p>看清图中结构后，输入中文或英文名称。回答以目标名称判分，结构的功能、附近的其他组织不算同义词。</p><div class="rule-list"><div><span class="rule-index">01</span>允许真正同义词与常见简称</div><div><span class="rule-index">02</span>错误答案进入复习计划</div><div><span class="rule-index">03</span>多编号目标存疑题单独标记</div></div></section>
-            <section class="panel audit-panel"><div class="audit-title"><span class="status-dot"></span><strong>题库质量状态</strong></div><p><strong id="audit-count">54</strong> 道题仍待核验图像目标；另有 <strong id="supplement-count">6</strong> 道补充范围题。自动组卷会排除这些题，原图与答案保留供核查。</p><button type="button" class="text-btn" data-view="bank" data-focus-filter="review">查看待复核题目 <span aria-hidden="true">→</span></button></section>
+            <section class="panel audit-panel"><div class="audit-title"><span class="status-dot"></span><strong>题库质量状态</strong></div><p><strong id="audit-count">39</strong> 道低质量或存疑题已退出正式题库；另有 <strong id="supplement-count">6</strong> 道补充范围题。两者均不参与自动组卷。</p><button type="button" class="text-btn" data-view="bank" data-focus-filter="supplement">查看补充范围 <span aria-hidden="true">→</span></button></section>
             <section class="panel return-panel"><div class="return-eyebrow">与 HISTODONE 单词记忆衔接</div><p>认不出的术语，进入词库复习中英文；忘记形态时，返回切片图谱重新定位。</p><div class="text-links"><a href="../?view=library" target="_blank" rel="noopener">术语词库 <span aria-hidden="true">↗</span></a><a href="../atlas/" target="_blank" rel="noopener">组织切片图谱 <span aria-hidden="true">↗</span></a></div></section>
           </div>
         </div>

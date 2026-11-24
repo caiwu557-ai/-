@@ -363,3 +363,4 @@ Q0361,平滑肌,retained,,retained_no_out_of_scope_evidence,True
 Q0362,骨骼肌,retained,,retained_no_out_of_scope_evidence,True
 Q0363,骨骼肌,retained,,retained_no_out_of_scope_evidence,True
 Q0364,心肌,retained,,retained_no_out_of_scope_evidence,True
+Q0365,有髓神经纤维,target_review,原题含多个编号/箭头或目标未唯一核定，保留供人工核验，不参与自动抽题,retained_no_out_of_scope_evidence,False
