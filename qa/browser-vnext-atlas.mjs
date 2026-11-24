@@ -1,0 +1,54 @@
+import {chromium} from 'playwright';
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const results=[];
+async function test(label,fn){try{await fn();results.push([label,true]);console.log('ATLAS_NATIVE PASS '+label)}catch(e){results.push([label,false,e.message]);console.error('ATLAS_NATIVE FAIL '+label+': '+e.message)}}
+try{
+ for(const width of [1440,390]){
+  const page=await browser.newPage({viewport:{width,height:900}});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+  await test(width+' native Atlas boot',async()=>{
+   await page.goto('http://127.0.0.1:4173/vnext/?space=atlas',{waitUntil:'domcontentloaded'});
+   await page.locator('.vnext-native-atlas #reader .page-title').waitFor({timeout:25000});
+   if(await page.locator('iframe[data-space=atlas]').count())throw Error('native Atlas unexpectedly fell back to iframe');
+   const text=await page.locator('.vnext-native-atlas #reader .page-title').innerText();
+   if(!text.includes('组织切片图谱'))throw Error('Atlas overview missing: '+text);
+   if(errors.length)throw Error(errors.join(' | '));
+  });
+  await test(width+' native Atlas sections and images',async()=>{
+   const group=page.locator('.vnext-native-atlas [data-target="group:integument"]').first();
+   await group.evaluate(el=>el.click());
+   const section=page.locator('.vnext-native-atlas [data-target="sec-7-2"]').first();
+   await section.evaluate(el=>el.click());
+   await page.locator('.vnext-native-atlas #reader .page-title').waitFor({state:'visible'});
+   const title=await page.locator('.vnext-native-atlas #reader .page-title').innerText();
+   if(!title.includes('Thick skin')&&!title.includes('厚皮'))throw Error('wrong section '+title);
+   if(!page.url().includes('section=sec-7-2'))throw Error('section not reflected in parent URL');
+   const geometry=await page.locator('.vnext-native-atlas #reader').evaluate(reader=>{
+    const article=reader.querySelector('.article'),table=article?.querySelector('table'),gallery=reader.querySelector('.term-evidence-list');
+    return {articleWidth:article?.getBoundingClientRect().width||0,tableWidth:table?.getBoundingClientRect().width||0,mediaCount:gallery?.querySelectorAll('.term-evidence-item').length||0};
+   });
+   if(geometry.articleWidth<150||geometry.tableWidth<geometry.articleWidth*.92)throw Error('native Atlas comparison table collapsed: '+JSON.stringify(geometry));
+   if(geometry.mediaCount<2)throw Error('skin comparison lost reference images');
+   const badImages=await page.locator('.vnext-native-atlas #reader img').evaluateAll(imgs=>imgs.filter(img=>img.src.includes('/vnext/images/')).map(img=>img.src));
+   if(badImages.length)throw Error('Atlas local image paths still point into VNext shell: '+badImages.slice(0,2).join(' | '));
+   await page.screenshot({path:'qa/browser-evidence/vnext-native-atlas-'+width+'.png',animations:'disabled'});
+  });
+  await test(width+' persistent module and theme',async()=>{
+   await page.locator('#themeToggle').click();
+   const theme=await page.locator('html').getAttribute('data-theme');
+   const moduleTheme=await page.locator('.vnext-native-atlas').getAttribute('data-theme');
+   if(theme!==moduleTheme)throw Error('Atlas theme not synchronized');
+   await page.locator('.primary-nav a[data-space=quiz],.mobile-nav a[data-space=quiz]').first().evaluate(el=>el.click());
+   await page.locator('.vnext-native-quiz #metric-total').waitFor({state:'visible',timeout:20000});
+   await page.goBack({waitUntil:'domcontentloaded'});
+   await page.locator('.vnext-native-atlas #reader .page-title').waitFor();
+   if(!page.url().includes('space=atlas'))throw Error('browser back navigation lost Atlas');
+   if(errors.length)throw Error(errors.join(' | '));
+  });
+  await page.close();
+ }
+}finally{await browser.close()}
+const failed=results.filter(x=>!x[1]);
+console.log('VNEXT_NATIVE_ATLAS_SUMMARY '+JSON.stringify({pass:results.length-failed.length,fail:failed.length,failed}));
+if(failed.length)process.exitCode=1;
