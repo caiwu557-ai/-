@@ -23,7 +23,8 @@ try{for(const [w,h] of [[1440,900],[1024,768],[768,1024],[390,844],[320,720]]){
  await page.screenshot({path:out+'/editorial-dark-'+w+'.png',animations:'disabled'});
  await page.locator('#microHero').evaluate(el=>el.motion.seek(15000));
  assert.equal(await page.locator('#microHero #brandFinale').evaluate(el=>Number(getComputedStyle(el).opacity)),1);
- assert.equal(await page.locator('#microHero .finale-lockup strong').textContent(),'HISTONYM');
+ assert.equal(await page.locator('#microHero .finale-lockup strong').textContent(),'HISTODONE');
+ assert.equal(await page.locator('#microHero .finale-tagline').textContent(),'Get Histology Done.');
  await page.screenshot({path:out+'/editorial-finale-dark-'+w+'.png',animations:'disabled'});
  await page.locator('#themeToggle').click();
  if(w>850){await page.mouse.move(500,120);const light=await page.locator('#glassCursor .lens').evaluate(el=>getComputedStyle(el).backgroundColor);assert.equal(light,'rgba(51, 65, 85, 0.52)');await page.locator('#themeToggle').click();const dark=await page.locator('#glassCursor .lens').evaluate(el=>getComputedStyle(el).backgroundColor);assert.equal(dark,'rgba(227, 247, 255, 0.2)');await page.locator('#themeToggle').click();}

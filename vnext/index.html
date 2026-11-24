@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="HISTONYM VNext — 术语、切片图谱与识图训练在统一工作区中无缝切换">
-<title>HISTONYM · 统一学习工作区</title>
+<meta name="description" content="HISTODONE VNext — 术语、切片图谱与识图训练在统一工作区中无缝切换">
+<title>HISTODONE · 统一学习工作区</title>
 <link rel="stylesheet" href="./workspace.css">
 <script type="module" src="./workspace.js"></script>
 </head>
 <body>
 <div class="app-shell" id="shell">
  <aside class="global-rail" id="globalRail" aria-label="统一工作区导航">
-  <a href="?space=learn" class="brand" data-space="learn" aria-label="HISTONYM 首页"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>HISTONYM</strong><small>Histology studio</small></span></a>
+  <a href="?space=learn" class="brand" data-space="learn" aria-label="HISTODONE 首页"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><strong>HISTODONE</strong><small>Get Histology Done.</small></span></a>
   <div class="rail-caption">学习空间</div>
   <nav class="primary-nav" aria-label="主功能">
    <a href="?space=learn" data-space="learn"><span class="nav-glyph" aria-hidden="true"><svg class="lumen-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><span>学习概览</span></a>
@@ -28,7 +28,7 @@
  </aside>
  <div class="app-column">
   <header class="global-topbar">
-   <div class="breadcrumb"><span class="crumb-mark">H</span><span class="crumb-text">HISTONYM</span><span class="slash">/</span><strong id="currentSpace">学习概览</strong><span id="currentView"></span></div>
+   <div class="breadcrumb"><span class="crumb-mark">H</span><span class="crumb-text">HISTODONE</span><span class="slash">/</span><strong id="currentSpace">学习概览</strong><span id="currentView"></span></div>
    <div class="topbar-actions">
     <span class="status-chip">学习记录仅存本机</span>
     <button id="themeToggle" class="icon-control" type="button" aria-label="切换深色模式"><svg class="lumen-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
@@ -39,7 +39,7 @@
   <main class="workspace" id="workspace" tabindex="-1">
    <section class="experience editorial-home" id="experience" aria-labelledby="heroTitle">
     <div class="editorial-copy">
-     <div class="editorial-kicker">HISTONYM / HISTOLOGY</div>
+     <div class="editorial-kicker">HISTODONE / HISTOLOGY</div>
      <h1 id="heroTitle">从组织形态<br>到精准辨认<span>。</span></h1>
      <p>术语复习、切片观察与识图训练，贯通每一次学习。</p>
      <div class="editorial-actions"><button class="primary-action" data-go="learn" data-go-view="review" type="button">到期复习 <span data-icon="arrow-right"></span></button><button class="quiet-action" data-go="quiz" type="button">看图填空 <span data-icon="scan-line"></span></button></div>
@@ -64,7 +64,7 @@
  </nav>
 </div>
 <dialog id="workspaceGuide" class="workspace-guide" aria-labelledby="guideTitle" aria-describedby="guideText">
- <div class="guide-header"><span class="guide-eyebrow">HISTONYM / 使用导览</span><button type="button" id="guideClose" class="icon-control" aria-label="关闭导览"></button></div>
+ <div class="guide-header"><span class="guide-eyebrow">HISTODONE / 使用导览</span><button type="button" id="guideClose" class="icon-control" aria-label="关闭导览"></button></div>
  <div class="guide-content"><div class="guide-step-icon" id="guideIcon"></div><span id="guideCount" class="guide-count"></span><h2 id="guideTitle"></h2><p id="guideText"></p><div id="guideProgress" class="guide-progress" role="progressbar" aria-label="导览进度" aria-valuemin="0"></div></div>
  <div class="guide-footer"><button type="button" id="guideSkip" class="guide-quiet">跳过</button><button type="button" id="guideBack" class="guide-quiet">上一步</button><button type="button" id="guideVisit" class="guide-quiet" hidden>前往此处</button><button type="button" id="guideNext" class="guide-primary">开始导览</button></div>
 </dialog>

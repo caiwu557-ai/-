@@ -1,4 +1,4 @@
-// Approved LUMEN V3 visual, isolated from the workspace's global styles.
+// Approved HISTODONE V3 visual, isolated from the workspace's global styles.
 import { icon } from './icons.js';
 export async function mountMicroHero(host){
  const root=host.attachShadow({mode:'open'});
