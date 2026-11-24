@@ -9,7 +9,7 @@ const first=html.indexOf('function shouldShowRoundPrompt(){');
 const last=html.indexOf('function render(){',first);
 assert(first>=0&&last>first,'Dialog implementation missing from bundle');
 const helpers=html.slice(first,last);
-assert(html.includes("guideStep>=0||shouldShowRoundPrompt()?'inert':''"),'Background must become inert while dialog open');
+assert(html.includes("guideStep>=0||shouldShowRoundPrompt()||learningSetup?'inert':''"),'Background must become inert while either dialog is open');
 assert(html.includes('shouldShowRoundPrompt()?roundPromptHtml():'),'Dialog must be mounted after the shell');
 assert(html.includes('requestAnimationFrame(focusRoundPrompt)'),'Initial focus not managed');
 assert(html.includes("if(e.key==='Escape'){e.preventDefault();goto('home');return;}"),'Escape handling missing');
