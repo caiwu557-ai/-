@@ -22,7 +22,7 @@ try{for(const [w,h] of [[1440,900],[768,1024],[390,844],[320,720]]){
  await learn.locator('.page-heading').waitFor();
  await page.locator('.primary-nav a[data-space=atlas],.mobile-nav a[data-space=atlas]').filter({visible:true}).first().click();const atlas=page.locator('.vnext-native-atlas');await atlas.locator('#reader .page-title').waitFor();
  if(w>850){await page.locator('#moduleTabs [data-tab=directory]').click();assert.equal(await atlas.getAttribute('data-directory-collapsed'),'true');await page.locator('#moduleTabs [data-tab=search]').click();assert.equal(await atlas.getAttribute('data-directory-collapsed'),'false')}
- else{await page.locator('#moduleTabs [data-tab=directory]').click();await atlas.locator('#side.open').waitFor();await page.keyboard.press('Escape')}
+ else{await page.locator('#moduleTabs [data-tab=directory]').click();await atlas.locator('#side.open').waitFor();await page.locator('#moduleTabs [data-tab=directory]').focus();await page.keyboard.press('Escape');await atlas.locator('#side.open').waitFor({state:'detached'});assert.equal(await atlas.locator('#side').evaluate(el=>getComputedStyle(el).pointerEvents),'none');assert.equal(await atlas.locator('#scrim').isVisible(),false)}
  await page.locator('.primary-nav a[data-space=quiz],.mobile-nav a[data-space=quiz]').filter({visible:true}).first().click();await page.locator('.vnext-native-quiz #metric-total').waitFor();await page.waitForFunction(()=>document.body.dataset.scrollOwner==='page');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));assert.deepEqual(errors,[]);await page.close();console.log('SCROLL PASS '+w)
 }}finally{await browser.close()}

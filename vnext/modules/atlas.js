@@ -53,7 +53,7 @@ export async function mountAtlas(parent,opts={}){
 @keyframes atlas-fade{from{opacity:0}to{opacity:1}}
 @keyframes atlas-pop{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){.atlas-root *,.atlas-root *::before,.atlas-root *::after{transition-duration:.001ms!important;animation-duration:.001ms!important;scroll-behavior:auto!important}}
-@media(max-width:850px){.atlas-root .side{z-index:1001!important}.atlas-root .drawer-scrim.open{z-index:1000!important}}
+@media(max-width:850px){.atlas-root .side{z-index:1001!important}.atlas-root .side:not(.open){visibility:hidden;pointer-events:none}.atlas-root .side.open{visibility:visible;pointer-events:auto}.atlas-root .drawer-scrim:not(.open){display:none!important;pointer-events:none}.atlas-root .drawer-scrim.open{z-index:1000!important}}
 .atlas-root .reader-wrap{max-width:none!important;padding:20px 25px 68px!important}
 .atlas-root .page-title:focus{outline:none}
 .atlas-root .article{max-width:none!important;line-height:1.7}
@@ -187,7 +187,7 @@ function presentImageModal(){
 function setSideOpen(open){
  const show=Boolean(open);$('#side').classList.toggle('open',show);$('#scrim').classList.toggle('open',show);
  $('#menuBtn').setAttribute('aria-expanded',String(show));
- if(!show && innerWidth<=850 && $('#side').contains(document.activeElement))window.document.querySelector('#moduleTabs [data-tab=directory]')?.focus({preventScroll:true});
+ if(innerWidth<=850){const side=$('#side');side.inert=!show;if(show)$('#search')?.focus({preventScroll:true});else if(side.contains(document.activeElement))window.document.querySelector('#moduleTabs [data-tab=directory]')?.focus({preventScroll:true});}
 }
 
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -346,6 +346,10 @@ document.addEventListener('keydown',e=>{
   e.preventDefault();if(innerWidth<=850)setSideOpen(true);$('#search').focus();
  }
 });
+// The directory toggle lives outside the ShadowRoot. Escape must also work
+// when focus is on that outer control, not only inside the chapter drawer.
+window.document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!element.hidden&&innerWidth<=850&&$('#side').classList.contains('open')){e.preventDefault();setSideOpen(false);window.document.querySelector('#moduleTabs [data-tab=directory]')?.focus({preventScroll:true})}});
+window.addEventListener('resize',()=>{if(innerWidth>850){$('#side').inert=false;setSideOpen(false)}else $('#side').inert=!$('#side').classList.contains('open')});
 function handleHistoryNavigation(){
  const next=decodeURIComponent(location.hash.slice(1))||'overview';
  if(next==='search'){
