@@ -8,7 +8,7 @@ import { Script } from 'node:vm';
 import assert from 'node:assert/strict';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
-const main = read('../index.html');
+const main = read('../learn-engine.html');
 const atlas = read('../atlas/index.html');
 const js = read('../atlas/atlas.js');
 const css = read('../assets/lumen-unified.css');

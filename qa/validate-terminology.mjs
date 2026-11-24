@@ -5,7 +5,7 @@
  */
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
-const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../learn-engine.html', import.meta.url), 'utf8');
 
 function extractEmbeddedJSON(prefix, terminator = ';\n') {
   const start = html.indexOf(prefix);

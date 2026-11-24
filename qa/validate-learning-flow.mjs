@@ -6,7 +6,7 @@
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 
-const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../learn-engine.html',import.meta.url),'utf8');
 function readJson(key){
  const start=html.indexOf(key);
  assert(start>=0,'Missing '+key);

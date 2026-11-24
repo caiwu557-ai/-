@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const BASE=process.env.LUMEN_BASE_URL||'http://127.0.0.1:4173/';
+const BASE=new URL('learn-engine.html',process.env.LUMEN_BASE_URL||'http://127.0.0.1:4173/').href;
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const cases=[];let expectedCard=null;
 async function test(name,fn){

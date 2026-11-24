@@ -2,7 +2,8 @@ import {chromium} from 'playwright';import assert from 'node:assert/strict';impo
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});const out='qa/browser-evidence';fs.mkdirSync(out,{recursive:true});
 try{for(const [w,h] of [[1440,900],[1024,768],[768,1024],[390,844],[320,720]]){
  const page=await browser.newPage({viewport:{width:w,height:h},reducedMotion:'reduce'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:4173/vnext/');await page.locator('#workspaceGuide').waitFor({state:'visible'});
+ await page.goto('http://127.0.0.1:4173/');await page.waitForURL(/\/vnext\//);await page.locator('#workspaceGuide').waitFor({state:'visible'});
+ await page.locator('iframe[data-space=learn]').contentFrame().locator('#app .shell').waitFor();
  assert.equal(await page.locator('#guideCount').textContent(),'1 / 6');
  for(let i=0;i<5;i++)await page.locator('#guideNext').click();
  assert.equal(await page.locator('#guideCount').textContent(),'6 / 6');

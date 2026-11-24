@@ -3,13 +3,13 @@
 An offline-first Chinese/English histology terminology study web app. 1,269 deduplicated base entries plus 14 classroom-photo entries at runtime (1,283 cards total). Multiple-choice exercises, letter-by-letter English spelling, chapter filtering, local SRS practice and exportable progress.
 
 ## Open
-- Open `index.html` directly in Chrome/Edge/Safari. The entire app and word data are embedded in this file.
+- Open the GitHub Pages root; it redirects to the unified `/vnext/` workspace. `learn-engine.html` retains the original terminology engine byte-for-byte and is embedded by VNext.
 - When GitHub Pages is explicitly enabled for this repository, `index.html` is the static site entrypoint.
 - No API keys, analytics, external fonts, external images or CDN requests are required for the app.
 - Progress is saved to the browser's **localStorage**; it is not synced across devices.
 
 ## Editable source and QA
-The current repository contains a single-file app (`index.html`) and this README; the standalone source-project folder referenced in earlier drafts is not present here. The embedded `window.LUMEN_DATA` glossary is the vocabulary source in this published bundle.
+The retained terminology engine (`learn-engine.html`) is a single-file app and this README; the standalone source-project folder referenced in earlier drafts is not present here. The embedded `window.LUMEN_DATA` glossary is the vocabulary source in this published bundle.
 
 Terminology audit: `qa/TERMINOLOGY_AUDIT_2026-11-04.md` (verified fixes, source references, and unresolved ambiguities). Run `node qa/validate-terminology.mjs` after vocabulary edits to check vocabulary integrity and targeted regressions. The checker does not constitute independent academic validation of all entries.
 

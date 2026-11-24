@@ -4,7 +4,7 @@
  */
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
-const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const html=readFileSync(new URL('../learn-engine.html',import.meta.url),'utf8');
 const first=html.indexOf('function shouldShowRoundPrompt(){');
 const last=html.indexOf('function render(){',first);
 assert(first>=0&&last>first,'Dialog implementation missing from bundle');

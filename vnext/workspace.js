@@ -3,7 +3,7 @@ import { enter, reduce, workspaceTop } from './motion.js';
 import { icon } from './icons.js';
 const base=new URL('../',window.location.href);
 const spaces={
- learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./?embed=1',base).href},
+ learn:{title:'学习概览',eyebrow:'Your learning desk',url:new URL('./learn-engine.html?embed=1',base).href},
  atlas:{title:'切片图谱',eyebrow:'Histology atlas',url:new URL('./atlas/',base).href},
  quiz:{title:'看图填空',eyebrow:'Image recognition',url:new URL('./image-quiz/',base).href}
 };
@@ -226,7 +226,7 @@ body{margin:0!important}
   if(u.origin!==base.origin)return;
   const relative=u.pathname.slice(base.pathname.length).replace(/^\/+/,'');
   let next=null;
-  if(relative===''||relative==='index.html'){next={space:'learn',view:localViews[u.searchParams.get('view')]?u.searchParams.get('view'):'home'}}
+  if(relative===''||relative==='index.html'||relative==='learn-engine.html'){next={space:'learn',view:localViews[u.searchParams.get('view')]?u.searchParams.get('view'):'home'}}
   if(relative==='atlas/'||relative==='atlas/index.html'){next={space:'atlas',section:u.hash.slice(1)}}
   if(relative==='image-quiz/'||relative==='image-quiz/index.html'){next={space:'quiz'}}
   if(!next)return;
