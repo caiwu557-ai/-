@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {reference,validate} from './validate.mjs';
+const repo='test/public';
+const sample=()=>({repo,pr:{body:'GAMP-Issue: #42',commits:1,changed_files:1},issue:{number:42,state:'open',repository_url:'https://api.github.com/repos/test/public',created_at:'2026-01-01T00:00:00Z',body:'GAMP-Record: active\n## Public summary\nSafe\n## Scope\nDocs\n## Acceptance criteria\n- [ ] Check\n## Status\nin-progress'},commits:[{commit:{message:'docs\n\nGAMP-Issue: #42',author:{date:'2026-01-02T00:00:00Z'},committer:{date:'2026-01-02T00:00:00Z'}}}],files:[{filename:'docs/public.md'}]});
+let passed=0;
+function test(name,mutate,expected){
+  const v=sample();mutate(v);const f=validate(v);
+  if(expected) assert.ok(f.includes(expected),name);else assert.deepEqual(f,[],name);
+  passed++;console.log('PASS '+name);
+}
+test('valid public record',()=>{},null);
+test('missing PR marker',x=>x.pr.body='Refs #42','PR_REFERENCE');
+test('cross-repo spoof',x=>x.pr.body='GAMP-Issue: other/repo#42','PR_REFERENCE');
+test('multiple markers',x=>x.pr.body+='\nGAMP-Issue: #43','PR_REFERENCE');
+test('closed issue',x=>x.issue.state='closed','ACTIVE_SAME_REPO_ISSUE');
+test('PR masquerading as issue',x=>x.issue.pull_request={},'ACTIVE_SAME_REPO_ISSUE');
+test('wrong repo',x=>x.issue.repository_url='https://api.github.com/repos/elsewhere/test','ACTIVE_SAME_REPO_ISSUE');
+test('missing issue',x=>x.issue=null,'ACTIVE_SAME_REPO_ISSUE');
+test('retrospective record',x=>x.issue.body=x.issue.body.replace('active','retrospective'),'ISSUE_RECORD_TYPE');
+test('placeholder scope',x=>x.issue.body=x.issue.body.replace('Docs','<!-- fill -->'),'ISSUE_FIELD_SCOPE');
+test('wrong commit trailer',x=>x.commits[0].commit.message='GAMP-Issue: #43','COMMIT_TRAILER');
+test('not final trailer',x=>x.commits[0].commit.message+='\nother','COMMIT_TRAILER');
+test('incomplete commits',x=>x.pr.commits=2,'COMMIT_ENUMERATION');
+test('backfilled issue',x=>x.issue.created_at='2026-01-03T00:00:00Z','ISSUE_PRECEDENCE');
+test('private path',x=>x.files[0].filename='.memory/CONTEXT.md','PRIVATE_PATH');
+test('private rename',x=>x.files[0].previous_filename='PRIVATE-CONTEXT/history.md','PRIVATE_PATH');
+test('credential path',x=>x.files[0].filename='.env.production','PRIVATE_PATH');
+test('public env example',x=>x.files[0].filename='.env.example',null);
+test('incomplete files',x=>x.pr.changed_files=2,'FILE_ENUMERATION');
+assert.equal(reference('GAMP-Issue: #0'),null);
+console.log('GAMP_TEST_SUMMARY '+JSON.stringify({pass:passed,fail:0}));
