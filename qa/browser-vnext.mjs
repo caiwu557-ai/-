@@ -15,8 +15,8 @@ try{
   await run(label+' shared workspace and glass-slide hero',async()=>{
    const response=await page.goto(base,{waitUntil:'domcontentloaded'});
    if(response.status()!==200)throw Error('VNext route not served');
-   await page.locator('.slide-composition .glass-sheet').first().waitFor();
-   if(await page.locator('.glass-sheet').count()!==3)throw Error('Glass-slide composition missing');
+   await page.locator('#microHero #scene').waitFor();
+   if(await page.locator('#microHero .phase').count()!==3)throw Error('Three-phase visual missing');
    if(await page.locator('#sculpture').count())throw Error('Retired onion remains');
    await page.screenshot({path:out+'/vnext-'+label+'-glass-slides.png',animations:'disabled'});
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
@@ -67,9 +67,10 @@ try{
  await run('reduced motion remains functional',async()=>{
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.locator('#guideSkip').click();
-  const transition=await page.locator('.glass-sheet').first().evaluate(el=>getComputedStyle(el).transitionDuration);
-  if(transition.split(',').some(x=>parseFloat(x)>0.02))throw Error('reduced motion still animates');
-  await page.locator('.specimen-link').press('Enter');
+  await page.locator('#microHero #scene').waitFor();
+  const state=await page.locator('#microHero').evaluate(el=>el.motion.state());
+  if(state.running||state.phase!==2)throw Error('reduced motion must show a still labeled frame');
+  await page.locator('.primary-nav a[data-space=atlas],.mobile-nav a[data-space=atlas]').filter({visible:true}).first().press('Enter');
   await page.waitForURL(/space=atlas/);
  });
  await context.close();

@@ -1,3 +1,5 @@
+import { mountMicroHero } from './micro-hero.js';
+import { installGlassCursor } from './glass-cursor.js';
 import { installGuide } from './onboarding.js';
 import { enter, reduce, workspaceTop } from './motion.js';
 import { icon } from './icons.js';
@@ -216,6 +218,7 @@ body{margin:0!important}
  stylesheet.textContent=space==='learn'?learnCSS:space==='atlas'?atlasCSS:quizCSS;
  doc.getElementById(stylesheet.id)?.remove();
  doc.head.append(stylesheet);
+ installGlassCursor(doc);
  doc.documentElement.dataset.theme=document.documentElement.dataset.theme;
  doc.addEventListener('click',e=>{
   const tutorial=e.target.closest?.('[data-action="tutorial"]');if(tutorial&&space==='learn'){e.preventDefault();e.stopImmediatePropagation();guide.open();return}
@@ -256,9 +259,8 @@ const guide=installGuide({navigate:target=>route(target)});
 document.querySelectorAll('[data-icon]').forEach(n=>n.innerHTML=icon(n.dataset.icon));
 document.querySelector('#guideToggle').innerHTML=icon('circle-help');
 document.querySelector('#guideToggle').addEventListener('click',()=>guide.open());
-const specimen=document.querySelector('#heroMicrograph');
-const imageFailed=()=>{specimen.hidden=true;specimen.parentElement.querySelector('.micrograph-fallback').hidden=false};
-specimen.addEventListener('error',imageFailed);if(specimen.complete&&!specimen.naturalWidth)imageFailed();
+installGlassCursor();
+mountMicroHero(document.getElementById('microHero')).catch(error=>{console.error('LUMEN visual could not load',error);const host=document.getElementById('microHero');host.hidden=true});
 route(parseRoute(),{historyChange:false});
 
 guide.maybeOpen(parseRoute());

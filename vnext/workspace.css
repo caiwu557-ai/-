@@ -223,3 +223,11 @@ body:not([data-space=learn]) .experience.editorial-home,body[data-space=learn]:n
 .guide-content{padding:8px 24px 22px}.guide-step-icon{display:grid;place-items:center;width:46px;height:46px;background:var(--accent-soft);color:var(--accent);border-radius:11px;margin-bottom:17px}.guide-step-icon svg{width:24px;height:24px}.guide-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}.guide-content h2{font-size:26px;line-height:1.25;margin:8px 0 12px;color:var(--ink)}.guide-content p{font-size:14px;line-height:1.8;color:var(--muted);min-height:76px;margin:0}.guide-progress{display:flex;gap:5px;margin-top:20px}.guide-progress span{height:4px;flex:1;border-radius:8px;background:var(--line)}.guide-progress span.on{background:var(--accent)}
 .guide-footer{border-top:1px solid var(--line);padding:12px 16px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}.guide-footer button{min-height:44px;border:0;border-radius:8px;padding:0 12px;font-size:13px;font-weight:650}.guide-quiet{background:var(--paper2);color:var(--ink)}.guide-primary{background:var(--accent);color:var(--paper);margin-left:auto}.guide-footer button[hidden]{display:none}
 @media(prefers-reduced-motion:reduce){.glass-sheet,.workspace-guide{transition:none!important;animation:none!important}}
+
+/* Approved home V3: give the animation priority without sacrificing the real learning controls. */
+.experience.editorial-home{grid-template-columns:minmax(230px,.8fr) minmax(0,1.25fr);gap:26px;padding:26px}
+.home-motion{min-width:0;width:100%}
+.editorial-copy h1{font-size:clamp(30px,3.25vw,52px)}
+@media(max-width:1180px){.experience.editorial-home{grid-template-columns:minmax(185px,.65fr) minmax(0,1fr);padding:20px;gap:18px}.editorial-copy h1{font-size:35px}}
+@media(max-width:930px){.experience.editorial-home{grid-template-columns:1fr}.editorial-copy h1 br{display:none}.editorial-copy h1{font-size:36px}.editorial-copy p{max-width:none}.home-motion{max-width:720px;margin:auto}}
+@media(max-width:650px){.experience.editorial-home{padding:15px;gap:18px}.editorial-copy h1{font-size:29px;margin:12px 0}}
