@@ -87,6 +87,7 @@ function route(target,{replace=false,historyChange=true}={}){
 }
 function buildModuleTabs(){
  const target=document.querySelector('#moduleTabs');
+ target.hidden=current.space==='learn';if(target.hidden){target.replaceChildren();return;}
  const options=current.space==='learn'
   ?[['home','概览'],['review','复习'],['library','词库'],['stats','记录'],['settings','设置']]
   :current.space==='quiz'

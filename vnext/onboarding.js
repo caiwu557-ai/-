@@ -4,7 +4,7 @@ export const GUIDE_KEY='lumen_workspace_guide_v1';
 const steps=[
  {title:'从这里开始',body:'首页是你的学习工作台。先定范围，再选择适合自己的训练方式。',icon:'house',outer:'#heroTitle',fallback:'.primary-nav [data-space=learn],.mobile-nav [data-space=learn][data-view=home]'},
  {title:'先选学习范围',body:'点击词单选择器，选择考试重点、R10 或具体课程。下方的训练与统计随范围更新。',icon:'book-open',inner:'.scope-chooser',target:{space:'learn',view:'home'}},
- {title:'选择训练方式',body:'新词、到期复习、拼写、辨认：按自己的学习阶段选择。每轮结束后可以继续。',icon:'refresh-cw',inner:'.home-mode-card',target:{space:'learn',view:'home'}},
+ {title:'选择训练方式',body:'先进入新词学习，再选填空、选择或混合。复习自动沿用每个已学术语的题型。',icon:'refresh-cw',inner:'.home-mode-card',target:{space:'learn',view:'home'}},
  {title:'看见真实结构',body:'切片图谱和看图填空都从全局导航进入。先观察结构，再独立辨认。',icon:'layers',outer:'.primary-nav [data-space=atlas],.mobile-nav [data-space=atlas]',target:{space:'atlas'}},
  {title:'看懂学习进度',body:'右侧记录今日作答与最近七天的练习量。可随时收起，给训练腾出空间。',icon:'chart-no-axes-column',inner:'.home-today-panel .progress-panel-toggle',target:{space:'learn',view:'stats'}},
  {title:'备份学习记录',body:'数据只保存在当前浏览器。通过设置与备份导出 JSON，换设备时再导入。识图记录请单独备份。',icon:'shield-check',outer:'.settings-link',target:{space:'learn',view:'settings'}}

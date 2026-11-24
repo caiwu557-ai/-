@@ -36,6 +36,7 @@ jobs:
           sleep 2
           node qa/browser-lumen.mjs
           node qa/validate-recall-resume.mjs
+          node qa/browser-learning-v7.mjs
           node qa/browser-image-quiz.mjs
           node qa/browser-vnext.mjs
           node qa/browser-vnext-native.mjs

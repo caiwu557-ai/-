@@ -269,3 +269,5 @@ body[data-space=learn][data-view=home] #moduleBar:has(#moduleTabs[hidden]){displ
 .guide-card .guide-content{padding:8px 20px 16px}.guide-card .guide-step-icon{width:36px;height:36px;margin-bottom:9px}.guide-card .guide-step-icon svg{width:20px;height:20px}.guide-card .guide-content h2{font-size:22px;margin:5px 0 8px}.guide-card .guide-content p{font-size:13px;min-height:0}.guide-card .guide-progress{margin-top:12px}.guide-card .guide-footer{padding:10px 12px}.guide-card .guide-footer button{min-height:40px;padding:0 9px}
 @media(max-width:650px){.guide-card{max-height:55dvh}.guide-card .guide-content{padding:5px 14px 12px}.guide-card .guide-content h2{font-size:19px}.guide-card .guide-step-icon{display:none}.guide-card .guide-header{padding:6px 10px 0}.guide-card .guide-footer{gap:4px;padding:7px 8px}}
 @media(prefers-reduced-motion:reduce){.guide-card,.guide-spotlight,.app-shell{transition:none!important}}
+
+body[data-space=learn] #moduleTabs{display:none!important}body[data-space=learn] #moduleBar{display:none!important}
