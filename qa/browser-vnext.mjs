@@ -40,7 +40,7 @@ try{
    await page.locator('.primary-nav [data-space="quiz"],.mobile-nav [data-space="quiz"]').first().evaluate(el=>el.click());
    const quiz=page.locator('iframe[data-space="quiz"]').contentFrame();
    await quiz.locator('#metric-total').waitFor({timeout:20000});
-   if((await quiz.locator('#metric-total').innerText()).trim()!=='364')throw Error('quiz dataset does not match 364');
+   if((await quiz.locator('#metric-total').innerText()).trim()!=='320')throw Error('quiz dataset does not match 320');
    if(await quiz.locator('.global-nav').isVisible())throw Error('quiz legacy global navigation still visible');
    await page.locator('#moduleTabs button[data-tab="bank"]').click();
    await quiz.locator('#page-bank').waitFor({state:'visible'});

@@ -12,7 +12,7 @@ try{
    await page.goto('http://127.0.0.1:4173/vnext/?space=quiz',{waitUntil:'domcontentloaded'});
    await page.locator('.vnext-native-quiz #metric-total').waitFor({timeout:20000});
    const total=(await page.locator('.vnext-native-quiz #metric-total').innerText()).trim();
-   if(total!=='364')throw Error('wrong quiz count '+total);
+   if(total!=='320')throw Error('wrong quiz count '+total);
    if(await page.locator('iframe[data-space=quiz]').count())throw Error('native mode fell back to legacy iframe');
    if(await page.locator('.vnext-native-quiz .global-nav').isVisible())throw Error('duplicate quiz global nav');
    if(errors.length)throw Error(errors.join(' | '));
