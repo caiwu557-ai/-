@@ -16,7 +16,9 @@ try{
    const response=await page.goto(base,{waitUntil:'domcontentloaded'});
    if(response.status()!==200)throw Error('VNext route not served');
    await page.locator('#microHero #scene').waitFor();
-   if(await page.locator('#microHero .phase').count()!==3)throw Error('Three-phase visual missing');
+   if(await page.locator('#microHero .feature-header').count())throw Error('External stage bar still rendered');
+   await page.locator('#microHero').evaluate(el=>el.motion.seek(15000));
+   if(await page.locator('#microHero #brandFinale').evaluate(el=>Number(getComputedStyle(el).opacity))<.9)throw Error('Final brand scene missing');
    if(await page.locator('#sculpture').count())throw Error('Retired onion remains');
    await page.screenshot({path:out+'/vnext-'+label+'-glass-slides.png',animations:'disabled'});
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);

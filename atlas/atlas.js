@@ -105,7 +105,7 @@ function navTo(target,opts={}){
   if(!opts.preserveSearch)$('#search').value='';
   setSideOpen(false);
   bindImages();
-  document.title=`${titleFor()} · LUMEN`;
+  document.title=`${titleFor()} · HISTODONE`;
  };
  const canAnimate=!opts.silent&&!opts.noTransition&&typeof document.startViewTransition==='function'
   &&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -171,7 +171,7 @@ function renderSearchResults(q){
   .sort((a,b)=>sectionSearchRank(b,needle)-sectionSearchRank(a,needle)).slice(0,80);
  const foundComparisons=comparisonIndex.filter(x=>x.key.includes(needle)).map(x=>x.item).slice(0,45);
  const total=foundSections.length+foundComparisons.length;
- $('#crumbTitle').textContent='搜索结果';document.title='搜索结果 · LUMEN';
+ $('#crumbTitle').textContent='搜索结果';document.title='搜索结果 · HISTODONE';
  $('#reader').innerHTML=`<div class="kicker">图谱检索</div><h1 class="page-title">搜索结果</h1><p class="page-desc">“${esc(q)}” · ${total} 条结果，点击进入对应结构或辨析。</p>
  ${foundSections.length?`<h2 class="search-subheading">组织与器官 · ${foundSections.length}</h2><div class="section-index">${foundSections.map(s=>`<button type="button" class="section-tile" data-target="${esc(s.id)}"><span>${esc(groupMap[s.group]?.label||'组织学')}</span><strong>${esc(s.title)}</strong></button>`).join('')}</div>`:''}
  ${foundComparisons.length?`<h2 class="search-subheading">易混辨析 · ${foundComparisons.length}</h2><div class="section-index">${foundComparisons.map(c=>`<button type="button" class="section-tile" data-opencomp="${esc(c.id)}"><span>${esc(c.id)} · ${esc(c.group)}</span><strong>${esc(c.title)}</strong></button>`).join('')}</div>`:''}

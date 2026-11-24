@@ -62,7 +62,7 @@ function route(target,{replace=false,historyChange=true}={}){
  document.querySelector('#currentView').textContent=next.space==='learn'&&next.view!=='home'?' / '+localViews[next.view]:'';
  document.querySelector('#moduleTitle').textContent=next.space==='learn'&&next.view!=='home'?localViews[next.view]:spaces[next.space].title;
  document.querySelector('#moduleEyebrow').textContent=spaces[next.space].eyebrow;
- document.title=spaces[next.space].title+' · LUMEN';
+ document.title=spaces[next.space].title+' · HISTODONE';
  document.querySelectorAll('nav a[data-space], .settings-link').forEach(node=>{
   const active=node.dataset.space===next.space&&(node.dataset.view?next.view===node.dataset.view:next.space!=='learn'||next.view==='home');
   node.classList.toggle('active',active);
@@ -260,7 +260,7 @@ document.querySelectorAll('[data-icon]').forEach(n=>n.innerHTML=icon(n.dataset.i
 document.querySelector('#guideToggle').innerHTML=icon('circle-help');
 document.querySelector('#guideToggle').addEventListener('click',()=>guide.open());
 installGlassCursor();
-mountMicroHero(document.getElementById('microHero')).catch(error=>{console.error('LUMEN visual could not load',error);const host=document.getElementById('microHero');host.hidden=true});
+mountMicroHero(document.getElementById('microHero')).catch(error=>{console.error('HISTODONE visual could not load',error);const host=document.getElementById('microHero');host.hidden=true});
 route(parseRoute(),{historyChange:false});
 
 guide.maybeOpen(parseRoute());

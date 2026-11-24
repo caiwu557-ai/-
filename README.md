@@ -1,9 +1,9 @@
-# LUMEN · Histology Recall Lab (v2.0)
+# HISTODONE · Get Histology Done.
 
 An offline-first Chinese/English histology terminology study web app. 1,269 deduplicated base entries plus 14 classroom-photo entries at runtime (1,283 cards total). Multiple-choice exercises, letter-by-letter English spelling, chapter filtering, local SRS practice and exportable progress.
 
 ## Open
-- Open the GitHub Pages root; it redirects to the unified `/vnext/` workspace. `learn-engine.html` retains the original terminology engine byte-for-byte and is embedded by VNext.
+- Open the GitHub Pages root; it redirects to the unified `/vnext/` workspace. `learn-engine.html` retains the original terminology engine and its data format and is embedded by VNext.
 - When GitHub Pages is explicitly enabled for this repository, `index.html` is the static site entrypoint.
 - No API keys, analytics, external fonts, external images or CDN requests are required for the app.
 - Progress is saved to the browser's **localStorage**; it is not synced across devices.
